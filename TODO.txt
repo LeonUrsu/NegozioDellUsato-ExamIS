@@ -1,0 +1,13 @@
+1 - modificare il business case in modo che combaci con i requisiti
+2 - Mapping
+
+
+
+-registrazione
+-login
+-aggiungi ai preferiti
+-carrello e relativo crud
+-paga come?
+-filtri(categoria,ecc)
+-prodotto e relativo crud
+-statistiche sui prodotti comprati ecc..
