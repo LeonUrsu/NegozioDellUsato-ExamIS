@@ -1,8 +1,34 @@
 1 - modificare il business case in modo che combaci con i requisiti
 2 - Mapping
-3 - aggiungere casi d'uso come"annulla operazione" "spegni sistema????" 
-4 - aggiungere nuovo possibile attore "sistema"
+3 - riguardare sequenza annulla sui casi
 5 - modificare il caso d'uso cruRICEVUTE
+
+
+Leon---------------
+CRUDProdotto
+Notifica
+RIcercaCliente
+VendiProdotto
+VisualizzaStatistiche
+-------------------
+
+
+Leonardo-----------
+backup
+CalcolaProfitti
+ControllaStatoProdotti
+FiltraggioVario
+Login
+-------------------
+
+
+
+
+
+
+
+
+
 
 -registrazione
 -login
