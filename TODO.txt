@@ -14,11 +14,11 @@ VisualizzaStatistiche
 
 
 Leonardo-----------
-backup
+backup x
 CalcolaProfitti
-ControllaStatoProdotti
+ControllaStatoProdotti x
 FiltraggioVario
-Login
+Login x
 -------------------
 
 
