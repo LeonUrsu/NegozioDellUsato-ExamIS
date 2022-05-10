@@ -7,7 +7,7 @@
 
 ------------------------DIAGRAMMI DI ATTIVITA'
 ------------------------Leon
-	CRUDProdotto 
+	CRUDProdotto X
 	Notifica 
 	RIcercaCliente 
 	VendiProdotto 
