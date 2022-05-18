@@ -5,6 +5,27 @@
 
 
 
+<<<<<<< HEAD
+=======
+=======
+------------------------DIAGRAMMI DI ATTIVITA'
+------------------------Leon
+	CRUDProdotto X
+	Notifica X
+	RIcercaCliente  X
+	VendiProdotto X
+	VisualizzaStatistiche X 
+------------------------Leonardo
+	backup 
+	CalcolaProfitti
+	ControllaStatoProdotti 
+	FiltraggioVario
+	Login 
+---------------------------------------------
+
+------------------------DIAGRAMMI DI SEQUENZA
+>>>>>>> 5a21e28eae5bcb6181c5495b20e5822f95ed0c41
+>>>>>>> 02a8671e427ff0e38100ae47659388925174158e
 Leon---------------
 CRUDProdotto X
 Notifica X
