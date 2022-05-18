@@ -4,6 +4,7 @@
 5 - modificare il caso d'uso cruRICEVUTE
 
 
+
 Leon---------------
 CRUDProdotto X
 Notifica X
@@ -18,7 +19,7 @@ backup x
 CalcolaProfitti
 ControllaStatoProdotti x
 FiltraggioVario
-Login x
+Login 
 -------------------
 
 
