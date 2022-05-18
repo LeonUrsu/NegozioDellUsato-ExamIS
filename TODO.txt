@@ -8,10 +8,10 @@
 ------------------------DIAGRAMMI DI ATTIVITA'
 ------------------------Leon
 	CRUDProdotto X
-	Notifica 
-	RIcercaCliente 
-	VendiProdotto 
-	VisualizzaStatistiche 
+	Notifica X
+	RIcercaCliente  X
+	VendiProdotto X
+	VisualizzaStatistiche X 
 ------------------------Leonardo
 	backup 
 	CalcolaProfitti
