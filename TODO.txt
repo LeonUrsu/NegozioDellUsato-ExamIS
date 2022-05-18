@@ -5,6 +5,9 @@
 5 - modificare il caso d'uso cruRICEVUTE
 
 
+<<<<<<< HEAD
+
+=======
 ------------------------DIAGRAMMI DI ATTIVITA'
 ------------------------Leon
 	CRUDProdotto X
@@ -21,6 +24,7 @@
 ---------------------------------------------
 
 ------------------------DIAGRAMMI DI SEQUENZA
+>>>>>>> 5a21e28eae5bcb6181c5495b20e5822f95ed0c41
 Leon---------------
 CRUDProdotto X
 Notifica X
@@ -33,7 +37,14 @@ backup x
 CalcolaProfitti
 ControllaStatoProdotti x
 FiltraggioVario
+<<<<<<< HEAD
+Login 
+-------------------
+
+
+=======
 Login x
+>>>>>>> 5a21e28eae5bcb6181c5495b20e5822f95ed0c41
 
 
 
