@@ -5,9 +5,23 @@
 
 
 
-<<<<<<< HEAD
-=======
-=======
+
+
+
+
+------------------------DIAGRAMMI DI MACCHIENE A STATI
+------------------------Leon
+	Prodotto
+	Ricevuta
+	Scaffale
+	Categoria
+	Login
+	Backup
+------------------------Leonardo
+
+---------------------------------------------
+
+
 ------------------------DIAGRAMMI DI ATTIVITA'
 ------------------------Leon
 	CRUDProdotto X
