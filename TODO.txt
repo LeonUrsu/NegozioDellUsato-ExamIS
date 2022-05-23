@@ -11,14 +11,13 @@
 
 ------------------------DIAGRAMMI DI MACCHIENE A STATI
 ------------------------Leon
-	Prodotto
-	Ricevuta
-	Scaffale
 	Categoria
 	Login
 	Backup
 ------------------------Leonardo
-
+	Scaffale
+	Prodotto
+	Ricevuta
 ---------------------------------------------
 
 
