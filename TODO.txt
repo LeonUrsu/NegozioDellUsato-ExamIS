@@ -14,10 +14,10 @@
 	Categoria
 	Login
 	Backup
-------------------------Leonardo
-	Scaffale
 	Prodotto
 	Ricevuta
+------------------------Leonardo
+
 ---------------------------------------------
 
 
