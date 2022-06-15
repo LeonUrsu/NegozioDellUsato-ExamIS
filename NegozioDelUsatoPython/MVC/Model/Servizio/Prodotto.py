@@ -17,16 +17,32 @@ class Prodotto:
         self.statoDiVendita = None
 
 
-    #Metodo per clonare la classe per un backpu dei dati
+    #Metodo che permette di clonare un'istanza della classe
+    #return Prodotto
     def clone(self):
         todo
 
+
     #Distruttore della classe, destroy() in EA
     def __del__(self):
-        pass
+        todo
+
 
     #Metodo che entra in azione quanado l'oggetto matura un determinato tempo di esistenza nel
     #negozio e viene applicato dolo agli oggetti che sono esposti alla vendita
-    #athribute
-    #return boolean
+    #return valore booleano
     def scontaProdotto(self):
+        todo
+
+
+    #Metodo che sposta un determinato prodotto all'interno della memoria quando il suo stato è in cambiamento
+    #return valore booleano
+    def spostaProdotto(self):
+        todo
+
+
+    #Metodo che permette la vendita di un prodotto, lo stato dell'oggetto passa a venduto e viene spostato
+    #dove vendono archviati tutti gli oggetti venduti nel database
+    #return valore booleano
+    def vendiProdotto(self):
+        todo
