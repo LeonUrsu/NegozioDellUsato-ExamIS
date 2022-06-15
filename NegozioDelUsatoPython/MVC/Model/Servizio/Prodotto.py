@@ -1,6 +1,6 @@
 import datetime
 
-
+#CLasse Prodotto che rappresenta il prodotto con le sue caratteristiche che verrà esposto nel negozio
 class Prodotto:
 
 
@@ -17,14 +17,14 @@ class Prodotto:
         self.statoDiVendita = None
 
 
-    #Metodo che permette di clonare un'istanza della classe
-    #return Prodotto
-    def clone(self):
+    #Distruttore della classe, destroy() in EA
+    def __del__(self):
         todo
 
 
-    #Distruttore della classe, destroy() in EA
-    def __del__(self):
+    #Metodo che permette di clonare un'istanza della classe
+    #return Prodotto
+    def clone(self):
         todo
 
 
