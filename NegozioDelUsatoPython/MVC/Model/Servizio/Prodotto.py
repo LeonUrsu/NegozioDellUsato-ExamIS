@@ -15,6 +15,7 @@ class Prodotto:
         self.prezzoCorrente = None
         self.prezzoOriginale = None
         self.statoDiVendita = None
+        self.IDScaffale = None
 
 
     #Distruttore della classe, destroy() in EA

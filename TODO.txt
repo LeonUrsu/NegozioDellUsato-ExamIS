@@ -2,4 +2,4 @@
 2 - Mapping DONE
 3 - riguardare sequenza annulla sui casi d'uso DONE
 4 - modificare il caso d'uso cruRICEVUTE 
-5 - fare un metodo che analizza l'intero databse in cerca delle inconsistenze
+5 - fare un metodo che analizza l'intero database in cerca delle inconsistenze
