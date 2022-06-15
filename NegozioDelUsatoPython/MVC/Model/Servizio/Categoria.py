@@ -23,7 +23,7 @@ class Categoria:
         todo
         return
 
-    
+
     # Metodo che permette di clonare un'istanza della classe
     # return Categoria
     def clone(self):
