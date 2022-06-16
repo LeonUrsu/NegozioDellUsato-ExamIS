@@ -10,10 +10,11 @@ class Scaffale:
         posto = None
 
 
-    # Distruttore della classe, destroy() in EA
-    #return valore booleano
-    def __del__(self):
-        todo
+    #Metodo per aggiungere i valori all'istanza creata della classe
+    def aggiungiScaffale(self, ID, IDProdotti, posto):
+        ID = None
+        IDProdotti = None
+        posto = None
 
 
     # Metodo che permette di clonare un'istanza della classe

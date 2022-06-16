@@ -1,14 +1,19 @@
 import datetime
+import MVC.Model.SistemService.File
+import json
 
 #CLasse Prodotto che rappresenta il prodotto con le sue caratteristiche che verrà esposto nel negozio
-class Prodotto:
+from MVC.Model.Interfacce.DictionaryToPythonObject import JsonObjectToPythonObject
+
+
+class Prodotto():
 
 
     #Costruttore della classe, create() in EA
     def __init__(self):
         self.codiceCategoria = None
-        self.dataEsposizione = datetime.datetime(year = None, month = None, day = None)
-        self.dataScadenza = datetime.datetime(year = None, month = None, day = None)
+        self.dataEsposizione = None
+        self.dataScadenza = None
         self.IDAccount = None
         self.IDProdotto = None
         self.nomeProdotto = None
@@ -18,9 +23,20 @@ class Prodotto:
         self.IDScaffale = None
 
 
-    #Distruttore della classe, destroy() in EA
-    def __del__(self):
-        todo
+    #Metodo per aggiungere i valori all'istanza creata della classe e salvarla nel database
+    def aggiungiProdotto(self, codiceCategoria, dataEsposizione, dataScadenza, IDAccount, IDProdotto, nomeProdotto,
+                         prezzoCorrente, prezzoOriginale, statoDiVendita, IDScaffale):
+        self.codiceCategoria = codiceCategoria
+        self.dataEsposizione = dataEsposizione
+        self.dataScadenza = dataScadenza
+        self.IDAccount = IDAccount
+        self.IDProdotto = IDProdotto
+        self.nomeProdotto = nomeProdotto
+        self.prezzoCorrente = prezzoCorrente
+        self.prezzoOriginale = prezzoOriginale
+        self.statoDiVendita = statoDiVendita
+        self.IDScaffale = IDScaffale
+        letto = MVC.File()
 
 
     #Metodo che permette di clonare un'istanza della classe
@@ -47,3 +63,16 @@ class Prodotto:
     #return valore booleano
     def vendiProdotto(self):
         todo
+
+
+    #metodo overiding dell'interfaccia JsonObjectToPythonObject
+    def DictionaryEndcoder(self, object):
+        
+        dictObject = object.__dict__
+        MVC.File.scrivi('Database\Prodotti\InVendita', dictObject)
+
+
+    #metodo overiding dell'interfaccia JsonObjectToPythonObject
+    def DictionaryDecoder(self):
+        letto = File
+        ProdottoObj = json.loads(json.dumps(dict1), object_hook=Prodotto)

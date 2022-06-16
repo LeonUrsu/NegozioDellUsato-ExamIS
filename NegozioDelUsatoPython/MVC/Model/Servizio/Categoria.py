@@ -10,7 +10,8 @@ class Categoria:
         self.nome = None
         self.oggettiTotali = None
 
-    #Metodo per aggiungere i valori alla categoria da creare
+
+    #Metodo per aggiungere i valori all'istanza creata della classe
     def aggiungiCategoria(self, codiceCategoria, impattoCO2, nome, oggettiTotali)
         self.codiceCategoria = codiceCategoria
         self.impattoCO2 = impattoCO2
