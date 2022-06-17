@@ -8,7 +8,7 @@ import json
 from MVC.Model.Interfacce.DictionaryToPythonObject import JsonObjectToPythonObject
 
 
-class Prodotto():
+class Prodotto(JsonObjectToPythonObject):
 
 
     #Costruttore della classe, create() in EA
@@ -69,11 +69,11 @@ class Prodotto():
 
 
     #metodo overiding dell'interfaccia JsonObjectToPythonObject
-    def DictionaryEndcoder(self, contenuto):
+    def dictionaryEndcoder(self, contenuto):
         json_string = json.dumps([self.__dict__ for self in contenuto])
-
+        return json_string
 
     #metodo overiding dell'interfaccia JsonObjectToPythonObject
-    def DictionaryDecoder(self, letto):
+    def dictionaryDecoder(self, contenuto):
         pyLetto = json.loads(letto, object_hook=lambda d: SimpleNamespace(**d))
         return pyLetto
