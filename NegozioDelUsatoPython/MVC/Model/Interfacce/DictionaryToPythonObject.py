@@ -5,7 +5,7 @@ class JsonObjectToPythonObject:
 
     #Ogni classe che implementerà questa interfaccia deve garantire di poter codificare
     #un oggetto della classe nel formato Dictionary impelementando questo metodo
-    def DictionaryEndcoder(self):
+    def DictionaryEncoder(self):
         pass
 
 

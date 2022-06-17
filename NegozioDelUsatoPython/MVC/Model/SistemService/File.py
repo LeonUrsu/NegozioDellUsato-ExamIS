@@ -1,4 +1,6 @@
 import json
+from types import SimpleNamespace
+
 
 class File:
 
@@ -6,7 +8,6 @@ class File:
     #Costruttore della classe
     def __init__(self):
         pass
-
 
 
     #Metodo per la lettura su un file
@@ -19,10 +20,4 @@ class File:
     #Metodo per la scrittura su un file
     def scrivi(self, fileName, contenuto):
         with open(fileName, 'w') as in_file:
-            in_file.write(contenuto)
-
-
-    #Metodo per appendere su un file
-    def appendi(self, fileName, contenuto):
-        with open(fileName, 'a') as in_file:
             in_file.write(contenuto)

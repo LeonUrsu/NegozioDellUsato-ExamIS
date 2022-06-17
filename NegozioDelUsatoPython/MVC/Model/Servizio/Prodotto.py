@@ -1,4 +1,6 @@
 import datetime
+from types import SimpleNamespace
+
 from MVC.Model.SistemService.File import File
 import json
 
@@ -67,12 +69,11 @@ class Prodotto():
 
 
     #metodo overiding dell'interfaccia JsonObjectToPythonObject
-    def DictionaryEndcoder(self, object):
-        dictObject = object.__dict__
-        File.scrivi('Database\Prodotti\InVendita', dictObject)
+    def DictionaryEndcoder(self, contenuto):
+        json_string = json.dumps([self.__dict__ for self in contenuto])
 
 
     #metodo overiding dell'interfaccia JsonObjectToPythonObject
-    def DictionaryDecoder(self):
-        letto = File
-        ProdottoObj = json.loads(json.dumps(dict1), object_hook=Prodotto)
+    def DictionaryDecoder(self, letto):
+        pyLetto = json.loads(letto, object_hook=lambda d: SimpleNamespace(**d))
+        return pyLetto
