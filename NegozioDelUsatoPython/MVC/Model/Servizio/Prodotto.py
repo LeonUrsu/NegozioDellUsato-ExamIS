@@ -1,5 +1,5 @@
 import datetime
-import MVC.Model.SistemService.File
+from MVC.Model.SistemService.File import File
 import json
 
 #CLasse Prodotto che rappresenta il prodotto con le sue caratteristiche che verrà esposto nel negozio
@@ -36,7 +36,8 @@ class Prodotto():
         self.prezzoOriginale = prezzoOriginale
         self.statoDiVendita = statoDiVendita
         self.IDScaffale = IDScaffale
-        letto = MVC.File()
+        letto = File('Database\Prodotti\InVendita')
+        checkIDProdotto(self) #controlla se l'id del prodotto esiste nel sistema raise exception
 
 
     #Metodo che permette di clonare un'istanza della classe
@@ -67,9 +68,8 @@ class Prodotto():
 
     #metodo overiding dell'interfaccia JsonObjectToPythonObject
     def DictionaryEndcoder(self, object):
-        
         dictObject = object.__dict__
-        MVC.File.scrivi('Database\Prodotti\InVendita', dictObject)
+        File.scrivi('Database\Prodotti\InVendita', dictObject)
 
 
     #metodo overiding dell'interfaccia JsonObjectToPythonObject
