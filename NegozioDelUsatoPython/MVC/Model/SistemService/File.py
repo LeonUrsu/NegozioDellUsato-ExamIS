@@ -15,7 +15,7 @@ class File:
         with open(fileName, 'r') as in_file:
             letto = in_file.read()
         in_file.close()
-        return json.loads(letto)
+        return letto
 
 
     #Metodo per la scrittura su un file

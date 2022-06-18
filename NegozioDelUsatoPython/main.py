@@ -36,7 +36,6 @@ class Test():
 
     #metodo overiding dell'interfaccia JsonObjectToPythonObject
     def dictionaryDecoder(self, letto):
-
         return [Test(x['var'], x['var2']) for x in letto]
 
 

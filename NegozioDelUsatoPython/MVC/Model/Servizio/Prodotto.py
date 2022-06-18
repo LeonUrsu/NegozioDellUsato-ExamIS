@@ -26,11 +26,14 @@ class Prodotto(JsonObjectToPythonObject):
 
 
     #Metodo per aggiungere i valori all'istanza creata della classe e salvarla nel database
-    def aggiungiProdotto(self, codiceCategoria, dataEsposizione, dataScadenza, IDAccount, nomeProdotto,
+    def aggiungiProdotto(self, codiceCategoria, dataEsposizione, IDAccount, nomeProdotto,
                          prezzoCorrente, prezzoOriginale, statoDiVendita, IDScaffale):
         self.codiceCategoria = codiceCategoria
         self.dataEsposizione = dataEsposizione
-        self.dataScadenza = dataScadenza
+        self.dataPrimoSconto = dataEsposizione + relativedelta(months=2)
+        self.dataSecondoSconto = dataEsposizione + relativedelta(months=3)
+        self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
+        self.dataScadenza = dataEsposizione + relativedelta(months=5)
         self.IDAccount = IDAccount
         self.IDProdotto = Prodotto.getNewIDProdotto()
         self.nomeProdotto = nomeProdotto
@@ -51,17 +54,35 @@ class Prodotto(JsonObjectToPythonObject):
     #negozio e viene applicato dolo agli oggetti che sono esposti alla vendita
     #return valore booleano
     def scontaProdotti(self):
-        letto = File.leggi('Database\Prodotti\InVendita.txt')
-        dictLetto = dictionaryEndcoder(self, letto)
-        for i
-
+        fileName = 'Database\Prodotti\InVendita.txt'
+        strLetto = File.leggi(fileName)
+        listLetto = dictionaryDecoder(json.loads(strLetto))
+        listLetto = controllaScadenzaProdotto(listLetto)
+        contenuto = dictionaryEndcoder(listLetto)
+        File.scrivi(fileName, contenuto.__str__)
 
 
     #Metodo che sposta un determinato prodotto all'interno della memoria quando il suo stato è in cambiamento
     #return valore booleano
-    def spostaProdotto(self):
-        todo
-
+    def spostaProdotto(self, id, start, end):
+        startfileName = f'Database\Prodotti\{start}.txt'
+        endfileName = f'Database\Prodotti\{end}.txt'
+        strLetto = File.leggi(startfileName)
+        list = dictionaryDecoder(json.loads(strletto))
+        for obj in list:
+            if obj.IDProdotto == id:
+                popped = list.pop(list.index(obj))
+            else:
+                return False
+        contenuto = dictionaryEndcoder(list)
+        File.scrivi(fileName, contenuto.__str__)
+        strLetto = File.leggi(endfileName)
+        list = dictionaryDecoder(json.loads(strletto))
+        list.append(popped)
+        contenuto = dictionaryEndcoder(list)
+        File.scrivi(fileName, contenuto.__str__)
+        return True
+        
 
     #Metodo che permette la vendita di un prodotto, lo stato dell'oggetto passa a venduto e viene spostato
     #dove vendono archviati tutti gli oggetti venduti nel database
@@ -71,15 +92,18 @@ class Prodotto(JsonObjectToPythonObject):
 
 
     #metodo overiding dell'interfaccia JsonObjectToPythonObject
+    #contenuto list
+    #return dictionary
     def dictionaryEndcoder(self, contenuto):
-        json_string = json.dumps([self.__dict__ for self in contenuto])
-        return json_string
+        dict = json.dumps([self.__dict__ for self in contenuto])
+        return dict
 
 
     #metodo overiding dell'interfaccia JsonObjectToPythonObject
+    #contenuto dictionary
+    #return list
     def dictionaryDecoder(self, contenuto):
-        pyLetto = json.loads(contenuto, object_hook=lambda d: SimpleNamespace(**d))
-        return pyLetto
+        return [Test(x['var'], x['var2']) for x in letto]
 
 
     #Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
@@ -91,3 +115,21 @@ class Prodotto(JsonObjectToPythonObject):
         dictLetto['lastIDProdotto'] = newID
         File.scrivi(fileName,dictLetto.__str__)
         return newID
+
+
+    #Metodo che controlla le date di scadenza e di sconto degli oggetti
+
+    def controllaScadenzaProdotto(self, listLetto):
+        date_format = '%d/%m/%Y'
+        today = date.today()
+        dateToday = today.strftime(date_format)
+        for obj in listLetto:
+            if obj.dataScadenza <= dateToday:
+                scadenza()todo
+            elif obj.dataTerzoSconto <= dateToday:
+                sconta(obj, 50)
+            elif obj.dataSecondoSconto <= dateToday:
+                sconta(obj, 40)
+            elif obj.dataPrimoSconto <= dateToday:
+                sconta(obj, 30)
+        return listLetto
