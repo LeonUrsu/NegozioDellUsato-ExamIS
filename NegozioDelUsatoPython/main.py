@@ -23,46 +23,52 @@ if __name__ == '__main__':
     print_hi('PyCharm')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
-class Test(JsonObjectToPythonObject):
-    def __init__(self, var):
+class Test():
+    def __init__(self, var,var2):
         self.var = var
+        self.var2 = var2
+
 
     #metodo overiding dell'interfaccia JsonObjectToPythonObject
-    def DictionaryEndcoder(self, contenuto):
+    def dictionaryEncoder(self, contenuto):
         json_string = json.dumps([self.__dict__ for self in contenuto])
         return json_string
 
     #metodo overiding dell'interfaccia JsonObjectToPythonObject
-    def DictionaryDecoder(self, letto):
-        pyLetto = json.loads(letto, object_hook=lambda d: SimpleNamespace(**d))
-        return pyLetto
+    def dictionaryDecoder(self, letto):
+
+        return [Test(x['var'], x['var2']) for x in letto]
 
 
-"""
+
+
+""""
 filename = 'testo.txt'
-test1 = Test(1)
-test2 = Test(2)
-lista =list()
-lista.append(test1)
-lista.append(test2)
-tradotto = Test.DictionaryEndcoder(Test,lista)
-File.scrivi(File, filename, tradotto)
-time.sleep(2)
-letto = File.leggi(File,filename)
-decodificato = Test.DictionaryDecoder(Test,letto)
-print(decodificato[0].var)
-"""
+test1 = Test(1, 11)
+test2 = Test(2, 22)
+test3 = Test(3, 33)
+test4 = Test(4, 44)
+liste = list()
+liste.append(test1)
+liste.append(test2)
+liste.append(test3)
+liste.append(test4)
+print(liste)
+translated = Test.DictionaryEncoder(Test,liste)
+print(translated)
+#File.scrivi(File, filename, translated)
+#letto = File.leggi(File, filename)
+print(dictionaryDecoder(Test, json.loads(translated)))
 
 
 
+with open(filename, 'wb') as f:
+    pickle.dump(liste, f, pickle.HIGHEST_PROTOCOL)
+with open(filename, 'rb') as f:
+    data = pickle.load(f)
+print(data)
 
 
-
-
-
-
-
-"""
 print('-------------------------')
 
 testArray = list()
