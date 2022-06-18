@@ -75,6 +75,7 @@ class Prodotto(JsonObjectToPythonObject):
     def prendiProdottoDaFile(self, fileName, id):
         strLetto = File.leggi(startfileName)
         list = dictionaryDecoder(json.loads(strletto))
+        popped = None
         for obj in list:
             if obj.IDProdotto == id:
                 popped = list.pop(list.index(obj))
@@ -83,7 +84,7 @@ class Prodotto(JsonObjectToPythonObject):
         contenuto = dictionaryEndcoder(list)
         File.scrivi(fileName, contenuto.__str__)
         return popped
-        
+
 
     #Metodo che mette un Prodotto su file
     def mettiProdottoSuFile(self, fileName, obj):
