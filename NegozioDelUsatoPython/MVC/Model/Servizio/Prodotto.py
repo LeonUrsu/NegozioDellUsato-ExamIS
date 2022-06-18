@@ -67,6 +67,12 @@ class Prodotto(JsonObjectToPythonObject):
     def spostaProdotto(self, id, start, end):
         startfileName = f'Database\Prodotti\{start}.txt'
         endfileName = f'Database\Prodotti\{end}.txt'
+        obj = prendiProdottoDaFile(startfileName, id)
+        mettiProdottoSuFile(endfileName, obj)
+        return True
+
+    #Metodo che rimuove un Prodotto da file e lo restituisce
+    def prendiProdottoDaFile(self, fileName, id):
         strLetto = File.leggi(startfileName)
         list = dictionaryDecoder(json.loads(strletto))
         for obj in list:
@@ -76,13 +82,17 @@ class Prodotto(JsonObjectToPythonObject):
                 return False
         contenuto = dictionaryEndcoder(list)
         File.scrivi(fileName, contenuto.__str__)
+        return popped
+        
+
+    #Metodo che mette un Prodotto su file
+    def mettiProdottoSuFile(self, fileName, obj):
         strLetto = File.leggi(endfileName)
         list = dictionaryDecoder(json.loads(strletto))
-        list.append(popped)
+        list.append(obj)
         contenuto = dictionaryEndcoder(list)
         File.scrivi(fileName, contenuto.__str__)
-        return True
-        
+
 
     #Metodo che permette la vendita di un prodotto, lo stato dell'oggetto passa a venduto e viene spostato
     #dove vendono archviati tutti gli oggetti venduti nel database
@@ -133,3 +143,5 @@ class Prodotto(JsonObjectToPythonObject):
             elif obj.dataPrimoSconto <= dateToday:
                 sconta(obj, 30)
         return listLetto
+
+
