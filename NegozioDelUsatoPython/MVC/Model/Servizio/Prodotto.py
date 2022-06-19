@@ -27,7 +27,7 @@ class Prodotto(JsonObjectToPythonObject):
 
     #Metodo per aggiungere i valori all'istanza creata della classe e salvarla nel database
     def aggiungiProdotto(self, codiceCategoria, dataEsposizione, IDAccount, nomeProdotto,
-                         prezzoCorrente, prezzoOriginale, statoDiVendita, IDScaffale):
+                         prezzoOriginale, statoDiVendita, IDScaffale):
         self.codiceCategoria = codiceCategoria
         self.dataEsposizione = dataEsposizione
         self.dataPrimoSconto = dataEsposizione + relativedelta(months=2)
@@ -37,7 +37,7 @@ class Prodotto(JsonObjectToPythonObject):
         self.IDAccount = IDAccount
         self.IDProdotto = Prodotto.getNewIDProdotto()
         self.nomeProdotto = nomeProdotto
-        self.prezzoCorrente = prezzoCorrente
+        self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
         self.statoDiVendita = statoDiVendita
         self.IDScaffale = IDScaffale
@@ -136,19 +136,38 @@ class Prodotto(JsonObjectToPythonObject):
 
 
     #Metodo che controlla le date di scadenza e di sconto degli oggetti
+    #listLetto = lista dei prodotti in python
+    #return = lista dei prodotti in python dopo l'eventuale sconto
     def controllaScadenzaProdotto(self, listLetto):
         date_format = '%d/%m/%Y'
         today = date.today()
         dateToday = today.strftime(date_format)
         for obj in listLetto:
             if obj.dataScadenza <= dateToday:
-                scadenza()todo
+                scadenza(obj.IDProdotto)todo
             elif obj.dataTerzoSconto <= dateToday:
-                sconta(obj, 50)
+                obj.prezzoCorrente = sale(prezzoOriginale, 50)
             elif obj.dataSecondoSconto <= dateToday:
-                sconta(obj, 40)
+                obj.prezzoCorrente = sale(prezzoOriginale, 40)
             elif obj.dataPrimoSconto <= dateToday:
-                sconta(obj, 30)
+                obj.prezzoCorrente = sale(prezzoOriginale, 30)
         return listLetto
 
+
+    #Metodo che sconta il prezzo di un prodotto in base al valore di sconto
+    #prezzoOriginale = prezzo del prodotto al momento del inserimento nel sistema
+    #prezzoCorrente = prezzo del prodotto dopo lo sconto rispetto al prezzoOriginale
+    #return = prezzoCorrente del prodotto
+    def sale(self, prezzoOriginale, valore):
+        prezzoCorrente = prezzoOriginale * (valore/100)
+        return prezzoCorrente
+
+
+    #metodo che gestisce la scadenza di un oggetto spostandolo dai prodotti in vendita
+    #ai prodotti scaduti
+    #id = id prodotto da spostare
+    def scadenza(self, id):
+        start = 'Database\Prodotti\InVendita.txt'
+        end = 'Database\Prodotti\Scaduti.txt'
+        spostaProdotto(id, start, end)
 
