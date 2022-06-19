@@ -28,12 +28,8 @@ class Categoria:
     # Metodo che permette di clonare un'istanza della classe
     # return Categoria
     def clone(self):
-        categoria = Categoria()
-        categoria.codiceCategoria = self.codiceCategoria
-        categoria.impattoCO2 = self.impattoCO2
-        categoria.nome = self.nome
-        categoria.oggettiTotali = self.oggettiTotali
-        return categoria
+        deepCopy =  copy.deepcopy(self)
+        return deepCopy
 
 
     #Metodo che permette di eliminare una categoria salvata nel database
