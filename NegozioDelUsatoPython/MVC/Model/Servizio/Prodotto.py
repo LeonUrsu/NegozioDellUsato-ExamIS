@@ -137,14 +137,14 @@ class Prodotto(JsonObjectToPythonObject):
 
     #Metodo che controlla le date di scadenza e di sconto degli oggetti
     #listLetto = lista dei prodotti in python
-    #return = lista dei prodotti in python dopo l'eventuale sconto
+    #return = lista dei prodotti in python dopo l'eventuale sconto """
     def controllaScadenzaProdotto(self, listLetto):
         date_format = '%d/%m/%Y'
         today = date.today()
         dateToday = today.strftime(date_format)
         for obj in listLetto:
             if obj.dataScadenza <= dateToday:
-                scadenza(obj.IDProdotto)todo
+                scadenza(obj.IDProdotto)
             elif obj.dataTerzoSconto <= dateToday:
                 obj.prezzoCorrente = sale(prezzoOriginale, 50)
             elif obj.dataSecondoSconto <= dateToday:
