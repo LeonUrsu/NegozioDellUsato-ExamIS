@@ -69,7 +69,8 @@ class Prodotto(JsonObjectToPythonObject):
         endfileName = f'Database\Prodotti\{end}.txt'
         obj = prendiProdottoDaFile(startfileName, id)
         mettiProdottoSuFile(endfileName, obj)
-        return True
+        return obj.prezzoCorrente
+
 
     #Metodo che rimuove un Prodotto da file e lo restituisce
     def prendiProdottoDaFile(self, fileName, id):
@@ -98,8 +99,14 @@ class Prodotto(JsonObjectToPythonObject):
     #Metodo che permette la vendita di un prodotto, lo stato dell'oggetto passa a venduto e viene spostato
     #dove vendono archviati tutti gli oggetti venduti nel database
     #return valore booleano
-    def vendiProdotto(self):
-        todo
+    def vendiProdotto(self, id):
+        start = 'Database\Prodotti\InVendita.txt'
+        end = 'Database\Prodotti\Venduti.txt'
+        prezzoCorrente = spostaProdotto(id, start, end)
+        infoProdotto = {}
+        infoProdotto['prezzoCorrente'] = prezzoCorrente
+        infoProdotto['id'] = id
+        return infoProdotto
 
 
     #metodo overiding dell'interfaccia JsonObjectToPythonObject
@@ -129,7 +136,6 @@ class Prodotto(JsonObjectToPythonObject):
 
 
     #Metodo che controlla le date di scadenza e di sconto degli oggetti
-
     def controllaScadenzaProdotto(self, listLetto):
         date_format = '%d/%m/%Y'
         today = date.today()
