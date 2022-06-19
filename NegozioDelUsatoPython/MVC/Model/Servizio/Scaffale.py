@@ -1,35 +1,49 @@
 
 
-class Scaffale:
+class Scaffale(DictionaryToPythonObject):
 
 
     # Costruttore della classe, create() in EA
-    def __init__(self):
-        ID = None
-        IDProdotti = None
-        posto = None
-
-
-    #Metodo per aggiungere i valori all'istanza creata della classe
-    def aggiungiScaffale(self, ID, IDProdotti, posto):
-        ID = None
-        IDProdotti = None
-        posto = None
+    def __init__(self, ID, IDProdotti, posto):
+        self.ID = ID
+        self.IDProdotti = IDProdotti
+        self.posto = posto
+        filename = 'Database\Scaffali\Scaffali.txt'
+        scaffaliList = File.deserializza(filename)
+        scaffaliList.append(self)
+        File.serializza(self, filename, scaffaliList)
 
 
     # Metodo che permette di clonare un'istanza della classe
     # return Scaffale
     def clone(self):
-        todo
+        deepCopy =  copy.deepcopy(self)
+        return deepCopy
 
 
     #Metodo che permette di eliminare uno scaffale salvato nel database
     #return valore booleano
-    def deleteInDatabase(self):
-        todo
+    def deleteInDatabase(self, ID):
+        filename = 'Database\Scaffali\Scaffali.txt'
+        scaffaliList = File.deserializza(filename)
+        for x in scaffaliList:
+            if x.ID == ID:
+                scaffaliList.pop(index(x))
+        File.serializza(filename, scaffaliList)
 
 
-    #Metodo che  permette di salvare uno scaffale nel database
-    #return valore booleano
-    def createInDatabase(self):
-        todo
+    """
+    #metodo overiding dell'interfaccia JsonObjectToPythonObject
+    #contenuto list
+    #return dictionary
+    def dictionaryEndcoder(self, contenuto):
+        dict = json.dumps([self.__dict__ for self in contenuto])
+        return dict
+
+
+    #metodo overiding dell'interfaccia JsonObjectToPythonObject
+    #contenuto dictionary
+    #return list
+    def dictionaryDecoder(self, contenuto):
+        return [Test(x['var'], x['var2']) for x in letto]
+    """

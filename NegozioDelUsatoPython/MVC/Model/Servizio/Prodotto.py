@@ -8,7 +8,7 @@ import json
 from MVC.Model.Interfacce.DictionaryToPythonObject import JsonObjectToPythonObject
 
 
-class Prodotto(JsonObjectToPythonObject):
+class Prodotto(DictionaryToPythonObject):
 
 
     #Costruttore della classe, create() in EA
@@ -23,6 +23,24 @@ class Prodotto(JsonObjectToPythonObject):
         self.prezzoOriginale = None
         self.statoDiVendita = None
         self.IDScaffale = None
+
+
+    #Costruttore della classe, create() in EA
+    def __init__(self, codiceCategoria, dataEsposizione, IDAccount, nomeProdotto,
+                         prezzoOriginale, statoDiVendita, IDScaffale):
+        self.codiceCategoria = codiceCategoria
+        self.dataEsposizione = dataEsposizione
+        self.dataPrimoSconto = dataEsposizione + relativedelta(months=2)
+        self.dataSecondoSconto = dataEsposizione + relativedelta(months=3)
+        self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
+        self.dataScadenza = dataEsposizione + relativedelta(months=5)
+        self.IDAccount = IDAccount
+        self.IDProdotto = Prodotto.getNewIDProdotto()
+        self.nomeProdotto = nomeProdotto
+        self.prezzoCorrente = prezzoOriginale
+        self.prezzoOriginale = prezzoOriginale
+        self.statoDiVendita = statoDiVendita
+        self.IDScaffale = IDScaffale
 
 
     #Metodo per aggiungere i valori all'istanza creata della classe e salvarla nel database
@@ -122,7 +140,8 @@ class Prodotto(JsonObjectToPythonObject):
     #contenuto dictionary
     #return list
     def dictionaryDecoder(self, contenuto):
-        return [Test(x['var'], x['var2']) for x in letto]
+        return [Prodotto(x['codiceCategoria'], x['dataEsposizione'], x['IDAccount'], x['nomeProdotto'],
+                         x['prezzoOriginale'], x['statoDiVendita'], x['IDScaffale']) for x in contenuto]
 
 
     #Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
