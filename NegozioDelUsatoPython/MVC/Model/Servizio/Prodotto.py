@@ -47,7 +47,8 @@ class Prodotto(JsonObjectToPythonObject):
     #Metodo che permette di clonare un'istanza della classe
     #return Prodotto
     def clone(self):
-        todo
+        deepCopy =  copy.deepcopy(self)
+        return deepCopy
 
 
     #Metodo che entra in azione quanado l'oggetto matura un determinato tempo di esistenza nel
