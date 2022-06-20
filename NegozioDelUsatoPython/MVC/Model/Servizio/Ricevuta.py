@@ -1,39 +1,31 @@
 
 
-#Classe per la gestione di una ricevuta
+# Classe per la gestione di una ricevuta
 class Ricevuta:
 
 
     # Costruttore della classe, create() in EA
-    def __init__(self):
-        datetime = None
-        prodotti = None
-
-
-    #Metodo per aggiungere i valori all'istanza creata della classe
-    def aggiungiRicevuta(self, datetime, prodotti ):
+    def __init__(self, datetime, prodotti ):
         date_format = '%d/%m/%Y'
         today = date.today()
         self.datetime = today.strftime(date_format)
         self.prodotti = prodotti
 
 
-
-
-    #Metodo che permette di clonare un'istanza della classe
-    #return Ricevuta
+    # Metodo che permette di clonare un'istanza della classe
+    # return Ricevuta
     def clone(self):
         deepCopy =  copy.deepcopy(self)
         return deepCopy
 
 
-    #metodo per emettere una ricevuta al cliente che acquista un prodotto
+    # Metodo per emettere una ricevuta al cliente che acquista un prodotto
     # propabilmente sarà implementata come una schermata che appare con la lista degli oggetti
     def emettiRicevuta(self):
         fileName = 'Database\Ricevute\Ricevute.txt'
         ricevuteList = File.deserializza(filename)
         ricevuteList.append(self)
-        File.serializza(self, filename, List)
+        salvaRicevute(ricevuteList)
         return dictionaryEncoder(ricevuteList)
 
 
@@ -43,3 +35,16 @@ class Ricevuta:
     def dictionaryEndcoder(self, contenuto):
         dict = json.dumps([self.__dict__ for self in contenuto])
         return dict
+
+
+    # Medoto che prende una lsita di ricevute e le salva su un file
+    def salvaRicevute(self, listRicevute):
+        fileName = 'Database\Ricevute\Ricevute.txt'
+        File.serializza(fileName, listRicevute)
+
+
+    # Metodo che legge un file serializzato e deserializza le ricevute dal file
+    def leggiRicevute(self):
+        fileName = 'Database\Ricevute\Ricevute.txt'
+        listRicevute = File.deserializza(fileName)
+        return listRicevute
