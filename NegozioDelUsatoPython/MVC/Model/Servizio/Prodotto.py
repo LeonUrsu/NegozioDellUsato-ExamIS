@@ -8,7 +8,7 @@ import json
 from MVC.Model.Interfacce.DictionaryToPythonObject import JsonObjectToPythonObject
 
 
-class Prodotto(DictionaryToPythonObject):
+class Prodotto(ServizioInterface, DictionaryToPythonObject):
 
 
     #Costruttore della classe, create() in EA
@@ -35,7 +35,7 @@ class Prodotto(DictionaryToPythonObject):
         self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
         self.dataScadenza = dataEsposizione + relativedelta(months=5)
         self.IDAccount = IDAccount
-        self.IDProdotto = Prodotto.getNewIDProdotto()
+        self.IDProdotto = Prodotto.newID()
         self.nomeProdotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
@@ -53,7 +53,7 @@ class Prodotto(DictionaryToPythonObject):
         self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
         self.dataScadenza = dataEsposizione + relativedelta(months=5)
         self.IDAccount = IDAccount
-        self.IDProdotto = Prodotto.getNewIDProdotto()
+        self.IDProdotto = Prodotto.newID()
         self.nomeProdotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
@@ -145,7 +145,8 @@ class Prodotto(DictionaryToPythonObject):
 
 
     #Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
-    def getNewIDProdotto(self):
+    # return = nuovo ID per il Prodotto
+    def newID(self):
         fileName = 'Databasa\parametri.txt'
         letto = File.leggi(fileName)
         dictLetto = letto.__dict__

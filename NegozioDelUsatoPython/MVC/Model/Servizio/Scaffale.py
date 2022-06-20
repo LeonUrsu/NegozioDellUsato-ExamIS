@@ -1,11 +1,11 @@
 
 
-class Scaffale(DictionaryToPythonObject):
+class Scaffale(ServizioInterface, DictionaryToPythonObject):
 
 
     # Costruttore della classe, create() in EA
-    def __init__(self, ID, IDProdotti, posto):
-        self.ID = ID
+    def __init__(self, IDProdotti, posto):
+        self.ID = newID()
         self.IDProdotti = IDProdotti
         self.posto = posto
         filename = 'Database\Scaffali\Scaffali.txt'
@@ -30,6 +30,18 @@ class Scaffale(DictionaryToPythonObject):
             if x.ID == ID:
                 scaffaliList.pop(index(x))
         File.serializza(filename, scaffaliList)
+
+
+    # Metodo che ritorna il nuovo id da assegnare al Scaffale da inserire
+    # return = nuovo ID per lo Scaffale
+    def newID(self):
+        fileName = 'Databasa\parametri.txt'
+        letto = File.leggi(fileName)
+        dictLetto = letto.__dict__
+        newID = dictLetto['lastIDScaffale'] + 1
+        dictLetto['lastIDScaffale'] = newID
+        File.scrivi(fileName, dictLetto.__str__)
+        return newID
 
 
     """

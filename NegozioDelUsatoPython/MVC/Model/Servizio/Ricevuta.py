@@ -1,13 +1,14 @@
 
 
 # Classe per la gestione di una ricevuta
-class Ricevuta:
+class Ricevuta(ServizioInterface):
 
 
     # Costruttore della classe, create() in EA
     def __init__(self, datetime, prodotti ):
         date_format = '%d/%m/%Y'
         today = date.today()
+        self.ID = newID()
         self.datetime = today.strftime(date_format)
         self.prodotti = prodotti
 
@@ -48,3 +49,15 @@ class Ricevuta:
         fileName = 'Database\Ricevute\Ricevute.txt'
         listRicevute = File.deserializza(fileName)
         return listRicevute
+
+
+    # Metodo che ritorna il nuovo id da assegnare alla Ricevuta da inserire
+    # return = nuovo ID per la Ricevuta
+    def newID(self):
+        fileName = 'Databasa\parametri.txt'
+        letto = File.leggi(fileName)
+        dictLetto = letto.__dict__
+        newID = dictLetto['lastIDRicevuta'] + 1
+        dictLetto['lastIDRicevuta'] = newID
+        File.scrivi(fileName, dictLetto.__str__)
+        return newID
