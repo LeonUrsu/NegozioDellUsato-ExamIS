@@ -1,4 +1,6 @@
 import json
+import os
+import pickle
 from types import SimpleNamespace
 
 
@@ -27,12 +29,16 @@ class File:
 
     #Metodo per la lettura du un oggetto arbirtario su un file
     def deserializza(self, fileName):
-        with open(filename, 'rb') as f:
-            data = pickle.load(f)
+        data = None
+        if os.path.getsize(fileName) > 0:
+            with open(fileName, 'rb') as f:
+                data = pickle.load(f)
         return data
 
 
     #Metodo per la scrittura du un oggetto arbirtario su un file
     def serializza(self, fileName, contenuto):
-        with open(filename, 'wb') as f:
-            pickle.dump(liste, f, pickle.HIGHEST_PROTOCOL)
+        with open(fileName, 'wb') as f:
+            pickle.dump(contenuto, f, pickle.HIGHEST_PROTOCOL)
+
+
