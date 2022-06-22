@@ -1,4 +1,4 @@
-
+from MVC.Model.Servizio.Prodotto import Prodotto
 
 class Amministratore:
 
@@ -21,8 +21,10 @@ class Amministratore:
     def filtraClienti(self):
         pass
 
-    def inserisciProdotto(self):
-        pass
+    def inserisciProdotto(self, Prodotto):
+        prodotto = Prodotto.__init__()
+        Prodotto.aggiungiProdotto(prodotto)
+
 
     def ricercaAccount(self):
         pass
