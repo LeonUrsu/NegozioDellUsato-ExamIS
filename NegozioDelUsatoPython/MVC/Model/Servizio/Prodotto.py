@@ -16,7 +16,7 @@ class Prodotto(ServizioInterface, DictionaryToPythonObject):
         self.codiceCategoria = None
         self.dataEsposizione = None
         self.dataScadenza = None
-        self.IDAccount = None
+        self.idAccount = None
         self.IDProdotto = None
         self.nomeProdotto = None
         self.prezzoCorrente = None

@@ -1,6 +1,10 @@
-from datetime import datetime
+from datetime import datetime, timedelta
+
+from MVC.Model.SistemService.File import File
+
 
 class Logging():
+
 
     #Costruttore della classe
     def __init__(self, email, password):
@@ -24,7 +28,7 @@ class Logging():
 
     # Metodo che gestisce il login di un utente
     # return valore booleano a seconda se il login è andato a buon fine
-    def loging(self, email , password):
+    def login(self, email , password):
         fileName = 'Database\Logging\Logging.txt'
         listLogging = File.deserializza(fileName)
         today = datetime.today()
@@ -50,7 +54,7 @@ class Logging():
     # risulta bloccato temporaneamente
     # log = credenziali di accesso di tipo Logging
     # return = True se la data è valida per effettuare un nuovo accesso
-    def checkData(self, Log):
+    def checkData(self, log):
         if log.prossimoTentativo >= datetime.today():
             return False
         else:
@@ -61,7 +65,7 @@ class Logging():
     # log = credenziali di accesso di tipo Logging
     # return = True if la soglia non è stata ancora raggiunta
     def checkTentativi(self, log):
-        if Log.tentativi < 5:
+        if log.tentativi < 5:
             return True
         else:
             self.timeout()

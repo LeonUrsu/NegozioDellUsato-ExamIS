@@ -1,13 +1,22 @@
+import copy
+from operator import index
+
+from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
+from MVC.Model.SistemService.File import File
 
 
-class Scaffale(ServizioInterface, DictionaryToPythonObject):
+class Scaffale(ServizioInterface):
 
 
     # Costruttore della classe, create() in EA
     def __init__(self, IDProdotti, posto):
-        self.ID = newID()
+        self.ID = self.newID()
         self.IDProdotti = IDProdotti
         self.posto = posto
+
+
+    # Metodo che salva lo scaffale nel database dopo averlo inizializzato
+    def saveInDatabase(self):
         filename = 'Database\Scaffali\Scaffali.txt'
         scaffaliList = File.deserializza(filename)
         scaffaliList.append(self)
@@ -44,18 +53,3 @@ class Scaffale(ServizioInterface, DictionaryToPythonObject):
         return newID
 
 
-    """
-    #metodo overiding dell'interfaccia JsonObjectToPythonObject
-    #contenuto list
-    #return dictionary
-    def dictionaryEndcoder(self, contenuto):
-        dict = json.dumps([self.__dict__ for self in contenuto])
-        return dict
-
-
-    #metodo overiding dell'interfaccia JsonObjectToPythonObject
-    #contenuto dictionary
-    #return list
-    def dictionaryDecoder(self, contenuto):
-        return [Test(x['var'], x['var2']) for x in letto]
-    """

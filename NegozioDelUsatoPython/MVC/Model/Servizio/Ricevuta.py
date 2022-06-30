@@ -1,6 +1,15 @@
 
 
 # Classe per la gestione di una ricevuta
+import copy
+import json
+from datetime import date, datetime
+from fileinput import filename
+
+from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
+from MVC.Model.SistemService.File import File
+
+
 class Ricevuta(ServizioInterface):
 
 
@@ -8,7 +17,7 @@ class Ricevuta(ServizioInterface):
     def __init__(self, datetime, prodotti ):
         date_format = '%d/%m/%Y'
         today = date.today()
-        self.ID = newID()
+        self.ID = self.newID()
         self.datetime = today.strftime(date_format)
         self.prodotti = prodotti
 
@@ -20,22 +29,30 @@ class Ricevuta(ServizioInterface):
         return deepCopy
 
 
-    # Metodo per emettere una ricevuta al cliente che acquista un prodotto
+    """    # Metodo per emettere una ricevuta al cliente che acquista un prodotto
     # propabilmente sarà implementata come una schermata che appare con la lista degli oggetti
     def emettiRicevuta(self):
         fileName = 'Database\Ricevute\Ricevute.txt'
         ricevuteList = File.deserializza(filename)
         ricevuteList.append(self)
-        salvaRicevute(ricevuteList)
-        return dictionaryEncoder(ricevuteList)
+        self.salvaRicevute(ricevuteList)
+        return self.dictionaryEncoder(ricevuteList)
 
 
     # metodo overiding dell'interfaccia JsonObjectToPythonObject
     # contenuto list
     # return dictionary
-    def dictionaryEndcoder(self, contenuto):
+    def dictionaryEncoder(self, contenuto):
         dict = json.dumps([self.__dict__ for self in contenuto])
         return dict
+    """
+
+
+    # Metodo che serve a salvare una nuova ricevuta nella cartella delle ricevute
+    def emettiRicevuta(self):
+        dataRicevuta = self.dateFormat()
+        fileName = f'Database\Ricevute\ricevuta{dataRicevuta}.txt'
+        ricevuteList = File.serializza(fileName, self)
 
 
     # Medoto che prende una lsita di ricevute e le salva su un file
@@ -61,3 +78,8 @@ class Ricevuta(ServizioInterface):
         dictLetto['lastIDRicevuta'] = newID
         File.scrivi(fileName, dictLetto.__str__)
         return newID
+
+
+    def dateFormat(self):
+        now = datetime.today()
+        date_time = now.strftime("%m/%d/%Y %H%M%S")
