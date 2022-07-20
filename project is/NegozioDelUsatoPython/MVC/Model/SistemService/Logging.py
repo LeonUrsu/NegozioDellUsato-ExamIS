@@ -1,15 +1,11 @@
-import email
-from datetime import datetime, timedelta
+from datetime import datetime
 
-from MVC.Model.SistemService.File import File
-
-
-class Logging:
-
+class Logging():
 
     #Costruttore della classe
-    def __init__(self, email):
+    def __init__(self, email, password):
         self.email = email
+        self.password = password
         self.tentativi = 0
         self.prossimoTentativo = datetime.today()
 
@@ -28,41 +24,16 @@ class Logging:
 
     # Metodo che gestisce il login di un utente
     # return valore booleano a seconda se il login è andato a buon fine
-    def login(self, email , password):
-        log = self.trovaLogin(email)
-        account = self.trovaAccount(email)
-        if account == None:
-            return None
-        if log != None:
-            if self.verificaDettagliLogin(log):
-                pass
-            else: return None
-        if self.checkPassword(password, account):
-            pass
-        else: return None
-        return account
-
-
-
-    #Metodo che verifica se un utente si è mai loggato
-    def trovaLogin(self, email):
+    def loging(self, email , password):
         fileName = 'Database\Logging\Logging.txt'
         listLogging = File.deserializza(fileName)
+        today = datetime.today()
         for x in listLogging:
             if x.email == email:
-                return x
-        else:
-            return None
-
-
-    # Metodo che verifica se esiste l'accont con questa email
-    def trovaAccount(self, email):
-        fileName = 'Database\Clienti\Clienti.txt'
-        listAccount = File.deserializza(fileName)
-        for account in listAccount:
-            if email == account.email:
-                return account
-        else: return None
+                if x.password == password:
+                   if self.verificaDettagliLogin(x):
+                        return True
+        return False
 
 
     #Metodo che verifica la validità dei dettagli del login
@@ -75,18 +46,11 @@ class Logging:
             return False
 
 
-    #Metodo che controlla se la password inserita corrisponde alla password dell'utente
-    def checkPassword(self, password, account):
-        if password == account.password:
-            return True
-        return False
-
-
     # Metodo per controllare se la data di accesso al profilo è valida oppure il profilo
     # risulta bloccato temporaneamente
     # log = credenziali di accesso di tipo Logging
     # return = True se la data è valida per effettuare un nuovo accesso
-    def checkData(self, log):
+    def checkData(self, Log):
         if log.prossimoTentativo >= datetime.today():
             return False
         else:
@@ -97,7 +61,7 @@ class Logging:
     # log = credenziali di accesso di tipo Logging
     # return = True if la soglia non è stata ancora raggiunta
     def checkTentativi(self, log):
-        if log.tentativi < 5:
+        if Log.tentativi < 5:
             return True
         else:
             self.timeout()

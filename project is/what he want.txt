@@ -1,0 +1,22 @@
+-quando un oggetto viene distrutto scrivere destroy in inglese
+-usare termini chiave in inglese
+-non dire "diagrammi d'uso del sistema" hanno ognuno un nome
+-non mettere stati degli oggetti ma mettere vincoli? idkwhm
+-mettere le barre di attivazione degli singoli diagrammi di sequenza
+-gestione delle eccezioni per non avere crash del sistema 
+-5/6 diagrammi di macchine a stati
+-utilizzare codice gia pronto delle librerie 
+-numero sufficiente di diagrammi di sequenza
+-scrivere IF e non SE
+-prima di include scrivere "il caso d'uso inizia quando qualcuno..."
+-scrivere extend e non estende
+-CRUD e poi ricerca
+-grafica del documento in word o pdf
+-usare requisiti con tassonomia
+-dividere requisiti funz e non
+-scrivere soggetto nelle frasi
+-progetto ordinato
+____________ENRICO
+-commenti codice
+-codice organizzato
+-portabilita della grafica su diversi SO, quindi scegliere stili delle finestre std o comunque installabilli
