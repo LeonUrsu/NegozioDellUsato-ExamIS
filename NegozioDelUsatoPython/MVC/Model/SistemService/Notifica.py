@@ -7,16 +7,26 @@ class Notifica():
 
 
     def __init__(self, receiver_email, message):
-        todo
+        pass
 
 
-    def gestioneEmailDIRegistrazione(self):
+    # Metodo che invia al utente un email dove comunica la vendita del oggetto
+    def gestioneEmailDIRegistrazione(self, idCliente):
         filePath = "emailFormat\messaggioRegistrazione"
         testoEmail = self.emailFormat(filePath)
-        todo
+        listClienti = File.deserializza("Database\Clienti\Clienti.txt")
+        for cliente in listClienti:
+            if cliente.id == idCliente:
+                email = cliente.email
+                password = cliente.password
+                stringa = f"- email:{email}   -password:{password} "
+                try:
+                    self.invioAlServer(email, testoEmail.append(stringa))
+                except:
+                    pass
 
 
-
+    #Metodo che invia al utente un email dove comunica la vendita del oggetto
     def gestioneEmailDiVendita(self, listProdottiVenduti):
         filePath = "emailFormat\messaggioVenditaProdotti"
         testoEmail = self.emailFormat(filePath)
@@ -26,7 +36,7 @@ class Notifica():
                 if proprietario.idAccount == prodotto.idAccount:
                     frase = f"  euro:  {prodotto.prezzoCorrente} "
                     try:
-                        self.invioAlServer(proprietario.email, testoEmail.append(prodotto.prezzoCorrente))
+                        self.invioAlServer(proprietario.email, testoEmail.append(frase))
                     except: pass
 
 
