@@ -1,15 +1,15 @@
+import email
 from datetime import datetime, timedelta
 
 from MVC.Model.SistemService.File import File
 
 
-class Logging():
+class Logging:
 
 
     #Costruttore della classe
-    def __init__(self, email, password):
+    def __init__(self, email):
         self.email = email
-        self.password = password
         self.tentativi = 0
         self.prossimoTentativo = datetime.today()
 
@@ -29,15 +29,40 @@ class Logging():
     # Metodo che gestisce il login di un utente
     # return valore booleano a seconda se il login è andato a buon fine
     def login(self, email , password):
+        log = self.trovaLogin(email)
+        account = self.trovaAccount(email)
+        if account == None:
+            return None
+        if log != None:
+            if self.verificaDettagliLogin(log):
+                pass
+            else: return None
+        if self.checkPassword(password, account):
+            pass
+        else: return None
+        return account
+
+
+
+    #Metodo che verifica se un utente si è mai loggato
+    def trovaLogin(self, email):
         fileName = 'Database\Logging\Logging.txt'
         listLogging = File.deserializza(fileName)
-        today = datetime.today()
         for x in listLogging:
             if x.email == email:
-                if x.password == password:
-                   if self.verificaDettagliLogin(x):
-                        return True
-        return False
+                return x
+        else:
+            return None
+
+
+    # Metodo che verifica se esiste l'accont con questa email
+    def trovaAccount(self, email):
+        fileName = 'Database\Clienti\Clienti.txt'
+        listAccount = File.deserializza(fileName)
+        for account in listAccount:
+            if email == account.email:
+                return account
+        else: return None
 
 
     #Metodo che verifica la validità dei dettagli del login
@@ -48,6 +73,13 @@ class Logging():
             return True
         else:
             return False
+
+
+    #Metodo che controlla se la password inserita corrisponde alla password dell'utente
+    def checkPassword(self, password, account):
+        if password == account.password:
+            return True
+        return False
 
 
     # Metodo per controllare se la data di accesso al profilo è valida oppure il profilo

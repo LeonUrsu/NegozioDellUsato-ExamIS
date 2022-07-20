@@ -1,14 +1,16 @@
-import datetime
-from types import SimpleNamespace
-
-from MVC.Model.SistemService.File import File
+#CLasse Prodotto che rappresenta il prodotto con le sue caratteristiche che verrà esposto nel negozio
+import copy
 import json
 
-#CLasse Prodotto che rappresenta il prodotto con le sue caratteristiche che verrà esposto nel negozio
 from MVC.Model.Interfacce.DictionaryToPythonObject import JsonObjectToPythonObject
+from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
+from datetime import date
+from dateutil.relativedelta import relativedelta
+
+from MVC.Model.SistemService.File import File
 
 
-class Prodotto(ServizioInterface, DictionaryToPythonObject):
+class Prodotto(ServizioInterface):
 
 
     #Costruttore della classe, create() in EA
@@ -74,11 +76,9 @@ class Prodotto(ServizioInterface, DictionaryToPythonObject):
     #return valore booleano
     def scontaProdotti(self):
         fileName = 'Database\Prodotti\InVendita.txt'
-        strLetto = File.leggi(fileName)
-        listLetto = dictionaryDecoder(json.loads(strLetto))
-        listLetto = controllaScadenzaProdotto(listLetto)
-        contenuto = dictionaryEndcoder(listLetto)
-        File.scrivi(fileName, contenuto.__str__)
+        listProdotti = File.deserializza(fileName)
+        listProdottiAggiornata = self.controllaScadenzaProdotto(listProdotti)
+        File.File.serializza(fileName, listProdottiAggiornata)
 
 
     #Metodo che sposta un determinato prodotto all'interno della memoria quando il suo stato è in cambiamento
@@ -86,33 +86,30 @@ class Prodotto(ServizioInterface, DictionaryToPythonObject):
     def spostaProdotto(self, id, start, end):
         startfileName = f'Database\Prodotti\{start}.txt'
         endfileName = f'Database\Prodotti\{end}.txt'
-        obj = prendiProdottoDaFile(startfileName, id)
-        mettiProdottoSuFile(endfileName, obj)
+        obj = self.prendiProdottoDaFile(startfileName, id)
+        self.mettiProdottoSuFile(endfileName, obj)
         return obj.prezzoCorrente
 
 
     #Metodo che rimuove un Prodotto da file e lo restituisce
-    def prendiProdottoDaFile(self, fileName, id):
+    def prendiProdottoDaFile(self, startfileName, id):
         strLetto = File.leggi(startfileName)
-        list = dictionaryDecoder(json.loads(strletto))
+        listProdotti = File.File.deserializza(startfileName)
         popped = None
-        for obj in list:
+        for obj in listProdotti:
             if obj.IDProdotto == id:
-                popped = list.pop(list.index(obj))
+                popped = listProdotti.pop(listProdotti.index(obj))
             else:
                 return False
-        contenuto = dictionaryEndcoder(list)
-        File.scrivi(fileName, contenuto.__str__)
+        File.File.serializza(startfileName, listProdotti)
         return popped
 
 
     #Metodo che mette un Prodotto su file
     def mettiProdottoSuFile(self, fileName, obj):
-        strLetto = File.leggi(endfileName)
-        list = dictionaryDecoder(json.loads(strletto))
+        listProdotti = File.File.deserializza(fileName)
         list.append(obj)
-        contenuto = dictionaryEndcoder(list)
-        File.scrivi(fileName, contenuto.__str__)
+        File.serializza(fileName, listProdotti)
 
 
     #Metodo che permette la vendita di un prodotto, lo stato dell'oggetto passa a venduto e viene spostato
@@ -121,14 +118,14 @@ class Prodotto(ServizioInterface, DictionaryToPythonObject):
     def vendiProdotto(self, id):
         start = 'Database\Prodotti\InVendita.txt'
         end = 'Database\Prodotti\Venduti.txt'
-        prezzoCorrente = spostaProdotto(id, start, end)
+        prezzoCorrente = self.spostaProdotto(id, start, end)
         infoProdotto = {}
         infoProdotto['prezzoCorrente'] = prezzoCorrente
         infoProdotto['id'] = id
         return infoProdotto
 
 
-    #metodo overiding dell'interfaccia JsonObjectToPythonObject
+    """    #metodo overiding dell'interfaccia JsonObjectToPythonObject
     #contenuto list
     #return dictionary
     def dictionaryEndcoder(self, contenuto):
@@ -142,7 +139,7 @@ class Prodotto(ServizioInterface, DictionaryToPythonObject):
     def dictionaryDecoder(self, contenuto):
         return [Prodotto(x['codiceCategoria'], x['dataEsposizione'], x['IDAccount'], x['nomeProdotto'],
                          x['prezzoOriginale'], x['statoDiVendita'], x['IDScaffale']) for x in contenuto]
-
+    """
 
     #Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
     # return = nuovo ID per il Prodotto
@@ -152,7 +149,7 @@ class Prodotto(ServizioInterface, DictionaryToPythonObject):
         dictLetto = letto.__dict__
         newID = dictLetto['lastIDProdotto']+1
         dictLetto['lastIDProdotto'] = newID
-        File.scrivi(fileName,dictLetto.__str__)
+        File.scrivi(fileName, dictLetto.__str__)
         return newID
 
 
@@ -165,7 +162,7 @@ class Prodotto(ServizioInterface, DictionaryToPythonObject):
         dateToday = today.strftime(date_format)
         for obj in listLetto:
             if obj.dataScadenza <= dateToday:
-                scadenza(obj.IDProdotto)
+                self.scadenza(obj.IDProdotto)
             elif obj.dataTerzoSconto <= dateToday:
                 obj.prezzoCorrente = sale(prezzoOriginale, 50)
             elif obj.dataSecondoSconto <= dateToday:
@@ -190,5 +187,5 @@ class Prodotto(ServizioInterface, DictionaryToPythonObject):
     def scadenza(self, id):
         start = 'Database\Prodotti\InVendita.txt'
         end = 'Database\Prodotti\Scaduti.txt'
-        spostaProdotto(id, start, end)
+        self.spostaProdotto(id, start, end)
 

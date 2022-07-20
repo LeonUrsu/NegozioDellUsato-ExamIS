@@ -5,7 +5,7 @@ from MVC.Model.SistemService.File import File
 
 class Notifica():
 
-
+    # Costruttore della classe
     def __init__(self, receiver_email, message):
         pass
 
