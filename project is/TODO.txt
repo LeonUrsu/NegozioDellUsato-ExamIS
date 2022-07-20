@@ -1,0 +1,5 @@
+1 - modificare il business case in modo che combaci con i requisiti DONE
+2 - Mapping DONE
+3 - riguardare sequenza annulla sui casi d'uso DONE
+4 - modificare il caso d'uso cruRICEVUTE 
+5 - fare un metodo che analizza l'intero database in cerca delle inconsistenze
