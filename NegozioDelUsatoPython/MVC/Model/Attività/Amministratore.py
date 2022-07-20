@@ -1,22 +1,26 @@
 from MVC.Model.Servizio.Prodotto import Prodotto
+from MVC.Model.Attività.Account import Account
 
-class Amministratore:
+class Amministratore():
 
 
     def aggiornaAccount(self):
-        pass
+
 
     def aggiornaProdotto(self):
         pass
 
     def effettuaBackup(self):
         pass
+"
+    def eliminaAccount(self,Account):
+        fileName = 'Database\Account\account.txt'
+        account =
+        Account.eliminaAccount()
 
-    def eliminaAccount(self):
-        pass
 
     def eliminaProdotto(self):
-        pass
+
 
     def filtraClienti(self):
         pass
