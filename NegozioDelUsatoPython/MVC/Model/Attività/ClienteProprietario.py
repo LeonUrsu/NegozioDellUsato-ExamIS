@@ -6,4 +6,4 @@ class ClienteProprietario:
         pass
 
     def visualizzaDatiPersonali(self):
-        pass
+        return
