@@ -45,7 +45,7 @@ class Prodotto(ServizioInterface):
         self.IDScaffale = IDScaffale
 
 
-    #Metodo per aggiungere i valori all'istanza creata della classe e salvarla nel database
+    #Metodo per aggiungere i valori all'istanza creata della classe
     def aggiungiProdotto(self, codiceCategoria, dataEsposizione, IDAccount, nomeProdotto,
                          prezzoOriginale, statoDiVendita, IDScaffale):
         self.codiceCategoria = codiceCategoria
@@ -114,7 +114,7 @@ class Prodotto(ServizioInterface):
 
     #Metodo che permette la vendita di un prodotto, lo stato dell'oggetto passa a venduto e viene spostato
     #dove vendono archviati tutti gli oggetti venduti nel database
-    #return valore booleano
+    #return dizionario con prezzo e ID
     def vendiProdotto(self, id):
         start = 'Database\Prodotti\InVendita.txt'
         end = 'Database\Prodotti\Venduti.txt'
@@ -122,6 +122,7 @@ class Prodotto(ServizioInterface):
         infoProdotto = {}
         infoProdotto['prezzoCorrente'] = prezzoCorrente
         infoProdotto['id'] = id
+        infoProdotto['Prodotto'] = nomeProdotto
         return infoProdotto
 
 
