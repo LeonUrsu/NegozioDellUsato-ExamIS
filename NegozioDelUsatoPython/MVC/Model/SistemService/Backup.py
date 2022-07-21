@@ -8,6 +8,7 @@ class Backup:
     def __init__(self):
         self.id = 0
 
+
     #Metodo che effettua il backup dei dati come impostato
     def effettuaBackup(self):
         from_path = 'Database/'

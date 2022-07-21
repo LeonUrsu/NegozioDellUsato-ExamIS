@@ -16,6 +16,7 @@ class Account:
         self.residenza = None
 
 
+
     #Metodo che permette di aggiungere un Account
     def aggiungiAccount(self,cliente , nome, cognome, dataDiNascita, email,
                         IDAccount, IDProdotti, numeroTelefonico, residenza):
@@ -28,7 +29,7 @@ class Account:
         self.IDProdotti = IDProdotti
         self.numeroTelefonico = numeroTelefonico
         self.residenza = residenza
-
+        fare metodo per aggiungere account in database
 
     # Metodo che serve per leggere la lista degli account all'interno del Database
     def leggiAccount(self):
@@ -45,14 +46,6 @@ class Account:
                     listaccount.pop(index(x))
             File.serializza(fileName, listaccount)
 
-
-    #Metodo per trovare un account tramite l'ID dell'account
-    def trovaAccount(self, IDAccount):
-        listaccount = leggiAccount(self)
-        for x in listaccount :
-            if x.IDAccount == IDAccount
-                return listaccount(index(x))
-        return None
 
     #Metodo per trovare un account tramite l'email dell' Account
     def trovaAccount(self, email):

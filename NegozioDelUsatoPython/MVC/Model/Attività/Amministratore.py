@@ -1,4 +1,4 @@
-
+from MVC.Model.Servizio.Prodotto import Prodotto
 
 class Amministratore:
 
@@ -15,8 +15,9 @@ class Amministratore:
     def eliminaAccount(self):
         pass
 
-    def eliminaProdotto(self):
-        pass
+    def eliminaProdotto(self, id):
+        Prodotto.spostaProdotto(self, id,"InVendita", "Eliminati")
+
 
     def filtraClienti(self):
         pass
