@@ -5,7 +5,7 @@ class Ricevuta(ServizioInterface):
 
 
     # Costruttore della classe, create() in EA
-    def __init__(self, datetime, prodotti ):
+    def __init__(self,prodotti ):
         date_format = '%d/%m/%Y'
         today = date.today()
         self.ID = newID()
