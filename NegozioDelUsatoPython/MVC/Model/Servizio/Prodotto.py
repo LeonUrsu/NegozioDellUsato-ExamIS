@@ -93,14 +93,14 @@ class Prodotto(ServizioInterface):
 
     #Metodo che rimuove un Prodotto da file e lo restituisce
     def prendiProdottoDaFile(self, startfileName, id):
-        strLetto = File.leggi(startfileName)
+        #strLetto = File.leggi(startfileName)
         listProdotti = File.File.deserializza(startfileName)
         popped = None
         for obj in listProdotti:
             if obj.IDProdotto == id:
                 popped = listProdotti.pop(listProdotti.index(obj))
             else:
-                return False
+                return None
         File.File.serializza(startfileName, listProdotti)
         return popped
 
