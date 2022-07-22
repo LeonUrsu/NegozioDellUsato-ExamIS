@@ -7,7 +7,7 @@ from MVC.Model.SistemService.File import File
 class Logging:
 
 
-    #Costruttore della classe
+    # Costruttore della classe
     def __init__(self, email):
         self.email = email
         self.tentativi = 0
@@ -44,7 +44,7 @@ class Logging:
 
 
 
-    #Metodo che verifica se un utente si è mai loggato
+    # Metodo che verifica se un utente si è mai loggato
     def trovaLogin(self, email):
         fileName = 'Database\Logging\Logging.txt'
         listLogging = File.deserializza(fileName)
@@ -65,7 +65,7 @@ class Logging:
         else: return None
 
 
-    #Metodo che verifica la validità dei dettagli del login
+    # Metodo che verifica la validità dei dettagli del login
     # log = credenziali di accesso di tipo Logging
     # return = True if il login è valido
     def verificaDettagliLogin(self, log):
@@ -75,7 +75,7 @@ class Logging:
             return False
 
 
-    #Metodo che controlla se la password inserita corrisponde alla password dell'utente
+    # Metodo che controlla se la password inserita corrisponde alla password dell'utente
     def checkPassword(self, password, account):
         if password == account.password:
             return True

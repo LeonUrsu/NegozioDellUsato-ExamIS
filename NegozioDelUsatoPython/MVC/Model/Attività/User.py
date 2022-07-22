@@ -9,15 +9,20 @@ class User:
 
 
     def ricercaProdotto(self):
-        pass
 
 
-    def filtraProdotti(self):
-        pass
+
+    def filtraProdottiConData(self):
+
+
+    def filtraProdottiConPrezzo(self):
+
+
+    def filtraProdottiConCategoria(self):
+
 
 
     def login(self):
-        pass
 
 
     def visualizzaProdotti(self):

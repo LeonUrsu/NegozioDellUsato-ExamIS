@@ -3,3 +3,4 @@
 3 - riguardare sequenza annulla sui casi d'uso DONE
 4 - modificare il caso d'uso cruRICEVUTE 
 5 - fare un metodo che analizza l'intero database in cerca delle inconsistenze
+6 - creare un account google per utilizzarlo nel software come mittente dell'email

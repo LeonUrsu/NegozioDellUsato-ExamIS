@@ -6,38 +6,53 @@ from MVC.Model.SistemService.File import File
 class Notifica():
 
     # Costruttore della classe
-    def __init__(self, receiver_email, message):
+    def __init__(self):
         pass
 
 
     # Metodo che invia al utente un email dove comunica la vendita del oggetto
     def gestioneEmailDIRegistrazione(self, idCliente):
         filePath = "emailFormat\messaggioRegistrazione"
-        testoEmail = self.emailFormat(filePath)
+        testoEmail = self.emailGetFormat(filePath)
         listClienti = File.deserializza("Database\Clienti\Clienti.txt")
         for cliente in listClienti:
             if cliente.id == idCliente:
                 email = cliente.email
                 password = cliente.password
-                stringa = f"- email:{email}   -password:{password} "
+                frase = f"- email:{email}   -password:{password} "
                 try:
-                    self.invioAlServer(email, testoEmail.append(stringa))
+                    self.invioAlServer(email, testoEmail + frase)
                 except:
                     pass
 
 
-    #Metodo che invia al utente un email dove comunica la vendita del oggetto
+    # Metodo che invia al utente un email dove comunica la vendita del oggetto
     def gestioneEmailDiVendita(self, listProdottiVenduti):
         filePath = "emailFormat\messaggioVenditaProdotti"
-        testoEmail = self.emailFormat(filePath)
+        testoEmail = self.emailGetFormat(filePath)
         listProprietari = self.getListProprietari()
         for prodotto in listProdottiVenduti:
             for proprietario in listProprietari:
                 if proprietario.idAccount == prodotto.idAccount:
                     frase = f"  euro:  {prodotto.prezzoCorrente} "
                     try:
-                        self.invioAlServer(proprietario.email, testoEmail.append(frase))
+                        self.invioAlServer(proprietario.email, testoEmail + frase)
                     except: pass
+
+
+    # Metodo che invia al utente un email dove comunica l'avvenuta eliminazione del prodotto
+    def gestioneEmailDiEliminazione(self, prodotto):
+        filePath = "emailFormat\messaggioEliminazioneProdotti"
+        testoEmail = self.emailGetFormat(filePath)
+        idProprietario = prodotto.idAccount
+        listProprietari = self.getListProprietari()
+        for proprietario in listProprietari:
+            if proprietario.idAccount == prodotto.idAccount:
+                frase = f" Il prodotto {prodotto.nomeProdotto} : è eliminato/scaduto "
+                try:
+                    self.invioAlServer(proprietario.email, testoEmail + frase)
+                except:
+                    pass
 
 
     # Metodo che prende il formato dell'email dal database in formato stringa
@@ -67,3 +82,10 @@ class Notifica():
         pathProprietari = "Database\Clienti\Clienti.txt"
         listProprietari = File.deserializza(pathProprietari)
         return listProprietari
+
+
+    # Metodo che prende la lista dei prodotti disponibili in vendita
+    def getListProdotti(self):
+        pathProdotti = "Database\Prodotti\InVendita.txt"
+        listProdotti = File.deserializza(pathProdotti)
+        return listProdotti
