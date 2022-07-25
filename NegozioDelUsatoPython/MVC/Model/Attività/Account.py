@@ -1,9 +1,9 @@
 from MVC.Model.SistemService.File import File
-import json
+
 
 class Account:
 
-    #Costruttore dell'Account , create() in EA
+    # Costruttore dell'Account, create() in EA
     def __init__(self):
         self.cliente = None
         self.nome = None
@@ -17,7 +17,7 @@ class Account:
 
 
 
-    #Metodo che permette di aggiungere un Account
+    # Metodo che permette di aggiungere un Account
     def aggiungiAccount(self,cliente , nome, cognome, dataDiNascita, email,
                         IDAccount, IDProdotti, numeroTelefonico, residenza):
         self.cliente = True
@@ -37,7 +37,7 @@ class Account:
         listAccount = File.deserializza(self, fileName)
         return listAccount
 
-    #Metodo che permette di eliminare un Account
+    # Metodo che permette di eliminare un Account
     def eliminaAccount(self, IDAccount):
             fileName = 'Database\Account\account.txt'
             listaccount = leggiAccount()
@@ -47,7 +47,7 @@ class Account:
             File.serializza(fileName, listaccount)
 
 
-    #Metodo per trovare un account tramite l'email dell' Account
+    # Metodo per trovare un account tramite l'email dell' Account
     def trovaAccount(self, email):
         listaccount = leggiAccount(self)
         for x in listaccount :

@@ -122,7 +122,7 @@ class Prodotto(ServizioInterface):
         infoProdotto = {}
         infoProdotto['prezzoCorrente'] = prezzoCorrente
         infoProdotto['id'] = id
-        infoProdotto['Prodotto'] = nomeProdotto
+        infoProdotto['Prodotto'] = self.nomeProdotto
         return infoProdotto
 
 
