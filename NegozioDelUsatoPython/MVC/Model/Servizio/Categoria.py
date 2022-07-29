@@ -1,9 +1,15 @@
+import copy
+from operator import index
+
+from MVC.Model.SistemService import File
+
+
 class Categoria(ServizioInterface):
 
 
     #Costruttore della Categoria, create() in EA
     def __init__(self, impattoCO2, nome, oggettiTotali):
-        self.codiceCategoria = newID()
+        self.codiceCategoria = self.newID()
         self.impattoCO2 = impattoCO2
         self.nome = nome
         self.oggettiTotali = oggettiTotali
@@ -19,7 +25,7 @@ class Categoria(ServizioInterface):
     # Metodo che permette di eliminare una categoria salvata nel database
     def deleteInDatabase(self, codiceCategoria):
         fileName = 'Database\Categorie\Categorie.txt'
-        listcategorie = leggiCategorie(fileName)
+        listcategorie = self.leggiCategorie(fileName)
         for x in listcategorie:
             if x.codiceCategoria == codiceCategoria:
                 listcategorie.pop(index(x))
@@ -35,10 +41,10 @@ class Categoria(ServizioInterface):
 
     # Metodo per trovare una categoria tramite codiceCategoria
     def trovaCategoria(self, codiceCategoria):
-        listCategorie = leggiCategorie(self)
+        listCategorie = self.leggiCategorie(self)
         for x in listCategorie:
             if x.codiceCategoria == codiceCategoria:
-                return listcategorie.pop(index(x))
+                return listCategorie.pop(index(x))
         return None
 
 
@@ -46,9 +52,8 @@ class Categoria(ServizioInterface):
     # return = nuovo ID per la Categoria
     def newID(self):
         fileName = 'Databasa\parametri.txt'
-        letto = File.leggi(fileName)
-        dictLetto = letto.__dict__
-        newID = dictLetto['lastcodiceCategoria'] + 1
-        dictLetto['lastcodiceCategoria'] = newID
-        File.scrivi(fileName, dictLetto.__str__)
+        letto = File.deserializza(fileName)
+        newID = letto['lastcodiceCategoria'] + 1
+        letto['lastcodiceCategoria'] = newID
+        File.serializza(fileName, letto)
         return newID

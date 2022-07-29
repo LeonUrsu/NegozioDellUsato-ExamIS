@@ -1,11 +1,16 @@
+import copy
+from operator import index
+
+from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
+from MVC.Model.SistemService import File
 
 
-class Scaffale(ServizioInterface, DictionaryToPythonObject):
+class Scaffale(ServizioInterface):
 
 
     # Costruttore della classe, create() in EA
     def __init__(self, IDProdotti, posto):
-        self.ID = newID()
+        self.ID = self.newID()
         self.IDProdotti = IDProdotti
         self.posto = posto
         filename = 'Database\Scaffali\Scaffali.txt'

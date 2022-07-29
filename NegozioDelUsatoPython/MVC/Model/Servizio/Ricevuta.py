@@ -1,6 +1,15 @@
 
 
 # Classe per la gestione di una ricevuta
+import copy
+import json
+from datetime import date
+from fileinput import filename
+
+from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
+from MVC.Model.SistemService import File
+
+
 class Ricevuta(ServizioInterface):
 
 
@@ -8,7 +17,7 @@ class Ricevuta(ServizioInterface):
     def __init__(self,prodotti ):
         date_format = '%d/%m/%Y'
         today = date.today()
-        self.ID = newID()
+        self.ID = self.newID()
         self.datetime = today.strftime(date_format)
         self.prodotti = prodotti
 
@@ -26,8 +35,8 @@ class Ricevuta(ServizioInterface):
         fileName = 'Database\Ricevute\Ricevute.txt'
         ricevuteList = File.deserializza(filename)
         ricevuteList.append(self)
-        salvaRicevute(ricevuteList)
-        return dictionaryEncoder(ricevuteList)
+        self.salvaRicevute(ricevuteList)
+        return File.dictionaryEncoder(ricevuteList)
 
 
     # metodo overiding dell'interfaccia JsonObjectToPythonObject

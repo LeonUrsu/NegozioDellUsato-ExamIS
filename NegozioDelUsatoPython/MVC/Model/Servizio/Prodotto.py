@@ -27,7 +27,7 @@ class Prodotto(ServizioInterface):
         self.IDScaffale = None
 
 
-    #Costruttore della classe, create() in EA
+    # Costruttore della classe, create() in EA
     def __init__(self, codiceCategoria, dataEsposizione, IDAccount, nomeProdotto,
                          prezzoOriginale, statoDiVendita, IDScaffale):
         self.codiceCategoria = codiceCategoria
@@ -45,7 +45,7 @@ class Prodotto(ServizioInterface):
         self.IDScaffale = IDScaffale
 
 
-    #Metodo per aggiungere i valori all'istanza creata della classe
+    # Metodo per aggiungere i valori all'istanza creata della classe
     def aggiungiProdotto(self, codiceCategoria, dataEsposizione, IDAccount, nomeProdotto,
                          prezzoOriginale, statoDiVendita, IDScaffale):
         self.codiceCategoria = codiceCategoria
@@ -64,16 +64,16 @@ class Prodotto(ServizioInterface):
 
 
 
-    #Metodo che permette di clonare un'istanza della classe
-    #return Prodotto
+    # Metodo che permette di clonare un'istanza della classe
+    # return Prodotto
     def clone(self):
         deepCopy =  copy.deepcopy(self)
         return deepCopy
 
 
-    #Metodo che entra in azione quanado l'oggetto matura un determinato tempo di esistenza nel
-    #negozio e viene applicato dolo agli oggetti che sono esposti alla vendita
-    #return valore booleano
+    # Metodo che entra in azione quanado l'oggetto matura un determinato tempo di esistenza nel
+    # negozio e viene applicato dolo agli oggetti che sono esposti alla vendita
+    # return valore booleano
     def scontaProdotti(self):
         fileName = 'Database\Prodotti\InVendita.txt'
         listProdotti = File.deserializza(fileName)
@@ -81,8 +81,8 @@ class Prodotto(ServizioInterface):
         File.File.serializza(fileName, listProdottiAggiornata)
 
 
-    #Metodo che sposta un determinato prodotto all'interno della memoria quando il suo stato è in cambiamento
-    #return valore booleano
+    # Metodo che sposta un determinato prodotto all'interno della memoria quando il suo stato è in cambiamento
+    # return valore booleano
     def spostaProdotto(self, id, start, end):
         startfileName = f'Database\Prodotti\{start}.txt'
         endfileName = f'Database\Prodotti\{end}.txt'
@@ -91,7 +91,7 @@ class Prodotto(ServizioInterface):
         return obj.prezzoCorrente
 
 
-    #Metodo che rimuove un Prodotto da file e lo restituisce
+    # etodo che rimuove un Prodotto da file e lo restituisce
     def prendiProdottoDaFile(self, startfileName, id):
         #strLetto = File.leggi(startfileName)
         listProdotti = File.File.deserializza(startfileName)
@@ -105,16 +105,16 @@ class Prodotto(ServizioInterface):
         return popped
 
 
-    #Metodo che mette un Prodotto su file
+    # Metodo che mette un Prodotto su file
     def mettiProdottoSuFile(self, fileName, obj):
         listProdotti = File.File.deserializza(fileName)
         list.append(obj)
         File.serializza(fileName, listProdotti)
 
 
-    #Metodo che permette la vendita di un prodotto, lo stato dell'oggetto passa a venduto e viene spostato
-    #dove vendono archviati tutti gli oggetti venduti nel database
-    #return dizionario con prezzo e ID
+    # Metodo che permette la vendita di un prodotto, lo stato dell'oggetto passa a venduto e viene spostato
+    # dove vendono archviati tutti gli oggetti venduti nel database
+    # return dizionario con prezzo e ID
     def vendiProdotto(self, id):
         start = 'Database\Prodotti\InVendita.txt'
         end = 'Database\Prodotti\Venduti.txt'
@@ -140,7 +140,7 @@ class Prodotto(ServizioInterface):
                          x['prezzoOriginale'], x['statoDiVendita'], x['IDScaffale']) for x in contenuto]
     """
 
-    #Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
+    # Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
     # return = nuovo ID per il Prodotto
     def newID(self):
         fileName = 'Databasa\parametri.txt'
@@ -152,9 +152,9 @@ class Prodotto(ServizioInterface):
         return newID
 
 
-    #Metodo che controlla le date di scadenza e di sconto degli oggetti
-    #listLetto = lista dei prodotti in python
-    #return = lista dei prodotti in python dopo l'eventuale sconto """
+    # Metodo che controlla le date di scadenza e di sconto degli oggetti
+    # listLetto = lista dei prodotti in python
+    # return = lista dei prodotti in python dopo l'eventuale sconto """
     def controllaScadenzaProdotto(self, listLetto):
         date_format = '%d/%m/%Y'
         today = date.today()
@@ -163,11 +163,11 @@ class Prodotto(ServizioInterface):
             if obj.dataScadenza <= dateToday:
                 self.scadenza(obj.IDProdotto)
             elif obj.dataTerzoSconto <= dateToday:
-                obj.prezzoCorrente = sale(prezzoOriginale, 50)
+                obj.prezzoCorrente = self.sale(self.prezzoOriginale, 50)
             elif obj.dataSecondoSconto <= dateToday:
-                obj.prezzoCorrente = sale(prezzoOriginale, 40)
+                obj.prezzoCorrente = self.sale(self.prezzoOriginale, 40)
             elif obj.dataPrimoSconto <= dateToday:
-                obj.prezzoCorrente = sale(prezzoOriginale, 30)
+                obj.prezzoCorrente = self.sale(self.prezzoOriginale, 30)
         return listLetto
 
 
