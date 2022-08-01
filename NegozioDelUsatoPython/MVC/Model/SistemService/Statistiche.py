@@ -18,8 +18,6 @@ class Statistiche:
         tendenzaCategorie = None #prime tre categorie di tendenza
 
 
-
-
     # Metodo per la defizizione di un oggetto Statistiche
     def definizioneStatistiche(self):
         listProdotti = self.getListProdottiVenduti()
@@ -29,8 +27,8 @@ class Statistiche:
         self.prodottiVenduti = listProdotti.len()
         self.prodottiVendutiInData = listProdottiInData.len()
         self.tendenzaCategorie = self.tendenzaCategorie(listProdotti)
-        self.guadagnoTotale = self.calcolaGuadagnoTotale(listProdotti)
-        self.guadagnoInData = self.calcolaGuadagnoInData(listProdottiInData)
+        self.guadagnoTotale = self.calcolaGuadagno(listProdotti)
+        self.guadagnoInData = self.calcolaGuadagno(listProdottiInData)
 
 
     # Metodo per vedere quanti clienti proprietari sono registrati
@@ -48,6 +46,15 @@ class Statistiche:
         return listVenduti
 
 
+    # Metodo che calcola l'ammontare complessivo dei prodotti passati tramite listProdotti
+    # listProdotti = lista dei prodotti
+    def calcolaGuadagno(self, listProdotti):
+        totale = 0
+        for prodotto in listProdotti:
+            totale += prodotto.prezzoCorrente
+        return totale
+
+
     # Metodo che prende la lista dei prodotti venduti nelle 24 ore anticedenti
     def getProdottiVendutiInData(self, listProdotti):
         list = []
@@ -57,6 +64,7 @@ class Statistiche:
                 list.append(x)
         return list
 
+
     # Metodo che prende le categorie con tendenza maggiore e le restituisce come un dizionario
     # listProdotti = lista di prodotti da cui calcolare la repitizione delle loro categorie(tendenza)
     def tendenzaCategorie(self, listProdotti):
@@ -64,12 +72,11 @@ class Statistiche:
         numeroDiChiavi = 3
         for prodotto in listProdotti:
             try:
-                dict[prodotto.nome]
+                dict[prodotto.nome]     # possibile generatore di KeyError
                 dict[prodotto.nome] += 1
             except KeyError:
                 dict[prodotto.nome] = 1
         return self.topKeysInDict(dict, numeroDiChiavi)
-
 
 
     # Metodo che prende il numeroDiChiavi con valore piu alto
@@ -77,3 +84,12 @@ class Statistiche:
     def topKeysInDict(self, dict, numeroDiChiavi):
         my_keys = sorted(dict, key=dict.get, reverse=True)[:numeroDiChiavi]
         return my_keys
+
+
+    # Metodo che viene richiamato dall'Amministratore per la visualizzazione delle statistiche.
+    # Esegue una lettura nel database di tutte le statistiche presenti e le restituisce come lista,
+    # la lista verra' trasmessa alla WIEW per la visualizzazione grafica
+    def visualizzaStatistiche(self):
+        fileName = "Database\Statistiche\Statistiche.txt"
+        listStatistiche = File.deserializza(fileName)
+        return listStatistiche
