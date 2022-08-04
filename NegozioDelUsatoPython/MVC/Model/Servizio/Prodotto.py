@@ -63,7 +63,6 @@ class Prodotto(ServizioInterface):
         self.IDScaffale = IDScaffale
 
 
-
     # Metodo che permette di clonare un'istanza della classe
     # return Prodotto
     def clone(self):
@@ -171,18 +170,18 @@ class Prodotto(ServizioInterface):
         return listLetto
 
 
-    #Metodo che sconta il prezzo di un prodotto in base al valore di sconto
-    #prezzoOriginale = prezzo del prodotto al momento del inserimento nel sistema
-    #prezzoCorrente = prezzo del prodotto dopo lo sconto rispetto al prezzoOriginale
-    #return = prezzoCorrente del prodotto
+    # Metodo che sconta il prezzo di un prodotto in base al valore di sconto
+    # prezzoOriginale = prezzo del prodotto al momento del inserimento nel sistema
+    # prezzoCorrente = prezzo del prodotto dopo lo sconto rispetto al prezzoOriginale
+    # return = prezzoCorrente del prodotto
     def sale(self, prezzoOriginale, valore):
         prezzoCorrente = prezzoOriginale * (valore/100)
         return prezzoCorrente
 
 
-    #metodo che gestisce la scadenza di un oggetto spostandolo dai prodotti in vendita
-    #ai prodotti scaduti
-    #id = id prodotto da spostare
+    # metodo che gestisce la scadenza di un oggetto spostandolo dai prodotti in vendita
+    # ai prodotti scaduti
+    # id = id prodotto da spostare
     def scadenza(self, id):
         start = 'Database\Prodotti\InVendita.txt'
         end = 'Database\Prodotti\Scaduti.txt'

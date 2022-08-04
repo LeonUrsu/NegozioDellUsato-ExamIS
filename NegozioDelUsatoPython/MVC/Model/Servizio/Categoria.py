@@ -1,6 +1,7 @@
 import copy
 from operator import index
 
+from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from MVC.Model.SistemService import File
 
 
