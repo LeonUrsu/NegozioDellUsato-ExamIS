@@ -23,12 +23,21 @@ class Statistiche:
         listProdotti = self.getListProdottiVenduti()
         listProdottiInData = self.getProdottiVendutiInData(listProdotti)
         self.data = datetime.datetime.today()
-        self.numeroClienti = self.getNumeroClienti()
-        self.prodottiVenduti = listProdotti.len()
+        self.numeroClientiProprietari = self.getNumeroClienti()
+        self.prodottiVendutiTotali = listProdotti.len()
         self.prodottiVendutiInData = listProdottiInData.len()
         self.tendenzaCategorie = self.tendenzaCategorie(listProdotti)
         self.guadagnoTotale = self.calcolaGuadagno(listProdotti)
         self.guadagnoInData = self.calcolaGuadagno(listProdottiInData)
+        self.salvataggioStatitiche()
+
+
+    # Metodo che appende la satistica creata e salva tutte le statistiche nel database
+    def salvataggioStatitiche(self):
+        fileName = "Database\Statistiche\Statistiche.txt"
+        listStatistiche = File.deserializza(fileName)
+        listStatistiche.append(self)
+        File.serializza(fileName, listStatistiche)
 
 
     # Metodo per vedere quanti clienti proprietari sono registrati
