@@ -107,7 +107,10 @@ class Prodotto(ServizioInterface):
     # Metodo che mette un Prodotto su file
     def mettiProdottoSuFile(self, fileName, obj):
         listProdotti = File.File.deserializza(fileName)
-        list.append(obj)
+        for prodotto in listProdotti:
+            if prodotto.idProdotto == obj.idProdotto:
+                listProdotti.pop(listProdotti.index(obj))
+        listProdotti.append(obj)
         File.serializza(fileName, listProdotti)
 
 
@@ -124,20 +127,6 @@ class Prodotto(ServizioInterface):
         infoProdotto['Prodotto'] = self.nomeProdotto
         return infoProdotto
 
-
-    """    #metodo overiding dell'interfaccia JsonObjectToPythonObject
-    #contenuto list
-    #return dictionary
-    def dictionaryEndcoder(self, contenuto):
-        dict = json.dumps([self.__dict__ for self in contenuto])
-        return dict
-    #metodo overiding dell'interfaccia JsonObjectToPythonObject
-    #contenuto dictionary
-    #return list
-    def dictionaryDecoder(self, contenuto):
-        return [Prodotto(x['codiceCategoria'], x['dataEsposizione'], x['IDAccount'], x['nomeProdotto'],
-                         x['prezzoOriginale'], x['statoDiVendita'], x['IDScaffale']) for x in contenuto]
-    """
 
     # Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
     # return = nuovo ID per il Prodotto
