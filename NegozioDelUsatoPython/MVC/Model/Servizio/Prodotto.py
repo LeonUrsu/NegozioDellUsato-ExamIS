@@ -19,30 +19,29 @@ class Prodotto(ServizioInterface):
         self.dataEsposizione = None
         self.dataScadenza = None
         self.idAccount = None
-        self.IDProdotto = None
+        self.idProdotto = None
         self.nomeProdotto = None
         self.prezzoCorrente = None
         self.prezzoOriginale = None
-        self.statoDiVendita = None
-        self.IDScaffale = None
+        self.idScaffale = None
 
 
     # Costruttore della classe, create() in EA
-    def __init__(self, codiceCategoria, dataEsposizione, IDAccount, nomeProdotto,
-                         prezzoOriginale, statoDiVendita, IDScaffale):
+    def __init__(self, codiceCategoria, dataEsposizione, IdAccount, nomeProdotto,
+                         prezzoOriginale, statoDiVendita, IdScaffale):
         self.codiceCategoria = codiceCategoria
         self.dataEsposizione = dataEsposizione
         self.dataPrimoSconto = dataEsposizione + relativedelta(months=2)
         self.dataSecondoSconto = dataEsposizione + relativedelta(months=3)
         self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
         self.dataScadenza = dataEsposizione + relativedelta(months=5)
-        self.IDAccount = IDAccount
-        self.IDProdotto = Prodotto.newID()
+        self.IdAccount = IdAccount
+        prodotto = Prodotto()
+        self.IdProdotto = prodotto.newID()
         self.nomeProdotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
-        self.statoDiVendita = statoDiVendita
-        self.IDScaffale = IDScaffale
+        self.IdScaffale = IdScaffale
 
 
     # Metodo per aggiungere i valori all'istanza creata della classe
@@ -55,11 +54,11 @@ class Prodotto(ServizioInterface):
         self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
         self.dataScadenza = dataEsposizione + relativedelta(months=5)
         self.IDAccount = IDAccount
-        self.IDProdotto = Prodotto.newID()
+        prodotto = Prodotto()
+        self.IdProdotto = prodotto.newID()
         self.nomeProdotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
-        self.statoDiVendita = statoDiVendita
         self.IDScaffale = IDScaffale
 
 
@@ -77,7 +76,8 @@ class Prodotto(ServizioInterface):
         fileName = 'Database\Prodotti\InVendita.txt'
         listProdotti = File.deserializza(fileName)
         listProdottiAggiornata = self.controllaScadenzaProdotto(listProdotti)
-        File.File.serializza(fileName, listProdottiAggiornata)
+        file = File()
+        file.serializza(fileName, listProdottiAggiornata)
 
 
     # Metodo che sposta un determinato prodotto all'interno della memoria quando il suo stato è in cambiamento
@@ -92,21 +92,22 @@ class Prodotto(ServizioInterface):
 
     # etodo che rimuove un Prodotto da file e lo restituisce
     def prendiProdottoDaFile(self, startfileName, id):
-        #strLetto = File.leggi(startfileName)
-        listProdotti = File.File.deserializza(startfileName)
+        file = File()
+        listProdotti = file.deserializza(startfileName)
         popped = None
         for obj in listProdotti:
             if obj.IDProdotto == id:
                 popped = listProdotti.pop(listProdotti.index(obj))
             else:
                 return None
-        File.File.serializza(startfileName, listProdotti)
+        file.serializza(startfileName, listProdotti)
         return popped
 
 
     # Metodo che mette un Prodotto su file
     def mettiProdottoSuFile(self, fileName, obj):
-        listProdotti = File.File.deserializza(fileName)
+        file = File()
+        listProdotti = file.deserializza(fileName)
         for prodotto in listProdotti:
             if prodotto.idProdotto == obj.idProdotto:
                 listProdotti.pop(listProdotti.index(obj))
@@ -132,12 +133,14 @@ class Prodotto(ServizioInterface):
     # return = nuovo ID per il Prodotto
     def newID(self):
         fileName = 'Databasa\parametri.txt'
-        letto = File.leggi(fileName)
+        file = File()
+        letto = file.leggi(fileName)
         dictLetto = letto.__dict__
-        newID = dictLetto['lastIDProdotto']+1
-        dictLetto['lastIDProdotto'] = newID
-        File.scrivi(fileName, dictLetto.__str__)
-        return newID
+        newId = dictLetto['lastIDProdotto']+1
+        dictLetto['lastIDProdotto'] = newId
+        file = File()
+        file.scrivi(fileName, dictLetto.__str__)
+        return newId
 
 
     # Metodo che controlla le date di scadenza e di sconto degli oggetti

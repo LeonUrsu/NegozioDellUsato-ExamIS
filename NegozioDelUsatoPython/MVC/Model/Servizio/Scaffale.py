@@ -2,21 +2,21 @@ import copy
 from operator import index
 
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
-from MVC.Model.SistemService import File
+from MVC.Model.SistemService.File import File
 
 
 class Scaffale(ServizioInterface):
 
 
     # Costruttore della classe, create() in EA
-    def __init__(self, IDProdotti, posto):
-        self.ID = self.newID()
-        self.IDProdotti = IDProdotti
-        self.posto = posto
+    def __init__(self, idProdotti, posto):
+        file = File()
+        self.id = self.newId()
+        self.idProdotti = idProdotti
         filename = 'Database\Scaffali\Scaffali.txt'
-        scaffaliList = File.deserializza(filename)
+        scaffaliList = file.deserializza(filename)
         scaffaliList.append(self)
-        File.serializza(self, filename, scaffaliList)
+        file.serializza(filename, scaffaliList)
 
 
     # Metodo che permette di clonare un'istanza della classe
@@ -30,37 +30,42 @@ class Scaffale(ServizioInterface):
     #return valore booleano
     def deleteInDatabase(self, ID):
         filename = 'Database\Scaffali\Scaffali.txt'
-        scaffaliList = File.deserializza(filename)
+        file = File()
+        scaffaliList = file.deserializza(filename)
         for x in scaffaliList:
             if x.ID == ID:
                 scaffaliList.pop(index(x))
-        File.serializza(filename, scaffaliList)
+        file.serializza(filename, scaffaliList)
 
 
     # Metodo che ritorna il nuovo id da assegnare al Scaffale da inserire
     # return = nuovo ID per lo Scaffale
-    def newID(self):
+    def newId(self):
+        file = File()
         fileName = 'Databasa\parametri.txt'
-        letto = File.leggi(fileName)
+        letto = file.leggi(fileName)
         dictLetto = letto.__dict__
         newID = dictLetto['lastIDScaffale'] + 1
         dictLetto['lastIDScaffale'] = newID
-        File.scrivi(fileName, dictLetto.__str__)
+        file.scrivi(fileName, dictLetto.__str__)
         return newID
 
 
-    """
-    #metodo overiding dell'interfaccia JsonObjectToPythonObject
-    #contenuto list
-    #return dictionary
-    def dictionaryEndcoder(self, contenuto):
-        dict = json.dumps([self.__dict__ for self in contenuto])
-        return dict
-
-
-    #metodo overiding dell'interfaccia JsonObjectToPythonObject
-    #contenuto dictionary
-    #return list
-    def dictionaryDecoder(self, contenuto):
-        return [Test(x['var'], x['var2']) for x in letto]
-    """
+    # Metodo che prende  l'id di un oggetto e o sposta da un scaffale ad un'altro scaffale
+    # idStart = id dello scaffale da dove spostare
+    # idEnd = id dello scaffale dove mettere
+    def cambiaScaffale(self, prodotto, idStart, idEnd):
+        indexStart = 0
+        fileName = "Database\Scaffali\Scaffali.txt"
+        file = File()
+        listScaffali = file.deserializza(fileName)
+        for scaffale in listScaffali:
+            if scaffale.id == idStart:
+                #indexStart = listScaffali.index(scaffale)
+                for ids in scaffale.idProdotti:
+                    if ids == prodotto.IDProdotto:
+                       listScaffali.index(scaffale).idProdotti.index(ids).pop()
+        for scaffale in listScaffali:
+            if scaffale.id == idEnd:
+                listScaffali.index(scaffale).idProdotti.append(prodotto.IDProdotto)
+        prodotto.idScaffale = idEnd

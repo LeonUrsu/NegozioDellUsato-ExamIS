@@ -1,3 +1,4 @@
+import json
 import os
 import pickle
 
@@ -45,3 +46,14 @@ class File:
             pickle.dump(contenuto, f, pickle.HIGHEST_PROTOCOL)
 
 
+    """
+    #metodo overiding dell'interfaccia JsonObjectToPythonObject
+    def dictionaryDecoder(self, letto):
+        return [Test(x['var'], x['var2']) for x in letto]
+    """
+
+    def dictionaryEndcoder(self, contenuto):
+        json_string = json.dumps([self.__dict__ for self in contenuto])
+        return json_string
+        #dict = json.dumps([self.__dict__ for self in contenuto])
+        #return dict
