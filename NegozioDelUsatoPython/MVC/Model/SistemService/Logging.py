@@ -5,7 +5,7 @@ from MVC.Model.SistemService.File import File
 
 
 class Logging:
-
+    accountLoggato = None
 
     # Costruttore della classe
     def __init__(self, email):
@@ -40,6 +40,7 @@ class Logging:
         if self.checkPassword(password, account):
             pass
         else: return None
+        self.accountLoggato = account
         return account
 
 
