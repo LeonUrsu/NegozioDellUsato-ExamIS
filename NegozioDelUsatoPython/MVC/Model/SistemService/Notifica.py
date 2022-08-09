@@ -76,12 +76,12 @@ class Notifica():
     # Metodo che prende fi account dei Proprietari degli oprodotti
     def getListProprietari(self):
         pathProprietari = "Database\Clienti\Clienti.txt"
-        listProprietari = File.deserializza(pathProprietari)
+        listProprietari = File().deserializza(pathProprietari)
         return listProprietari
 
 
     # Metodo che prende la lista dei prodotti disponibili in vendita
     def getListProdotti(self):
         pathProdotti = "Database\Prodotti\InVendita.txt"
-        listProdotti = File.deserializza(pathProdotti)
+        listProdotti = File().deserializza(pathProdotti)
         return listProdotti

@@ -7,14 +7,14 @@ from MVC.Model.SistemService.File import File
 
 class Categoria(ServizioInterface):
 
+
     #Costruttore nullo
     def __init__(self):
         pass
 
     #Costruttore della Categoria, create() in EA
-    def __init__(self, impattoCO2, nome, oggettiTotali):
-        self.codiceCategoria = self.newID()
-        self.impattoCO2 = impattoCO2
+    def aggiungiCategoria(self, impattoCO2, nome, oggettiTotali):
+        self.idCategoria = self.newID()
         self.nome = nome
         self.oggettiTotali = oggettiTotali
 
@@ -22,8 +22,16 @@ class Categoria(ServizioInterface):
     # Metodo che permette di clonare un'istanza della classe
     # return Categoria
     def clone(self):
-        deepCopy =  copy.deepcopy(self)
+        deepCopy = copy.deepcopy(self)
         return deepCopy
+
+
+    # Metodo che salva una categoria nel database
+    def creaInDatabase(self, categoria):
+        fileName = 'Database\Categorie\Categorie.txt'
+        listcategorie = self.leggiCategorie()
+        listcategorie.append(categoria)
+        File().serializza(fileName, listcategorie)
 
 
     # Metodo che permette di eliminare una categoria salvata nel database
@@ -80,3 +88,26 @@ class Categoria(ServizioInterface):
         for categoria in listCategorie:
             if categoria.codiceCategoria == codiceNuovo:
                 categoria.oggettiTotali += 1
+
+
+    # Metodo che incrementa il numero di oggetti all'interno di una categoria
+    def aggiungiProdottiInCategoria(self, prodotto):
+        listCategorie = Categoria().leggiCategorie()
+        fileName = 'Database\Categorie\Categorie.txt'
+        for categoria in listCategorie:
+            if categoria.codiceCategoria == prodotto.codiceCategoria:
+                categoria.oggettiTotali += 1
+                File().serializza(fileName, listCategorie)
+                return True
+        return False
+
+
+    # Metodo che decrementa il numero di oggetti all'interno di una categoria
+    def diminuisciProdottiInCategoria(self, prodotto):
+        listCategorie = Categoria().leggiCategorie()
+        for categoria in listCategorie:
+            if categoria.codiceCategoria == prodotto.codiceCategoria:
+                categoria.oggettiTotali -= 1
+                return True
+        return False
+

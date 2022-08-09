@@ -9,17 +9,23 @@ class Scaffale(ServizioInterface):
 
 
     def __init__(self):
-        pass
+        self.idScaffale = None
+        self.idProdotti = None
+
 
     # Costruttore della classe, create() in EA
-    def __init__(self, idProdotti, posto):
-        file = File()
-        self.id = self.newId()
+    def aggiungiScaffale(self, idProdotti):
+        self.idScaffale = self.newId()
         self.idProdotti = idProdotti
+        return self.idScaffale
+
+
+    # Metodo che salvalo scaffale nel database
+    def inserisciScaffaleNelDatabase(self):
         filename = 'Database\Scaffali\Scaffali.txt'
-        scaffaliList = file.deserializza(filename)
+        scaffaliList = File().deserializza(filename)
         scaffaliList.append(self)
-        file.serializza(filename, scaffaliList)
+        File().serializza(filename, scaffaliList)
 
 
     # Metodo che permette di clonare un'istanza della classe
@@ -72,3 +78,35 @@ class Scaffale(ServizioInterface):
             if scaffale.id == idEnd:
                 listScaffali.index(scaffale).idProdotti.append(prodotto.IDProdotto)
         prodotto.idScaffale = idEnd
+
+        # Metodo che serve per leggere la lista degli account all'interno del Database
+
+    def leggiScaffali(self):
+        fileName = 'Database\Scaffali\Scaffali.txt'
+        file = File()
+        listScaffali = file.deserializza(fileName)
+        return listScaffali
+
+
+    def aggiungiProdottoAScaffale(self, prodotto, idScaffale):
+        filename = 'Database\Scaffali\Scaffali.txt'
+        file = File()
+        scaffaliList = file.deserializza(filename)
+        for scaffale in scaffaliList:
+            if scaffale.idScaffale == idScaffale:
+                scaffale.idProdotti.append(prodotto.IDProdotto)
+                File().serializza(filename, scaffaliList)
+                return True
+        return False
+
+
+    # Metodo che dissocia un id di un prodotto da uno scaffale
+    def dissociaProdottoDaScaffale(self, prodotto):
+        listScaffali = self.leggiScaffali()
+        fileName = "Database\Clienti\Clienti.txt"
+        for scaffale in listScaffali:
+            if scaffale.idScaffale == prodotto.idAccount:
+                for idProdotto in scaffale.idScaffale:
+                    if idProdotto == prodotto.idProdotto:
+                        scaffale.idProdotti.pop(index(idProdotto))
+                        File().serializza(fileName, listScaffali)

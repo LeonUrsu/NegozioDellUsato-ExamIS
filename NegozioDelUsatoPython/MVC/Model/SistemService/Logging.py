@@ -8,7 +8,11 @@ class Logging:
     accountLoggato = None
 
     # Costruttore della classe
-    def __init__(self, idAccount):
+    def __init__(self):
+        pass
+
+
+    def aggiungiLogging(self, idAccount):
         self.idAccount = idAccount
         self.tentativi = 0
         self.prossimoTentativo = datetime.today()
@@ -28,6 +32,8 @@ class Logging:
     # return valore booleano a seconda se il login è andato a buon fine
     def login(self, email, password):
         account = Account().trovaAccountTramiteEmail(email)
+        if email == "admin":
+            return self.loginAdmin(password)
         if account == None:
             return None
         log = self.trovaLogin(account.idAccount)
@@ -89,7 +95,7 @@ class Logging:
         if log.tentativi < 5:
             return True
         else:
-            self.timeout()
+            self.timeout(log)
             return False
 
 
@@ -100,3 +106,10 @@ class Logging:
         log.tentativi = 0
 
 
+    #metodo per loggare l'amministratore
+    def loginAdmin(self, password):
+        fileName = "Database\Amministratore\Amministratore.txt"
+        admin = File().deserializza(fileName)
+        if admin.password == password:
+            return True
+        return False

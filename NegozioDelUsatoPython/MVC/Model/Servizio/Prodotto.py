@@ -1,12 +1,16 @@
 #CLasse Prodotto che rappresenta il prodotto con le sue caratteristiche che verrà esposto nel negozio
 import copy
 import json
+from operator import index
 
+from MVC.Model.Attività.Account import Account
 from MVC.Model.Interfacce.DictionaryToPythonObject import JsonObjectToPythonObject
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from datetime import date
 from dateutil.relativedelta import relativedelta
 
+from MVC.Model.Servizio.Categoria import Categoria
+from MVC.Model.Servizio.Scaffale import Scaffale
 from MVC.Model.SistemService.File import File
 
 
@@ -24,24 +28,6 @@ class Prodotto(ServizioInterface):
         self.prezzoCorrente = None
         self.prezzoOriginale = None
         self.idScaffale = None
-
-
-    # Costruttore della classe, create() in EA
-    def __init__(self, codiceCategoria, dataEsposizione, IdAccount, nomeProdotto,
-                         prezzoOriginale, statoDiVendita, IdScaffale):
-        self.codiceCategoria = codiceCategoria
-        self.dataEsposizione = dataEsposizione
-        self.dataPrimoSconto = dataEsposizione + relativedelta(months=2)
-        self.dataSecondoSconto = dataEsposizione + relativedelta(months=3)
-        self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
-        self.dataScadenza = dataEsposizione + relativedelta(months=5)
-        self.IdAccount = IdAccount
-        prodotto = Prodotto()
-        self.IdProdotto = prodotto.newID()
-        self.nomeProdotto = nomeProdotto
-        self.prezzoCorrente = prezzoOriginale
-        self.prezzoOriginale = prezzoOriginale
-        self.IdScaffale = IdScaffale
 
 
     # Metodo per aggiungere i valori all'istanza creata della classe
@@ -69,12 +55,29 @@ class Prodotto(ServizioInterface):
         return deepCopy
 
 
+    # Metodo che elimina i prodotti nel database
+    def eliminaProdotto(self, idProdotto):
+        listPath = self.pathList()
+        for path in listPath:
+            listProdotti = File().deserializza(path)
+            for prodotto in listProdotti:
+                if prodotto.idProdotto == idProdotto:
+                    eliminato = listProdotti.pop(index(prodotto))
+                    end = 'Database\Prodotti\Eliminati.txt'
+                    Prodotto().spostaProdotto(prodotto.idProdotto, path, end)
+                    Account().dissociaProdottoDaAccount(eliminato)
+                    Categoria().diminuisciProdottiInCategoria(eliminato)
+                    Scaffale().dissociaProdottoDaScaffale(Prodotto)
+                    return True
+            return False
+
+
     # Metodo che entra in azione quanado l'oggetto matura un determinato tempo di esistenza nel
     # negozio e viene applicato dolo agli oggetti che sono esposti alla vendita
     # return valore booleano
     def scontaProdotti(self):
         fileName = 'Database\Prodotti\InVendita.txt'
-        listProdotti = File.deserializza(fileName)
+        listProdotti = File().deserializza(fileName)
         listProdottiAggiornata = self.controllaScadenzaProdotto(listProdotti)
         file = File()
         file.serializza(fileName, listProdottiAggiornata)
@@ -112,7 +115,7 @@ class Prodotto(ServizioInterface):
             if prodotto.idProdotto == obj.idProdotto:
                 listProdotti.pop(listProdotti.index(obj))
         listProdotti.append(obj)
-        File.serializza(fileName, listProdotti)
+        File().serializza(fileName, listProdotti)
 
 
     # Metodo che permette la vendita di un prodotto, lo stato dell'oggetto passa a venduto e viene spostato
@@ -179,4 +182,15 @@ class Prodotto(ServizioInterface):
         end = 'Database\Prodotti\Scaduti.txt'
         self.spostaProdotto(id, start, end)
 
+
+    # Metodo che ritorna un lista con i percorsi dei vari file
+    def pathList(self):
+        fileName1 = 'Database\Prodotti\InVendita.txt'
+        fileName2 = 'Database\Prodotti\Venduti.txt'
+        fileName3 = 'Database\Prodotti\InVendita.txt'
+        listPath = list()
+        listPath.append(fileName1)
+        listPath.append(fileName2)
+        listPath.append(fileName3)
+        return listPath
 

@@ -9,14 +9,14 @@ class User(object):
 
     # Costruttore della classe User, create() in EA
     def __init__(self):
-        self.accessiAccount = None
-
+        pass
 
     # Metodo per la ricerca di un prodotto
     def ricercaProdotto(self, idProdotto, listProdotti):
         for prodotto in listProdotti:
             if prodotto.idProdotto == idProdotto:
                 return prodotto
+
 
     # Metodo di filtraggio dei prodotti in base alla data
     def filtraProdottiConData(self, dataInizio, dataFine):

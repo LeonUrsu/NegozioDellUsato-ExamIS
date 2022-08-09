@@ -20,7 +20,7 @@ class Account(object):
         self.residenza = None
 
 
-    # Metodo che permette di aggiungere un Account
+    # Metodo che permette di inizializzare l'istanza Account
     def aggiungiAccount(self, nome, cognome, dataDiNascita, email, numeroTelefonico, password, residenza):
         self.nome = nome
         self.cognome = cognome
@@ -31,8 +31,14 @@ class Account(object):
         self.numeroTelefonico = numeroTelefonico
         self.password = password
         self.residenza = residenza
+
+
+
+    # Metodo che aggiunge l'account nel database
+    def inserisciLoggingNelDatabase(self):
         fileName = 'Database\Account\Account.txt'
         self.mettiAccountSuFile(fileName)
+
 
 
     # Metodo che serve per leggere la lista degli account all'interno del Database
@@ -50,7 +56,7 @@ class Account(object):
             for x in listaccount:
                 if x.iDAccount == idAccount:
                     listaccount.pop(index(x))
-            File.serializza(fileName, listaccount)
+            File().serializza(fileName, listaccount)
 
 
     # Metodo per trovare un account tramite l'email dell' Account
@@ -152,4 +158,27 @@ class Account(object):
         for account in listAccount:
             if account.email == email:
                 return True
-        return FalseS
+        return False
+
+
+    # Metodo che associa un idProdotto ad un account
+    def aggiungiProdottoAAccount(self, prodotto):
+        listAccount = self.leggiAccount()
+        for account in listAccount:
+            if account.idAccount == prodotto.idAccount:
+                account.idProdotti.append(prodotto.idProdotto)
+                return True
+        return False
+
+
+    # Metodo che dissocia un id di un prodotto da un account
+    def dissociaProdottoDaAccount(self, prodotto):
+        listAccount = self.leggiAccount()
+        fileName = "Database\Clienti\Clienti.txt"
+        for account in listAccount:
+            if account.idAccount == prodotto.idAccount:
+                for idProdotto in account.idProdotti:
+                    if idProdotto == prodotto.idProdotto:
+                        account.idProdotti.pop(index(idProdotto))
+                        File().serializza(fileName, listAccount)
+

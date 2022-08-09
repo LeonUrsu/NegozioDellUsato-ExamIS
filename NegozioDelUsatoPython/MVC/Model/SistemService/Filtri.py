@@ -14,7 +14,7 @@ class Filtri:
     # prezzoMax = prezzo massimo di filtraggio
     def filtraPrezzo(self, prezzoMin, prezzoMax, file):
         fileName = f"Database\Prodotti\{file}.txt"
-        prodottiList = File.deserializza(fileName)
+        prodottiList = File().deserializza(fileName)
         prodottiFiltratiList = []
         for prodotto in prodottiList:
             if prezzoMin <= prodotto.prezzoCorrente and prodotto.prezzoCorrente <= prezzoMax:
@@ -28,7 +28,7 @@ class Filtri:
     # dataFine = data di fine filtraggio
     def filtraData(self, dataInizio, dataFine, file):
         fileName = f"Database\Prodotti\{file}.txt"
-        prodottiList = File.deserializza(fileName)
+        prodottiList = File().deserializza(fileName)
         prodottiFiltratiList = []
         for prodotto in prodottiList:
             if dataInizio <= prodotto.dataScadenza and prodotto.dataScadenza <= dataFine:
@@ -42,16 +42,10 @@ class Filtri:
     # file =
     def filtraCategoria(self, codiceCategoria, file):
         fileName = f"Database\Prodotti\{file}.txt"
-        prodottiList = File.deserializza(fileName)
+        prodottiList = File().deserializza(fileName)
         prodottiFiltratiList = []
         for prodotto in prodottiList:
             if codiceCategoria == prodotto.codiceCategoria:
                 prodottiFiltratiList.append(prodotto)
         self.filtrati = prodottiFiltratiList
         return prodottiFiltratiList
-
-
-    """    # Metodo che legge i prodotti sul file specificato
-    # startFileName path del file
-    def leggiProdottiDaFile(self, startFileName):
-        return File.deserializza(startFileName)"""
