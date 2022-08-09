@@ -24,8 +24,8 @@ class Statistiche:
         listProdottiInData = self.getProdottiVendutiInData(listProdotti)
         self.data = datetime.datetime.today()
         self.numeroClientiProprietari = self.getNumeroClienti()
-        self.prodottiVendutiTotali = listProdotti.len()
-        self.prodottiVendutiInData = listProdottiInData.len()
+        self.prodottiVendutiTotali = len(listProdotti)
+        self.prodottiVendutiInData = len(listProdottiInData)
         self.tendenzaCategorie = self.tendenzaCategorie(listProdotti)
         self.guadagnoTotale = self.calcolaGuadagno(listProdotti)
         self.guadagnoInData = self.calcolaGuadagno(listProdottiInData)
@@ -35,15 +35,17 @@ class Statistiche:
     # Metodo che appende la satistica creata e salva tutte le statistiche nel database
     def salvataggioStatitiche(self):
         fileName = "Database\Statistiche\Statistiche.txt"
-        listStatistiche = File.deserializza(fileName)
+        file = File()
+        listStatistiche = file.deserializza(fileName)
         listStatistiche.append(self)
-        File.serializza(fileName, listStatistiche)
+        file.serializza(fileName, listStatistiche)
 
 
     # Metodo per vedere quanti clienti proprietari sono registrati
     def getNumeroClienti(self):
         fileName = "Database\Clienti\Clienti.txt"
-        listClienti = File.deserializza(fileName)
+        file = File()
+        listClienti = file.deserializza(fileName)
         numeroClienti = listClienti.len()
         return numeroClienti
 
@@ -51,7 +53,8 @@ class Statistiche:
     # Metodo che prende la lista dei prodotti venduti
     def getListProdottiVenduti(self):
         fileName = "Database\Prodotti\Venduti.txt"
-        listVenduti = File.deserializza()
+        file = File()
+        listVenduti = file.deserializza(fileName)
         return listVenduti
 
 
@@ -81,7 +84,7 @@ class Statistiche:
         numeroDiChiavi = 3
         for prodotto in listProdotti:
             try:
-                dict[prodotto.nome]     # possibile generatore di KeyError
+                prova = dict[prodotto.nome]     # possibile generatore di KeyError
                 dict[prodotto.nome] += 1
             except KeyError:
                 dict[prodotto.nome] = 1
@@ -100,5 +103,6 @@ class Statistiche:
     # la lista verra' trasmessa alla WIEW per la visualizzazione grafica
     def visualizzaStatistiche(self):
         fileName = "Database\Statistiche\Statistiche.txt"
-        listStatistiche = File.deserializza(fileName)
+        file = File()
+        listStatistiche = file.deserializza(fileName)
         return listStatistiche

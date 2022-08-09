@@ -2,8 +2,8 @@
 
 class Indirizzo:
 
-    def __init__(self):
-        self.CAP = None
+    def __init__(self, cap, citofono, citta, civico, via, piazza):
+        self.cap = None
         self.citofono = None
         self.citta = None
         self.civico= None

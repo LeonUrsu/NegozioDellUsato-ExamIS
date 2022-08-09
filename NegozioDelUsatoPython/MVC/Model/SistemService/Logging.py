@@ -1,6 +1,6 @@
-import email
 from datetime import datetime, timedelta
 
+from MVC.Model.Attività.Account import Account
 from MVC.Model.SistemService.File import File
 
 
@@ -8,37 +8,36 @@ class Logging:
     accountLoggato = None
 
     # Costruttore della classe
-    def __init__(self, email):
-        self.email = email
+    def __init__(self, idAccount):
+        self.idAccount = idAccount
         self.tentativi = 0
         self.prossimoTentativo = datetime.today()
 
 
     # Metodo che salva le credeniali di un utente su un file quando viene inserito nel sistema
-    # newLog = parametro di tipo Logging
     # return = True if l'operazinone è andata bene
-    def salvaLogging(self, newLog):
+    def inserisciLoggingNelDatabase(self):
         fileName = 'Database\Logging\Logging.txt'
-        listLogging = File.deserializza(fileName)
-        if self.checkEmailUtente(listLogging, newLog.email):
-            return False
-        listLogging.append(newLog)
+        listLogging = File().deserializza(fileName)
+        listLogging.append(self)
+        File().serializza(fileName, listLogging)
         return True
 
 
     # Metodo che gestisce il login di un utente
     # return valore booleano a seconda se il login è andato a buon fine
-    def login(self, email , password):
-        log = self.trovaLogin(email)
-        account = self.trovaAccount(email)
+    def login(self, email, password):
+        account = Account().trovaAccountTramiteEmail(email)
         if account == None:
             return None
+        log = self.trovaLogin(account.idAccount)
         if log != None:
             if self.verificaDettagliLogin(log):
                 pass
             else: return None
-        if self.checkPassword(password, account):
-            pass
+            if self.checkPassword(password, account):
+                pass
+            else: return None
         else: return None
         self.accountLoggato = account
         return account
@@ -46,24 +45,13 @@ class Logging:
 
 
     # Metodo che verifica se un utente si è mai loggato
-    def trovaLogin(self, email):
-        fileName = 'Database\Logging\Logging.txt'
-        listLogging = File.deserializza(fileName)
-        for x in listLogging:
-            if x.email == email:
-                return x
-        else:
-            return None
-
-
-    # Metodo che verifica se esiste l'accont con questa email
-    def trovaAccount(self, email):
-        fileName = 'Database\Clienti\Clienti.txt'
-        listAccount = File.deserializza(fileName)
-        for account in listAccount:
-            if email == account.email:
-                return account
-        else: return None
+    def trovaLogin(self, account):
+        fileName = "Database\Logging\Logging.txt"
+        listLogging = File().deserializza(fileName)
+        for logging in listLogging:
+            if logging.idAccount == account.idAccount:
+                return logging
+        return None
 
 
     # Metodo che verifica la validità dei dettagli del login
@@ -112,13 +100,3 @@ class Logging:
         log.tentativi = 0
 
 
-    # Metodo che controlla se sul file esiste un utente con lo stesso indirizzo email
-    # per liminare l'inconsistenza dei dati
-    # listLogging = lista di credenziali utente
-    # email = email da verificare
-    # return = True if esiste già l'email nel sistema
-    def checkEmailUtente(self, listLogin, email):
-        for x in listLogin:
-            if x.email == email:
-                return True
-        return False

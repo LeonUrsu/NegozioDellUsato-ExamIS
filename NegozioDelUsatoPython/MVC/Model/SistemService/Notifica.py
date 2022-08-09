@@ -11,19 +11,15 @@ class Notifica():
 
 
     # Metodo che invia al utente un email dove comunica la vendita del oggetto
-    def gestioneEmailDIRegistrazione(self, idCliente):
+    def gestioneEmailDIRegistrazione(self, email, password):
         filePath = "emailFormat\messaggioRegistrazione"
         testoEmail = self.emailGetFormat(filePath)
-        listClienti = File.deserializza("Database\Clienti\Clienti.txt")
-        for cliente in listClienti:
-            if cliente.id == idCliente:
-                email = cliente.email
-                password = cliente.password
-                frase = f"- email:{email}   -password:{password} "
-                try:
-                    self.invioAlServer(email, testoEmail + frase)
-                except:
-                    pass
+        #listClienti = File.deserializza("Database\Clienti\Clienti.txt")
+        frase = f"- email:{email}   -password:{password} "
+        try:
+            self.invioAlServer(email, testoEmail + frase)
+        except:
+            pass
 
 
     # Metodo che invia al utente un email dove comunica la vendita del oggetto
@@ -70,7 +66,7 @@ class Notifica():
         smtp_server = "smtp.gmail.com"
         sender_email = "my@gmail.com"  # Enter your address
         #receiver_email = "your@gmail.com"  # Enter receiver address
-        password = ""
+        password = "mypassword"
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
             server.login(sender_email, password)

@@ -8,6 +8,9 @@ from MVC.Model.SistemService.File import File
 class Scaffale(ServizioInterface):
 
 
+    def __init__(self):
+        pass
+
     # Costruttore della classe, create() in EA
     def __init__(self, idProdotti, posto):
         file = File()

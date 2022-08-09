@@ -1,3 +1,4 @@
+from MVC.Model.Attività.Indirizzo import Indirizzo
 from MVC.Model.Servizio.Categoria import Categoria
 from MVC.Model.Servizio.Prodotto import Prodotto
 from MVC.Model.Servizio.Scaffale import Scaffale
@@ -5,6 +6,8 @@ from MVC.Model.SistemService.File import File
 from MVC.Model.SistemService.Backup import Backup
 from MVC.Model.Attività.Account import Account
 from MVC.Model.Servizio.Ricevuta import Ricevuta
+from MVC.Model.SistemService.Logging import Logging
+from MVC.Model.SistemService.Notifica import Notifica
 from MVC.Model.SistemService.Statistiche import Statistiche
 
 
@@ -84,8 +87,22 @@ class Amministratore:
     def inserisciProdotto(self, codiceCategoria, dataEsposizione, idAccount,
           nomeProdotto, prezzoOriginale, statoDiVendita , IDScaffale):
         pathFile = "Database/Prodotti/InVendita.txt"
-        prodotto = Prodotto.aggiungiProdotto(codiceCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale, statoDiVendita , IDScaffale)
-        prodotto.mettiProdottoSuFile(self,pathFile, prodotto)
+        prodotto = Prodotto.aggiungiProdotto(codiceCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
+                                             statoDiVendita , IDScaffale)
+        prodotto.mettiProdottoSuFile(self, pathFile, prodotto)
+
+
+    # Metodo che serve per l'inserimento di un cliente Proprietario all'interno del database e la comunicazione delle
+    # credenziali via email
+    def inserisciAccount(self, nome, cognome, dataDiNascita, email, password,
+                        idAccount, idProdotti, numeroTelefonico, cap, citofono, citta, civico, piazza, via):
+        if Account().checkEmailUtente(email) == True:
+            return False
+        indirizzo = Indirizzo(cap, citofono, citta, civico, piazza, via)
+        Account().aggiungiAccount(nome, cognome, dataDiNascita, email, numeroTelefonico, password, indirizzo)
+        Logging(idAccount).inserisciLoggingNelDatabase()
+        Notifica().gestioneEmailDIRegistrazione(email, password)
+        return True
 
 
     # Metodo di passaggio per la ricerca di un account

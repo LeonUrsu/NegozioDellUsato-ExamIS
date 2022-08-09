@@ -11,7 +11,6 @@ class User:
     def ricercaProdotto(self):
 
 
-
     def filtraProdottiConData(self):
 
 
@@ -19,7 +18,6 @@ class User:
 
 
     def filtraProdottiConCategoria(self):
-
 
 
     def login(self):

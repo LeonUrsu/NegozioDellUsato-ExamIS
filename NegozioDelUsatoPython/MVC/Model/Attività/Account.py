@@ -9,7 +9,6 @@ class Account(object):
 
     # Costruttore dell'Account, create() in EA
     def __init__(self):
-        self.cliente = None
         self.nome = None
         self.cognome = None
         self.dataDiNascita = None
@@ -17,20 +16,20 @@ class Account(object):
         self.iDAccount = None
         self.iDProdotti = None
         self.numeroTelefonico = None
+        self.password = None
         self.residenza = None
 
 
     # Metodo che permette di aggiungere un Account
-    def aggiungiAccount(self,cliente , nome, cognome, dataDiNascita, email,
-                        idAccount, idProdotti, numeroTelefonico, residenza):
-        self.cliente = True
+    def aggiungiAccount(self, nome, cognome, dataDiNascita, email, numeroTelefonico, password, residenza):
         self.nome = nome
         self.cognome = cognome
         self.dataDiNascita = dataDiNascita
         self.email = email
         self.idAccount = self.newId()
-        self.idProdotti = idProdotti
+        self.idProdotti = list()
         self.numeroTelefonico = numeroTelefonico
+        self.password = password
         self.residenza = residenza
         fileName = 'Database\Account\Account.txt'
         self.mettiAccountSuFile(fileName)
@@ -60,6 +59,7 @@ class Account(object):
         for x in listAccount:
             if x.email == email:
                 return listAccount(index(x))
+        return None
 
 
     # Metodo per trovare un account tramite l'id dell' Account
@@ -76,46 +76,42 @@ class Account(object):
     def newId(self):
         fileName = "Databasa\parametri.txt"
         file = File()
-        letto = file.leggi(fileName)
+        letto = File().leggi(fileName)
         dictLetto = letto.__dict__
         newID = dictLetto['lastIDAccount'] + 1
         dictLetto['lastIDAccount'] = self.newId
         file = File()
-        file.scrivi(fileName, dictLetto.__str__)
+        File().scrivi(fileName, dictLetto.__str__)
         return self.newId
 
 
     # Metodo che rimuove un Prodotto da file e lo restituisce
-    def prendiAccountDaFile(self, startfileName, idProdotto):
+    def prendiAccountDaFile(self, startfileName, idAccount):
         file = File()
-        listProdotto = file.deserializza(startfileName)
+        listAccount = File().deserializza(startfileName)
         popped = None
-        for obj in listProdotto:
-            if obj.idProdotto == idProdotto:
-                popped = listProdotto.pop(listProdotto.index(obj))
+        for obj in listAccount:
+            if obj.idAccount == idAccount:
+                popped = listAccount.pop(listAccount.index(obj))
             else:
                 return None
-        file = File()
-        file.serializza(startfileName, listProdotto)
+        File().serializza(startfileName, listAccount)
         return popped
 
 
-    # Metodo che viene richiamato sull'istanza che deve essere messa su un file
+    # Metodo che viene richiamato sull'istanza di Account che deve essere messa su un file
     def mettiAccountSuFile(self, fileName):
-        file = File()
-        listAccount= file.deserializza(fileName)
-        for account in listAccount:
-            if account.idProdotto == self.idAccount:
-                listAccount.pop(listAccount.index(self))
+        listAccount= File().deserializza(fileName)
         listAccount.append(self)
-        File.serializza(fileName, listAccount)
+        File().serializza(fileName, listAccount)
 
 
     # Metodo che aggiorna un account in base ai parametri passati dalla classe Amministratore
     def aggiornaAccount(self,cliente, nome, cognome, dataDiNascita, email,
         iDAccount, numeroTelefonico, residenza):
         fileName = 'Database\Clienti\Clienti.txt'
-        account = Account.prendiAccountDaFile(fileName, iDAccount)
+        account = Account()
+        account = account.prendiAccountDaFile(fileName, iDAccount)
         if nome != account.nome: account.nome = nome
         if cognome != account.cognome: account.cognome = cognome
         if dataDiNascita != account.dataDiNascita: account.dataDiNascita = dataDiNascita
@@ -134,7 +130,7 @@ class Account(object):
         prodotto.idAccount = idNuovo
         fileName = "Database\Clienti\Clienti.txt"
         file = File()
-        listAccount = file.deserializza(fileName)
+        listAccount = File().deserializza(fileName)
         for account in listAccount:
             if account.idAccount == idVecchio:
                 for idProdotto in account.idProdotti:
@@ -143,3 +139,17 @@ class Account(object):
         for account in listAccount:
             if account.idAccount == idNuovo:
                 account.idProdotti.append(prodotto.IDProdotto)
+
+
+    # Metodo che controlla se sul file esiste un utente con lo stesso indirizzo email
+    # per liminare l'inconsistenza dei dati
+    # listLogging = lista di credenziali utente
+    # email = email da verificare
+    # return = True if esiste già l'email nel sistema
+    def checkEmailUtente(self, email):
+        fileName = "Database\Clienti\Clienti.txt"
+        listAccount = File().deserializza(fileName)
+        for account in listAccount:
+            if account.email == email:
+                return True
+        return FalseS
