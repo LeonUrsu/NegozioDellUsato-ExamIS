@@ -1,7 +1,8 @@
+from MVC.Model.Attività.User import User
 from MVC.Model.SistemService.Logging import Logging
 
 
-class ClienteProprietario:
+class ClienteProprietario(User):
 
 
     # Metodo che restituisce 3 liste di Prodotti: inVendita, venduti, scaduti.

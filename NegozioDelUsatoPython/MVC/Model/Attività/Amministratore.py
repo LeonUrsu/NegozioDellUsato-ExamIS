@@ -1,4 +1,5 @@
 from MVC.Model.Attività.Indirizzo import Indirizzo
+from MVC.Model.Attività.User import User
 from MVC.Model.Servizio.Categoria import Categoria
 from MVC.Model.Servizio.Prodotto import Prodotto
 from MVC.Model.Servizio.Scaffale import Scaffale
@@ -11,7 +12,7 @@ from MVC.Model.SistemService.Notifica import Notifica
 from MVC.Model.SistemService.Statistiche import Statistiche
 
 
-class Amministratore:
+class Amministratore(User):
 
 
     # Metodo che aggiorna un account in base ai parametri passati dall'amministratore

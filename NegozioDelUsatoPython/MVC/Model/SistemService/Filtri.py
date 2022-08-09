@@ -9,10 +9,10 @@ class Filtri:
         self.filtrati = None
 
 
-    # Metodo di filtraggio dei prodotti in base alla data
+    # Metodo di filtraggio dei prodotti in base all prezzo
     # prezzoMin = prezzo minimo di filtraggio
     # prezzoMax = prezzo massimo di filtraggio
-    def filtra(self, prezzoMin, prezzoMax, file):
+    def filtraPrezzo(self, prezzoMin, prezzoMax, file):
         fileName = f"Database\Prodotti\{file}.txt"
         prodottiList = File.deserializza(fileName)
         prodottiFiltratiList = []
@@ -26,7 +26,7 @@ class Filtri:
     # Metodo di filtraggio dei prodotti in base alla data
     # dataInizio = data di inizio filtraggio
     # dataFine = data di fine filtraggio
-    def filtra(self, dataInizio, dataFine, file):
+    def filtraData(self, dataInizio, dataFine, file):
         fileName = f"Database\Prodotti\{file}.txt"
         prodottiList = File.deserializza(fileName)
         prodottiFiltratiList = []
@@ -40,7 +40,7 @@ class Filtri:
     # Metodo di filtraggio dei prodotti in base alla categoria
     # codiceCategoria = codice della categoria su cui fare la selezione
     # file =
-    def filtra(self, codiceCategoria, file):
+    def filtraCategoria(self, codiceCategoria, file):
         fileName = f"Database\Prodotti\{file}.txt"
         prodottiList = File.deserializza(fileName)
         prodottiFiltratiList = []

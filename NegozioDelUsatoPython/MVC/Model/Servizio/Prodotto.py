@@ -178,3 +178,5 @@ class Prodotto(ServizioInterface):
         start = 'Database\Prodotti\InVendita.txt'
         end = 'Database\Prodotti\Scaduti.txt'
         self.spostaProdotto(id, start, end)
+
+
