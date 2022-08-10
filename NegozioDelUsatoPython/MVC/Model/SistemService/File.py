@@ -12,6 +12,7 @@ class File:
 
 
     # Metodo per la lettura da un file
+    # return = una stringa
     def leggi(self, fileName):
         with open(fileName, 'r') as in_file:
             letto = in_file.read()
@@ -30,6 +31,7 @@ class File:
 
     # Metodo per la lettura di un oggetto di tipo arbirtario su un file
     # filename = nome del file da cui deserializzare
+    # return = l'oggetto letto
     def deserializza(self, fileName):
         data = None
         if os.path.getsize(fileName) > 0:

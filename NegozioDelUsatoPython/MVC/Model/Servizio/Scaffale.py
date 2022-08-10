@@ -7,16 +7,16 @@ from MVC.Model.SistemService.File import File
 
 class Scaffale(ServizioInterface):
 
-
+    # Costruttore dellaClasse
     def __init__(self):
         self.idScaffale = None
-        self.idProdotti = None
+        self.idProdotti = list()
 
 
     # Costruttore della classe, create() in EA
     def aggiungiScaffale(self, idProdotti):
         self.idScaffale = self.newId()
-        self.idProdotti = idProdotti
+        if idProdotti != None: self.idProdotti = idProdotti
         return self.idScaffale
 
 
@@ -35,63 +35,58 @@ class Scaffale(ServizioInterface):
         return deepCopy
 
 
-    #Metodo che permette di eliminare uno scaffale salvato nel database
-    #return valore booleano
+    # Metodo che permette di eliminare uno scaffale salvato nel database
+    # return valore booleano
     def deleteInDatabase(self, ID):
         filename = 'Database\Scaffali\Scaffali.txt'
-        file = File()
-        scaffaliList = file.deserializza(filename)
+        scaffaliList = File().deserializza(filename)
         for x in scaffaliList:
             if x.ID == ID:
                 scaffaliList.pop(index(x))
-        file.serializza(filename, scaffaliList)
+        File().serializza(filename, scaffaliList)
 
 
     # Metodo che ritorna il nuovo id da assegnare al Scaffale da inserire
     # return = nuovo ID per lo Scaffale
     def newId(self):
-        file = File()
         fileName = 'Databasa\parametri.txt'
-        letto = file.leggi(fileName)
+        letto = File().leggi(fileName)
         dictLetto = letto.__dict__
-        newID = dictLetto['lastIDScaffale'] + 1
-        dictLetto['lastIDScaffale'] = newID
-        file.scrivi(fileName, dictLetto.__str__)
-        return newID
+        newId = dictLetto['lastIdScaffale'] + 1
+        dictLetto['lastIdScaffale'] = newId
+        File().scrivi(fileName, dictLetto.__str__)
+        return newId
 
 
     # Metodo che prende  l'id di un oggetto e o sposta da un scaffale ad un'altro scaffale
     # idStart = id dello scaffale da dove spostare
     # idEnd = id dello scaffale dove mettere
-    def cambiaScaffale(self, prodotto, idStart, idEnd):
-        indexStart = 0
+    def cambiaScaffaleAProdotto(self, prodotto, idStart, idEnd):
         fileName = "Database\Scaffali\Scaffali.txt"
-        file = File()
-        listScaffali = file.deserializza(fileName)
+        listScaffali = File().deserializza(fileName)
         for scaffale in listScaffali:
             if scaffale.id == idStart:
-                #indexStart = listScaffali.index(scaffale)
                 for ids in scaffale.idProdotti:
-                    if ids == prodotto.IDProdotto:
+                    if ids == prodotto.idProdotto:
                        listScaffali.index(scaffale).idProdotti.index(ids).pop()
         for scaffale in listScaffali:
             if scaffale.id == idEnd:
                 listScaffali.index(scaffale).idProdotti.append(prodotto.IDProdotto)
         prodotto.idScaffale = idEnd
 
-        # Metodo che serve per leggere la lista degli account all'interno del Database
 
-    def leggiScaffali(self):
+    # Metodo che serve per leggere la lista degli scaffali all'interno del Database
+    def recuperaListaOggetti(self):
         fileName = 'Database\Scaffali\Scaffali.txt'
-        file = File()
-        listScaffali = file.deserializza(fileName)
+        listScaffali = File().deserializza(fileName)
         return listScaffali
 
 
+    # Metodo a cui viene passato un prodotto dai cui viene prelevato l'idProdotto e inserito
+    # nella lista degli scaffali
     def aggiungiProdottoAScaffale(self, prodotto, idScaffale):
         filename = 'Database\Scaffali\Scaffali.txt'
-        file = File()
-        scaffaliList = file.deserializza(filename)
+        scaffaliList = File().deserializza(filename)
         for scaffale in scaffaliList:
             if scaffale.idScaffale == idScaffale:
                 scaffale.idProdotti.append(prodotto.IDProdotto)
@@ -102,7 +97,7 @@ class Scaffale(ServizioInterface):
 
     # Metodo che dissocia un id di un prodotto da uno scaffale
     def dissociaProdottoDaScaffale(self, prodotto):
-        listScaffali = self.leggiScaffali()
+        listScaffali = self.recuperaListaOggetti()
         fileName = "Database\Clienti\Clienti.txt"
         for scaffale in listScaffali:
             if scaffale.idScaffale == prodotto.idAccount:

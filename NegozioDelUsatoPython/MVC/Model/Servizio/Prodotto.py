@@ -4,7 +4,6 @@ import json
 from operator import index
 
 from MVC.Model.Attività.Account import Account
-from MVC.Model.Interfacce.DictionaryToPythonObject import JsonObjectToPythonObject
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -32,20 +31,20 @@ class Prodotto(ServizioInterface):
 
     # Metodo per aggiungere i valori all'istanza creata della classe
     def aggiungiProdotto(self, codiceCategoria, dataEsposizione, IDAccount, nomeProdotto,
-                         prezzoOriginale, statoDiVendita, IDScaffale):
+                         prezzoOriginale, idScaffale):
         self.codiceCategoria = codiceCategoria
         self.dataEsposizione = dataEsposizione
         self.dataPrimoSconto = dataEsposizione + relativedelta(months=2)
         self.dataSecondoSconto = dataEsposizione + relativedelta(months=3)
         self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
         self.dataScadenza = dataEsposizione + relativedelta(months=5)
-        self.IDAccount = IDAccount
+        self.idAccount = IDAccount
         prodotto = Prodotto()
         self.IdProdotto = prodotto.newID()
         self.nomeProdotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
-        self.IDScaffale = IDScaffale
+        self.idScaffale = idScaffale
 
 
     # Metodo che permette di clonare un'istanza della classe
@@ -93,7 +92,8 @@ class Prodotto(ServizioInterface):
         return obj.prezzoCorrente
 
 
-    # etodo che rimuove un Prodotto da file e lo restituisce
+    # Metodo che rimuove un Prodotto da file e lo restituisce, la lista verrà serializzata su file senza
+    # l'oggetto rimosso precedentemente
     def prendiProdottoDaFile(self, startfileName, id):
         file = File()
         listProdotti = file.deserializza(startfileName)
@@ -194,3 +194,9 @@ class Prodotto(ServizioInterface):
         listPath.append(fileName3)
         return listPath
 
+
+    # Metodo che legge un file serializzato e deserializza i prodotti dal file
+    def recuperaListaOggetti(self):
+        fileName = 'Database\Prodotti\InVendita.txt'
+        listProdotti = File().deserializza(fileName)
+        return listProdotti

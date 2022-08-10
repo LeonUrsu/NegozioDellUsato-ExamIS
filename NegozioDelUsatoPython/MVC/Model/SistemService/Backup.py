@@ -3,14 +3,14 @@ import tempfile
 from shutil import copytree
 from MVC.Model.SistemService.File import *
 
-class Backup:
+class Backup(object):
 
-
+    # Costruttore del metodo
     def __init__(self):
-        self.id = 0
+        pass
 
 
-    #Metodo che effettua il backup dei dati come impostato
+    # Metodo che quando richiamato effettua il backup dei dati e li copia nella cartella to_path
     def effettuaBackup(self):
         from_path = 'Database/'
         to_path = 'BackupFiles/DatabaseBackup'
@@ -18,21 +18,22 @@ class Backup:
         copytree(from_path, to_path)
 
 
-    #Metodo che elimina una cartella se esistente
-    def eliminaCartella(self,pathName):
+    # Metodo che elimina una cartella se esistente
+    def eliminaCartella(self, pathName):
         if (os.path.exists(pathName)):
             tmp = tempfile.mktemp(dir=os.path.dirname(pathName))
             shutil.move(pathName, tmp)
             shutil.rmtree(tmp)
-        #os.makedirs(pathName)
 
 
-    #Metodo che copia i dati da Database a DatabaseBackup
+    # Metodo che copia i dati da un percorso ad un altro
+    # form_path = percorso copia
+    # to_path = percorso incolla
     def copiaDati(self, from_path, to_path):
         copytree(from_path, to_path)
 
 
-    #Metodo deprecato
+    # Metodo che controlla il path
     def pathControl(self, backupFileName):
         file = None
         temp = File()

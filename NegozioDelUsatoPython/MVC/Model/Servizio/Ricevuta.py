@@ -32,12 +32,11 @@ class Ricevuta(ServizioInterface):
     # Metodo per emettere una ricevuta al cliente che acquista un prodotto
     # propabilmente sarà implementata come una schermata che appare con la lista degli oggetti
     def emettiRicevuta(self):
-        file = File()
         fileName = 'Database\Ricevute\Ricevute.txt'
-        ricevuteList = file.deserializza(filename)
+        ricevuteList = File().deserializza(filename)
         ricevuteList.append(self)
         self.salvaRicevute(ricevuteList)
-        return file.dictionaryEndcoder(ricevuteList)
+        return File().dictionaryEndcoder(ricevuteList)
 
 
     # metodo overiding dell'interfaccia JsonObjectToPythonObject
@@ -51,26 +50,23 @@ class Ricevuta(ServizioInterface):
     # Medoto che prende una lsita di ricevute e le salva su un file
     def salvaRicevute(self, listRicevute):
         fileName = 'Database\Ricevute\Ricevute.txt'
-        file = File()
-        file.serializza(fileName, listRicevute)
+        File().serializza(fileName, listRicevute)
 
 
     # Metodo che legge un file serializzato e deserializza le ricevute dal file
-    def leggiRicevute(self):
-        file = File()
+    def recuperaListaOggetti(self):
         fileName = 'Database\Ricevute\Ricevute.txt'
-        listRicevute = file.deserializza(fileName)
+        listRicevute = File().deserializza(fileName)
         return listRicevute
 
 
     # Metodo che ritorna il nuovo id da assegnare alla Ricevuta da inserire
     # return = nuovo ID per la Ricevuta
     def newID(self):
-        file = File()
         fileName = 'Databasa\parametri.txt'
-        letto = file.leggi(fileName)
+        letto = File().leggi(fileName)
         dictLetto = letto.__dict__
         newID = dictLetto['lastIDRicevuta'] + 1
         dictLetto['lastIDRicevuta'] = newID
-        file.scrivi(fileName, dictLetto.__str__)
+        File().scrivi(fileName, dictLetto.__str__)
         return newID

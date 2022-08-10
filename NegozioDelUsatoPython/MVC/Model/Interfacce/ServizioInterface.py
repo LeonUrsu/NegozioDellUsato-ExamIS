@@ -9,3 +9,9 @@ class ServizioInterface:
     # ciò restituisce un oggetto con un nuovo riferimeto
     def clone(self):
         pass
+
+
+    # Metodo Astratto da essere implementato nella classe de implementa l'interfaccia
+    # serve a recupera la lista degli oggetti all'interno del database
+    def recuperaListaOggetti(self):
+        pass

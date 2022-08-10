@@ -3,7 +3,6 @@ from operator import index
 from MVC.Model.SistemService.File import File
 
 
-
 class Account(object):
 
 
@@ -31,7 +30,6 @@ class Account(object):
         self.numeroTelefonico = numeroTelefonico
         self.password = password
         self.residenza = residenza
-
 
 
     # Metodo che aggiunge l'account nel database

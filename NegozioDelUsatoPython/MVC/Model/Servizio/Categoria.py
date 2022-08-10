@@ -29,7 +29,7 @@ class Categoria(ServizioInterface):
     # Metodo che salva una categoria nel database
     def creaInDatabase(self, categoria):
         fileName = 'Database\Categorie\Categorie.txt'
-        listcategorie = self.leggiCategorie()
+        listcategorie = self.recuperaListaOggetti()
         listcategorie.append(categoria)
         File().serializza(fileName, listcategorie)
 
@@ -37,7 +37,7 @@ class Categoria(ServizioInterface):
     # Metodo che permette di eliminare una categoria salvata nel database
     def deleteInDatabase(self, codiceCategoria):
         fileName = 'Database\Categorie\Categorie.txt'
-        listcategorie = self.leggiCategorie()
+        listcategorie = self.recuperaListaOggetti()
         for x in listcategorie:
             if x.codiceCategoria == codiceCategoria:
                 listcategorie.pop(index(x))
@@ -46,7 +46,7 @@ class Categoria(ServizioInterface):
 
 
     # Metodo che serve per leggere la lista delle categorie all'interno del Database
-    def leggiCategorie(self,):
+    def recuperaListaOggetti(self,):
         fileName = 'Database\Categorie\Categorie.txt'
         file = File()
         listCategorie = file.deserializza(fileName)
@@ -55,7 +55,7 @@ class Categoria(ServizioInterface):
 
     # Metodo per trovare una categoria tramite codiceCategoria
     def trovaCategoria(self, codiceCategoria):
-        listCategorie = self.leggiCategorie()
+        listCategorie = self.recuperaListaOggetti()
         for x in listCategorie:
             if x.codiceCategoria == codiceCategoria:
                 return listCategorie.pop(index(x))
@@ -92,7 +92,7 @@ class Categoria(ServizioInterface):
 
     # Metodo che incrementa il numero di oggetti all'interno di una categoria
     def aggiungiProdottiInCategoria(self, prodotto):
-        listCategorie = Categoria().leggiCategorie()
+        listCategorie = Categoria().recuperaListaOggetti()
         fileName = 'Database\Categorie\Categorie.txt'
         for categoria in listCategorie:
             if categoria.codiceCategoria == prodotto.codiceCategoria:
@@ -104,7 +104,7 @@ class Categoria(ServizioInterface):
 
     # Metodo che decrementa il numero di oggetti all'interno di una categoria
     def diminuisciProdottiInCategoria(self, prodotto):
-        listCategorie = Categoria().leggiCategorie()
+        listCategorie = Categoria().recuperaListaOggetti()
         for categoria in listCategorie:
             if categoria.codiceCategoria == prodotto.codiceCategoria:
                 categoria.oggettiTotali -= 1
