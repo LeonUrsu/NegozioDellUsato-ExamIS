@@ -1,6 +1,7 @@
 import copy
 from operator import index
 
+from Database.PathDatabase import PathDatabase
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from MVC.Model.SistemService.File import File
 
@@ -28,7 +29,7 @@ class Categoria(ServizioInterface):
 
     # Metodo che salva una categoria nel database
     def creaInDatabase(self, categoria):
-        fileName = 'Database\Categorie\Categorie.txt'
+        fileName = PathDatabase().categorieTxt
         listcategorie = self.recuperaListaOggetti()
         listcategorie.append(categoria)
         File().serializza(fileName, listcategorie)
@@ -36,7 +37,7 @@ class Categoria(ServizioInterface):
 
     # Metodo che permette di eliminare una categoria salvata nel database
     def deleteInDatabase(self, codiceCategoria):
-        fileName = 'Database\Categorie\Categorie.txt'
+        fileName = PathDatabase().categorieTxt
         listcategorie = self.recuperaListaOggetti()
         for x in listcategorie:
             if x.codiceCategoria == codiceCategoria:
@@ -47,7 +48,7 @@ class Categoria(ServizioInterface):
 
     # Metodo che serve per leggere la lista delle categorie all'interno del Database
     def recuperaListaOggetti(self,):
-        fileName = 'Database\Categorie\Categorie.txt'
+        fileName = PathDatabase().categorieTxt
         file = File()
         listCategorie = file.deserializza(fileName)
         return listCategorie
@@ -66,7 +67,7 @@ class Categoria(ServizioInterface):
     # return = nuovo ID per la Categoria
     def newID(self):
         file = File()
-        fileName = "Databasa\parametri.txt"
+        fileName = PathDatabase().parametriTxt
         letto = file.deserializza(fileName)
         newID = letto['lastcodiceCategoria'] + 1
         letto['lastcodiceCategoria'] = newID
@@ -79,7 +80,7 @@ class Categoria(ServizioInterface):
     # e al suo interno aumenta di uno il numero di oggetti presenti
     def aggiornaCategoriaProdotto(self, prodotto, codiceVecchio, codiceNuovo):
         prodotto.codiceCategoria = codiceNuovo
-        fileName = "Database\Categorie\Categorie.txt"
+        fileName = PathDatabase().categorieTxt
         file = File()
         listCategorie = file.deserializza(fileName)
         for categoria in listCategorie:
@@ -93,7 +94,7 @@ class Categoria(ServizioInterface):
     # Metodo che incrementa il numero di oggetti all'interno di una categoria
     def aggiungiProdottiInCategoria(self, prodotto):
         listCategorie = Categoria().recuperaListaOggetti()
-        fileName = 'Database\Categorie\Categorie.txt'
+        fileName = PathDatabase().categorieTxt
         for categoria in listCategorie:
             if categoria.codiceCategoria == prodotto.codiceCategoria:
                 categoria.oggettiTotali += 1

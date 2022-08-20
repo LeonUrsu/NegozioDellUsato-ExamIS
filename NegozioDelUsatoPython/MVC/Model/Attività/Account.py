@@ -1,7 +1,7 @@
 from operator import index
 
 from MVC.Model.SistemService.File import File
-
+from Database.PathDatabase import PathDatabase
 
 class Account(object):
 
@@ -34,14 +34,14 @@ class Account(object):
 
     # Metodo che aggiunge l'account nel database
     def inserisciLoggingNelDatabase(self):
-        fileName = 'Database\Account\Account.txt'
+        fileName = PathDatabase().clientiTxt
         self.mettiAccountSuFile(fileName)
 
 
 
     # Metodo che serve per leggere la lista degli account all'interno del Database
     def leggiAccount(self):
-        fileName = 'Database\Account\Account.txt'
+        fileName = PathDatabase().clientiTxt
         file = File()
         listAccount = file.deserializza(fileName)
         return listAccount
@@ -49,12 +49,14 @@ class Account(object):
 
     # Metodo che permette di eliminare un Account
     def eliminaAccount(self, idAccount):
-            fileName = 'Database\Account\account.txt'
+            fileName = PathDatabase().clientiTxt
+            accountEliminato = None
             listaccount = self.leggiAccount()
             for x in listaccount:
                 if x.iDAccount == idAccount:
-                    listaccount.pop(index(x))
+                    accountEliminato = listaccount.pop(index(x))
             File().serializza(fileName, listaccount)
+
 
 
     # Metodo per trovare un account tramite l'email dell' Account
@@ -78,8 +80,7 @@ class Account(object):
     # Metodo che ritorna il nuovo id da assegnare all' Account da inserire
     # return = nuovo Id per l'Account
     def newId(self):
-        fileName = "Databasa\parametri.txt"
-        file = File()
+        fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = letto.__dict__
         newID = dictLetto['lastIDAccount'] + 1
@@ -113,7 +114,7 @@ class Account(object):
     # Metodo che aggiorna un account in base ai parametri passati dalla classe Amministratore
     def aggiornaAccount(self,cliente, nome, cognome, dataDiNascita, email,
         iDAccount, numeroTelefonico, residenza):
-        fileName = 'Database\Clienti\Clienti.txt'
+        fileName = PathDatabase().clientiTxt
         account = Account()
         account = account.prendiAccountDaFile(fileName, iDAccount)
         if nome != account.nome: account.nome = nome
@@ -122,7 +123,6 @@ class Account(object):
         if email != account.email: account.email = email
         if numeroTelefonico != account.numeroTelefonico: account.numeroTelefonico = numeroTelefonico
         if residenza != account.residenza: account.residenza = residenza
-        fileName = "Database\Clienti\Clienti.txt"
         account.mettiAccountSuFile(fileName, account)
 
 
@@ -132,7 +132,7 @@ class Account(object):
     # oggetti si aggiunge l'id nuovo
     def aggiornaIdProdottoInAccount(self, prodotto, idVecchio, idNuovo):
         prodotto.idAccount = idNuovo
-        fileName = "Database\Clienti\Clienti.txt"
+        fileName = PathDatabase().clientiTxt
         file = File()
         listAccount = File().deserializza(fileName)
         for account in listAccount:
@@ -151,7 +151,7 @@ class Account(object):
     # email = email da verificare
     # return = True if esiste già l'email nel sistema
     def checkEmailUtente(self, email):
-        fileName = "Database\Clienti\Clienti.txt"
+        fileName = PathDatabase().clientiTxt
         listAccount = File().deserializza(fileName)
         for account in listAccount:
             if account.email == email:
@@ -172,7 +172,7 @@ class Account(object):
     # Metodo che dissocia un id di un prodotto da un account
     def dissociaProdottoDaAccount(self, prodotto):
         listAccount = self.leggiAccount()
-        fileName = "Database\Clienti\Clienti.txt"
+        fileName = PathDatabase().clientiTxt
         for account in listAccount:
             if account.idAccount == prodotto.idAccount:
                 for idProdotto in account.idProdotti:

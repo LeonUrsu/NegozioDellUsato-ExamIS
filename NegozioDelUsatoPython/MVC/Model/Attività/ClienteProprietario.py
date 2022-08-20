@@ -1,3 +1,4 @@
+from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.User import User
 from MVC.Model.SistemService.Logging import Logging
 
@@ -8,9 +9,9 @@ class ClienteProprietario(User):
     # Metodo che restituisce 3 liste di Prodotti: inVendita, venduti, scaduti.
     # L'assegnazione deve essere: inVendita, venduti, scaduti = controllaStatoProdotti(account)
     def controllaStatoProdotti(self, account):
-        fileNameInVendita = "Database/Prodotti/InVendita.txt"
-        fileNameVenduti = "Database/Prodotti/Venduti.txt"
-        filenameScaduti = "Database/Prodotti/Scaduti.txt"
+        fileNameInVendita = PathDatabase().inVenditaTxt
+        fileNameVenduti = PathDatabase().VendutiTxt
+        filenameScaduti = PathDatabase().scadutiTxt
         inVendita = self.recuperaProdottiClienteProprietario(account.idAccount, fileNameInVendita)
         venduti = self.recuperaProdottiClienteProprietario(account.idAccount, fileNameVenduti)
         scaduti = self.recuperaProdottiClienteProprietario(account.idAccount, filenameScaduti)

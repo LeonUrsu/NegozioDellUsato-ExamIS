@@ -1,11 +1,12 @@
 import datetime
-
 from dateutil.relativedelta import relativedelta
 
+from Database.PathDatabase import PathDatabase
 from MVC.Model.SistemService.File import File
 
 
 class Statistiche:
+
 
     # Costruttore della classe
     def __init__(self):
@@ -34,7 +35,7 @@ class Statistiche:
 
     # Metodo che appende la satistica creata e salva tutte le statistiche nel database
     def salvataggioStatitiche(self):
-        fileName = "Database\Statistiche\Statistiche.txt"
+        fileName = PathDatabase().statisticheTxt
         file = File()
         listStatistiche = file.deserializza(fileName)
         listStatistiche.append(self)
@@ -43,16 +44,16 @@ class Statistiche:
 
     # Metodo per vedere quanti clienti proprietari sono registrati
     def getNumeroClienti(self):
-        fileName = "Database\Clienti\Clienti.txt"
+        fileName = PathDatabase().clientiTxt
         file = File()
         listClienti = file.deserializza(fileName)
-        numeroClienti = listClienti.len()
+        numeroClienti = len(listClienti)
         return numeroClienti
 
 
     # Metodo che prende la lista dei prodotti venduti
     def getListProdottiVenduti(self):
-        fileName = "Database\Prodotti\Venduti.txt"
+        fileName = PathDatabase().vendutiTxt
         file = File()
         listVenduti = file.deserializza(fileName)
         return listVenduti
@@ -71,9 +72,9 @@ class Statistiche:
     def getProdottiVendutiInData(self, listProdotti):
         list = []
         dataFiltro = datetime.datetime.today() - relativedelta(days=1)
-        for x in listProdotti:
-            if x.data >= dataFiltro:
-                list.append(x)
+        for prodotto in listProdotti:
+            if prodotto.data >= dataFiltro:
+                list.append(prodotto)
         return list
 
 
@@ -102,7 +103,7 @@ class Statistiche:
     # Esegue una lettura nel database di tutte le statistiche presenti e le restituisce come lista,
     # la lista verra' trasmessa alla WIEW per la visualizzazione grafica
     def visualizzaStatistiche(self):
-        fileName = "Database\Statistiche\Statistiche.txt"
+        fileName = PathDatabase().statisticheTxt
         file = File()
         listStatistiche = file.deserializza(fileName)
         return listStatistiche

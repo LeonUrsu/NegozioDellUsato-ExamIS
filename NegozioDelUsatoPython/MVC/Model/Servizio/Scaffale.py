@@ -1,6 +1,7 @@
 import copy
 from operator import index
 
+from Database.PathDatabase import PathDatabase
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from MVC.Model.SistemService.File import File
 
@@ -22,7 +23,7 @@ class Scaffale(ServizioInterface):
 
     # Metodo che salvalo scaffale nel database
     def inserisciScaffaleNelDatabase(self):
-        filename = 'Database\Scaffali\Scaffali.txt'
+        filename = PathDatabase().scaffaliTxt
         scaffaliList = File().deserializza(filename)
         scaffaliList.append(self)
         File().serializza(filename, scaffaliList)
@@ -38,7 +39,7 @@ class Scaffale(ServizioInterface):
     # Metodo che permette di eliminare uno scaffale salvato nel database
     # return valore booleano
     def deleteInDatabase(self, ID):
-        filename = 'Database\Scaffali\Scaffali.txt'
+        filename = PathDatabase().scaffaliTxt
         scaffaliList = File().deserializza(filename)
         for x in scaffaliList:
             if x.ID == ID:
@@ -49,7 +50,7 @@ class Scaffale(ServizioInterface):
     # Metodo che ritorna il nuovo id da assegnare al Scaffale da inserire
     # return = nuovo ID per lo Scaffale
     def newId(self):
-        fileName = 'Databasa\parametri.txt'
+        fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = letto.__dict__
         newId = dictLetto['lastIdScaffale'] + 1
@@ -62,7 +63,7 @@ class Scaffale(ServizioInterface):
     # idStart = id dello scaffale da dove spostare
     # idEnd = id dello scaffale dove mettere
     def cambiaScaffaleAProdotto(self, prodotto, idStart, idEnd):
-        fileName = "Database\Scaffali\Scaffali.txt"
+        fileName = PathDatabase().scaffaliTxt
         listScaffali = File().deserializza(fileName)
         for scaffale in listScaffali:
             if scaffale.id == idStart:
@@ -77,7 +78,7 @@ class Scaffale(ServizioInterface):
 
     # Metodo che serve per leggere la lista degli scaffali all'interno del Database
     def recuperaListaOggetti(self):
-        fileName = 'Database\Scaffali\Scaffali.txt'
+        fileName = PathDatabase().scaffaliTxt
         listScaffali = File().deserializza(fileName)
         return listScaffali
 
@@ -85,7 +86,7 @@ class Scaffale(ServizioInterface):
     # Metodo a cui viene passato un prodotto dai cui viene prelevato l'idProdotto e inserito
     # nella lista degli scaffali
     def aggiungiProdottoAScaffale(self, prodotto, idScaffale):
-        filename = 'Database\Scaffali\Scaffali.txt'
+        filename = PathDatabase().scaffaliTxt
         scaffaliList = File().deserializza(filename)
         for scaffale in scaffaliList:
             if scaffale.idScaffale == idScaffale:
@@ -98,7 +99,7 @@ class Scaffale(ServizioInterface):
     # Metodo che dissocia un id di un prodotto da uno scaffale
     def dissociaProdottoDaScaffale(self, prodotto):
         listScaffali = self.recuperaListaOggetti()
-        fileName = "Database\Clienti\Clienti.txt"
+        fileName = PathDatabase().clientiTxt
         for scaffale in listScaffali:
             if scaffale.idScaffale == prodotto.idAccount:
                 for idProdotto in scaffale.idScaffale:

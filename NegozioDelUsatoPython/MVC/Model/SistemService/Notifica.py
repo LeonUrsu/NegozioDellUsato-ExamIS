@@ -1,5 +1,6 @@
 import smtplib, ssl
 
+from Database.PathDatabase import PathDatabase
 from MVC.Model.SistemService.File import File
 
 
@@ -22,7 +23,8 @@ class Notifica():
             pass
 
 
-    # Metodo che invia al utente un email dove comunica la vendita del oggetto
+    # Metodo che invia al utente un email dove comunica la vendita del oggetto se la notifica non ha buon fine per un
+    # cliente si salta questo clietne e si notifica i clienti successivi nella lista
     def gestioneEmailDiVendita(self, listProdottiVenduti):
         filePath = "emailFormat\messaggioVenditaProdotti"
         testoEmail = self.emailGetFormat(filePath)
@@ -73,15 +75,16 @@ class Notifica():
             server.sendmail(sender_email, receiver_email, message)
 
 
+    """
     # Metodo che prende fi account dei Proprietari degli oprodotti
     def getListProprietari(self):
         pathProprietari = "Database\Clienti\Clienti.txt"
         listProprietari = File().deserializza(pathProprietari)
         return listProprietari
-
+    """
 
     # Metodo che prende la lista dei prodotti disponibili in vendita
     def getListProdotti(self):
-        pathProdotti = "Database\Prodotti\InVendita.txt"
+        pathProdotti = PathDatabase().inVenditaTxt
         listProdotti = File().deserializza(pathProdotti)
         return listProdotti

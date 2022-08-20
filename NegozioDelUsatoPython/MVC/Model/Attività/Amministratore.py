@@ -1,3 +1,4 @@
+from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Indirizzo import Indirizzo
 from MVC.Model.Attività.User import User
 from MVC.Model.Servizio.Categoria import Categoria
@@ -20,16 +21,15 @@ class Amministratore(User):
         self.password = "admin"
 
     # Metodo che aggiorna un account in base ai parametri passati dall'amministratore
-    def aggiornaAccount(self,cliente, nome, cognome, dataDiNascita, email,
-        idAccount, numeroTelefonico, residenza):
+    def aggiornaAccount(self, cliente, nome, cognome, dataDiNascita, email,
+                        idAccount, numeroTelefonico, residenza):
         Account().aggiornaAccount(cliente, nome, cognome, dataDiNascita, email,
-        idAccount, numeroTelefonico, residenza)
-
+                                  idAccount, numeroTelefonico, residenza)
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dall'amministratore
     def aggiornaProdotto(self, codiceCategoria, dataEsposizione, idAccount,
-            nomeProdotto, prezzoOriginale, idScaffale, idProdotto):
-        fileName = "Database/Prodotti/InVendita.txt"
+                         nomeProdotto, prezzoOriginale, idScaffale, idProdotto):
+        fileName = PathDatabase().inVenditaTxt
         listProdotti = File().deserializza(fileName)
         prodottoTrovato = Prodotto().prendiProdottoDaFile(fileName, idProdotto)
         if codiceCategoria != prodottoTrovato.codiceCategoria:
@@ -45,26 +45,22 @@ class Amministratore(User):
             scaffale = Scaffale()
             scaffale.cambiaScaffale(prodottoTrovato.idScaffale, idScaffale, prodottoTrovato.idProdotto)
 
-
-
     # Metodo che effettua il backup del sistema in maniera manuale dall amministratore
     # mentre il metodo nella classe Backup verra' richiamato dal sistema ad una determinata ora
     def effettuaBackup(self):
         Backup().effettuaBackup()
 
-
     # Metodo che elimina un account dal database
-    def eliminaAccount(sel,IDAccount):
+    def eliminaAccount(sel, IDAccount):
         Account().eliminaAccount(IDAccount)
-
 
     # Metodo che elimina un prodotto dagli oggetti in vendita a quelli eliminati
     def eliminaProdotto(self, prodotto):
         Prodotto().eliminaProdotto(prodotto.idProdotto)
         try:
             Notifica().gestioneEmailDiEliminazione(prodotto)
-        except: pass
-
+        except:
+            pass
 
     # Metodo che filtra i clienti in base al nome o al cognome
     # return = lista delle persone con dati passati
@@ -87,24 +83,21 @@ class Amministratore(User):
         else:
             return None
 
-
     # Metodo per inserire un prodotto nel database
     def inserisciProdotto(self, idCategoria, dataEsposizione, idAccount,
-          nomeProdotto, prezzoOriginale, statoDiVendita, idScaffale):
-        pathFile = "Database/Prodotti/InVendita.txt"
+                          nomeProdotto, prezzoOriginale, statoDiVendita, idScaffale):
+        pathFile = PathDatabase().inVenditaTxt
         prodotto = Prodotto().aggiungiProdotto(idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
-                                                statoDiVendita)
+                                               statoDiVendita)
         prodotto.mettiProdottoSuFile(self, pathFile, prodotto)
         if idScaffale != None: Scaffale().aggiungiProdottoAScaffale(prodotto, idScaffale)
         Account().aggiungiProdottoAAccount(prodotto)
         Categoria().aggiungiProdottiInCategoria(prodotto)
 
-
-
     # Metodo che serve per l'inserimento di un cliente Proprietario all'interno del database e la comunicazione delle
     # credenziali via email
     def inserisciAccount(self, nome, cognome, dataDiNascita, email, password,
-                        idAccount, idProdotti, numeroTelefonico, cap, citofono, citta, civico, piazza, via):
+                         idAccount, idProdotti, numeroTelefonico, cap, citofono, citta, civico, piazza, via):
         if Account().checkEmailUtente(email) == True:
             return False
         indirizzo = Indirizzo(cap, citofono, citta, civico, piazza, via)
@@ -114,36 +107,30 @@ class Amministratore(User):
         Notifica().gestioneEmailDIRegistrazione(email, password)
         return True
 
-
     # Metodo di passaggio per la ricerca di un account
     def ricercaAccount(self, id):
         return Account().trovaAccountTramiteId(id)
 
-
     # Metodo per la vendita di una lista di oggetti
     # return = dizionario con info di oggetti venduti
     def vendiProdotti(self, prodottoList):
-        list = []
+        list = []  # lista per scontrino
         for prodotto in prodottoList:
             list.append(Prodotto().vendiProdotto(prodotto.idProdotto))
         ricevuta = Ricevuta(list)
         try:
             Notifica().gestioneEmailDiVendita(prodottoList)
-        except: pass
+        except:
+            pass
         return ricevuta.emettiRicevuta()
-
 
     # Metodo che recupera le statistiche sul sistema
     def visualizzaStatistiche(self):
         Statistiche().visualizzaStatistiche()
 
-
     # Metodo che recupera dal database la lista dei clienti nel database
     # return = lista di Clienti
     def recuperaClienti(self):
-        fileName = 'Database\Clienti\Clienti.txt'
+        fileName = PathDatabase().clientiTxt
         listClienti = File().deserializza(fileName)
         return listClienti
-
-
-

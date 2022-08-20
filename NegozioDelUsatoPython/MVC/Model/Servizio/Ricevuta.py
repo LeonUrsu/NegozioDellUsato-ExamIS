@@ -6,6 +6,7 @@ import json
 from datetime import date
 from fileinput import filename
 
+from Database.PathDatabase import PathDatabase
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from MVC.Model.SistemService.File import File
 
@@ -32,7 +33,7 @@ class Ricevuta(ServizioInterface):
     # Metodo per emettere una ricevuta al cliente che acquista un prodotto
     # propabilmente sarà implementata come una schermata che appare con la lista degli oggetti
     def emettiRicevuta(self):
-        fileName = 'Database\Ricevute\Ricevute.txt'
+        fileName = PathDatabase().ricevuteTxt
         ricevuteList = File().deserializza(filename)
         ricevuteList.append(self)
         self.salvaRicevute(ricevuteList)
@@ -49,13 +50,13 @@ class Ricevuta(ServizioInterface):
 
     # Medoto che prende una lsita di ricevute e le salva su un file
     def salvaRicevute(self, listRicevute):
-        fileName = 'Database\Ricevute\Ricevute.txt'
+        fileName = PathDatabase().ricevuteTxt
         File().serializza(fileName, listRicevute)
 
 
     # Metodo che legge un file serializzato e deserializza le ricevute dal file
     def recuperaListaOggetti(self):
-        fileName = 'Database\Ricevute\Ricevute.txt'
+        fileName = PathDatabase().ricevuteTxt
         listRicevute = File().deserializza(fileName)
         return listRicevute
 
@@ -63,7 +64,7 @@ class Ricevuta(ServizioInterface):
     # Metodo che ritorna il nuovo id da assegnare alla Ricevuta da inserire
     # return = nuovo ID per la Ricevuta
     def newID(self):
-        fileName = 'Databasa\parametri.txt'
+        fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = letto.__dict__
         newID = dictLetto['lastIDRicevuta'] + 1

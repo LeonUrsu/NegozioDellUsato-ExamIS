@@ -1,8 +1,11 @@
 #CLasse Prodotto che rappresenta il prodotto con le sue caratteristiche che verrà esposto nel negozio
 import copy
 import json
+
+import Database
 from operator import index
 
+from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from datetime import date
@@ -30,7 +33,7 @@ class Prodotto(ServizioInterface):
 
 
     # Metodo per aggiungere i valori all'istanza creata della classe
-    def aggiungiProdotto(self, codiceCategoria, dataEsposizione, IDAccount, nomeProdotto,
+    def aggiungiProdotto(self, codiceCategoria, dataEsposizione, idAccount, nomeProdotto,
                          prezzoOriginale, idScaffale):
         self.codiceCategoria = codiceCategoria
         self.dataEsposizione = dataEsposizione
@@ -38,9 +41,9 @@ class Prodotto(ServizioInterface):
         self.dataSecondoSconto = dataEsposizione + relativedelta(months=3)
         self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
         self.dataScadenza = dataEsposizione + relativedelta(months=5)
-        self.idAccount = IDAccount
-        prodotto = Prodotto()
-        self.IdProdotto = prodotto.newID()
+        self.idAccount = idAccount
+       # fare controllo su id account
+        self.idProdotto = Prodotto().newId()
         self.nomeProdotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
@@ -62,7 +65,7 @@ class Prodotto(ServizioInterface):
             for prodotto in listProdotti:
                 if prodotto.idProdotto == idProdotto:
                     eliminato = listProdotti.pop(index(prodotto))
-                    end = 'Database\Prodotti\Eliminati.txt'
+                    end = PathDatabase().eliminatiTxt
                     Prodotto().spostaProdotto(prodotto.idProdotto, path, end)
                     Account().dissociaProdottoDaAccount(eliminato)
                     Categoria().diminuisciProdottiInCategoria(eliminato)
@@ -75,7 +78,7 @@ class Prodotto(ServizioInterface):
     # negozio e viene applicato dolo agli oggetti che sono esposti alla vendita
     # return valore booleano
     def scontaProdotti(self):
-        fileName = 'Database\Prodotti\InVendita.txt'
+        fileName = PathDatabase().inVenditaTxt
         listProdotti = File().deserializza(fileName)
         listProdottiAggiornata = self.controllaScadenzaProdotto(listProdotti)
         file = File()
@@ -122,8 +125,8 @@ class Prodotto(ServizioInterface):
     # dove vendono archviati tutti gli oggetti venduti nel database
     # return dizionario con prezzo e ID
     def vendiProdotto(self, id):
-        start = 'Database\Prodotti\InVendita.txt'
-        end = 'Database\Prodotti\Venduti.txt'
+        start = PathDatabase().inVenditaTxt
+        end = PathDatabase().vendutiTxt
         prezzoCorrente = self.spostaProdotto(id, start, end)
         infoProdotto = {}
         infoProdotto['prezzoCorrente'] = prezzoCorrente
@@ -134,15 +137,13 @@ class Prodotto(ServizioInterface):
 
     # Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
     # return = nuovo ID per il Prodotto
-    def newID(self):
-        fileName = 'Databasa\parametri.txt'
-        file = File()
-        letto = file.leggi(fileName)
-        dictLetto = letto.__dict__
-        newId = dictLetto['lastIDProdotto']+1
+    def newId(self):
+        fileName = PathDatabase().parametriTxt
+        letto = File().leggi(fileName)
+        dictLetto = json.loads(letto)
+        newId = dictLetto['lastIDProdotto'] + 1
         dictLetto['lastIDProdotto'] = newId
-        file = File()
-        file.scrivi(fileName, dictLetto.__str__)
+        File().scrivi(fileName, json.dumps(dictLetto))
         return newId
 
 
@@ -178,16 +179,16 @@ class Prodotto(ServizioInterface):
     # ai prodotti scaduti
     # id = id prodotto da spostare
     def scadenza(self, id):
-        start = 'Database\Prodotti\InVendita.txt'
-        end = 'Database\Prodotti\Scaduti.txt'
+        start = PathDatabase().inVenditaTxt
+        end = PathDatabase().scadutiTxt
         self.spostaProdotto(id, start, end)
 
 
     # Metodo che ritorna un lista con i percorsi dei vari file
     def pathList(self):
-        fileName1 = 'Database\Prodotti\InVendita.txt'
-        fileName2 = 'Database\Prodotti\Venduti.txt'
-        fileName3 = 'Database\Prodotti\InVendita.txt'
+        fileName1 = PathDatabase().inVenditaTxt
+        fileName2 = PathDatabase().vendutiTxt
+        fileName3 = PathDatabase().scadutiTxt
         listPath = list()
         listPath.append(fileName1)
         listPath.append(fileName2)
@@ -197,6 +198,58 @@ class Prodotto(ServizioInterface):
 
     # Metodo che legge un file serializzato e deserializza i prodotti dal file
     def recuperaListaOggetti(self):
-        fileName = 'Database\Prodotti\InVendita.txt'
+        fileName = PathDatabase().inVenditaTxt
         listProdotti = File().deserializza(fileName)
         return listProdotti
+
+
+    # Metodo per recuperare la lista dei prodotti tramite un fileName
+    def recuperaListaOggettiProdotti(self, fileName):
+        return File().deserializza(fileName)
+
+
+    def dissociaProdottiDaAccount(self, account):
+        inVendita = PathDatabase().inVenditaTxt
+        venduti = PathDatabase().vendutiTxt
+        scaduti = PathDatabase().scadutiTxt
+        listTotale = self.recuperaListOfLists()
+        for list in listTotale:
+            for prodotto in list:
+                if prodotto.idAccount == account.idAccount:
+                    prodotto.idAccount = None
+        File().serializza(inVendita, listTotale[0])
+        File().serializza(venduti, listTotale[1])
+        File().serializza(scaduti, listTotale[2])
+        return True
+
+
+    # Metodo che recupera le liste dai file e li mette su una lista
+    def recuperaListOfLists(self):
+        listProdottiInVendita = self.recuperaListaOggettiProdotti(PathDatabase().inVenditaTxt)
+        listProdottiVenduti = self.recuperaListaOggettiProdotti(PathDatabase().vendutiTxt)
+        listProdottiScaduti = self.recuperaListaOggettiProdotti(PathDatabase().scadutiTxt)
+        listTotale = list()
+        listTotale.append(listProdottiInVendita)
+        listTotale.append(listProdottiVenduti)
+        listTotale.append(listProdottiScaduti)
+        return listTotale
+
+
+
+
+
+
+
+    #se il prodotto non ha id cliente dee essere comunnque venduto#####################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
