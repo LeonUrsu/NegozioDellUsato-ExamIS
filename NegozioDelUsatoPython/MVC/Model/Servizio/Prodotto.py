@@ -1,4 +1,4 @@
-#CLasse Prodotto che rappresenta il prodotto con le sue caratteristiche che verrà esposto nel negozio
+# CLasse Prodotto che rappresenta il prodotto con le sue caratteristiche che verrà esposto nel negozio
 import copy
 import json
 
@@ -18,8 +18,7 @@ from MVC.Model.SistemService.File import File
 
 class Prodotto(ServizioInterface):
 
-
-    #Costruttore della classe, create() in EA
+    # Costruttore della classe, create() in EA
     def __init__(self):
         self.codiceCategoria = None
         self.dataEsposizione = None
@@ -31,7 +30,6 @@ class Prodotto(ServizioInterface):
         self.prezzoOriginale = None
         self.idScaffale = None
 
-
     # Metodo per aggiungere i valori all'istanza creata della classe
     def aggiungiProdotto(self, codiceCategoria, dataEsposizione, idAccount, nomeProdotto,
                          prezzoOriginale, idScaffale):
@@ -42,20 +40,18 @@ class Prodotto(ServizioInterface):
         self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
         self.dataScadenza = dataEsposizione + relativedelta(months=5)
         self.idAccount = idAccount
-       # fare controllo su id account
+        # fare controllo su id account
         self.idProdotto = Prodotto().newId()
         self.nomeProdotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
         self.idScaffale = idScaffale
 
-
     # Metodo che permette di clonare un'istanza della classe
     # return Prodotto
     def clone(self):
-        deepCopy =  copy.deepcopy(self)
+        deepCopy = copy.deepcopy(self)
         return deepCopy
-
 
     # Metodo che elimina i prodotti nel database
     def eliminaProdotto(self, idProdotto):
@@ -73,7 +69,6 @@ class Prodotto(ServizioInterface):
                     return True
             return False
 
-
     # Metodo che entra in azione quanado l'oggetto matura un determinato tempo di esistenza nel
     # negozio e viene applicato dolo agli oggetti che sono esposti alla vendita
     # return valore booleano
@@ -84,16 +79,12 @@ class Prodotto(ServizioInterface):
         file = File()
         file.serializza(fileName, listProdottiAggiornata)
 
-
     # Metodo che sposta un determinato prodotto all'interno della memoria quando il suo stato è in cambiamento
     # return valore booleano
     def spostaProdotto(self, id, start, end):
-        startfileName = f'Database\Prodotti\{start}.txt'
-        endfileName = f'Database\Prodotti\{end}.txt'
-        obj = self.prendiProdottoDaFile(startfileName, id)
-        self.mettiProdottoSuFile(endfileName, obj)
-        return obj.prezzoCorrente
-
+        obj = self.prendiProdottoDaFile(start, id)
+        self.mettiProdottoSuFile(end, obj)
+        return obj
 
     # Metodo che rimuove un Prodotto da file e lo restituisce, la lista verrà serializzata su file senza
     # l'oggetto rimosso precedentemente
@@ -101,39 +92,31 @@ class Prodotto(ServizioInterface):
         file = File()
         listProdotti = file.deserializza(startfileName)
         popped = None
-        for obj in listProdotti:
-            if obj.IDProdotto == id:
-                popped = listProdotti.pop(listProdotti.index(obj))
-            else:
-                return None
+        for prodotto in listProdotti:
+            if prodotto.idProdotto == id:
+                popped = listProdotti.pop(listProdotti.index(prodotto))
+            # else: return None
         file.serializza(startfileName, listProdotti)
         return popped
 
-
     # Metodo che mette un Prodotto su file
     def mettiProdottoSuFile(self, fileName, obj):
-        file = File()
-        listProdotti = file.deserializza(fileName)
+        listProdotti = File().deserializza(fileName)
         for prodotto in listProdotti:
             if prodotto.idProdotto == obj.idProdotto:
-                listProdotti.pop(listProdotti.index(obj))
+                listProdotti.pop(listProdotti.index(prodotto))
         listProdotti.append(obj)
         File().serializza(fileName, listProdotti)
 
-
-    # Metodo che permette la vendita di un prodotto, lo stato dell'oggetto passa a venduto e viene spostato
+    """    # Metodo che permette la vendita di un prodotto, lo stato dell'oggetto passa a venduto e viene spostato
     # dove vendono archviati tutti gli oggetti venduti nel database
     # return dizionario con prezzo e ID
     def vendiProdotto(self, id):
         start = PathDatabase().inVenditaTxt
         end = PathDatabase().vendutiTxt
-        prezzoCorrente = self.spostaProdotto(id, start, end)
-        infoProdotto = {}
-        infoProdotto['prezzoCorrente'] = prezzoCorrente
-        infoProdotto['id'] = id
-        infoProdotto['Prodotto'] = self.nomeProdotto
-        return infoProdotto
-
+        prodotto = self.spostaProdotto(id, start, end)
+        prezzoCorrente = prezzoprezzoCorrente
+        return infoProdotto"""
 
     # Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
     # return = nuovo ID per il Prodotto
@@ -141,11 +124,10 @@ class Prodotto(ServizioInterface):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
-        newId = dictLetto['lastIDProdotto'] + 1
-        dictLetto['lastIDProdotto'] = newId
+        newId = dictLetto['lastIdProdotto'] + 1
+        dictLetto['lastIdProdotto'] = newId
         File().scrivi(fileName, json.dumps(dictLetto))
         return newId
-
 
     # Metodo che controlla le date di scadenza e di sconto degli oggetti
     # listLetto = lista dei prodotti in python
@@ -165,15 +147,13 @@ class Prodotto(ServizioInterface):
                 obj.prezzoCorrente = self.sale(self.prezzoOriginale, 30)
         return listLetto
 
-
     # Metodo che sconta il prezzo di un prodotto in base al valore di sconto
     # prezzoOriginale = prezzo del prodotto al momento del inserimento nel sistema
     # prezzoCorrente = prezzo del prodotto dopo lo sconto rispetto al prezzoOriginale
     # return = prezzoCorrente del prodotto
     def sale(self, prezzoOriginale, valore):
-        prezzoCorrente = prezzoOriginale * (valore/100)
+        prezzoCorrente = prezzoOriginale * (valore / 100)
         return prezzoCorrente
-
 
     # metodo che gestisce la scadenza di un oggetto spostandolo dai prodotti in vendita
     # ai prodotti scaduti
@@ -182,7 +162,6 @@ class Prodotto(ServizioInterface):
         start = PathDatabase().inVenditaTxt
         end = PathDatabase().scadutiTxt
         self.spostaProdotto(id, start, end)
-
 
     # Metodo che ritorna un lista con i percorsi dei vari file
     def pathList(self):
@@ -195,18 +174,15 @@ class Prodotto(ServizioInterface):
         listPath.append(fileName3)
         return listPath
 
-
     # Metodo che legge un file serializzato e deserializza i prodotti dal file
-    def recuperaListaOggetti(self):
+    def recuperaListaOggett(self):
         fileName = PathDatabase().inVenditaTxt
         listProdotti = File().deserializza(fileName)
         return listProdotti
 
-
     # Metodo per recuperare la lista dei prodotti tramite un fileName
     def recuperaListaOggettiProdotti(self, fileName):
         return File().deserializza(fileName)
-
 
     def dissociaProdottiDaAccount(self, account):
         inVendita = PathDatabase().inVenditaTxt
@@ -222,7 +198,6 @@ class Prodotto(ServizioInterface):
         File().serializza(scaduti, listTotale[2])
         return True
 
-
     # Metodo che recupera le liste dai file e li mette su una lista
     def recuperaListOfLists(self):
         listProdottiInVendita = self.recuperaListaOggettiProdotti(PathDatabase().inVenditaTxt)
@@ -234,22 +209,4 @@ class Prodotto(ServizioInterface):
         listTotale.append(listProdottiScaduti)
         return listTotale
 
-
-
-
-
-
-
-    #se il prodotto non ha id cliente dee essere comunnque venduto#####################################################################################################################
-
-
-
-
-
-
-
-
-
-
-
-
+    # se il prodotto non ha id cliente dee essere comunnque venduto#####################################################################################################################

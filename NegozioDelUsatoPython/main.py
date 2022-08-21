@@ -1,5 +1,6 @@
 import datetime
 import inspect
+import json
 import os
 from pathlib import Path
 
@@ -10,14 +11,15 @@ import pathlib
 
 # impostare all'avvio del programma i path del sistema
 
-PathDatabase().pathSetup(pathlib.Path().resolve())
-
+#PathDatabase().setup(pathlib.Path().resolve())
+#{"lastIdProdotto" : 0, "lastIdRicevuta" : 0}
 #print(pathlib.Path(__file__).parent.resolve())
 
 
 
-
-
+path = "C:\Users\LEON\Documents\is project\NegozioDelUsatoPython\Database\Ricevute\Ricevute.txt"
+lista = File().deserializza(path)
+print(lista)
 
 
 

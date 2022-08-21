@@ -15,29 +15,24 @@ class Ricevuta(ServizioInterface):
 
 
     # Costruttore della classe, create() in EA
-    def __init__(self, prodotti ):
+    def __init__(self):
+        self.ID = None
+        self.datetime = None
+        self.prodotti = None
+
+    #Metodo per aggiungere dei proidotti alla ricevuta
+    def aggiungiProdotti(self, prodotti):
         date_format = '%d/%m/%Y'
         today = date.today()
         self.ID = self.newID()
         self.datetime = today.strftime(date_format)
         self.prodotti = prodotti
 
-
     # Metodo che permette di clonare un'istanza della classe
     # return Ricevuta
     def clone(self):
         deepCopy =  copy.deepcopy(self)
         return deepCopy
-
-
-    # Metodo per emettere una ricevuta al cliente che acquista un prodotto
-    # propabilmente sarà implementata come una schermata che appare con la lista degli oggetti
-    def emettiRicevuta(self):
-        fileName = PathDatabase().ricevuteTxt
-        ricevuteList = File().deserializza(filename)
-        ricevuteList.append(self)
-        self.salvaRicevute(ricevuteList)
-        return File().dictionaryEndcoder(ricevuteList)
 
 
     # metodo overiding dell'interfaccia JsonObjectToPythonObject
@@ -49,9 +44,12 @@ class Ricevuta(ServizioInterface):
 
 
     # Medoto che prende una lsita di ricevute e le salva su un file
-    def salvaRicevute(self, listRicevute):
+    def salvaRicevuta(self):
         fileName = PathDatabase().ricevuteTxt
-        File().serializza(fileName, listRicevute)
+        ricevuteList = File().deserializza(fileName)
+        ricevuteList.append(self)
+        fileName = PathDatabase().ricevuteTxt
+        File().serializza(fileName, ricevuteList)
 
 
     # Metodo che legge un file serializzato e deserializza le ricevute dal file
@@ -66,8 +64,16 @@ class Ricevuta(ServizioInterface):
     def newID(self):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
-        dictLetto = letto.__dict__
-        newID = dictLetto['lastIDRicevuta'] + 1
-        dictLetto['lastIDRicevuta'] = newID
-        File().scrivi(fileName, dictLetto.__str__)
+        dictLetto = json.loads(letto)
+        newID = dictLetto['lastIdRicevuta'] + 1
+        dictLetto['lastIdRicevuta'] = newID
+        File().scrivi(fileName, json.dumps(dictLetto))
         return newID
+
+    #metodo che dato un prodotto recupera le informazione come: prezzo, idProdotto, nomeProdotto
+    def getInfoProdotto(self, prodotto):
+        infoProdotto = {}
+        infoProdotto['prezzoCorrente'] = prodotto.prezzoCorrente
+        infoProdotto['idProdotto'] = prodotto.idProdotto
+        infoProdotto['nomeProdotto'] = prodotto.nomeProdotto
+        return infoProdotto

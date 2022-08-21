@@ -31,13 +31,14 @@ class File:
 
     # Metodo per la lettura di un oggetto di tipo arbirtario su un file
     # filename = nome del file da cui deserializzare
-    # return = l'oggetto letto
+    # return = l'oggetto letto o lista vuota
     def deserializza(self, fileName):
-        data = None
-        if os.path.getsize(fileName) > 0:
-            with open(fileName, 'rb') as f:
+        with open(fileName, 'rb') as f:
+            try:
                 data = pickle.load(f)
-        return data
+                return data
+            except: pass
+        return list()
 
 
     # Metodo per la scrittura di un oggetto di tipo arbirtario su un file

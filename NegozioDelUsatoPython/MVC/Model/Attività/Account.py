@@ -38,12 +38,10 @@ class Account(object):
         self.mettiAccountSuFile(fileName)
 
 
-
     # Metodo che serve per leggere la lista degli account all'interno del Database
     def leggiAccount(self):
         fileName = PathDatabase().clientiTxt
-        file = File()
-        listAccount = file.deserializza(fileName)
+        listAccount = File().deserializza(fileName)
         return listAccount
 
 

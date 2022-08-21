@@ -9,8 +9,6 @@ class PathDatabase(object):
 
 
     def setup(self, mainDirPath):
-        if self.setupState == True: return
-        else: PathDatabase.setupState = True
         mainDirPath = str(mainDirPath)
         PathDatabase.amministratoreTxt = mainDirPath + self.amministratoreTxt
         PathDatabase.categorieTxt = mainDirPath + self.categorieTxt
@@ -26,28 +24,25 @@ class PathDatabase(object):
         PathDatabase.statisticheTxt = mainDirPath + self.statisticheTxt
 
 
-
-    # Stato setup -------
-    setupState = False
     #Amministratore__________________________________________
-    amministratoreTxt = "Database\Amministratore\Amministratore.txt"
+    amministratoreTxt = "Database_test\Amministratore\Amministratore.txt"
     #Categorie__________________________________________
-    categorieTxt = "Database\Categorie\Categorie.txt"
+    categorieTxt = "Database_test\Categorie\Categorie.txt"
     #Clienti__________________________________________
-    clientiTxt = "Database\Clienti\Clienti.txt"
+    clientiTxt = "Database_test\Clienti\Clienti.txt"
     # Logging__________________________________________
-    loggingTxt = "Database\Logging\Logging.txt"
+    loggingTxt = "Database_test\Logging\Logging.txt"
     # Prodotti__________________________________________
-    eliminatiTxt = "Database\Prodotti\Eliminati.txt"
-    inVenditaTxt = r"Database\Prodotti\InVendita.txt"
-    scadutiTxt = "Database\Prodotti\Scaduti.txt"
-    vendutiTxt = "Database\Prodotti\Venduti.txt"
+    eliminatiTxt = "Database_test\Prodotti\Eliminati.txt"
+    inVenditaTxt = "Database_test\Prodotti\InVendita.txt"
+    scadutiTxt = "Database_test\Prodotti\Scaduti.txt"
+    vendutiTxt = "Database_test\Prodotti\Venduti.txt"
     # Ricevute__________________________________________
-    ricevuteTxt = "Database\Ricevute\Ricevute.txt"
+    ricevuteTxt = "Database_test\Ricevute\Ricevute.txt"
     # Scaffali__________________________________________
-    scaffaliTxt = "Database\Scaffali\Scaffali.txt"
+    scaffaliTxt = "Database_test\Scaffali\Scaffali.txt"
     # Parametri__________________________________________
-    parametriTxt = "Database\parametri.txt"
+    parametriTxt = "Database_test\parametri.txt"
     # statistiche_____________________________________
-    statisticheTxt = "Database\Statistiche\Statistiche.txt"
+    statisticheTxt = "Database_test\Statistiche\Statistiche.txt"
 

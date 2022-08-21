@@ -1,3 +1,5 @@
+import json
+
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Indirizzo import Indirizzo
 from MVC.Model.Attività.User import User
@@ -85,14 +87,15 @@ class Amministratore(User):
 
     # Metodo per inserire un prodotto nel database
     def inserisciProdotto(self, idCategoria, dataEsposizione, idAccount,
-                          nomeProdotto, prezzoOriginale, statoDiVendita, idScaffale):
+                          nomeProdotto, prezzoOriginale, idScaffale):
         pathFile = PathDatabase().inVenditaTxt
-        prodotto = Prodotto().aggiungiProdotto(idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
-                                               statoDiVendita)
-        prodotto.mettiProdottoSuFile(self, pathFile, prodotto)
+        prodotto = Prodotto()
+        prodotto.aggiungiProdotto(idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale, idScaffale)
+        prodotto.mettiProdottoSuFile(pathFile, prodotto)
         if idScaffale != None: Scaffale().aggiungiProdottoAScaffale(prodotto, idScaffale)
         Account().aggiungiProdottoAAccount(prodotto)
         Categoria().aggiungiProdottiInCategoria(prodotto)
+        return prodotto
 
     # Metodo che serve per l'inserimento di un cliente Proprietario all'interno del database e la comunicazione delle
     # credenziali via email
@@ -114,15 +117,19 @@ class Amministratore(User):
     # Metodo per la vendita di una lista di oggetti
     # return = dizionario con info di oggetti venduti
     def vendiProdotti(self, prodottoList):
-        list = []  # lista per scontrino
+        listaInfo = list()  # lista per scontrino
         for prodotto in prodottoList:
-            list.append(Prodotto().vendiProdotto(prodotto.idProdotto))
-        ricevuta = Ricevuta(list)
+            Prodotto().spostaProdotto(prodotto.idProdotto, PathDatabase.inVenditaTxt, PathDatabase.vendutiTxt)
+            listaInfo.append(Ricevuta().getInfoProdotto(prodotto))
+        ricevuta = Ricevuta()
+        ricevuta.aggiungiProdotti(listaInfo)
+        ricevuta.salvaRicevuta()
         try:
             Notifica().gestioneEmailDiVendita(prodottoList)
         except:
             pass
-        return ricevuta.emettiRicevuta()
+        print(json.dumps(ricevuta.__dict__))
+        return ricevuta
 
     # Metodo che recupera le statistiche sul sistema
     def visualizzaStatistiche(self):
