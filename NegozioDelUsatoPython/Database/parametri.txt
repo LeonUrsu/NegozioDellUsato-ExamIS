@@ -1,1 +1,1 @@
-{"lastIdProdotto": 120, "lastIdRicevuta": 22}
+{"lastIdProdotto": 125, "lastIdRicevuta": 23}

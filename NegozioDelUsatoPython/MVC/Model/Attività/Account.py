@@ -1,9 +1,10 @@
 from operator import index
 
+from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from MVC.Model.SistemService.File import File
 from Database.PathDatabase import PathDatabase
 
-class Account(object):
+class Account(object, ServizioInterface):
 
 
     # Costruttore dell'Account, create() in EA
@@ -35,7 +36,7 @@ class Account(object):
     # Metodo che aggiunge l'account nel database
     def inserisciLoggingNelDatabase(self):
         fileName = PathDatabase().clientiTxt
-        self.mettiAccountSuFile(fileName)
+        self.mettiOggettoSuListaNelFile(fileName)
 
 
     # Metodo che serve per leggere la lista degli account all'interno del Database
@@ -45,21 +46,24 @@ class Account(object):
         return listAccount
 
 
-    # Metodo che permette di eliminare un Account
+    # Metodo che permette di eliminare un Account dal file degli account
+    # idAccount = id del account da cercare e eliminare
+    # return = ritorno del account eliminato
     def eliminaAccount(self, idAccount):
-            fileName = PathDatabase().clientiTxt
-            accountEliminato = None
-            listaccount = self.leggiAccount()
-            for x in listaccount:
-                if x.iDAccount == idAccount:
-                    accountEliminato = listaccount.pop(index(x))
-            File().serializza(fileName, listaccount)
+        fileName = PathDatabase().clientiTxt
+        accountEliminato = None
+        listaccount = self.recuperaListaOggetti()
+        for x in listaccount:
+            if x.iDAccount == idAccount:
+                accountEliminato = listaccount.pop(index(x))
+        File().serializza(fileName, listaccount)
+        return accountEliminato
 
 
 
     # Metodo per trovare un account tramite l'email dell' Account
     def trovaAccountTramiteEmail(self, email):
-        listAccount = self.leggiAccount()
+        listAccount = self.recuperaListaOggetti()
         for x in listAccount:
             if x.email == email:
                 return listAccount(index(x))
@@ -68,7 +72,7 @@ class Account(object):
 
     # Metodo per trovare un account tramite l'id dell' Account
     def trovaAccountTramiteId(self, id):
-        listAccount = self.leggiAccount()
+        listAccount = self.recuperaListaOggetti()
         for x in listAccount :
             if x.iDAccount == self.idAccount:
                 return listAccount(index(x))
@@ -103,35 +107,36 @@ class Account(object):
 
 
     # Metodo che viene richiamato sull'istanza di Account che deve essere messa su un file
-    def mettiAccountSuFile(self, fileName):
-        listAccount= File().deserializza(fileName)
+    def mettiOggettoSuListaNelFile(self, fileName):
+        listAccount = File().deserializza(fileName)
+        for account in listAccount:
+            if account.idAccount == self.idAccount:
+                listAccount.pop(listAccount.index(account))
         listAccount.append(self)
         File().serializza(fileName, listAccount)
 
 
     # Metodo che aggiorna un account in base ai parametri passati dalla classe Amministratore
-    def aggiornaAccount(self,cliente, nome, cognome, dataDiNascita, email,
-        iDAccount, numeroTelefonico, residenza):
+    def aggiornaAccount(self, nome, cognome, dataDiNascita, email, iDAccount, numeroTelefonico, residenza):
         fileName = PathDatabase().clientiTxt
-        account = Account()
-        account = account.prendiAccountDaFile(fileName, iDAccount)
+        account = Account().prendiAccountDaFile(fileName, iDAccount)
         if nome != account.nome: account.nome = nome
         if cognome != account.cognome: account.cognome = cognome
         if dataDiNascita != account.dataDiNascita: account.dataDiNascita = dataDiNascita
-        if email != account.email: account.email = email
-        if numeroTelefonico != account.numeroTelefonico: account.numeroTelefonico = numeroTelefonico
+        if self.checkEmailUtente(email) == False and email != account.email: account.email = email
+        if self.checkNumeroTelefonico(numeroTelefonico) and numeroTelefonico != account.numeroTelefonico: account.numeroTelefonico = numeroTelefonico
         if residenza != account.residenza: account.residenza = residenza
-        account.mettiAccountSuFile(fileName, account)
+        account.mettiOggettoSuListaNelFile(fileName)
 
 
+    """
     # Metodo che recupera la lista degli account, trova l'account con i'id vecchio e al suo interno,
     # nella lista degli oggetti elimina l'oggetto di interesse.
     # successivamente alla prima eliminazione viene cerrcato l'account nuovo e al suo interno, nella ista degli id degli
     # oggetti si aggiunge l'id nuovo
     def aggiornaIdProdottoInAccount(self, prodotto, idVecchio, idNuovo):
-        prodotto.idAccount = idNuovo
+        #prodotto.idAccount = idNuovo
         fileName = PathDatabase().clientiTxt
-        file = File()
         listAccount = File().deserializza(fileName)
         for account in listAccount:
             if account.idAccount == idVecchio:
@@ -141,11 +146,11 @@ class Account(object):
         for account in listAccount:
             if account.idAccount == idNuovo:
                 account.idProdotti.append(prodotto.IDProdotto)
+    """
 
 
     # Metodo che controlla se sul file esiste un utente con lo stesso indirizzo email
     # per liminare l'inconsistenza dei dati
-    # listLogging = lista di credenziali utente
     # email = email da verificare
     # return = True if esiste già l'email nel sistema
     def checkEmailUtente(self, email):
@@ -157,9 +162,22 @@ class Account(object):
         return False
 
 
+
+    # Metodo che controlla se sul file esiste un utente con lo stesso numero telefonico
+    # per liminare l'inconsistenza dei dati
+    # numero = numero da verificare
+    # return = True if esiste già il numero nel sistema
+    def checkNumeroTelefonico(self, numero):
+        fileName = PathDatabase().clientiTxt
+        listAccount = File().deserializza(fileName)
+        for account in listAccount:
+            if account.numero == numero:
+                return True
+        return False
+
     # Metodo che associa un idProdotto ad un account
-    def aggiungiProdottoAAccount(self, prodotto):
-        listAccount = self.leggiAccount()
+    def associaProdottoAdAccount(self, prodotto):
+        listAccount = self.recuperaListaOggetti()
         for account in listAccount:
             if account.idAccount == prodotto.idAccount:
                 account.idProdotti.append(prodotto.idProdotto)
@@ -169,7 +187,7 @@ class Account(object):
 
     # Metodo che dissocia un id di un prodotto da un account
     def dissociaProdottoDaAccount(self, prodotto):
-        listAccount = self.leggiAccount()
+        listAccount = self.recuperaListaOggetti()
         fileName = PathDatabase().clientiTxt
         for account in listAccount:
             if account.idAccount == prodotto.idAccount:
@@ -177,4 +195,3 @@ class Account(object):
                     if idProdotto == prodotto.idProdotto:
                         account.idProdotti.pop(index(idProdotto))
                         File().serializza(fileName, listAccount)
-

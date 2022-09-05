@@ -35,17 +35,14 @@ class Amministratore(User):
         listProdotti = File().deserializza(fileName)
         prodottoTrovato = Prodotto().prendiProdottoDaFile(fileName, idProdotto)
         if codiceCategoria != prodottoTrovato.codiceCategoria:
-            categoria = Categoria()
-            categoria.aggiornaCategoriaProdotto(prodottoTrovato, prodottoTrovato.codiceCategoria, codiceCategoria)
+            Categoria().aggiornaCategoriaProdotto(prodottoTrovato, prodottoTrovato.codiceCategoria, codiceCategoria)
         if dataEsposizione != prodottoTrovato.dataEsposizione: prodottoTrovato.dataEsposizione = dataEsposizione
         if idAccount != prodottoTrovato.iDAccount:
-            account = Account()
-            account.aggiornaIdProdottoInAccount(prodottoTrovato, prodottoTrovato.idAccount, idAccount)
+            Account().aggiornaIdProdottoInAccount(prodottoTrovato, prodottoTrovato.idAccount, idAccount)
         if nomeProdotto != prodottoTrovato.nomeProdotto: prodottoTrovato.nomeProdotto = nomeProdotto
         if prezzoOriginale != prodottoTrovato.prezzoOriginale: prodottoTrovato.prezzoOriginale = prezzoOriginale
         if idScaffale != prodottoTrovato.idScaffale:
-            scaffale = Scaffale()
-            scaffale.cambiaScaffale(prodottoTrovato.idScaffale, idScaffale, prodottoTrovato.idProdotto)
+            Scaffale().cambiaScaffaleAProdotto(prodottoTrovato, prodottoTrovato.idProdotto, idScaffale)
 
     # Metodo che effettua il backup del sistema in maniera manuale dall amministratore
     # mentre il metodo nella classe Backup verra' richiamato dal sistema ad una determinata ora

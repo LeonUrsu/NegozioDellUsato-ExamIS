@@ -17,15 +17,6 @@ import pathlib
 
 
 
-path = "C:\Users\LEON\Documents\is project\NegozioDelUsatoPython\Database\Ricevute\Ricevute.txt"
-lista = File().deserializza(path)
-print(lista)
-
-
-
-
-
-
 
 
 
