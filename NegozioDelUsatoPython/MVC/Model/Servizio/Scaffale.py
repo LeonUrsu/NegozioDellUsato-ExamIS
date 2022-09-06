@@ -10,9 +10,7 @@ class Scaffale(ServizioInterface):
 
     # Costruttore dellaClasse
     def __init__(self):
-        self.idScaffale = None
-        self.idProdotti = list()
-
+        pass
 
     # Costruttore della classe, create() in EA
     def aggiungiScaffale(self, idProdotti):
@@ -85,11 +83,11 @@ class Scaffale(ServizioInterface):
 
     # Metodo a cui viene passato un prodotto dai cui viene prelevato l'idProdotto e inserito
     # nella lista degli scaffali
-    def aggiungiProdottoAScaffale(self, prodotto, idScaffale):
+    def associaProdottoAScaffale(self, prodotto):
         filename = PathDatabase().scaffaliTxt
         scaffaliList = File().deserializza(filename)
         for scaffale in scaffaliList:
-            if scaffale.idScaffale == idScaffale:
+            if scaffale.idScaffale == prodotto.idScaffale:
                 scaffale.idProdotti.append(prodotto.IDProdotto)
                 File().serializza(filename, scaffaliList)
                 return True

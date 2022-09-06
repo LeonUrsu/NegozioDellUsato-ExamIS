@@ -8,17 +8,15 @@ from MVC.Model.SistemService.File import File
 
 class Categoria(ServizioInterface):
 
-
-    #Costruttore nullo
+    # Costruttore nullo
     def __init__(self):
         pass
 
-    #Costruttore della Categoria, create() in EA
-    def aggiungiCategoria(self, impattoCO2, nome, oggettiTotali):
+    # Costruttore della Categoria, create() in EA
+    def aggiungiCategoria(self, nome, oggettiTotali):
         self.idCategoria = self.newID()
         self.nome = nome
         self.oggettiTotali = oggettiTotali
-
 
     # Metodo che permette di clonare un'istanza della classe
     # return Categoria
@@ -26,14 +24,12 @@ class Categoria(ServizioInterface):
         deepCopy = copy.deepcopy(self)
         return deepCopy
 
-
     # Metodo che salva una categoria nel database
     def creaInDatabase(self, categoria):
         fileName = PathDatabase().categorieTxt
         listcategorie = self.recuperaListaOggetti()
         listcategorie.append(categoria)
         File().serializza(fileName, listcategorie)
-
 
     # Metodo che permette di eliminare una categoria salvata nel database
     def deleteInDatabase(self, codiceCategoria):
@@ -45,14 +41,12 @@ class Categoria(ServizioInterface):
         file = File()
         file.serializza(fileName, listcategorie)
 
-
     # Metodo che serve per leggere la lista delle categorie all'interno del Database
-    def recuperaListaOggetti(self,):
+    def recuperaListaOggetti(self, ):
         fileName = PathDatabase().categorieTxt
         file = File()
         listCategorie = file.deserializza(fileName)
         return listCategorie
-
 
     # Metodo per trovare una categoria tramite codiceCategoria
     def trovaCategoria(self, codiceCategoria):
@@ -61,7 +55,6 @@ class Categoria(ServizioInterface):
             if x.codiceCategoria == codiceCategoria:
                 return listCategorie.pop(index(x))
         return None
-
 
     # Metodo che ritorna il nuovo id da assegnare alla Categoria da inserire
     # return = nuovo ID per la Categoria
@@ -74,12 +67,10 @@ class Categoria(ServizioInterface):
         file.serializza(fileName, letto)
         return newID
 
-
     # Metodo che serve ad aggiornare la lista delle categorie, cerca la caegoria con il codiceVecchio
     # e diminuisce il numero di oggetti di quella categoria di uno, cerca la categoria nuova grazie al codiceNuovo
     # e al suo interno aumenta di uno il numero di oggetti presenti
     def aggiornaCategoriaProdotto(self, prodotto, codiceVecchio, codiceNuovo):
-        prodotto.codiceCategoria = codiceNuovo
         fileName = PathDatabase().categorieTxt
         file = File()
         listCategorie = file.deserializza(fileName)
@@ -89,7 +80,6 @@ class Categoria(ServizioInterface):
         for categoria in listCategorie:
             if categoria.codiceCategoria == codiceNuovo:
                 categoria.oggettiTotali += 1
-
 
     # Metodo che incrementa il numero di oggetti all'interno di una categoria
     def aggiungiProdottiInCategoria(self, prodotto):
@@ -102,7 +92,6 @@ class Categoria(ServizioInterface):
                 return True
         return False
 
-
     # Metodo che decrementa il numero di oggetti all'interno di una categoria
     def diminuisciProdottiInCategoria(self, prodotto):
         listCategorie = Categoria().recuperaListaOggetti()
@@ -111,4 +100,3 @@ class Categoria(ServizioInterface):
                 categoria.oggettiTotali -= 1
                 return True
         return False
-

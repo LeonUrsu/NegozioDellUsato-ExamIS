@@ -23,26 +23,16 @@ class Amministratore(User):
         self.password = "admin"
 
     # Metodo che aggiorna un account in base ai parametri passati dall'amministratore
-    def aggiornaAccount(self, cliente, nome, cognome, dataDiNascita, email,
+    def aggiornaAccount(self, nome, cognome, dataDiNascita, email,
                         idAccount, numeroTelefonico, residenza):
-        Account().aggiornaAccount(cliente, nome, cognome, dataDiNascita, email,
+        Account().aggiornaAccount(nome, cognome, dataDiNascita, email,
                                   idAccount, numeroTelefonico, residenza)
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dall'amministratore
     def aggiornaProdotto(self, codiceCategoria, dataEsposizione, idAccount,
                          nomeProdotto, prezzoOriginale, idScaffale, idProdotto):
-        fileName = PathDatabase().inVenditaTxt
-        listProdotti = File().deserializza(fileName)
-        prodottoTrovato = Prodotto().prendiProdottoDaFile(fileName, idProdotto)
-        if codiceCategoria != prodottoTrovato.codiceCategoria:
-            Categoria().aggiornaCategoriaProdotto(prodottoTrovato, prodottoTrovato.codiceCategoria, codiceCategoria)
-        if dataEsposizione != prodottoTrovato.dataEsposizione: prodottoTrovato.dataEsposizione = dataEsposizione
-        if idAccount != prodottoTrovato.iDAccount:
-            Account().aggiornaIdProdottoInAccount(prodottoTrovato, prodottoTrovato.idAccount, idAccount)
-        if nomeProdotto != prodottoTrovato.nomeProdotto: prodottoTrovato.nomeProdotto = nomeProdotto
-        if prezzoOriginale != prodottoTrovato.prezzoOriginale: prodottoTrovato.prezzoOriginale = prezzoOriginale
-        if idScaffale != prodottoTrovato.idScaffale:
-            Scaffale().cambiaScaffaleAProdotto(prodottoTrovato, prodottoTrovato.idProdotto, idScaffale)
+        Prodotto().aggiornaProdotto(codiceCategoria, dataEsposizione, idAccount,
+                         nomeProdotto, prezzoOriginale, idScaffale, idProdotto)
 
     # Metodo che effettua il backup del sistema in maniera manuale dall amministratore
     # mentre il metodo nella classe Backup verra' richiamato dal sistema ad una determinata ora
@@ -88,8 +78,8 @@ class Amministratore(User):
         pathFile = PathDatabase().inVenditaTxt
         prodotto = Prodotto()
         prodotto.aggiungiProdotto(idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale, idScaffale)
-        prodotto.mettiProdottoSuFile(pathFile, prodotto)
-        if idScaffale != None: Scaffale().aggiungiProdottoAScaffale(prodotto, idScaffale)
+        prodotto.mettiOggettoSuListaNelFile(pathFile)
+        if idScaffale != None: Scaffale().associaProdottoAScaffale(prodotto)
         Account().aggiungiProdottoAAccount(prodotto)
         Categoria().aggiungiProdottiInCategoria(prodotto)
         return prodotto
@@ -98,14 +88,15 @@ class Amministratore(User):
     # credenziali via email
     def inserisciAccount(self, nome, cognome, dataDiNascita, email, password,
                          idAccount, idProdotti, numeroTelefonico, cap, citofono, citta, civico, piazza, via):
-        if Account().checkEmailUtente(email) == True:
+        account = Account()
+        if account.checkEmailUtente(email) == True:
             return False
         indirizzo = Indirizzo(cap, citofono, citta, civico, piazza, via)
-        Account().aggiungiAccount(nome, cognome, dataDiNascita, email, numeroTelefonico, password, indirizzo)
+        account = Account().aggiungiAccount(nome, cognome, dataDiNascita, email, numeroTelefonico, password, indirizzo)
         Logging().aggiungiLogging(idAccount)
         Logging().inserisciLoggingNelDatabase()
         Notifica().gestioneEmailDIRegistrazione(email, password)
-        return True
+        return account
 
     # Metodo di passaggio per la ricerca di un account
     def ricercaAccount(self, id):

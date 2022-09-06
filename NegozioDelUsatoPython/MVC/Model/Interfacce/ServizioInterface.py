@@ -16,6 +16,9 @@ class ServizioInterface:
     def recuperaListaOggetti(self):
         pass
 
+    # Metodo che salva la lista delgli oggetti passati nel file
+    def salvaListaOggetti(self, lista):
+        pass
 
     # Metodo Astratto da essere implementato nella classe che implementa l'interfaccia
     # questo metodo posiziona un oggetto su un file passato per argomento
