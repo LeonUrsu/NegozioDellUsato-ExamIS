@@ -1,3 +1,4 @@
+import os.path
 import pathlib
 
 
@@ -8,46 +9,23 @@ class PathDatabase(object):
 
 
 
-    def setup(self, mainDirPath):
+    def setup(self):
+        mainDirPath = pathlib.Path().resolve()
         if self.setupState == True: return
         else: PathDatabase.setupState = True
-        mainDirPath = str(mainDirPath)
-        PathDatabase.amministratoreTxt = mainDirPath + self.amministratoreTxt
-        PathDatabase.categorieTxt = mainDirPath + self.categorieTxt
-        PathDatabase.clientiTxt = mainDirPath + self.clientiTxt
-        PathDatabase.loggingTxt = mainDirPath + self.loggingTxt
-        PathDatabase.eliminatiTxt = mainDirPath + self.eliminatiTxt
-        PathDatabase.inVenditaTxt = mainDirPath + self.inVenditaTxt
-        PathDatabase.scadutiTxt = mainDirPath + self.scadutiTxt
-        PathDatabase.vendutiTxt = mainDirPath + self.vendutiTxt
-        PathDatabase.ricevuteTxt = mainDirPath + self.ricevuteTxt
-        PathDatabase.scaffaliTxt = mainDirPath + self.scaffaliTxt
-        PathDatabase.parametriTxt = mainDirPath + self.parametriTxt
-        PathDatabase.statisticheTxt = mainDirPath + self.statisticheTxt
-
-
+        PathDatabase.amministratoreTxt = os.path.join(mainDirPath, "Database", "Amministratore","Amministratore.txt")
+        PathDatabase.categorieTxt = os.path.join(mainDirPath, "Database", "Categorie","Categorie.txt")
+        PathDatabase.clientiTxt = os.path.join(mainDirPath, "Database", "Clienti","Clienti.txt")
+        PathDatabase.loggingTxt = os.path.join(mainDirPath, "Database", "Logging","Logging.txt")
+        PathDatabase.eliminatiTxt = os.path.join(mainDirPath, "Database", "Prodotti","Eliminati.txt")
+        PathDatabase.inVenditaTxt = os.path.join(mainDirPath, "Database", "Prodotti","InVendita.txt")
+        PathDatabase.scadutiTxt = os.path.join(mainDirPath, "Database", "Prodotti","Scaduti.txt")
+        PathDatabase.vendutiTxt = os.path.join(mainDirPath, "Database", "Prodotti","Venduti.txt")
+        PathDatabase.ricevuteTxt = os.path.join(mainDirPath, "Database", "Ricevute","Ricevute.txt")
+        PathDatabase.scaffaliTxt = os.path.join(mainDirPath, "Database", "Scaffali","Scaffali.txt")
+        PathDatabase.parametriTxt = os.path.join(mainDirPath, "Database", "parametri.txt")
+        PathDatabase.statisticheTxt = os.path.join(mainDirPath, "Database", "Statistiche","Statistiche.txt")
+        self.setupState = True
 
     # Stato setup -------
     setupState = False
-    #Amministratore__________________________________________
-    amministratoreTxt = "Database\Amministratore\Amministratore.txt"
-    #Categorie__________________________________________
-    categorieTxt = "Database\Categorie\Categorie.txt"
-    #Clienti__________________________________________
-    clientiTxt = "Database\Clienti\Clienti.txt"
-    # Logging__________________________________________
-    loggingTxt = "Database\Logging\Logging.txt"
-    # Prodotti__________________________________________
-    eliminatiTxt = "Database\Prodotti\Eliminati.txt"
-    inVenditaTxt = r"Database\Prodotti\InVendita.txt"
-    scadutiTxt = "Database\Prodotti\Scaduti.txt"
-    vendutiTxt = "Database\Prodotti\Venduti.txt"
-    # Ricevute__________________________________________
-    ricevuteTxt = "Database\Ricevute\Ricevute.txt"
-    # Scaffali__________________________________________
-    scaffaliTxt = "Database\Scaffali\Scaffali.txt"
-    # Parametri__________________________________________
-    parametriTxt = "Database\parametri.txt"
-    # statistiche_____________________________________
-    statisticheTxt = "Database\Statistiche\Statistiche.txt"
-
