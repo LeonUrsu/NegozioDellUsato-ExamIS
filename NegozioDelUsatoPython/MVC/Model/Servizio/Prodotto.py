@@ -102,9 +102,12 @@ class Prodotto(ServizioInterface):
     def rimuoviOggettoDaFile(self, fileName, id):
         listProdotti = File().deserializza(fileName)
         popped = None
+        for x in listProdotti:
+            print(x.idProdotto)
         for prodotto in listProdotti:
             if prodotto.idProdotto == id:
-                popped = listProdotti.pop(listProdotti.index(prodotto))
+                popped = prodotto
+                listProdotti.pop(listProdotti.index(prodotto))
         File().serializza(fileName, listProdotti)
         return popped
 
@@ -128,7 +131,7 @@ class Prodotto(ServizioInterface):
         return infoProdotto"""
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dalla classe amministratore
-    def aggiornaProdotto(self, codiceCategoria, dataEsposizione, idAccount,
+    def aggiornaProdotto(self, codiceCategoria, dataEsposizione,
                          nomeProdotto, prezzoOriginale, idScaffale, idProdotto):
         fileName = PathDatabase().inVenditaTxt
         prodottoTrovato = Prodotto().rimuoviOggettoDaFile(fileName, idProdotto)
@@ -136,9 +139,6 @@ class Prodotto(ServizioInterface):
             prodottoTrovato.codiceCategoria = codiceCategoria
             Categoria().aggiornaCategoriaProdotto(prodottoTrovato, prodottoTrovato.codiceCategoria, codiceCategoria)
         if dataEsposizione != prodottoTrovato.dataEsposizione: prodottoTrovato.dataEsposizione = dataEsposizione
-        if idAccount != prodottoTrovato.iDAccount:
-            prodottoTrovato.idAccount = idAccount
-            Account().aggiornaIdProdottoInAccount(prodottoTrovato, prodottoTrovato.idAccount, idAccount)
         if nomeProdotto != prodottoTrovato.nomeProdotto: prodottoTrovato.nomeProdotto = nomeProdotto
         if prezzoOriginale != prodottoTrovato.prezzoOriginale: prodottoTrovato.prezzoOriginale = prezzoOriginale
         if idScaffale != prodottoTrovato.idScaffale:

@@ -29,9 +29,9 @@ class Amministratore(User):
                                   idAccount, numeroTelefonico, residenza)
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dall'amministratore
-    def aggiornaProdotto(self, codiceCategoria, dataEsposizione, idAccount,
+    def aggiornaProdotto(self, codiceCategoria, dataEsposizione,
                          nomeProdotto, prezzoOriginale, idScaffale, idProdotto):
-        Prodotto().aggiornaProdotto(codiceCategoria, dataEsposizione, idAccount,
+        Prodotto().aggiornaProdotto(codiceCategoria, dataEsposizione,
                          nomeProdotto, prezzoOriginale, idScaffale, idProdotto)
 
     # Metodo che effettua il backup del sistema in maniera manuale dall amministratore
@@ -80,7 +80,7 @@ class Amministratore(User):
         prodotto.aggiungiProdotto(idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale, idScaffale)
         prodotto.mettiOggettoSuListaNelFile(pathFile)
         if idScaffale != None: Scaffale().associaProdottoAScaffale(prodotto)
-        Account().aggiungiProdottoAAccount(prodotto)
+        Account().associaProdottoAdAccount(prodotto)
         Categoria().aggiungiProdottiInCategoria(prodotto)
         return prodotto
 
