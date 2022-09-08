@@ -100,7 +100,7 @@ class Amministratore(User):
 
     # Metodo di passaggio per la ricerca di un account
     def ricercaAccount(self, id):
-        return Account().trovaAccountTramiteId(id)
+        return Account().trovaOggettoTramiteId(id)
 
     # Metodo per la vendita di una lista di oggetti
     # return = dizionario con info di oggetti venduti

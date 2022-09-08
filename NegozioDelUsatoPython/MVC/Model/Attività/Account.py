@@ -54,7 +54,7 @@ class Account(ServizioInterface):
         return accountEliminato
 
     # Metodo per trovare un account tramite l'email dell' Account
-    def trovaAccountTramiteEmail(self, email):
+    def trovaOggettoTramiteEmail(self, email):
         listAccount = self.recuperaListaOggetti()
         for x in listAccount:
             if x.email == email:
