@@ -81,7 +81,6 @@ class Amministratore_test(TestCase):
         for prodotto in listProdotti:
             if prodotto.idProdotto == idProdotto:
                 prodottotest = prodotto
-
         self.assertEqual(idProdotto, prodottotest.idProdotto)
 
 
