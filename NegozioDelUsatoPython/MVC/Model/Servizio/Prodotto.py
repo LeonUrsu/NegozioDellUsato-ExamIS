@@ -5,6 +5,7 @@ import json
 from operator import index
 
 from Database.PathDatabase import PathDatabase
+from MVC.Model.Attività.Account import Account
 
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from datetime import date

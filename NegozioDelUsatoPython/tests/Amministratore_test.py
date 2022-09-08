@@ -82,14 +82,14 @@ class Amministratore_test(TestCase):
                 prodottotest = prodotto
         self.assertEqual(idProdotto, prodottotest.idProdotto)
 
-<<<<<<< HEAD
+
     def test_inserisciAccount(self):
         #setup -------------
         path = pathlib.Path().resolve().__str__().replace('tests',  '')
         PathDatabase().setup(path)
         Amministratore().inserisciAccount("leo","peraz",'29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271', '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
         account = Account().trovaOggettoTramiteId(1)
-=======
+
     def test_eliminaProdotto(self):
         #SETUP--------------
         min = 1; max = 10000
@@ -119,7 +119,7 @@ class Amministratore_test(TestCase):
 
 
 
->>>>>>> 3e8d014fb92137e69e200338227144afa8926405
+
 
 if __name__ == "__main__":
     main()
