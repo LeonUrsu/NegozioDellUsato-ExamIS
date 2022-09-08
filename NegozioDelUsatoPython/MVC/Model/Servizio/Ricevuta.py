@@ -4,7 +4,6 @@
 import copy
 import json
 from datetime import date
-from fileinput import filename
 
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface

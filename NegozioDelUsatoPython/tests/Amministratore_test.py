@@ -2,11 +2,10 @@ import datetime
 import os
 import pathlib
 import random
+import shutil
+import time
 from builtins import print
-from shutil import copytree
 from unittest import TestCase, main
-
-
 
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Amministratore import Amministratore
@@ -16,26 +15,34 @@ from MVC.Model.SistemService.File import File
 
 class Amministratore_test(TestCase):
 
+    #Metodo che crea una copia del database prima di eseguire i test
     def setUp(self):
-        print("-------setup")
-        """try:
-            path = pathlib.Path().resolve().__str__().replace("tests", '')
-            PathDatabase().setup(path)
+        mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
+        path = os.path.join(mainPath, "Database_temp")  # path per cartella di backup
+        try:
+            shutil.rmtree(path)
         except:
             pass
-        from_path = pathlib.Path().resolve().__str__().replace("tests", "Database")
-        to_path = pathlib.Path().resolve().__str__().replace("tests", "Database_temp")
-        os.mkdir(to_path)
-        copytree(from_path, to_path)"""
+        PathDatabase().setup(mainPath)
+        from_path = os.path.join(mainPath, "Database")
+        to_path = os.path.join(mainPath, "Database_temp")
+        shutil.copytree(from_path, to_path)
 
+    # Metodo che crea ripristina il database dopo il test
     def tearDown(self):
-        print("----------teardown")
-        """to_path = pathlib.Path().resolve().__str__().replace("tests", "Database")
-        os.remove(to_path)
-        os.mkdir(to_path)
-        from_path = pathlib.Path().resolve().__str__().replace("tests", 'Database_temp')
-        copytree(from_path, to_path)
-        os.remove(from_path)"""
+        mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
+        from_path = os.path.join(mainPath, "Database_temp")
+        to_path = os.path.join(mainPath, "Database")
+        try:
+            shutil.rmtree(to_path)
+        except:
+            pass
+        shutil.copytree(from_path, to_path)
+        try:
+            shutil.rmtree(from_path)
+        except:
+            pass
+
 
     # test che inserisce nel database dei prodotti casuali per poi eseguire la loro vendita per verificare
     # se sono stati effettivamente venduti
@@ -49,7 +56,7 @@ class Amministratore_test(TestCase):
             prodotto = Amministratore().inserisciProdotto(i, datetime.datetime.today(), i, "nome", i + 0.1, i)
             listProdotti.append(prodotto)
         # TEST-----------------
-        print(Amministratore().vendiProdotti(listProdotti))
+        Amministratore().vendiProdotti(listProdotti)
         listProdottiVenduti = File().deserializza(PathDatabase.vendutiTxt)
         segnalino = 0
         for venduto in listProdottiVenduti:
