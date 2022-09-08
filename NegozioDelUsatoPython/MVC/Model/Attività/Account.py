@@ -23,7 +23,7 @@ class Account(ServizioInterface):
         self.numeroTelefonico = numeroTelefonico
         self.password = password
         self.residenza = residenza
-        self.mettiOggettoSuListaNelFile()
+        self.mettiOggettoSuListaNelFile(PathDatabase.accountTxt)
         return self
 
     """    # Metodo che aggiunge l'account nel database
@@ -96,8 +96,9 @@ class Account(ServizioInterface):
         File().serializza(startfileName, listAccount)
         return popped"""
 
+    #TODO rislolvare il problema del metodo metti oggettoSuListaNelFile, in alcuni luoghi gli si passsa il path mentre in altri no fare un secondo metodo
     # Metodo che viene richiamato sull'istanza di Account che deve essere messa su un file
-    def mettiOggettoSuListaNelFile(self):
+    def mettiOggettoSuListaNelFile(self, fileName):
         listAccount = Account.recuperaListaOggetti(self)
         for account in listAccount:
             if account.idAccount == self.idAccount:
@@ -107,13 +108,13 @@ class Account(ServizioInterface):
 
     # Metodo che aggiorna un account in base ai parametri passati dalla classe Amministratore
     def aggiornaAccount(self, nome, cognome, dataDiNascita, email, idAccount, numeroTelefonico, residenza):
-        fileName = PathDatabase().clientiTxt
+        fileName = PathDatabase().accountTxt
         account = Account().trovaOggettoTramiteId(idAccount)
         if nome != account.nome: account.nome = nome
         if cognome != account.cognome: account.cognome = cognome
         if dataDiNascita != account.dataDiNascita: account.dataDiNascita = dataDiNascita
         if self.checkEmailUtente(email) == False and email != account.email: account.email = email
-        if self.checkNumeroTelefonico(
+        if not self.checkNumeroTelefonico(
             numeroTelefonico) and numeroTelefonico != account.numeroTelefonico: account.numeroTelefonico = numeroTelefonico
         if residenza != account.residenza: account.residenza = residenza
         account.mettiOggettoSuListaNelFile()
@@ -142,7 +143,7 @@ class Account(ServizioInterface):
     # email = email da verificare
     # return = True if esiste già l'email nel sistema
     def checkEmailUtente(self, email):
-        fileName = PathDatabase().clientiTxt
+        fileName = PathDatabase().accountTxt
         listAccount = File().deserializza(fileName)
         for account in listAccount:
             if account.email == email:
@@ -153,10 +154,10 @@ class Account(ServizioInterface):
     # numero = numero da verificare
     # return = True if esiste già il numero nel sistema
     def checkNumeroTelefonico(self, numero):
-        fileName = PathDatabase().clientiTxt
+        fileName = PathDatabase().accountTxt
         listAccount = File().deserializza(fileName)
         for account in listAccount:
-            if account.numero == numero:
+            if account.numeroTelefonico == numero:
                 return True
         return False
 

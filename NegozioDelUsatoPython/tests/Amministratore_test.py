@@ -1,12 +1,9 @@
-import email
 from datetime import datetime
 import os
 import pathlib
 import random
 import shutil
 from unittest import TestCase, main
-import json
-
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
 from MVC.Model.Attività.Amministratore import Amministratore
@@ -16,7 +13,7 @@ from MVC.Model.SistemService.File import File
 
 class Amministratore_test(TestCase):
 
-    #Metodo che crea una copia del database prima di eseguire i test
+    # Metodo che crea una copia del database prima di eseguire i test
     def setUp(self):
         mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
         path = os.path.join(mainPath, "Database_temp")  # path per cartella di backup
@@ -43,7 +40,6 @@ class Amministratore_test(TestCase):
             shutil.rmtree(from_path)
         except:
             pass
-
 
     # test che inserisce nel database dei prodotti casuali per poi eseguire la loro vendita per verificare
     # se sono stati effettivamente venduti
@@ -84,59 +80,51 @@ class Amministratore_test(TestCase):
                 prodottotest = prodotto
         self.assertEqual(idProdotto, prodottotest.idProdotto)
 
-
     def test_inserisciAccount(self):
-        #setup -------------
+        # setup -------------
         path = pathlib.Path().resolve().__str__().replace('tests', '')
         PathDatabase().setup(path)
-        Amministratore().inserisciAccount("leo","peraz",'29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271', '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
-<<<<<<< HEAD
-        account = Account().trovaOggettoTramiteId(1)
-        account2 = Account().trovaOggettoTramiteEmail("leoperaz2000@gmail.com")
-        print(account.__dict__)
-        print('@@@@@@@@')
-        print(account2.__dict__)
-=======
-        #test---------------
-        listAccount = Account().recuperaListaOggetti()
-        account1 = Account().trovaOggettoTramiteId(1)
-        account2 = Account().trovaOggettoTramiteEmail("leoperaz2000@gmail.com")
-        idAccount = account1.idAccount
-        accounttest = None
-        for account in listAccount:
-            if account.idAccount == idAccount:
-                accounttest = account1
-        self.assertEqual(idAccount,accounttest.idAccount)
-
+        account1 = Amministratore().inserisciAccount("leo", "peraz", '29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271',
+                                          '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
+        # test---------------
+        #listAccount = Account().recuperaListaOggetti()
+        #account1 = Account().trovaOggettoTramiteId(1)
+        account2 = Account().trovaOggettoTramiteEmail(account1.email)
+        #idAccount = account1.idAccount
+        #accounttest = None
+        #for account in listAccount:
+            #if account.idAccount == idAccount:
+                #accounttest = account1
+        #self.assertEqual(idAccount, accounttest.idAccount)
+        self.assertEqual(account1, account2)
 
     def test_eliminaAccount(self):
-        #setup-------
+        # setup-------
         path = pathlib.Path().resolve().__str__().replace('tests', '')
         PathDatabase().setup(path)
-        Amministratore().inserisciAccount("prova","prova", "prova", "prova", "prova","prova","prova", "prova", "prova", "prova", "prova","prova")
+        Amministratore().inserisciAccount("prova", "prova", "prova", "prova", "prova", "prova", "prova", "prova",
+                                          "prova", "prova", "prova", "prova")
         accountInserito = Account().trovaOggettoTramiteEmail("prova")
         Amministratore().eliminaAccount(accountInserito.idAccount)
         accountCercato = Account().trovaOggettoTramiteId(accountInserito.idAccount)
         if accountCercato is not None:
             raise FileNotFoundError
-        else: pass
-
-
->>>>>>> 979b952775f001c4d4bd29fc4947510c2bd44d0a
-
+        else:
+            pass
 
     def test_eliminaProdotto(self):
-        #SETUP--------------
-        min = 1; max = 10000
+        # SETUP--------------
+        min = 1
+        max = 10000
         i = random.randint(min, max)
         prodottoInserito = Amministratore().inserisciProdotto(i, datetime.today(), i, "nome", i + 0.1, i)
         Amministratore().eliminaProdotto(prodottoInserito)
         prodottoCercato = Prodotto().trovaOggettoTramiteId(prodottoInserito.idProdotto)
         if prodottoCercato is not None:
             raise FileNotFoundError
-        else: pass
+        else:
+            pass
 
-<<<<<<< HEAD
     def test_aggiornaProdotto(self):
         # SETUP--------------
         PathDatabase().setup(pathlib.Path().resolve().__str__().replace("tests", ""))
@@ -150,9 +138,11 @@ class Amministratore_test(TestCase):
         print(afterProdotto.__dict__)
 
     def test_aggiornaAccount(self):
-        account1 = Amministratore().inserisciAccount("leo", "peraz", '29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271','63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
-        account2 = Amministratore().aggiornaAccount("leon", "leon", "00/00/00", "email@gmai.com", account1.idAccount, 0000000000, None)
-        self.assertEqual(account1.idAccount , account2.idAccount )
+        account1 = Amministratore().inserisciAccount("leo", "peraz", '29/05/00', "leoperaz2000@gmail.com", "ciao",
+                                                     '3883667271', '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
+        account2 = Amministratore().aggiornaAccount("leon", "leon", "00/00/00", "email@gmai.com", account1.idAccount,
+                                                    "0000000000", None)
+        self.assertEqual(account1.idAccount, account2.idAccount)
         self.assertNotEqual(account1.nome, account2.nome)
         self.assertNotEqual(account1.cognome, account2.cognome)
         self.assertNotEqual(account1.dataDiNascita, account2.dataDiNascita)
@@ -160,14 +150,5 @@ class Amministratore_test(TestCase):
         self.assertNotEqual(account1.numeroTelefonico, account2.numeroTelefonico)
 
 
-
-
-
-
-
-
-
-=======
->>>>>>> 979b952775f001c4d4bd29fc4947510c2bd44d0a
 if __name__ == "__main__":
     main()

@@ -10,7 +10,7 @@ class PathDatabase(object):
     def setup(self, mainDirPath):
         PathDatabase.amministratoreTxt = os.path.join(mainDirPath, "Database", "Amministratore", "Amministratore.txt")
         PathDatabase.categorieTxt = os.path.join(mainDirPath, "Database", "Categorie", "Categorie.txt")
-        PathDatabase.clientiTxt = os.path.join(mainDirPath, "Database", "Clienti", "Clienti.txt")
+        PathDatabase.accountTxt = os.path.join(mainDirPath, "Database", "Account", "Account.txt")
         PathDatabase.loggingTxt = os.path.join(mainDirPath, "Database", "Logging", "Logging.txt")
         PathDatabase.eliminatiTxt = os.path.join(mainDirPath, "Database", "Prodotti", "Eliminati.txt")
         PathDatabase.inVenditaTxt = os.path.join(mainDirPath, "Database", "Prodotti", "InVendita.txt")
@@ -30,7 +30,7 @@ class PathDatabase(object):
     mainDirPath = pathlib.Path().resolve()
     amministratoreTxt = ""
     categorieTxt = ""
-    clientiTxt = ""
+    accountTxt = ""
     loggingTxt = ""
     eliminatiTxt = ""
     inVenditaTxt = ""
