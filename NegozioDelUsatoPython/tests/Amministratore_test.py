@@ -86,17 +86,35 @@ class Amministratore_test(TestCase):
 
     def test_inserisciAccount(self):
         #setup -------------
-        path = pathlib.Path().resolve().__str__().replace('tests',  '')
+        path = pathlib.Path().resolve().__str__().replace('tests', '')
         PathDatabase().setup(path)
         Amministratore().inserisciAccount("leo","peraz",'29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271', '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
-        account = Account().trovaOggettoTramiteId(1)
-<<<<<<< HEAD
-=======
+        #test---------------
+        listAccount = Account().recuperaListaOggetti()
+        account1 = Account().trovaOggettoTramiteId(1)
         account2 = Account().trovaOggettoTramiteEmail("leoperaz2000@gmail.com")
-        print(account.__dict__)
-        print('@@@@@@@@')
-        print(account2.__dict__)
->>>>>>> 0bbab4807a9843d0a5de0acd3ae811d9b9ef05de
+        idAccount = account1.idAccount
+        accounttest = None
+        for account in listAccount:
+            if account.idAccount == idAccount:
+                accounttest = account1
+        self.assertEqual(idAccount,accounttest.idAccount)
+
+
+    def test_eliminaAccount(self):
+        #setup-------
+        path = pathlib.Path().resolve().__str__().replace('tests', '')
+        PathDatabase().setup(path)
+        Amministratore().inserisciAccount("prova","prova", "prova", "prova", "prova","prova","prova", "prova", "prova", "prova", "prova","prova")
+        accountInserito = Account().trovaOggettoTramiteEmail("prova")
+        Amministratore().eliminaAccount(accountInserito.idAccount)
+        accountCercato = Account().trovaOggettoTramiteId(accountInserito.idAccount)
+        if accountCercato is not None:
+            raise FileNotFoundError
+        else: pass
+
+
+
 
     def test_eliminaProdotto(self):
         #SETUP--------------
@@ -109,28 +127,5 @@ class Amministratore_test(TestCase):
             raise FileNotFoundError
         else: pass
 
-
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> 0bbab4807a9843d0a5de0acd3ae811d9b9ef05de
 if __name__ == "__main__":
     main()

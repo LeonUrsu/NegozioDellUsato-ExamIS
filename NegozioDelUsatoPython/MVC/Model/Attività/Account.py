@@ -24,6 +24,7 @@ class Account(ServizioInterface):
         self.password = password
         self.residenza = residenza
         self.mettiOggettoSuListaNelFile()
+        return self
 
     """    # Metodo che aggiunge l'account nel database
     def inserisciOggettoNelDatabase(self):
@@ -48,9 +49,10 @@ class Account(ServizioInterface):
     def eliminaAccount(self, idAccount):
         accountEliminato = None
         listaccount = self.recuperaListaOggetti()
-        for x in listaccount:
-            if x.iDAccount == idAccount:
-                accountEliminato = listaccount.pop(index(x))
+        for account in listaccount:
+            if account.idAccount == idAccount:
+                accountEliminato = account
+                listaccount.pop(listaccount.index(account))
         self.salvaListaOggetti(listaccount)
         return accountEliminato
 
