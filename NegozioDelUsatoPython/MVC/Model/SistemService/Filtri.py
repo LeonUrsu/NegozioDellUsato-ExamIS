@@ -1,3 +1,4 @@
+from MVC.Model.Attività.Account import Account
 from MVC.Model.SistemService.File import File
 
 
@@ -49,3 +50,22 @@ class Filtri:
                 prodottiFiltratiList.append(prodotto)
         self.filtrati = prodottiFiltratiList
         return prodottiFiltratiList
+
+    def filtraClienti(self, nome, cognome):
+        listClientiConNome = None
+        listClientiConCognome = None
+        listClienti = Account().recuperaListaOggetti()
+        if nome != None:
+            listClientiConNome = list()
+            for cliente in listClientiConNome:
+                if cliente.nome == nome:
+                    listClientiConNome.append(cliente)
+                    return listClientiConNome
+        elif cognome != None:
+            listClientiConCognome = list()
+            for cliente in listClientiConCognome:
+                if cliente.cliente == cliente:
+                    listClientiConCognome.append(cliente)
+                    return listClientiConCognome
+        else:
+            return None

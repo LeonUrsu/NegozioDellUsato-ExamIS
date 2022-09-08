@@ -83,6 +83,34 @@ class Amministratore_test(TestCase):
                 prodottotest = prodotto
         self.assertEqual(idProdotto, prodottotest.idProdotto)
 
+    def test_eliminaProdotto(self):
+        #SETUP--------------
+        min = 1; max = 10000
+        i = random.randint(min, max)
+        prodottoInserito = Amministratore().inserisciProdotto(i, datetime.datetime.today(), i, "nome", i + 0.1, i)
+        Amministratore().eliminaProdotto(prodottoInserito)
+        prodottoCercato = Prodotto().trovaOggettoTramiteId(prodottoInserito.idProdotto)
+        if prodottoCercato is not None:
+            raise FileNotFoundError
+        else: pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
