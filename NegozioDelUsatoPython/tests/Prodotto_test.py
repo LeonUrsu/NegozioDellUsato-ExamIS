@@ -36,6 +36,6 @@ class File_test(TestCase):
         primoId = 1
         Amministratore().inserisciProdotto(primoId, datetime.today(), primoId, "cognome", primoId, primoId)
         secondoId = 2
-        Amministratore().aggiornaProdotto(secondoId, datetime.today(), secondoId, "cognome", secondoId, primoId)
+        Amministratore().aggiornaProdotto(secondoId, datetime.today(), secondoId, "cognome", secondoId, 49)
         primoProdotto = Prodotto().trovaOggettoTramiteId(primoId)
         secondoProdotto = Prodotto().trovaOggettoTramiteId(secondoId)

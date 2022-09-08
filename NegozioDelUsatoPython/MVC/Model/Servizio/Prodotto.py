@@ -102,8 +102,6 @@ class Prodotto(ServizioInterface):
     def rimuoviOggettoDaFile(self, fileName, id):
         listProdotti = File().deserializza(fileName)
         popped = None
-        for x in listProdotti:
-            print(x.idProdotto)
         for prodotto in listProdotti:
             if prodotto.idProdotto == id:
                 popped = prodotto
@@ -144,7 +142,7 @@ class Prodotto(ServizioInterface):
         if idScaffale != prodottoTrovato.idScaffale:
             prodottoTrovato.idScaffale = idScaffale
             Scaffale().cambiaScaffaleAProdotto(prodottoTrovato, prodottoTrovato.idProdotto, idScaffale)
-        prodottoTrovato.mettiOggettoSuListaNelFile()
+        prodottoTrovato.mettiOggettoSuListaNelFile(fileName)
 
     # Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
     # return = nuovo ID per il Prodotto
@@ -228,9 +226,9 @@ class Prodotto(ServizioInterface):
 
     # Metodo che recupera le liste dai file e li mette su una lista
     def recuperaListOfLists(self):
-        listProdottiInVendita = self.recuperaListaOggettiProdotti(PathDatabase().inVenditaTxt)
-        listProdottiVenduti = self.recuperaListaOggettiProdotti(PathDatabase().vendutiTxt)
-        listProdottiScaduti = self.recuperaListaOggettiProdotti(PathDatabase().scadutiTxt)
+        listProdottiInVendita = self.recuperaListaOggetti(PathDatabase().inVenditaTxt)
+        listProdottiVenduti = self.recuperaListaOggetti(PathDatabase().vendutiTxt)
+        listProdottiScaduti = self.recuperaListaOggetti(PathDatabase().scadutiTxt)
         listTotale = list()
         listTotale.append(listProdottiInVendita)
         listTotale.append(listProdottiVenduti)
