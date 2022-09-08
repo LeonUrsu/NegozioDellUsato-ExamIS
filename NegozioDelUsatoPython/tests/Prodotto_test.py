@@ -9,8 +9,8 @@ from MVC.Model.Attività.Amministratore import Amministratore
 from MVC.Model.Servizio.Prodotto import Prodotto
 
 
-class File_test(TestCase):
-    #Metodo che crea una copia del database prima di eseguire i test
+class Prodotto_test(TestCase):
+    # Metodo che crea una copia del database prima di eseguire i test
     def setUp(self):
         mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
         path = os.path.join(mainPath, "Database_temp")  # path per cartella di backup
