@@ -1,6 +1,7 @@
 import smtplib, ssl
 
 from Database.PathDatabase import PathDatabase
+from MVC.Model.Attività.Account import Account
 from MVC.Model.SistemService.File import File
 
 
@@ -13,9 +14,8 @@ class Notifica():
 
     # Metodo che invia al utente un email dove comunica la vendita del oggetto
     def gestioneEmailDIRegistrazione(self, email, password):
-        filePath = "emailFormat\messaggioRegistrazione"
+        filePath = PathDatabase.messaggioRegistrazioneProdotti
         testoEmail = self.emailGetFormat(filePath)
-        #listClienti = File.deserializza("Database\Clienti\Clienti.txt")
         frase = f"- email:{email}   -password:{password} "
         try:
             self.invioAlServer(email, testoEmail + frase)
@@ -26,9 +26,9 @@ class Notifica():
     # Metodo che invia al utente un email dove comunica la vendita del oggetto se la notifica non ha buon fine per un
     # cliente si salta questo clietne e si notifica i clienti successivi nella lista
     def gestioneEmailDiVendita(self, listProdottiVenduti):
-        filePath = "emailFormat\messaggioVenditaProdotti"
+        filePath = PathDatabase.messaggioVenditaProdotti
         testoEmail = self.emailGetFormat(filePath)
-        listProprietari = self.getListProprietari()
+        listProprietari = Account.recuperaListaOggetti()
         for prodotto in listProdottiVenduti:
             for proprietario in listProprietari:
                 if proprietario.idAccount == prodotto.idAccount:
@@ -40,17 +40,14 @@ class Notifica():
 
     # Metodo che invia al utente un email dove comunica l'avvenuta eliminazione del prodotto
     def gestioneEmailDiEliminazione(self, prodotto):
-        filePath = "emailFormat\messaggioEliminazioneProdotti"
+        filePath = PathDatabase.messaggioEliminazioneProdotti
         testoEmail = self.emailGetFormat(filePath)
-        idProprietario = prodotto.idAccount
-        listProprietari = self.getListProprietari()
-        for proprietario in listProprietari:
-            if proprietario.idAccount == prodotto.idAccount:
-                frase = f" Il prodotto {prodotto.nomeProdotto} : è eliminato/scaduto "
-                try:
-                    self.invioAlServer(proprietario.email, testoEmail + frase)
-                except:
-                    pass
+        proprietario = Account().trovaOggettoTramiteId(prodotto.idAccount)
+        frase = f" Il prodotto {prodotto.nomeProdotto} : è eliminato/scaduto "
+        try:
+            self.invioAlServer(proprietario.email, testoEmail + frase)
+        except:
+            pass
 
 
     # Metodo che prende il formato dell'email dal database in formato stringa
@@ -73,18 +70,3 @@ class Notifica():
         with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
             server.login(sender_email, password)
             server.sendmail(sender_email, receiver_email, message)
-
-
-    """
-    # Metodo che prende fi account dei Proprietari degli oprodotti
-    def getListProprietari(self):
-        pathProprietari = "Database\Clienti\Clienti.txt"
-        listProprietari = File().deserializza(pathProprietari)
-        return listProprietari
-    """
-
-    # Metodo che prende la lista dei prodotti disponibili in vendita
-    def getListProdotti(self):
-        pathProdotti = PathDatabase().inVenditaTxt
-        listProdotti = File().deserializza(pathProdotti)
-        return listProdotti

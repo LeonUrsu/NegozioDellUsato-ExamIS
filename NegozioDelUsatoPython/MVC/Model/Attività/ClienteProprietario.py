@@ -10,7 +10,7 @@ class ClienteProprietario(User):
     # L'assegnazione deve essere: inVendita, venduti, scaduti = controllaStatoProdotti(account)
     def controllaStatoProdotti(self, account):
         fileNameInVendita = PathDatabase().inVenditaTxt
-        fileNameVenduti = PathDatabase().VendutiTxt
+        fileNameVenduti = PathDatabase().vendutiTxt
         filenameScaduti = PathDatabase().scadutiTxt
         inVendita = self.recuperaProdottiClienteProprietario(account.idAccount, fileNameInVendita)
         venduti = self.recuperaProdottiClienteProprietario(account.idAccount, fileNameVenduti)

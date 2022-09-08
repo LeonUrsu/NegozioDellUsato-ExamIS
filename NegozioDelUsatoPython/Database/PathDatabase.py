@@ -20,6 +20,12 @@ class PathDatabase(object):
         PathDatabase.scaffaliTxt = os.path.join(mainDirPath, "Database", "Scaffali", "Scaffali.txt")
         PathDatabase.parametriTxt = os.path.join(mainDirPath, "Database", "parametri.txt")
         PathDatabase.statisticheTxt = os.path.join(mainDirPath, "Database", "Statistiche", "Statistiche.txt")
+        PathDatabase.messaggioEliminazioneProdotti = os.path.join(mainDirPath, "Database", "emailFormat", "messaggioEliminazioneProdotti.txt")
+        PathDatabase.messaggioRegistrazioneProdotti = os.path.join(mainDirPath, "Database", "emailFormat", "messaggioRegistrazione.txt")
+        PathDatabase.messaggioVenditaProdotti = os.path.join(mainDirPath, "Database", "emailFormat", "messaggioVenditaProdotti.txt")
+
+
+
 
     mainDirPath = pathlib.Path().resolve()
     amministratoreTxt = ""
@@ -34,3 +40,6 @@ class PathDatabase(object):
     scaffaliTxt = ""
     parametriTxt = ""
     statisticheTxt = ""
+    messaggioEliminazioneProdotti = ""
+    messaggioRegistrazioneProdotti = ""
+    messaggioVenditaProdotti = ""

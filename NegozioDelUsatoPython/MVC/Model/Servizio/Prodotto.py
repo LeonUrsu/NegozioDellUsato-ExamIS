@@ -89,7 +89,7 @@ class Prodotto(ServizioInterface):
     def trovaOggettoTramiteId(self, id):
         listaFile = self.recuperaListOfLists()
         for name in listaFile:
-            listProdotti = self.recuperaListaOggetti(name)
+            listProdotti = name #self.recuperaListaOggetti(name)
             for prodotto in listProdotti :
                 if prodotto.idProdotto == id:
                     return listProdotti(index(prodotto))
