@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"lastIdProdotto": 1, "lastIdRicevuta": 0, "lastIdAccount": 0}
+=======
+{"lastIdProdotto": 0, "lastIdRicevuta": 0, "lastIdAccount": 1}
+>>>>>>> 0bbab4807a9843d0a5de0acd3ae811d9b9ef05de

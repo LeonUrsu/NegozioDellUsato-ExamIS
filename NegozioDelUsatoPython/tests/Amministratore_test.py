@@ -4,6 +4,7 @@ import pathlib
 import random
 import shutil
 from unittest import TestCase, main
+import json
 
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
@@ -89,6 +90,13 @@ class Amministratore_test(TestCase):
         PathDatabase().setup(path)
         Amministratore().inserisciAccount("leo","peraz",'29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271', '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
         account = Account().trovaOggettoTramiteId(1)
+<<<<<<< HEAD
+=======
+        account2 = Account().trovaOggettoTramiteEmail("leoperaz2000@gmail.com")
+        print(account.__dict__)
+        print('@@@@@@@@')
+        print(account2.__dict__)
+>>>>>>> 0bbab4807a9843d0a5de0acd3ae811d9b9ef05de
 
     def test_eliminaProdotto(self):
         #SETUP--------------
@@ -102,6 +110,7 @@ class Amministratore_test(TestCase):
         else: pass
 
 
+<<<<<<< HEAD
 
 
 
@@ -121,5 +130,7 @@ class Amministratore_test(TestCase):
 
 
 
+=======
+>>>>>>> 0bbab4807a9843d0a5de0acd3ae811d9b9ef05de
 if __name__ == "__main__":
     main()
