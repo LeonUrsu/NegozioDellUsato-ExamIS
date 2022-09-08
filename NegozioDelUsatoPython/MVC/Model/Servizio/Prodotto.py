@@ -89,11 +89,11 @@ class Prodotto(ServizioInterface):
     def trovaOggettoTramiteId(self, id):
         listaFile = self.recuperaListOfLists()
         for name in listaFile:
-            listProdotti = self.recuperaListaOggetti(name)
-            for prodotto in listProdotti :
+            listProdotti = name
+            for prodotto in listProdotti:
                 if prodotto.idProdotto == id:
-                    return listProdotti(index(prodotto))
-            return None
+                    return listProdotti[listProdotti.index(prodotto)]
+        return None
 
 
     # Metodo che rimuove un Prodotto da file e lo restituisce, la lista verrà serializzata su file senza
@@ -198,12 +198,6 @@ class Prodotto(ServizioInterface):
         listPath.append(fileName2)
         listPath.append(fileName3)
         return listPath
-
-    # Metodo che legge un file serializzato e deserializza i prodotti dal file
-    def recuperaListaOggettiInVendita(self):
-        fileName = PathDatabase().inVenditaTxt
-        listProdotti = File().deserializza(fileName)
-        return listProdotti
 
     # Metodo per recuperare la lista dei prodotti tramite un fileName
     def recuperaListaOggetti(self, fileName):

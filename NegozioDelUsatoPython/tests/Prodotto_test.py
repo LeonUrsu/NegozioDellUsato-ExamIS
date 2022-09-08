@@ -1,3 +1,4 @@
+import json
 import os
 import pathlib
 import shutil
@@ -42,8 +43,11 @@ class Prodotto_test(TestCase):
         # SETUP--------------
         PathDatabase().setup(pathlib.Path().resolve().__str__().replace("tests", ""))
         primoId = 1
-        Amministratore().inserisciProdotto(primoId, datetime.today(), primoId, "cognome", primoId, primoId)
+        Amministratore().inserisciProdotto(primoId, datetime.today(), primoId, "nome", primoId, primoId)
         secondoId = 2
-        Amministratore().aggiornaProdotto(secondoId, datetime.today(), secondoId, "cognome", secondoId, 49)
-        primoProdotto = Prodotto().trovaOggettoTramiteId(primoId)
-        secondoProdotto = Prodotto().trovaOggettoTramiteId(secondoId)
+        beforeProdotto = Prodotto().trovaOggettoTramiteId(primoId)
+        print(beforeProdotto.__dict__)
+        Amministratore().aggiornaProdotto(secondoId, datetime.today(), "ciao", secondoId, secondoId, primoId)
+        afterProdotto = Prodotto().trovaOggettoTramiteId(primoId)
+        print(afterProdotto.__dict__)
+
