@@ -2,7 +2,6 @@
 import copy
 import json
 
-import Database
 from operator import index
 
 from Database.PathDatabase import PathDatabase
