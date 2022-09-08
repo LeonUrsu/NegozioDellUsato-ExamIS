@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 {"lastIdProdotto": 0, "lastIdRicevuta": 0, "lastIdAccount": 1}
-=======
-{"lastIdProdotto": 2, "lastIdRicevuta": 0}
->>>>>>> 3e8d014fb92137e69e200338227144afa8926405

@@ -57,17 +57,17 @@ class Account(ServizioInterface):
     # Metodo per trovare un account tramite l'email dell' Account
     def trovaOggettoTramiteEmail(self, email):
         listAccount = self.recuperaListaOggetti()
-        for x in listAccount:
-            if x.email == email:
-                return listAccount(index(x))
+        for account in listAccount:
+            if account.email == email:
+                return listAccount[listAccount.index(account)]
         return None
-    #TODO PULLARE
+
     # Metodo per trovare un account tramite l'id dell' Account
     def trovaOggettoTramiteId(self, id):
-        listaFile = self.recuperaListaOggetti()
-        for account in listaFile:
+        listaAccount = self.recuperaListaOggetti()
+        for account in listaAccount:
             if account.idAccount == id:
-                return account[index(account)]
+                return listaAccount[listaAccount.index(account)]
         return None
 
     # Metodo che ritorna il nuovo id da assegnare all' Account da inserire
