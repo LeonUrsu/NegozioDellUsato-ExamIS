@@ -1,27 +1,7 @@
-from builtins import print
-from datetime import datetime
-
-from Database.PathDatabase import PathDatabase
-from MVC.Model.Attività.Amministratore import Amministratore
-from MVC.Model.Servizio.Prodotto import Prodotto
+import yagmail
 
 
-def test_aggiornaProdotto():
-    # SETUP--------------
-
-    primoId = 1
-    Amministratore().inserisciProdotto(primoId, datetime.today(), primoId, "cognome", primoId, primoId)
-    secondoId = 2
-    Amministratore().aggiornaProdotto(secondoId, datetime.today(), secondoId, "cognome", secondoId, secondoId,
-                                      secondoId)
-    primoProdotto = Prodotto().trovaOggettoTramiteId(primoId)
-    secondoProdotto = Prodotto().trovaOggettoTramiteId(secondoId)
-    print(primoProdotto.nome)
-    print(secondoProdotto.nome)
-
-
-
-
-#PathDatabase().setup()
-print(PathDatabase.vendutiTxt)
-#test_aggiornaProdotto()
+yag = yagmail.SMTP('progetto.negozio.is@gmail.com', 'ktvfqnyjuicdpwsz')
+contents = ['This is the body, and here is just text http://somedomain/image.png',
+            'You can find an audio file attached.', '/local/path/song.mp3']
+yag.send('leoperaz2000@gmail.com', 'subject', contents)

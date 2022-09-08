@@ -87,15 +87,15 @@ class Amministratore(User):
     # Metodo che serve per l'inserimento di un cliente Proprietario all'interno del database e la comunicazione delle
     # credenziali via email
     def inserisciAccount(self, nome, cognome, dataDiNascita, email, password,
-                         idAccount, idProdotti, numeroTelefonico, cap, citofono, citta, civico, piazza, via):
+                           numeroTelefonico, cap, citofono, citta, civico, piazza, via):
         account = Account()
-        if account.checkEmailUtente(email) == True:
-            return False
+        #if account.checkEmailUtente(email) == True:
+           # return False
         indirizzo = Indirizzo(cap, citofono, citta, civico, piazza, via)
         account = Account().aggiungiAccount(nome, cognome, dataDiNascita, email, numeroTelefonico, password, indirizzo)
-        Logging().aggiungiLogging(idAccount)
-        Logging().inserisciLoggingNelDatabase()
-        Notifica().gestioneEmailDIRegistrazione(email, password)
+        #Logging().aggiungiLogging(account.idAccount)
+        #Logging().inserisciLoggingNelDatabase()
+        #Notifica().gestioneEmailDIRegistrazione(email, password)
         return account
 
     # Metodo di passaggio per la ricerca di un account

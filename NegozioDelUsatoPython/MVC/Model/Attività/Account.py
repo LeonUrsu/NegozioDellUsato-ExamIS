@@ -1,3 +1,4 @@
+import json
 from operator import index
 
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
@@ -60,27 +61,25 @@ class Account(ServizioInterface):
             if x.email == email:
                 return listAccount(index(x))
         return None
-
+    #TODO PULLARE
     # Metodo per trovare un account tramite l'id dell' Account
     def trovaOggettoTramiteId(self, id):
-        listAccount = self.recuperaListaOggetti()
-        for account in listAccount:
+        listaFile = self.recuperaListaOggetti()
+        for account in listaFile:
             if account.idAccount == id:
-                return listAccount(index(account))
-            else:
-                return None
+                return account[index(account)]
+        return None
 
     # Metodo che ritorna il nuovo id da assegnare all' Account da inserire
     # return = nuovo Id per l'Account
     def newId(self):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
-        dictLetto = letto.__dict__
-        newID = dictLetto['lastIDAccount'] + 1
-        dictLetto['lastIDAccount'] = self.newId
-        file = File()
-        File().scrivi(fileName, dictLetto.__str__)
-        return self.newId
+        dictLetto = json.loads(letto)
+        newId = dictLetto['lastIdAccount'] + 1
+        dictLetto['lastIdAccount'] = newId
+        File().scrivi(fileName, json.dumps(dictLetto))
+        return newId
 
     """    # Metodo che rimuove un Prodotto da file e lo restituisce
     def prendiOggettoDaFile(self, startfileName, idAccount):
@@ -97,7 +96,7 @@ class Account(ServizioInterface):
 
     # Metodo che viene richiamato sull'istanza di Account che deve essere messa su un file
     def mettiOggettoSuListaNelFile(self):
-        listAccount = Account.recuperaListaOggetti()
+        listAccount = Account.recuperaListaOggetti(self)
         for account in listAccount:
             if account.idAccount == self.idAccount:
                 listAccount.pop(listAccount.index(account))

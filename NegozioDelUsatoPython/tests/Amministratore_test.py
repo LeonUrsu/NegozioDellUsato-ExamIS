@@ -3,11 +3,10 @@ import os
 import pathlib
 import random
 import shutil
-import time
-from builtins import print
 from unittest import TestCase, main
 
 from Database.PathDatabase import PathDatabase
+from MVC.Model.Attività.Account import Account
 from MVC.Model.Attività.Amministratore import Amministratore
 from MVC.Model.Servizio.Prodotto import Prodotto
 from MVC.Model.SistemService.File import File
@@ -83,7 +82,12 @@ class Amministratore_test(TestCase):
                 prodottotest = prodotto
         self.assertEqual(idProdotto, prodottotest.idProdotto)
 
-
+    def test_inserisciAccount(self):
+        #setup -------------
+        path = pathlib.Path().resolve().__str__().replace('tests',  '')
+        PathDatabase().setup(path)
+        Amministratore().inserisciAccount("leo","peraz",'29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271', '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
+        account = Account().trovaOggettoTramiteId(1)
 
 if __name__ == "__main__":
     main()
