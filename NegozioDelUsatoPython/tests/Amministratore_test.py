@@ -87,14 +87,42 @@ class Amministratore_test(TestCase):
 
     def test_inserisciAccount(self):
         #setup -------------
-        path = pathlib.Path().resolve().__str__().replace('tests',  '')
+        path = pathlib.Path().resolve().__str__().replace('tests', '')
         PathDatabase().setup(path)
         Amministratore().inserisciAccount("leo","peraz",'29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271', '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
+<<<<<<< HEAD
         account = Account().trovaOggettoTramiteId(1)
         account2 = Account().trovaOggettoTramiteEmail("leoperaz2000@gmail.com")
         print(account.__dict__)
         print('@@@@@@@@')
         print(account2.__dict__)
+=======
+        #test---------------
+        listAccount = Account().recuperaListaOggetti()
+        account1 = Account().trovaOggettoTramiteId(1)
+        account2 = Account().trovaOggettoTramiteEmail("leoperaz2000@gmail.com")
+        idAccount = account1.idAccount
+        accounttest = None
+        for account in listAccount:
+            if account.idAccount == idAccount:
+                accounttest = account1
+        self.assertEqual(idAccount,accounttest.idAccount)
+
+
+    def test_eliminaAccount(self):
+        #setup-------
+        path = pathlib.Path().resolve().__str__().replace('tests', '')
+        PathDatabase().setup(path)
+        Amministratore().inserisciAccount("prova","prova", "prova", "prova", "prova","prova","prova", "prova", "prova", "prova", "prova","prova")
+        accountInserito = Account().trovaOggettoTramiteEmail("prova")
+        Amministratore().eliminaAccount(accountInserito.idAccount)
+        accountCercato = Account().trovaOggettoTramiteId(accountInserito.idAccount)
+        if accountCercato is not None:
+            raise FileNotFoundError
+        else: pass
+
+
+>>>>>>> 979b952775f001c4d4bd29fc4947510c2bd44d0a
 
 
     def test_eliminaProdotto(self):
@@ -108,6 +136,7 @@ class Amministratore_test(TestCase):
             raise FileNotFoundError
         else: pass
 
+<<<<<<< HEAD
     def test_aggiornaProdotto(self):
         # SETUP--------------
         PathDatabase().setup(pathlib.Path().resolve().__str__().replace("tests", ""))
@@ -138,5 +167,7 @@ class Amministratore_test(TestCase):
 
 
 
+=======
+>>>>>>> 979b952775f001c4d4bd29fc4947510c2bd44d0a
 if __name__ == "__main__":
     main()
