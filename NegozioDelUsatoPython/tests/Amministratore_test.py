@@ -82,12 +82,44 @@ class Amministratore_test(TestCase):
                 prodottotest = prodotto
         self.assertEqual(idProdotto, prodottotest.idProdotto)
 
+<<<<<<< HEAD
     def test_inserisciAccount(self):
         #setup -------------
         path = pathlib.Path().resolve().__str__().replace('tests',  '')
         PathDatabase().setup(path)
         Amministratore().inserisciAccount("leo","peraz",'29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271', '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
         account = Account().trovaOggettoTramiteId(1)
+=======
+    def test_eliminaProdotto(self):
+        #SETUP--------------
+        min = 1; max = 10000
+        i = random.randint(min, max)
+        prodottoInserito = Amministratore().inserisciProdotto(i, datetime.datetime.today(), i, "nome", i + 0.1, i)
+        Amministratore().eliminaProdotto(prodottoInserito)
+        prodottoCercato = Prodotto().trovaOggettoTramiteId(prodottoInserito.idProdotto)
+        if prodottoCercato is not None:
+            raise FileNotFoundError
+        else: pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 3e8d014fb92137e69e200338227144afa8926405
 
 if __name__ == "__main__":
     main()

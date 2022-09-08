@@ -60,7 +60,7 @@ class Prodotto(ServizioInterface):
             listProdotti = File().deserializza(path)
             for prodotto in listProdotti:
                 if prodotto.idProdotto == idProdotto:
-                    eliminato = listProdotti.pop(index(prodotto))
+                    eliminato = listProdotti.pop(listProdotti.index(prodotto))
                     end = PathDatabase().eliminatiTxt
                     Prodotto().spostaProdotto(prodotto.idProdotto, path, end)
                     Account().dissociaProdottoDaAccount(eliminato)

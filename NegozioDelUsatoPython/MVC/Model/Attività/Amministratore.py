@@ -10,6 +10,7 @@ from MVC.Model.SistemService.File import File
 from MVC.Model.SistemService.Backup import Backup
 from MVC.Model.Attività.Account import Account
 from MVC.Model.Servizio.Ricevuta import Ricevuta
+from MVC.Model.SistemService.Filtri import Filtri
 from MVC.Model.SistemService.Logging import Logging
 from MVC.Model.SistemService.Notifica import Notifica
 from MVC.Model.SistemService.Statistiche import Statistiche
@@ -54,23 +55,7 @@ class Amministratore(User):
     # Metodo che filtra i clienti in base al nome o al cognome
     # return = lista delle persone con dati passati
     def filtraClienti(self, nome, cognome):
-        listClientiConNome = None
-        listClientiConCognome = None
-        listClienti = self.recuperaClienti()
-        if nome != None:
-            listClientiConNome = list()
-            for cliente in listClientiConNome:
-                if cliente.nome == nome:
-                    listClientiConNome.append(cliente)
-                    return listClientiConNome
-        elif cognome != None:
-            listClientiConCognome = list()
-            for cliente in listClientiConCognome:
-                if cliente.cliente == cliente:
-                    listClientiConCognome.append(cliente)
-                    return listClientiConCognome
-        else:
-            return None
+        return Filtri().filtraClienti(nome, cognome)
 
     # Metodo per inserire un prodotto nel database
     def inserisciProdotto(self, idCategoria, dataEsposizione, idAccount,
@@ -123,9 +108,3 @@ class Amministratore(User):
     def visualizzaStatistiche(self):
         Statistiche().visualizzaStatistiche()
 
-    # Metodo che recupera dal database la lista dei clienti nel database
-    # return = lista di Clienti
-    def recuperaClienti(self):
-        fileName = PathDatabase().clientiTxt
-        listClienti = File().deserializza(fileName)
-        return listClienti
