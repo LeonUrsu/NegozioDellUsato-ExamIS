@@ -1,4 +1,5 @@
-import datetime
+import email
+from datetime import datetime
 import os
 import pathlib
 import random
@@ -53,7 +54,7 @@ class Amministratore_test(TestCase):
         listProdotti = list()
         contatore = 5
         for i in range(0, contatore):
-            prodotto = Amministratore().inserisciProdotto(i, datetime.datetime.today(), i, "nome", i + 0.1, i)
+            prodotto = Amministratore().inserisciProdotto(i, datetime.today(), i, "nome", i + 0.1, i)
             listProdotti.append(prodotto)
         # TEST-----------------
         Amministratore().vendiProdotti(listProdotti)
@@ -73,7 +74,7 @@ class Amministratore_test(TestCase):
         min = 1
         max = 10000
         i = random.randint(min, max)
-        prodotto = Amministratore().inserisciProdotto(i, datetime.datetime.today(), i, "nome", i + 0.1, i)
+        prodotto = Amministratore().inserisciProdotto(i, datetime.today(), i, "nome", i + 0.1, i)
         idProdotto = prodotto.idProdotto
         # test----------------------------------------------
         listProdotti = Prodotto().recuperaListaOggetti(PathDatabase.inVenditaTxt)
@@ -90,27 +91,44 @@ class Amministratore_test(TestCase):
         PathDatabase().setup(path)
         Amministratore().inserisciAccount("leo","peraz",'29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271', '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
         account = Account().trovaOggettoTramiteId(1)
-<<<<<<< HEAD
-=======
         account2 = Account().trovaOggettoTramiteEmail("leoperaz2000@gmail.com")
         print(account.__dict__)
         print('@@@@@@@@')
         print(account2.__dict__)
->>>>>>> 0bbab4807a9843d0a5de0acd3ae811d9b9ef05de
+
 
     def test_eliminaProdotto(self):
         #SETUP--------------
         min = 1; max = 10000
         i = random.randint(min, max)
-        prodottoInserito = Amministratore().inserisciProdotto(i, datetime.datetime.today(), i, "nome", i + 0.1, i)
+        prodottoInserito = Amministratore().inserisciProdotto(i, datetime.today(), i, "nome", i + 0.1, i)
         Amministratore().eliminaProdotto(prodottoInserito)
         prodottoCercato = Prodotto().trovaOggettoTramiteId(prodottoInserito.idProdotto)
         if prodottoCercato is not None:
             raise FileNotFoundError
         else: pass
 
+    def test_aggiornaProdotto(self):
+        # SETUP--------------
+        PathDatabase().setup(pathlib.Path().resolve().__str__().replace("tests", ""))
+        primoId = 1
+        Amministratore().inserisciProdotto(primoId, datetime.today(), primoId, "nome", primoId, primoId)
+        secondoId = 2
+        beforeProdotto = Prodotto().trovaOggettoTramiteId(primoId)
+        print(beforeProdotto.__dict__)
+        Amministratore().aggiornaProdotto(secondoId, datetime.today(), "ciao", secondoId, secondoId, primoId)
+        afterProdotto = Prodotto().trovaOggettoTramiteId(primoId)
+        print(afterProdotto.__dict__)
 
-<<<<<<< HEAD
+    def test_aggiornaAccount(self):
+        account1 = Amministratore().inserisciAccount("leo", "peraz", '29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271','63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
+        account2 = Amministratore().aggiornaAccount("leon", "leon", "00/00/00", "email@gmai.com", account1.idAccount, 0000000000, None)
+        self.assertEqual(account1.idAccount , account2.idAccount )
+        self.assertNotEqual(account1.nome, account2.nome)
+        self.assertNotEqual(account1.cognome, account2.cognome)
+        self.assertNotEqual(account1.dataDiNascita, account2.dataDiNascita)
+        self.assertNotEqual(account1.email, account2.email)
+        self.assertNotEqual(account1.numeroTelefonico, account2.numeroTelefonico)
 
 
 
@@ -120,17 +138,5 @@ class Amministratore_test(TestCase):
 
 
 
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> 0bbab4807a9843d0a5de0acd3ae811d9b9ef05de
 if __name__ == "__main__":
     main()

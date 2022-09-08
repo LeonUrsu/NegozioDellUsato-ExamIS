@@ -39,15 +39,5 @@ class Prodotto_test(TestCase):
         except:
             pass
 
-    def test_aggiornaProdotto(self):
-        # SETUP--------------
-        PathDatabase().setup(pathlib.Path().resolve().__str__().replace("tests", ""))
-        primoId = 1
-        Amministratore().inserisciProdotto(primoId, datetime.today(), primoId, "nome", primoId, primoId)
-        secondoId = 2
-        beforeProdotto = Prodotto().trovaOggettoTramiteId(primoId)
-        print(beforeProdotto.__dict__)
-        Amministratore().aggiornaProdotto(secondoId, datetime.today(), "ciao", secondoId, secondoId, primoId)
-        afterProdotto = Prodotto().trovaOggettoTramiteId(primoId)
-        print(afterProdotto.__dict__)
+
 

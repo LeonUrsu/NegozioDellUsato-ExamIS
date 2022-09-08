@@ -104,9 +104,9 @@ class Account(ServizioInterface):
         self.salvaListaOggetti(listAccount)
 
     # Metodo che aggiorna un account in base ai parametri passati dalla classe Amministratore
-    def aggiornaAccount(self, nome, cognome, dataDiNascita, email, iDAccount, numeroTelefonico, residenza):
+    def aggiornaAccount(self, nome, cognome, dataDiNascita, email, idAccount, numeroTelefonico, residenza):
         fileName = PathDatabase().clientiTxt
-        account = Account().prendiOggettoDaFile(fileName, iDAccount)
+        account = Account().trovaOggettoTramiteId(idAccount)
         if nome != account.nome: account.nome = nome
         if cognome != account.cognome: account.cognome = cognome
         if dataDiNascita != account.dataDiNascita: account.dataDiNascita = dataDiNascita
@@ -115,6 +115,7 @@ class Account(ServizioInterface):
             numeroTelefonico) and numeroTelefonico != account.numeroTelefonico: account.numeroTelefonico = numeroTelefonico
         if residenza != account.residenza: account.residenza = residenza
         account.mettiOggettoSuListaNelFile()
+        return account
 
     """
     # Metodo che recupera la lista degli account, trova l'account con i'id vecchio e al suo interno,

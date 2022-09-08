@@ -6,7 +6,7 @@ from MVC.Model.Attività.User import User
 from MVC.Model.Servizio.Categoria import Categoria
 from MVC.Model.Servizio.Prodotto import Prodotto
 from MVC.Model.Servizio.Scaffale import Scaffale
-from MVC.Model.SistemService.File import File
+
 from MVC.Model.SistemService.Backup import Backup
 from MVC.Model.Attività.Account import Account
 from MVC.Model.Servizio.Ricevuta import Ricevuta
@@ -24,10 +24,9 @@ class Amministratore(User):
         self.password = "admin"
 
     # Metodo che aggiorna un account in base ai parametri passati dall'amministratore
-    def aggiornaAccount(self, nome, cognome, dataDiNascita, email,
-                        idAccount, numeroTelefonico, residenza):
-        Account().aggiornaAccount(nome, cognome, dataDiNascita, email,
-                                  idAccount, numeroTelefonico, residenza)
+    def aggiornaAccount(self, nome, cognome, dataDiNascita, email,idAccount, numeroTelefonico, residenza):
+        account =  Account().aggiornaAccount(nome, cognome, dataDiNascita, email,idAccount, numeroTelefonico, residenza)
+        return account
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dall'amministratore
     def aggiornaProdotto(self, codiceCategoria, dataEsposizione,
