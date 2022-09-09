@@ -11,6 +11,7 @@ from dateutil.relativedelta import relativedelta
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Amministratore import Amministratore
 from MVC.Model.Attività.User import User
+from MVC.Model.SistemService.Logging import Logging
 
 
 class User_test(TestCase):
@@ -28,6 +29,7 @@ class User_test(TestCase):
         to_path = os.path.join(mainPath, "Database_temp")
         shutil.copytree(from_path, to_path)
         self.setUp_2()
+        self.setUp_3()
 
     def setUp_2(self):
         min = 1
@@ -35,6 +37,13 @@ class User_test(TestCase):
         dateToday = datetime.today()
         for iter in range(50):
             Amministratore().inserisciProdotto(iter, dateToday - relativedelta(days=random.randint(min, max)), iter, dateToday.__str__(), iter+0.25, iter)
+
+    def setUp_3(self):
+        for iter in range(20):
+            Amministratore().inserisciAccount("Regina", "Elisabetta", "21/04/1926", "regiElisabetta26@mail.com",
+                                              "password", "0000000001", "62100", "Elisabetta", "Crathie", None, None, None)
+        Amministratore().inserisciAccount("User", "User", "21/04/1926", "user@mail.com", "userPassword",
+                                          "0000000001", "62100", "User", "Macerata", None, None, None)
 
 
     # Metodo che crea ripristina il database dopo il test
@@ -76,3 +85,11 @@ class User_test(TestCase):
         for prodotto in filtrati:
             if prodotto.codiceCategoria != cod:
                 raise Exception
+
+
+    def test_login(self):
+        email = "user@mail.com"
+        password = "userPassword"
+        User().login(email, password)
+        self.assertEqual(Logging.accountLoggato.email, email)
+        self.assertEqual(Logging.accountLoggato.password, password)

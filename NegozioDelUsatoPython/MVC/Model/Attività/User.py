@@ -1,4 +1,5 @@
 from Database.PathDatabase import PathDatabase
+from MVC.Model.Servizio.Prodotto import Prodotto
 from MVC.Model.SistemService.File import File
 from MVC.Model.SistemService.Filtri import Filtri
 from MVC.Model.SistemService.Logging import Logging
@@ -11,9 +12,9 @@ class User(object):
     def __init__(self):
         pass
 
-    #TODO progettatta male, la ricerca deve avvednire con altri dati non con questi
-    # Metodo per la ricerca di un prodotto
-    def ricercaProdotto(self, idProdotto, listProdotti):
+    # Metodo per la ricerca di un prodotto con id
+    def ricercaProdotto(self, idProdotto):
+        listProdotti = Prodotto().recuperaListaProdottiInVendita()
         for prodotto in listProdotti:
             if prodotto.idProdotto == idProdotto:
                 return prodotto

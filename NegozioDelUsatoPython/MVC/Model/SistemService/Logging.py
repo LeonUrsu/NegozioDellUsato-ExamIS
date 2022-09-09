@@ -26,6 +26,7 @@ class Logging:
         File().serializza(fileName, listLogging)
         return True
 
+    # TODO quando un amministratore inserisce l'account fare il cointrollo sulla email che non sia "admin"
     # Metodo che gestisce il login di un utente
     # return valore booleano a seconda se il login è andato a buon fine
     def login(self, email, password):
@@ -34,20 +35,14 @@ class Logging:
             return self.loginAdmin(password)
         if account == None:
             return None
-        log = self.trovaLogin(account.idAccount)
-        if log != None:
-            if self.verificaDettagliLogin(log):
-                pass
-            else:
-                return None
-            if self.checkPassword(password, account):
-                pass
-            else:
-                return None
-        else:
+        log = self.cercaLogin(account)
+        if log == None:
+            self.creaLog(account)
+        if not self.verificaDettagliLogin(log, account, password):
             return None
         self.accountLoggato = account
         return account
+
 
 
     # Metodo per effettuare il logout
@@ -55,8 +50,15 @@ class Logging:
         self.accountLoggato = None
         return True
 
+    def creaLog(self, account):
+        log = Logging()
+        print("a-a-a--a-a-a-a-a-a-a-a-a--a-a-a-a-a-a-a-a-a-a--aa")
+        print(log.prossimoTentativo.__str__())
+        log.aggiungiLogging(account.idAccount)
+        self.inserisciLoggingNelDatabase()
+
     # Metodo che verifica se un utente si è mai loggato
-    def trovaLogin(self, account):
+    def cercaLogin(self, account):
         fileName = PathDatabase().loggingTxt
         listLogging = File().deserializza(fileName)
         for logging in listLogging:
@@ -67,8 +69,8 @@ class Logging:
     # Metodo che verifica la validità dei dettagli del login
     # log = credenziali di accesso di tipo Logging
     # return = True if il login è valido
-    def verificaDettagliLogin(self, log):
-        if self.checkData(log) and self.checkTentativi(log):
+    def verificaDettagliLogin(self, log, account, password):
+        if self.checkData(log) and self.checkTentativi(log) and self.checkPassword(password, account):
             return True
         else:
             return False
@@ -112,5 +114,3 @@ class Logging:
         if admin.password == password:
             return True
         return False
-
-
