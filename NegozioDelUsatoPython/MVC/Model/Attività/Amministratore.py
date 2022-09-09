@@ -59,10 +59,9 @@ class Amministratore(User):
     # Metodo per inserire un prodotto nel database
     def inserisciProdotto(self, idCategoria, dataEsposizione, idAccount,
                           nomeProdotto, prezzoOriginale, idScaffale):
-        pathFile = PathDatabase().inVenditaTxt
         prodotto = Prodotto()
         prodotto.aggiungiProdotto(idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale, idScaffale)
-        prodotto.mettiOggettoSuListaNelFile(pathFile)
+        prodotto.mettiOggettoSuListaNelFile()
         if idScaffale != None: Scaffale().associaProdottoAScaffale(prodotto)
         Account().associaProdottoAdAccount(prodotto)
         Categoria().aggiungiProdottiInCategoria(prodotto)

@@ -97,7 +97,7 @@ class Scaffale(ServizioInterface):
     # Metodo che dissocia un id di un prodotto da uno scaffale
     def dissociaProdottoDaScaffale(self, prodotto):
         listScaffali = self.recuperaListaOggetti()
-        fileName = PathDatabase().clientiTxt
+        fileName = PathDatabase().accountTxt
         for scaffale in listScaffali:
             if scaffale.idScaffale == prodotto.idAccount:
                 for idProdotto in scaffale.idScaffale:

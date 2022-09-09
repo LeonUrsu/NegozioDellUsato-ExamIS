@@ -23,24 +23,24 @@ class Account(ServizioInterface):
         self.numeroTelefonico = numeroTelefonico
         self.password = password
         self.residenza = residenza
-        self.mettiOggettoSuListaNelFile(PathDatabase.accountTxt)
+        self.mettiOggettoSuListaNelFile()
         return self
 
     """    # Metodo che aggiunge l'account nel database
     def inserisciOggettoNelDatabase(self):
-        fileName = PathDatabase().clientiTxt
+        fileName = PathDatabase().accountTxt
         self.mettiOggettoSuListaNelFile()
     """
 
     # Metodo che legge la lista degli account nel file e la restituisce
     def recuperaListaOggetti(self):
-        fileName = PathDatabase().clientiTxt
+        fileName = PathDatabase().accountTxt
         listAccount = File().deserializza(fileName)
         return listAccount
 
     # Metodo che salva la lista degli account nel file
     def salvaListaOggetti(self, lista):
-        fileName = PathDatabase().clientiTxt
+        fileName = PathDatabase().accountTxt
         File().serializza(fileName, lista)
 
     # Metodo che permette di eliminare un Account dal file degli account
@@ -98,7 +98,7 @@ class Account(ServizioInterface):
 
     #TODO rislolvare il problema del metodo metti oggettoSuListaNelFile, in alcuni luoghi gli si passsa il path mentre in altri no fare un secondo metodo
     # Metodo che viene richiamato sull'istanza di Account che deve essere messa su un file
-    def mettiOggettoSuListaNelFile(self, fileName):
+    def mettiOggettoSuListaNelFile(self):
         listAccount = Account.recuperaListaOggetti(self)
         for account in listAccount:
             if account.idAccount == self.idAccount:
@@ -127,7 +127,7 @@ class Account(ServizioInterface):
     # oggetti si aggiunge l'id nuovo
     def aggiornaIdProdottoInAccount(self, prodotto, idVecchio, idNuovo):
         #prodotto.idAccount = idNuovo
-        fileName = PathDatabase().clientiTxt
+        fileName = PathDatabase().accountTxt
         listAccount = File().deserializza(fileName)
         for account in listAccount:
             if account.idAccount == idVecchio:
@@ -180,3 +180,4 @@ class Account(ServizioInterface):
                     if idProdotto == prodotto.idProdotto:
                         account.idProdotti.pop(index(idProdotto))
                         self.salvaListaOggetti(listAccount)
+

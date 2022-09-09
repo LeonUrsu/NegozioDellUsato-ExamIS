@@ -96,7 +96,9 @@ class Amministratore_test(TestCase):
             #if account.idAccount == idAccount:
                 #accounttest = account1
         #self.assertEqual(idAccount, accounttest.idAccount)
-        self.assertEqual(account1, account2)
+        self.assertEqual(account1.idAccount, account2.idAccount)
+
+
 
     def test_eliminaAccount(self):
         # setup-------

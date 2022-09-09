@@ -1,16 +1,11 @@
 # CLasse Prodotto che rappresenta il prodotto con le sue caratteristiche che verrà esposto nel negozio
 import copy
 import json
-
-from operator import index
-
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
-
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from datetime import date
 from dateutil.relativedelta import relativedelta
-
 from MVC.Model.Servizio.Categoria import Categoria
 from MVC.Model.Servizio.Scaffale import Scaffale
 from MVC.Model.SistemService.File import File
@@ -42,11 +37,10 @@ class Prodotto(ServizioInterface):
     # Metodo che viene richiamato su un prodotto e serve per inserirlo nella
     # lista degli oggetti in vendita
     def inserisciOggettoNelDatabase(self):
-        filename = PathDatabase().inVenditaTxt
         Scaffale().associaProdottoAScaffale(self)
         Categoria().aggiungiProdottiInCategoria(self)
         Account().associaProdottoAdAccount(self)
-        self.mettiOggettoSuListaNelFile(filename)
+        self.mettiOggettoSuListaNelFile()
 
     # Metodo che permette di clonare un'istanza della classe
     # return Prodotto
@@ -83,8 +77,8 @@ class Prodotto(ServizioInterface):
     # Metodo che sposta un determinato prodotto all'interno della memoria quando il suo stato è in cambiamento
     # return valore booleano
     def spostaProdotto(self, id, start, end):
-        obj = self.rimuoviOggettoDaFile(start, id)
-        obj.mettiOggettoSuListaNelFile(end)
+        obj = self.rimuoviOggettoDaFileName(start, id)
+        obj.mettiOggettoSuListaNelFileName(end)
         return obj
 
     def trovaOggettoTramiteId(self, id):
@@ -98,7 +92,7 @@ class Prodotto(ServizioInterface):
 
     # Metodo che rimuove un Prodotto da file e lo restituisce, la lista verrà serializzata su file senza
     # l'oggetto rimosso precedentemente
-    def rimuoviOggettoDaFile(self, fileName, id):
+    def rimuoviOggettoDaFileName(self, fileName, id):
         listProdotti = File().deserializza(fileName)
         popped = None
         for prodotto in listProdotti:
@@ -109,7 +103,18 @@ class Prodotto(ServizioInterface):
         return popped
 
     # Metodo che mette un Prodotto su file
-    def mettiOggettoSuListaNelFile(self, fileName):
+    def mettiOggettoSuListaNelFile(self):
+        fileName = PathDatabase.inVenditaTxt
+        listProdotti = File().deserializza(fileName)
+        for prodotto in listProdotti:
+            if prodotto.idProdotto == self.idProdotto:
+                listProdotti.pop(listProdotti.index(prodotto))
+        listProdotti.append(self)
+        File().serializza(fileName, listProdotti)
+
+
+    # Metodo che mette un Prodotto su file
+    def mettiOggettoSuListaNelFileName(self, fileName):
         listProdotti = File().deserializza(fileName)
         for prodotto in listProdotti:
             if prodotto.idProdotto == self.idProdotto:
@@ -131,7 +136,7 @@ class Prodotto(ServizioInterface):
     def aggiornaProdotto(self, codiceCategoria, dataEsposizione,
                          nomeProdotto, prezzoOriginale, idScaffale, idProdotto):
         fileName = PathDatabase().inVenditaTxt
-        prodottoTrovato = Prodotto().rimuoviOggettoDaFile(fileName, idProdotto)
+        prodottoTrovato = Prodotto().rimuoviOggettoDaFileName(fileName, idProdotto)
         if codiceCategoria != prodottoTrovato.codiceCategoria:
             prodottoTrovato.codiceCategoria = codiceCategoria
             Categoria().aggiornaCategoriaProdotto(prodottoTrovato, prodottoTrovato.codiceCategoria, codiceCategoria)
@@ -141,7 +146,7 @@ class Prodotto(ServizioInterface):
         if idScaffale != prodottoTrovato.idScaffale:
             prodottoTrovato.idScaffale = idScaffale
             Scaffale().cambiaScaffaleAProdotto(prodottoTrovato, prodottoTrovato.idProdotto, idScaffale)
-        prodottoTrovato.mettiOggettoSuListaNelFile(fileName)
+        prodottoTrovato.mettiOggettoSuListaNelFileName(fileName)
 
     # Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
     # return = nuovo ID per il Prodotto
@@ -203,19 +208,7 @@ class Prodotto(ServizioInterface):
     def recuperaListaOggetti(self, fileName):
         return File().deserializza(fileName)
 
-    def dissociaProdottiDaAccount(self, account):
-        inVendita = PathDatabase().inVenditaTxt
-        venduti = PathDatabase().vendutiTxt
-        scaduti = PathDatabase().scadutiTxt
-        listTotale = self.recuperaListOfLists()
-        for list in listTotale:
-            for prodotto in list:
-                if prodotto.idAccount == account.idAccount:
-                    prodotto.idAccount = None
-        File().serializza(inVendita, listTotale[0])
-        File().serializza(venduti, listTotale[1])
-        File().serializza(scaduti, listTotale[2])
-        return True
+
 
     # Metodo che recupera le liste dai file e li mette su una lista
     def recuperaListOfLists(self):
