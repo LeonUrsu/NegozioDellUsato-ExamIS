@@ -14,10 +14,8 @@ class User(object):
 
     # Metodo per la ricerca di un prodotto con id
     def ricercaProdotto(self, idProdotto):
-        listProdotti = Prodotto().recuperaListaProdottiInVendita()
-        for prodotto in listProdotti:
-            if prodotto.idProdotto == idProdotto:
-                return prodotto
+        prodotto = Prodotto().trovaOggettoTramiteId(idProdotto)
+        return prodotto
 
 
     # Metodo di filtraggio dei prodotti in base alla data
@@ -48,5 +46,5 @@ class User(object):
 
     # MEtodo che recupera la lista dei prodotti in vendita
     def visualizzaProdotti(self):
-        fileName = PathDatabase().inVenditaTxt
-        return File().deserializza(fileName)
+        listProdotti = Prodotto().recuperaListaProdottiInVendita()
+        return listProdotti

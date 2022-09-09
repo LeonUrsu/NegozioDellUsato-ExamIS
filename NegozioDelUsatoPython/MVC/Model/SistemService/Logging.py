@@ -11,7 +11,6 @@ class Logging:
     # Costruttore della classe
     def __init__(self):
         pass
-
     def aggiungiLogging(self, idAccount):
         self.idAccount = idAccount
         self.tentativi = 0
@@ -40,7 +39,7 @@ class Logging:
             self.creaLog(account)
         if not self.verificaDettagliLogin(log, account, password):
             return None
-        self.accountLoggato = account
+        Logging.accountLoggato = account
         return account
 
 
@@ -50,12 +49,11 @@ class Logging:
         self.accountLoggato = None
         return True
 
+    # Metodo che crea l'oggett Logging nel database e
     def creaLog(self, account):
         log = Logging()
-        print("a-a-a--a-a-a-a-a-a-a-a-a--a-a-a-a-a-a-a-a-a-a--aa")
-        print(log.prossimoTentativo.__str__())
         log.aggiungiLogging(account.idAccount)
-        self.inserisciLoggingNelDatabase()
+        log.inserisciLoggingNelDatabase()
 
     # Metodo che verifica se un utente si è mai loggato
     def cercaLogin(self, account):
