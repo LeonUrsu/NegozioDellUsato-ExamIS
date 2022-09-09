@@ -181,3 +181,11 @@ class Account(ServizioInterface):
                         account.idProdotti.pop(index(idProdotto))
                         self.salvaListaOggetti(listAccount)
 
+
+    #Metodo che controlla l'esistenza di un id
+    def checkEsistenzaIdAccount(self, id):
+        prodotto = self.trovaOggettoTramiteId(id)
+        if not prodotto == None:
+            return True
+        return False
+

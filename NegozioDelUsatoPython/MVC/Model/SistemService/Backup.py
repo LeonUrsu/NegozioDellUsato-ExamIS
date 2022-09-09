@@ -1,3 +1,4 @@
+import os
 import shutil
 import tempfile
 from shutil import copytree
@@ -13,7 +14,7 @@ class Backup(object):
     # Metodo che quando richiamato effettua il backup dei dati e li copia nella cartella to_path
     def effettuaBackup(self):
         from_path = 'Database/'
-        to_path = 'BackupFiles/DatabaseBackup'
+        to_path = 'BackupFiles/BackupFiles'
         self.eliminaCartella(to_path)
         copytree(from_path, to_path)
 

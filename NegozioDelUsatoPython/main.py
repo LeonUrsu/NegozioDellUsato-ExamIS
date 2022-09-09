@@ -1,10 +1,23 @@
-<<<<<<< HEAD
-import yagmail
+import os
+import pathlib
+import shutil
+
+from Database.PathDatabase import PathDatabase
 
 
-yag = yagmail.SMTP('progetto.negozio.is@gmail.com', 'ktvfqnyjuicdpwsz')
-contents = ['This is the body, and here is just text http://somedomain/image.png',
-            'You can find an audio file attached.', '/local/path/song.mp3']
-yag.send('leoperaz2000@gmail.com', 'subject', contents)
-=======
->>>>>>> 3e8d014fb92137e69e200338227144afa8926405
+
+
+def main():
+    mainPath = pathlib.Path().resolve()
+    from_path = os.path.join(mainPath, "BackupFiles")
+    to_path = os.path.join(mainPath, "Database")
+    try:
+        shutil.rmtree(to_path)
+    except:
+        pass
+    shutil.copytree(from_path, to_path)
+
+
+if __name__ == "__main__":
+    main()
+

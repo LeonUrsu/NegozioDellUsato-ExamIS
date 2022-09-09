@@ -63,8 +63,8 @@ class Amministratore(User):
         prodotto.aggiungiProdotto(idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale, idScaffale)
         prodotto.mettiOggettoSuListaNelFile()
         if idScaffale != None: Scaffale().associaProdottoAScaffale(prodotto)
-        Account().associaProdottoAdAccount(prodotto)
-        Categoria().aggiungiProdottiInCategoria(prodotto)
+        if idAccount != None: Account().associaProdottoAdAccount(prodotto)
+        if idCategoria != None: Categoria().aggiungiProdottiInCategoria(prodotto)
         return prodotto
 
     # Metodo che serve per l'inserimento di un cliente Proprietario all'interno del database e la comunicazione delle

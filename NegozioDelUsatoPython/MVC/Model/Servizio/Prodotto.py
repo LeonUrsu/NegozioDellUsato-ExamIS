@@ -20,23 +20,24 @@ class Prodotto(ServizioInterface):
     # Metodo per aggiungere i valori all'istanza creata della classe
     def aggiungiProdotto(self, codiceCategoria, dataEsposizione, idAccount, nomeProdotto,
                          prezzoOriginale, idScaffale):
+
         self.codiceCategoria = codiceCategoria
         self.dataEsposizione = dataEsposizione
+        self.idAccount = idAccount
         self.dataPrimoSconto = dataEsposizione + relativedelta(months=2)
         self.dataSecondoSconto = dataEsposizione + relativedelta(months=3)
         self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
         self.dataScadenza = dataEsposizione + relativedelta(months=5)
-        self.idAccount = idAccount
-        # TODO fare controllo su id account
         self.idProdotto = Prodotto().newId()
         self.nomeProdotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
         self.idScaffale = idScaffale
 
+
     # Metodo che viene richiamato su un prodotto e serve per inserirlo nella
     # lista degli oggetti in vendita
-    def inserisciOggettoNelDatabase(self):
+    def associaOggettoAdOggetti(self):
         Scaffale().associaProdottoAScaffale(self)
         Categoria().aggiungiProdottiInCategoria(self)
         Account().associaProdottoAdAccount(self)

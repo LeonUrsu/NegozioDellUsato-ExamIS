@@ -1,5 +1,7 @@
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.User import User
+from MVC.Model.Servizio.Prodotto import Prodotto
+from MVC.Model.SistemService.File import File
 from MVC.Model.SistemService.Logging import Logging
 
 
@@ -27,8 +29,10 @@ class ClienteProprietario(User):
 
 
     # Metodo che recupera la lista di prodotti appartenenti all'account di un
-    # Cliente Proprietario tramite la ricerca degli oggetti tramite l'idAccount nella listProdotti
-    def recuperaProdottiClienteProprietario(self, idAccount, listProdotti):
+    # Cliente Proprietario tramite la ricerca degli oggetti tramite l'idAccount nella listProdotti.
+    # I prodotti restituiti sono quelli in vendita
+    def recuperaProdottiClienteProprietario(self, idAccount, fileName):
+        listProdotti = File().deserializza(fileName)
         filteredListProdotti = list()
         for prodotto in listProdotti:
             if prodotto.idAccount == idAccount:

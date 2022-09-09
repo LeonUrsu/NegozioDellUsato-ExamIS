@@ -7,7 +7,6 @@ from MVC.Model.SistemService.Logging import Logging
 
 class User(object):
 
-
     # Costruttore della classe User, create() in EA
     def __init__(self):
         pass
@@ -17,13 +16,11 @@ class User(object):
         prodotto = Prodotto().trovaOggettoTramiteId(idProdotto)
         return prodotto
 
-
     # Metodo di filtraggio dei prodotti in base alla data
     def filtraProdottiConDataEsposiozione(self, dataInizio, dataFine):
         fileName = PathDatabase().inVenditaTxt
         filtered = Filtri().filtraDataEsposizione(dataInizio, dataFine, fileName)
         return filtered
-
 
     # Metodo di filtraggio dei prodotti in base all prezzo
     def filtraProdottiConPrezzo(self, prezzoMin, prezzoMax):
@@ -31,18 +28,15 @@ class User(object):
         filtered = Filtri().filtraPrezzo(prezzoMin, prezzoMax, fileName)
         return filtered
 
-
     # Metodo di filtraggio dei prodotti in base alla categoria
     def filtraProdottiConCategoria(self, codiceCategoria):
         fileName = PathDatabase().inVenditaTxt
         filtered = Filtri().filtraCategoria(codiceCategoria, fileName)
         return filtered
 
-
     def login(self, email, password):
         Logging().login(email, password)
         return True
-
 
     # MEtodo che recupera la lista dei prodotti in vendita
     def visualizzaProdotti(self):

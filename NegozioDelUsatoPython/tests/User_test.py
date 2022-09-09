@@ -36,15 +36,16 @@ class User_test(TestCase):
         max = 180
         dateToday = datetime.today()
         for iter in range(50):
-            Amministratore().inserisciProdotto(iter, dateToday - relativedelta(days=random.randint(min, max)), iter, dateToday.__str__(), iter+0.25, iter)
+            Amministratore().inserisciProdotto(iter, dateToday - relativedelta(days=random.randint(min, max)), iter,
+                                               dateToday.__str__(), iter + 0.25, iter)
 
     def setUp_3(self):
         for iter in range(20):
             Amministratore().inserisciAccount("Regina", "Elisabetta", "21/04/1926", "regiElisabetta26@mail.com",
-                                              "password", "0000000001", "62100", "Elisabetta", "Crathie", None, None, None)
+                                              "password", "0000000001", "62100", "Elisabetta", "Crathie", None, None,
+                                              None)
         Amministratore().inserisciAccount("User", "User", "21/04/1926", "user@mail.com", "userPassword",
                                           "0000000001", "62100", "User", "Macerata", None, None, None)
-
 
     # Metodo che crea ripristina il database dopo il test
     def tearDown(self):
@@ -69,7 +70,6 @@ class User_test(TestCase):
             if prodotto.dataEsposizione < dataInizio:
                 raise Exception
 
-
     def test_filtraProdottiConPrezzo(self):
         prezzoMin = 25
         prezzoMax = 35
@@ -78,14 +78,12 @@ class User_test(TestCase):
             if not prezzoMin < prodotto.prezzoCorrente or not prodotto.prezzoCorrente < prezzoMax:
                 raise Exception
 
-
     def test_filtraProdottiConCategoria(self):
         cod = 15
         filtrati = User().filtraProdottiConCategoria(cod)
         for prodotto in filtrati:
             if prodotto.codiceCategoria != cod:
                 raise Exception
-
 
     def test_login(self):
         email = "user@mail.com"

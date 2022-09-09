@@ -37,6 +37,7 @@ class Logging:
         log = self.cercaLogin(account)
         if log == None:
             self.creaLog(account)
+            log = self.cercaLogin(account)
         if not self.verificaDettagliLogin(log, account, password):
             return None
         Logging.accountLoggato = account
