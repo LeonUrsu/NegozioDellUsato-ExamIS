@@ -35,7 +35,7 @@ class User(object):
     # Metodo di filtraggio dei prodotti in base alla categoria
     def filtraProdottiConCategoria(self, codiceCategoria):
         fileName = PathDatabase().inVenditaTxt
-        filtered = Filtri().filtraCategoria(codiceCategoria)
+        filtered = Filtri().filtraCategoria(codiceCategoria, fileName)
         return filtered
 
 

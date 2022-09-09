@@ -204,6 +204,10 @@ class Prodotto(ServizioInterface):
         listPath.append(fileName3)
         return listPath
 
+    # Metodo per recuperare la lista degli oggetti in vendita
+    def recuperaListaProdottiInVendita(self):
+        return self.recuperaListaOggetti(PathDatabase.inVenditaTxt)
+
     # Metodo per recuperare la lista dei prodotti tramite un fileName
     def recuperaListaOggetti(self, fileName):
         return File().deserializza(fileName)

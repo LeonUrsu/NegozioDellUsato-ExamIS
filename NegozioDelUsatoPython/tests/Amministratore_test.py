@@ -73,7 +73,7 @@ class Amministratore_test(TestCase):
         prodotto = Amministratore().inserisciProdotto(i, datetime.today(), i, "nome", i + 0.1, i)
         idProdotto = prodotto.idProdotto
         # test----------------------------------------------
-        listProdotti = Prodotto().recuperaListaOggetti(PathDatabase.inVenditaTxt)
+        listProdotti = Prodotto().recuperaListaProdottiInVendita()
         prodottotest = None
         for prodotto in listProdotti:
             if prodotto.idProdotto == idProdotto:
@@ -97,6 +97,7 @@ class Amministratore_test(TestCase):
                 #accounttest = account1
         #self.assertEqual(idAccount, accounttest.idAccount)
         self.assertEqual(account1.idAccount, account2.idAccount)
+
 
 
 

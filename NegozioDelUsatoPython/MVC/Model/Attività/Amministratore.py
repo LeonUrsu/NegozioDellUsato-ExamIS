@@ -68,7 +68,7 @@ class Amministratore(User):
         return prodotto
 
     # Metodo che serve per l'inserimento di un cliente Proprietario all'interno del database e la comunicazione delle
-    # credenziali via email
+    # credenziali via emailProdotto().recuperaListaOggetti
     def inserisciAccount(self, nome, cognome, dataDiNascita, email, password,
                            numeroTelefonico, cap, citofono, citta, civico, piazza, via):
         account = Account()
