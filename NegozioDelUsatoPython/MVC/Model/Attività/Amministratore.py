@@ -100,7 +100,6 @@ class Amministratore(User):
             Notifica().gestioneEmailDiVendita(prodottoList)
         except:
             pass
-        print(json.dumps(ricevuta.__dict__))
         return ricevuta
 
     # Metodo che recupera le statistiche sul sistema

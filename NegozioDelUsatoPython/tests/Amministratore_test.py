@@ -135,10 +135,10 @@ class Amministratore_test(TestCase):
         Amministratore().inserisciProdotto(primoId, datetime.today(), primoId, "nome", primoId, primoId)
         secondoId = 2
         beforeProdotto = Prodotto().trovaOggettoTramiteId(primoId)
-        print(beforeProdotto.__dict__)
+        #print(beforeProdotto.__dict__)
         Amministratore().aggiornaProdotto(secondoId, datetime.today(), "ciao", secondoId, secondoId, primoId)
         afterProdotto = Prodotto().trovaOggettoTramiteId(primoId)
-        print(afterProdotto.__dict__)
+        #print(afterProdotto.__dict__)
 
     def test_aggiornaAccount(self):
         account1 = Amministratore().inserisciAccount("leo", "peraz", '29/05/00', "leoperaz2000@gmail.com", "ciao",
