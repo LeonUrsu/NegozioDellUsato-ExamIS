@@ -27,7 +27,7 @@ class Prodotto(ServizioInterface):
         self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
         self.dataScadenza = dataEsposizione + relativedelta(months=5)
         self.idAccount = idAccount
-        #TODO fare controllo su id account
+        # TODO fare controllo su id account
         self.idProdotto = Prodotto().newId()
         self.nomeProdotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
@@ -89,7 +89,6 @@ class Prodotto(ServizioInterface):
                     return listProdotti[listProdotti.index(prodotto)]
         return None
 
-
     # Metodo che rimuove un Prodotto da file e lo restituisce, la lista verrà serializzata su file senza
     # l'oggetto rimosso precedentemente
     def rimuoviOggettoDaFileName(self, fileName, id):
@@ -111,7 +110,6 @@ class Prodotto(ServizioInterface):
                 listProdotti.pop(listProdotti.index(prodotto))
         listProdotti.append(self)
         File().serializza(fileName, listProdotti)
-
 
     # Metodo che mette un Prodotto su file
     def mettiOggettoSuListaNelFileName(self, fileName):
@@ -206,19 +204,29 @@ class Prodotto(ServizioInterface):
 
     # Metodo per recuperare la lista degli oggetti in vendita
     def recuperaListaProdottiInVendita(self):
-        return self.recuperaListaOggetti(PathDatabase.inVenditaTxt)
+        return File().deserializza(PathDatabase.inVenditaTxt)
+
+    # Metodo per recuperare la lista degli oggetti eliminati
+    def recuperaListaProdottiEliminati(self):
+        return File().deserializza(PathDatabase.eliminatiTxt)
+
+    # Metodo per recuperare la lista degli oggetti scaduti
+    def recuperaListaProdottiScaduti(self):
+        return File().deserializza(PathDatabase.scadutiTxt)
+
+    # Metodo per recuperare la lista degli oggetti venduti
+    def recuperaListaProdottiVenduti(self):
+        return File().deserializza(PathDatabase.vendutiTxt)
 
     # Metodo per recuperare la lista dei prodotti tramite un fileName
-    def recuperaListaOggetti(self, fileName):
-        return File().deserializza(fileName)
-
-
+    def recuperaListaOggetti(self):
+        return None
 
     # Metodo che recupera le liste dai file e li mette su una lista
     def recuperaListOfLists(self):
-        listProdottiInVendita = self.recuperaListaOggetti(PathDatabase().inVenditaTxt)
-        listProdottiVenduti = self.recuperaListaOggetti(PathDatabase().vendutiTxt)
-        listProdottiScaduti = self.recuperaListaOggetti(PathDatabase().scadutiTxt)
+        listProdottiInVendita = File().deserializza(PathDatabase().inVenditaTxt)
+        listProdottiVenduti = File().deserializza(PathDatabase().vendutiTxt)
+        listProdottiScaduti = File().deserializza(PathDatabase().scadutiTxt)
         listTotale = list()
         listTotale.append(listProdottiInVendita)
         listTotale.append(listProdottiVenduti)

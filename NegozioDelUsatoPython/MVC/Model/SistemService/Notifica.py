@@ -1,11 +1,9 @@
-import smtplib, ssl
 import yagmail
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
-from MVC.Model.SistemService.File import File
 
 
-class Notifica():
+class Notifica(object):
 
     # Costruttore della classe
     def __init__(self):
@@ -28,7 +26,7 @@ class Notifica():
     def gestioneEmailDiVendita(self, listProdottiVenduti):
         filePath = PathDatabase.messaggioVenditaProdotti
         testoEmail = self.emailGetFormat(filePath)
-        listProprietari = Account.recuperaListaOggetti()
+        listProprietari = Account().recuperaListaOggetti()
         for prodotto in listProdottiVenduti:
             for proprietario in listProprietari:
                 if proprietario.idAccount == prodotto.idAccount:

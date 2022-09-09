@@ -13,7 +13,7 @@ class ServizioInterface:
 
     # Metodo Astratto da essere implementato nella classe de implementa l'interfaccia
     # serve a recupera la lista degli oggetti all'interno del database
-    def recuperaListaOggetti(self, fileName):
+    def recuperaListaOggetti(self):
         pass
 
     # Metodo che salva la lista delgli oggetti passati nel file

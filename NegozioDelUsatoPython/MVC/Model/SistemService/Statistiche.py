@@ -44,7 +44,7 @@ class Statistiche:
 
     # Metodo per vedere quanti clienti proprietari sono registrati
     def getNumeroClienti(self):
-        fileName = PathDatabase().clientiTxt
+        fileName = PathDatabase().accountTxt
         file = File()
         listClienti = file.deserializza(fileName)
         numeroClienti = len(listClienti)

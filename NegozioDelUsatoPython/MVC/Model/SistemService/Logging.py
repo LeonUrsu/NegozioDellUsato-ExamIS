@@ -29,7 +29,7 @@ class Logging:
     # Metodo che gestisce il login di un utente
     # return valore booleano a seconda se il login è andato a buon fine
     def login(self, email, password):
-        account = Account().trovaAccountTramiteEmail(email)
+        account = Account().trovaOggettoTramiteEmail(email)
         if email == "admin":
             return self.loginAdmin(password)
         if account == None:

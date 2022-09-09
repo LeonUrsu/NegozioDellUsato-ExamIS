@@ -42,7 +42,7 @@ class Categoria(ServizioInterface):
         file.serializza(fileName, listcategorie)
 
     # Metodo che serve per leggere la lista delle categorie all'interno del Database
-    def recuperaListaOggetti(self, ):
+    def recuperaListaOggetti(self):
         fileName = PathDatabase().categorieTxt
         file = File()
         listCategorie = file.deserializza(fileName)
