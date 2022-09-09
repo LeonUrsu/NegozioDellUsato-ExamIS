@@ -23,14 +23,14 @@ class Filtri:
         return prodottiFiltratiList
 
 
-    # Metodo di filtraggio dei prodotti in base alla data
+    # Metodo di filtraggio dei prodotti in base alla data di esposione
     # dataInizio = data di inizio filtraggio
     # dataFine = data di fine filtraggio
-    def filtraData(self, dataInizio, dataFine, fileName):
+    def filtraDataEsposizione(self, dataInizio, dataFine, fileName):
         prodottiList = File().deserializza(fileName)
-        prodottiFiltratiList = []
+        prodottiFiltratiList = list()
         for prodotto in prodottiList:
-            if dataInizio <= prodotto.dataScadenza and prodotto.dataScadenza <= dataFine:
+            if dataInizio <= prodotto.dataEsposizione and prodotto.dataEsposizione <= dataFine:
                 prodottiFiltratiList.append(prodotto)
         self.filtrati = prodottiFiltratiList
         return prodottiFiltratiList

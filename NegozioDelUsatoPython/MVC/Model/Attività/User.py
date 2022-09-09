@@ -11,6 +11,7 @@ class User(object):
     def __init__(self):
         pass
 
+    #TODO progettatta male, la ricerca deve avvednire con altri dati non con questi
     # Metodo per la ricerca di un prodotto
     def ricercaProdotto(self, idProdotto, listProdotti):
         for prodotto in listProdotti:
@@ -19,9 +20,9 @@ class User(object):
 
 
     # Metodo di filtraggio dei prodotti in base alla data
-    def filtraProdottiConData(self, dataInizio, dataFine):
+    def filtraProdottiConDataEsposiozione(self, dataInizio, dataFine):
         fileName = PathDatabase().inVenditaTxt
-        filtered = Filtri().filtraData(dataInizio, dataFine, fileName)
+        filtered = Filtri().filtraDataEsposizione(dataInizio, dataFine, fileName)
         return filtered
 
 
