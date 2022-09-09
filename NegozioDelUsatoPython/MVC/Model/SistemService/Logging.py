@@ -49,6 +49,12 @@ class Logging:
         self.accountLoggato = account
         return account
 
+
+    # Metodo per effettuare il logout
+    def logout(self):
+        self.accountLoggato = None
+        return True
+
     # Metodo che verifica se un utente si è mai loggato
     def trovaLogin(self, account):
         fileName = PathDatabase().loggingTxt
@@ -106,3 +112,5 @@ class Logging:
         if admin.password == password:
             return True
         return False
+
+
