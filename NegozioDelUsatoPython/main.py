@@ -2,7 +2,6 @@ import os
 import pathlib
 import shutil
 
-from Database.PathDatabase import PathDatabase
 
 
 
@@ -16,7 +15,7 @@ def main():
     except:
         pass
     shutil.copytree(from_path, to_path)
-
+    print("FATTO_A_A_A_A_AA_A__A_A_A_A_A_A__A_A")
 
 if __name__ == "__main__":
     main()

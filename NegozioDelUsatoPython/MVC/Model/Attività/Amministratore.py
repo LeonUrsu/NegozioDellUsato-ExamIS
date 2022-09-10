@@ -1,12 +1,9 @@
-import json
-
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Indirizzo import Indirizzo
 from MVC.Model.Attività.User import User
 from MVC.Model.Servizio.Categoria import Categoria
 from MVC.Model.Servizio.Prodotto import Prodotto
 from MVC.Model.Servizio.Scaffale import Scaffale
-
 from MVC.Model.SistemService.Backup import Backup
 from MVC.Model.Attività.Account import Account
 from MVC.Model.Servizio.Ricevuta import Ricevuta
@@ -77,8 +74,9 @@ class Amministratore(User):
             return False
         indirizzo = Indirizzo(cap, citofono, citta, civico, piazza, via)
         account = Account().aggiungiAccount(nome, cognome, dataDiNascita, email, numeroTelefonico, password, indirizzo)
-        Logging().aggiungiLogging(account.idAccount)
-        Logging().inserisciLoggingNelDatabase()
+        logging = Logging()
+        logging.aggiungiLogging(account.idAccount)
+        logging.inserisciLoggingNelDatabase()
         Notifica().gestioneEmailDIRegistrazione(email, password)
         return account
 

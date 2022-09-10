@@ -113,3 +113,10 @@ class Logging:
         if admin.password == password:
             return True
         return False
+
+    # Metodo che verifica se l'utente è loggato
+    def checkAccontLoggato(self):
+        if Logging().accountLoggato == None:
+            return False
+        else:
+            return True

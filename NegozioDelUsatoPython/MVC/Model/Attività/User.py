@@ -1,6 +1,5 @@
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Servizio.Prodotto import Prodotto
-from MVC.Model.SistemService.File import File
 from MVC.Model.SistemService.Filtri import Filtri
 from MVC.Model.SistemService.Logging import Logging
 
