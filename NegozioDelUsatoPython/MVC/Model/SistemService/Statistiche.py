@@ -92,7 +92,8 @@ class Statistiche:
         return self.topKeysInDict(dict, numeroDiChiavi)
 
 
-    # Metodo che prende il numeroDiChiavi con valore piu alto
+    # Metodo che prende il
+    # numeroDiChiavi con valore piu alto
     # return dizionario con le categorie di tendenenza
     def topKeysInDict(self, dict, numeroDiChiavi):
         my_keys = sorted(dict, key=dict.get, reverse=True)[:numeroDiChiavi]

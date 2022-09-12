@@ -18,6 +18,7 @@ class Categoria(ServizioInterface):
         self.nome = nome
         self.oggettiTotali = oggettiTotali
 
+
     # Metodo che permette di clonare un'istanza della classe
     # return Categoria
     def clone(self):

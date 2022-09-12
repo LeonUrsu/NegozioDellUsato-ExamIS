@@ -16,7 +16,7 @@ class User(object):
         return prodotto
 
     # Metodo di filtraggio dei prodotti in base alla data
-    def filtraProdottiConDataEsposiozione(self, dataInizio, dataFine):
+    def filtraProdottiConDataEsposizione(self, dataInizio, dataFine):
         fileName = PathDatabase().inVenditaTxt
         filtered = Filtri().filtraDataEsposizione(dataInizio, dataFine, fileName)
         return filtered
