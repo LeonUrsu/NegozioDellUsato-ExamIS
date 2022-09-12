@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import copy
-=======
 import json
->>>>>>> 15d42f67dbf3b2061f27be656524900c4137b489
 from operator import index
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface

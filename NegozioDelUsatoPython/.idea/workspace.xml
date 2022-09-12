@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3a90ef-b6d9-49d1-be87-5e1979d90cb8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/Notifica_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Account/Account.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Account/Account.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Logging/Logging.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Logging/Logging.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/parametri.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/parametri.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Model/Attività/Amministratore.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Attività/Amministratore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/Model/Servizio/Categoria.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Servizio/Categoria.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Model/SistemService/Notifica.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/SistemService/Notifica.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
