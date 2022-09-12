@@ -1,6 +1,4 @@
-import copy
 from operator import index
-
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from MVC.Model.SistemService.File import File
@@ -13,23 +11,27 @@ class Categoria(ServizioInterface):
         pass
 
     # Costruttore della Categoria, create() in EA
-    def aggiungiCategoria(self, nome, oggettiTotali):
+    def aggiungiCategoria(self, nome):
         self.idCategoria = self.newID()
         self.nome = nome
-        self.oggettiTotali = oggettiTotali
+        self.oggettiTotali = 0
+        self.creaInDatabase()
 
+<<<<<<< HEAD
 
     # Metodo che permette di clonare un'istanza della classe
     # return Categoria
     def clone(self):
         deepCopy = copy.deepcopy(self)
         return deepCopy
+=======
+>>>>>>> 3a39f46188258921863ed0a049e30b03102b82a7
 
     # Metodo che salva una categoria nel database
-    def creaInDatabase(self, categoria):
+    def creaInDatabase(self):
         fileName = PathDatabase().categorieTxt
-        listcategorie = self.recuperaListaOggetti()
-        listcategorie.append(categoria)
+        listcategorie = Categoria().recuperaListaOggetti()
+        listcategorie.append(self)
         File().serializza(fileName, listcategorie)
 
     # Metodo che permette di eliminare una categoria salvata nel database

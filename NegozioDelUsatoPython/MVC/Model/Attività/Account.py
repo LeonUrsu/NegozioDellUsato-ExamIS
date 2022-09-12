@@ -1,3 +1,4 @@
+import copy
 import json
 from operator import index
 
@@ -26,11 +27,6 @@ class Account(ServizioInterface):
         self.mettiOggettoSuListaNelFile()
         return self
 
-    """    # Metodo che aggiunge l'account nel database
-    def inserisciOggettoNelDatabase(self):
-        fileName = PathDatabase().accountTxt
-        self.mettiOggettoSuListaNelFile()
-    """
 
     # Metodo che legge la lista degli account nel file e la restituisce
     def recuperaListaOggetti(self):

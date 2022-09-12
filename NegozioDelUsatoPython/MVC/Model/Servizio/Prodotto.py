@@ -43,11 +43,6 @@ class Prodotto(ServizioInterface):
         Account().associaProdottoAdAccount(self)
         self.mettiOggettoSuListaNelFile()
 
-    # Metodo che permette di clonare un'istanza della classe
-    # return Prodotto
-    def clone(self):
-        deepCopy = copy.deepcopy(self)
-        return deepCopy
 
     # Metodo che elimina i prodotti nel database
     def eliminaProdotto(self, idProdotto):
@@ -146,6 +141,7 @@ class Prodotto(ServizioInterface):
             prodottoTrovato.idScaffale = idScaffale
             Scaffale().cambiaScaffaleAProdotto(prodottoTrovato, prodottoTrovato.idProdotto, idScaffale)
         prodottoTrovato.mettiOggettoSuListaNelFileName(fileName)
+        return prodottoTrovato
 
     # Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
     # return = nuovo ID per il Prodotto

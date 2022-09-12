@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3a90ef-b6d9-49d1-be87-5e1979d90cb8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/NegozioDelUsatoPython.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NegozioDelUsatoPython.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Model/Attività/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Attività/User.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Model/Interfacce/ServizioInterface.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Interfacce/ServizioInterface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Account/Account.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Account/Account.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Logging/Logging.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Logging/Logging.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/parametri.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/parametri.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/Attività/Account.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Attività/Account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/Attività/ClienteProprietario.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Attività/ClienteProprietario.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/Model/Servizio/Categoria.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Servizio/Categoria.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Model/SistemService/Statistiche.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/SistemService/Statistiche.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NegozioDellUsatoEA.ldb" beforeDir="false" afterPath="$PROJECT_DIR$/../NegozioDellUsatoEA.ldb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/Servizio/Prodotto.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Servizio/Prodotto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/Servizio/Ricevuta.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Servizio/Ricevuta.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NegozioDellUsatoEA.ldb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

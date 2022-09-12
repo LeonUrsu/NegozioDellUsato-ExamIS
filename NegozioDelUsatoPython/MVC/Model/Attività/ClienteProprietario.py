@@ -7,6 +7,9 @@ from MVC.Model.SistemService.Logging import Logging
 
 class ClienteProprietario(User):
 
+    def __init__(self):
+        super().__init__()
+
 
     # Metodo che restituisce 3 liste di Prodotti: inVendita, venduti, scaduti.
     # L'assegnazione deve essere: inVendita, venduti, scaduti = controllaStatoProdotti(account)

@@ -15,7 +15,7 @@ class Ricevuta(ServizioInterface):
 
     # Costruttore della classe, create() in EA
     def __init__(self):
-        self.ID = None
+        self.Id = None
         self.datetime = None
         self.prodotti = None
 
@@ -23,9 +23,10 @@ class Ricevuta(ServizioInterface):
     def aggiungiProdotti(self, prodotti):
         date_format = '%d/%m/%Y'
         today = date.today()
-        self.ID = self.newID()
+        self.Id = self.newID()
         self.datetime = today.strftime(date_format)
         self.prodotti = prodotti
+
 
     # Metodo che permette di clonare un'istanza della classe
     # return Ricevuta
