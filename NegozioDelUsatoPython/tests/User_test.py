@@ -82,7 +82,7 @@ class User_test(TestCase):
         cod = 15
         filtrati = User().filtraProdottiConCategoria(cod)
         for prodotto in filtrati:
-            if prodotto.codiceCategoria != cod:
+            if prodotto.idCategoria != cod:
                 raise Exception
 
     def test_login(self):

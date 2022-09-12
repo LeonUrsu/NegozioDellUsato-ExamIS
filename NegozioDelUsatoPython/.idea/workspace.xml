@@ -3,8 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="cf3a90ef-b6d9-49d1-be87-5e1979d90cb8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackupFiles/parametri.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BackupFiles/parametri.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Account/Account.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Account/Account.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Logging/Logging.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Logging/Logging.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/parametri.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/parametri.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Account/Account.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database_temp/Account/Account.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Logging/Logging.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database_temp/Logging/Logging.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/parametri.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database_temp/parametri.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/Attività/Amministratore.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Attività/Amministratore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/Attività/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Attività/User.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/Model/Servizio/Categoria.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Servizio/Categoria.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/Servizio/Prodotto.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Servizio/Prodotto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/SistemService/Filtri.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/SistemService/Filtri.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/SistemService/Statistiche.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/SistemService/Statistiche.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Statistiche_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Statistiche_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/User_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/User_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,28 +53,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python tests.Python tests for Notifica_test.Prodotto_test">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="NegozioDelUsatoPython" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Python tests for Statistiche_test.Statistiche_test.test_aggiungistatistiche">
     <configuration name="Python tests for Notifica_test.Prodotto_test" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="NegozioDelUsatoPython" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -71,12 +63,13 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;Notifica_test.Prodotto_test&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in Prodotto_test.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for Statistiche_test.Statistiche_test" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="NegozioDelUsatoPython" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -85,12 +78,13 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/Prodotto_test.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;Statistiche_test.Statistiche_test&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in User_test.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for Statistiche_test.Statistiche_test.test_aggiungistatistiche" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="NegozioDelUsatoPython" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -99,12 +93,13 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/User_test.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;Statistiche_test.Statistiche_test.test_aggiungistatistiche&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in tests" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for Statistiche_test.Statistiche_test.test_getProdottiVendutiInData" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="NegozioDelUsatoPython" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -113,18 +108,41 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;Statistiche_test.Statistiche_test.test_getProdottiVendutiInData&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for Statistiche_test.Statistiche_test.test_tendenzaCategorie" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="NegozioDelUsatoPython" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Statistiche_test.Statistiche_test.test_tendenzaCategorie&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python tests.Python tests for Notifica_test.Prodotto_test" />
+      <item itemvalue="Python tests.Python tests for Statistiche_test.Statistiche_test" />
+      <item itemvalue="Python tests.Python tests for Statistiche_test.Statistiche_test.test_aggiungistatistiche" />
+      <item itemvalue="Python tests.Python tests for Statistiche_test.Statistiche_test.test_getProdottiVendutiInData" />
+      <item itemvalue="Python tests.Python tests for Statistiche_test.Statistiche_test.test_tendenzaCategorie" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for Statistiche_test.Statistiche_test.test_aggiungistatistiche" />
+        <item itemvalue="Python tests.Python tests for Statistiche_test.Statistiche_test" />
+        <item itemvalue="Python tests.Python tests for Statistiche_test.Statistiche_test.test_getProdottiVendutiInData" />
+        <item itemvalue="Python tests.Python tests for Statistiche_test.Statistiche_test.test_tendenzaCategorie" />
         <item itemvalue="Python tests.Python tests for Notifica_test.Prodotto_test" />
-        <item itemvalue="Python.main" />
-        <item itemvalue="Python tests.Python tests in tests" />
-        <item itemvalue="Python tests.Python tests in User_test.py" />
-        <item itemvalue="Python tests.Python tests in Prodotto_test.py" />
       </list>
     </recent_temporary>
   </component>
@@ -149,5 +167,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MVC/Model/Servizio/Categoria.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="143" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/main_py$Backup.coverage" NAME="Backup Coverage Results" MODIFIED="1662736813085" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MVC/Model/SistemService" />
+    <SUITE FILE_PATH="coverage/main_py$.coverage" NAME=" Coverage Results" MODIFIED="1663001463622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1662798736195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

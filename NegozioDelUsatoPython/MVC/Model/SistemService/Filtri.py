@@ -37,13 +37,13 @@ class Filtri:
 
 
     # Metodo di filtraggio dei prodotti in base alla categoria
-    # codiceCategoria = codice della categoria su cui fare la selezione
+    # idCategoria = codice della categoria su cui fare la selezione
     # file =
-    def filtraCategoria(self, codiceCategoria, fileName):
+    def filtraCategoria(self, idCategoria, fileName):
         prodottiList = File().deserializza(fileName)
         prodottiFiltratiList = []
         for prodotto in prodottiList:
-            if codiceCategoria == prodotto.codiceCategoria:
+            if idCategoria == prodotto.idCategoria:
                 prodottiFiltratiList.append(prodotto)
         self.filtrati = prodottiFiltratiList
         return prodottiFiltratiList

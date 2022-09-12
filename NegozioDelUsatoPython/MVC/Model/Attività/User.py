@@ -28,9 +28,9 @@ class User(object):
         return filtered
 
     # Metodo di filtraggio dei prodotti in base alla categoria
-    def filtraProdottiConCategoria(self, codiceCategoria):
+    def filtraProdottiConCategoria(self, idCategoria):
         fileName = PathDatabase().inVenditaTxt
-        filtered = Filtri().filtraCategoria(codiceCategoria, fileName)
+        filtered = Filtri().filtraCategoria(idCategoria, fileName)
         return filtered
 
     def login(self, email, password):
