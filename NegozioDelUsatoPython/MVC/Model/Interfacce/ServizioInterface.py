@@ -1,7 +1,7 @@
 class ServizioInterface:
 
-    # Metodo Astratto da essere implementato nella clase che implementa l'interfaccia
-    def newID(self):
+    # Metodo Astratto da essere implementato nella classe che implementa l'interfaccia
+    def newId(self):
         pass
 
     # Metodo Astratto da essere implementato nella clase che implementa l'interfaccia.
