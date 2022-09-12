@@ -10,16 +10,16 @@ class Notifica(object):
         pass
 
 
-    # Metodo che invia al utente un email dove comunica la vendita del oggetto
-    def gestioneEmailDIRegistrazione(self, email, password):
+    # Metodo che invia al utente un email con le credenziali
+    #al cliente e comunica l'avvenuta registrazione nel sistema
+    def gestioneEmailDIRegistrazione(self, email,password):
         filePath = PathDatabase.messaggioRegistrazioneProdotti
         testoEmail = self.emailGetFormat(filePath)
         frase = f"- email:{email}   -password:{password} "
         try:
             self.invioAlServerV2(email, "Negozio Del Usato", testoEmail + frase)
         except:
-            pass
-
+            print("Email non inviata")
 
 
     # Metodo che invia al utente un email dove comunica la vendita del oggetto se la notifica non ha buon fine per un
@@ -34,7 +34,8 @@ class Notifica(object):
                     frase = f"  euro:  {prodotto.prezzoCorrente} "
                     try:
                         self.invioAlServerV2(proprietario.email, "Negozio Del Usato", testoEmail + frase)
-                    except: pass
+                    except:
+                        print("Email non inviata")
 
 
     # Metodo che invia al utente un email dove comunica l'avvenuta eliminazione del prodotto
@@ -44,9 +45,9 @@ class Notifica(object):
         proprietario = Account().trovaOggettoTramiteId(prodotto.idAccount)
         frase = f" Il prodotto {prodotto.nomeProdotto} : è eliminato/scaduto "
         try:
-            self.invioAlServerV2(proprietario.email, "Negozio Del Usato" ,testoEmail + frase)
+            self.invioAlServerV2(proprietario.email, "Negozio Del Usato", testoEmail + frase)
         except:
-            pass
+            print("Email non inviata")
 
 
     # Metodo che prende il formato dell'email dal database in formato stringa
