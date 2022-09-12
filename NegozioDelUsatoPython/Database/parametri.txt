@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"lastIdProdotto": 0, "lastIdRicevuta": 0, "lastIdAccount": 0, }
+=======
+{"lastIdProdotto": 0, "lastIdRicevuta": 0, "lastIdAccount": 0, "codiceCategoria": 0 }
+>>>>>>> 15d42f67dbf3b2061f27be656524900c4137b489
