@@ -1,6 +1,7 @@
 import yagmail
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
+from MVC.Model.Servizio.Prodotto import Prodotto
 
 
 class Notifica(object):
@@ -39,9 +40,10 @@ class Notifica(object):
 
 
     # Metodo che invia al utente un email dove comunica l'avvenuta eliminazione del prodotto
-    def gestioneEmailDiEliminazione(self, prodotto):
+    def gestioneEmailDiEliminazione(self, idProdotto):
         filePath = PathDatabase.messaggioEliminazioneProdotti
         testoEmail = self.emailGetFormat(filePath)
+        prodotto = Prodotto().trovaOggettoTramiteId(idProdotto)
         proprietario = Account().trovaOggettoTramiteId(prodotto.idAccount)
         frase = f" Il prodotto {prodotto.nomeProdotto} : è eliminato/scaduto "
         try:

@@ -1,6 +1,7 @@
 import os
 import pathlib
 import shutil
+from datetime import datetime
 from unittest import TestCase
 
 from Database.PathDatabase import PathDatabase
@@ -32,7 +33,7 @@ class Prodotto_test(TestCase):
         for x in range(3):
             Categoria().aggiungiCategoria(x)
 
-        Amministratore().inserisciProdotto(1,"12/09/2022",0,"pera", 17, None)
+        Amministratore().inserisciProdotto(1,datetime.today(),1,"pera", 17, None)
 
     # Metodo che crea ripristina il database dopo il test
     def tearDown(self):
@@ -53,5 +54,10 @@ class Prodotto_test(TestCase):
         Notifica().gestioneEmailDIRegistrazione("test@gmail.com", "password")
 
     def test_gestioneEmailDiVendita(self):
-        Amministratore().vendiProdotti(Prodotto().spostaProdotto(1,PathDatabase.inVenditaTxt,PathDatabase.vendutiTxt))
-        Notifica().gestioneEmailDiVendita(Prodotto().recuperaListaProdottiVenduti())
+        carrello = list()
+        carrello.append(Prodotto().trovaOggettoTramiteId(1))
+        Amministratore().vendiProdotti(carrello)
+        Notifica().gestioneEmailDiVendita(carrello)
+
+    def test_gestioneEmailDiEliminazione(self):
+        Notifica().gestioneEmailDiEliminazione(1)

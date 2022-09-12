@@ -65,8 +65,8 @@ class Categoria(ServizioInterface):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
-        newId = letto['lastcodiceCategoria'] + 1
-        letto['lastcodiceCategoria'] = newId
+        newId = dictLetto['lastcodiceCategoria'] + 1
+        dictLetto['lastcodiceCategoria'] = newId
         File().scrivi(fileName, json.dumps(dictLetto))
         return newId
 
@@ -91,7 +91,7 @@ class Categoria(ServizioInterface):
         listCategorie = Categoria().recuperaListaOggetti()
         fileName = PathDatabase().categorieTxt
         for categoria in listCategorie:
-            if categoria.codiceCategoria == prodotto.codiceCategoria:
+            if categoria.idCategoria == prodotto.codiceCategoria:
                 categoria.oggettiTotali += 1
                 File().serializza(fileName, listCategorie)
                 return True

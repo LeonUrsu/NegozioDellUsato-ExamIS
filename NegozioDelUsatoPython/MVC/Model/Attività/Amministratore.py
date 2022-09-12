@@ -43,10 +43,8 @@ class Amministratore(User):
     # Metodo che elimina un prodotto dagli oggetti in vendita a quelli eliminati
     def eliminaProdotto(self, prodotto):
         Prodotto().eliminaProdotto(prodotto.idProdotto)
-        try:
-            Notifica().gestioneEmailDiEliminazione(prodotto)
-        except:
-            pass
+        Notifica().gestioneEmailDiEliminazione(prodotto)
+
 
     # Metodo che filtra i clienti in base al nome o al cognome
     # return = lista delle persone con dati passati

@@ -3,8 +3,30 @@
   <component name="ChangeListManager">
     <list default="true" id="cf3a90ef-b6d9-49d1-be87-5e1979d90cb8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Account/Account.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Account/Account.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Categorie/Categorie.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Categorie/Categorie.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Logging/Logging.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Logging/Logging.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/parametri.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/parametri.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Account/Account.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Amministratore/Amministratore.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Categorie/Categorie.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Logging/Logging.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/PathDatabase.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Prodotti/Eliminati.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Prodotti/InVendita.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Prodotti/Scaduti.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Prodotti/Venduti.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Ricevute/Ricevute.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Scaffali/Scaffali.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/Statistiche/Statistiche.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/emailFormat/messaggioEliminazioneProdotti.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/emailFormat/messaggioRegistrazione.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/emailFormat/messaggioVenditaProdotti.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database_temp/parametri.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/Attività/Amministratore.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Attività/Amministratore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/Model/Servizio/Categoria.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Servizio/Categoria.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/SistemService/Notifica.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/SistemService/Notifica.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Notifica_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Notifica_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +98,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in Prodotto_test.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for Notifica_test.Prodotto_test.test_gestioneEmailDiRegistrazione" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="NegozioDelUsatoPython" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -86,11 +108,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/Prodotto_test.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;Notifica_test.Prodotto_test.test_gestioneEmailDiRegistrazione&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in User_test.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for Notifica_test.Prodotto_test.test_gestioneEmailDiVendita" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="NegozioDelUsatoPython" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -100,8 +122,8 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/User_test.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;Notifica_test.Prodotto_test.test_gestioneEmailDiVendita&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Python tests in tests" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
@@ -121,10 +143,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Python tests for Notifica_test.Prodotto_test" />
+        <item itemvalue="Python tests.Python tests for Notifica_test.Prodotto_test.test_gestioneEmailDiRegistrazione" />
+        <item itemvalue="Python tests.Python tests for Notifica_test.Prodotto_test.test_gestioneEmailDiVendita" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python tests.Python tests in tests" />
-        <item itemvalue="Python tests.Python tests in User_test.py" />
-        <item itemvalue="Python tests.Python tests in Prodotto_test.py" />
       </list>
     </recent_temporary>
   </component>
