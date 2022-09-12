@@ -85,6 +85,7 @@ class Amministratore(User):
         return Account().trovaOggettoTramiteId(id)
 
     # Metodo per la vendita di una lista di oggetti
+    # prodottoList = lista di prodotti di vendere al cliente
     # return = dizionario con info di oggetti venduti
     def vendiProdotti(self, prodottoList):
         listaInfo = list()  # lista per scontrino
@@ -94,10 +95,7 @@ class Amministratore(User):
         ricevuta = Ricevuta()
         ricevuta.aggiungiProdotti(listaInfo)
         ricevuta.salvaRicevuta()
-        try:
-            Notifica().gestioneEmailDiVendita(prodottoList)
-        except:
-            pass
+        Notifica().gestioneEmailDiVendita(prodottoList)
         return ricevuta
 
     # Metodo che recupera le statistiche sul sistema

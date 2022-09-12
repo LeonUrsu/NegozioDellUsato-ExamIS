@@ -2,20 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3a90ef-b6d9-49d1-be87-5e1979d90cb8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/Notifica_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/Account/Account.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Account/Account.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/Logging/Logging.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Logging/Logging.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/parametri.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/parametri.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Model/Attività/Account.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Attività/Account.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Model/Attività/ClienteProprietario.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Attività/ClienteProprietario.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/Attività/Amministratore.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Attività/Amministratore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/Model/Servizio/Categoria.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Servizio/Categoria.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Model/Servizio/Prodotto.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Servizio/Prodotto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Model/Servizio/Ricevuta.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Servizio/Ricevuta.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NegozioDellUsatoEA.ldb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/SistemService/Notifica.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/SistemService/Notifica.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -24,35 +31,44 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Ef6TgQF8rT6dOJAq1LvGhs50SI" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/leope/OneDrive/Università/IngegneriaSoftware/NegozioDelUsato-master/NegozioDelUsatoPython",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/leope/OneDrive/Università/IngegneriaSoftware/NegozioDelUsato-master/NegozioDelUsatoPython&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Python tests.Python tests in tests">
-    <configuration name="Python tests in ClienteProprietatio_test.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+}</component>
+  <component name="RunManager" selected="Python tests.Python tests for Notifica_test.Prodotto_test">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NegozioDelUsatoPython" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/ClienteProprietatio_test.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in File_test.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for Notifica_test.Prodotto_test" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="NegozioDelUsatoPython" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -62,8 +78,8 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/File_test.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;Notifica_test.Prodotto_test&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Python tests in Prodotto_test.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
@@ -110,11 +126,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for Notifica_test.Prodotto_test" />
+        <item itemvalue="Python.main" />
         <item itemvalue="Python tests.Python tests in tests" />
         <item itemvalue="Python tests.Python tests in User_test.py" />
         <item itemvalue="Python tests.Python tests in Prodotto_test.py" />
-        <item itemvalue="Python tests.Python tests in File_test.py" />
-        <item itemvalue="Python tests.Python tests in ClienteProprietatio_test.py" />
       </list>
     </recent_temporary>
   </component>
