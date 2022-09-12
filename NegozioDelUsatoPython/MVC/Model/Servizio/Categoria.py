@@ -65,13 +65,8 @@ class Categoria(ServizioInterface):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
-<<<<<<< HEAD
         newId = dictLetto['lastcodiceCategoria'] + 1
-        dictLetto['lastcodiceCategoria'] = newId
-=======
-        newId = dictLetto['lastidCategoria'] + 1
         dictLetto['lastidCategoria'] = newId
->>>>>>> 5a97589bdcc387e34a15198dd5904d5ce27b5a74
         File().scrivi(fileName, json.dumps(dictLetto))
         return newId
 
@@ -94,14 +89,11 @@ class Categoria(ServizioInterface):
         listCategorie = Categoria().recuperaListaOggetti()
         fileName = PathDatabase().categorieTxt
         for categoria in listCategorie:
-<<<<<<< HEAD
-            if categoria.idCategoria == prodotto.codiceCategoria:
-=======
             if categoria.idCategoria == prodotto.idCategoria:
->>>>>>> 5a97589bdcc387e34a15198dd5904d5ce27b5a74
-                categoria.oggettiTotali += 1
-                File().serializza(fileName, listCategorie)
-                return True
+                if categoria.idCategoria == prodotto.idCategoria:
+                    categoria.oggettiTotali += 1
+                    File().serializza(fileName, listCategorie)
+                    return True
         return False
 
     # Metodo che decrementa il numero di oggetti all'interno di una categoria
