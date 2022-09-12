@@ -87,15 +87,7 @@ class Amministratore_test(TestCase):
         account1 = Amministratore().inserisciAccount("leo", "peraz", '29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271',
                                           '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
         # test---------------
-        #listAccount = Account().recuperaListaOggetti()
-        #account1 = Account().trovaOggettoTramiteId(1)
         account2 = Account().trovaOggettoTramiteEmail(account1.email)
-        #idAccount = account1.idAccount
-        #accounttest = None
-        #for account in listAccount:
-            #if account.idAccount == idAccount:
-                #accounttest = account1
-        #self.assertEqual(idAccount, accounttest.idAccount)
         self.assertEqual(account1.idAccount, account2.idAccount)
 
 

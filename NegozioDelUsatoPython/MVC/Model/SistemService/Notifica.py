@@ -21,6 +21,7 @@ class Notifica(object):
             pass
 
 
+
     # Metodo che invia al utente un email dove comunica la vendita del oggetto se la notifica non ha buon fine per un
     # cliente si salta questo clietne e si notifica i clienti successivi nella lista
     def gestioneEmailDiVendita(self, listProdottiVenduti):

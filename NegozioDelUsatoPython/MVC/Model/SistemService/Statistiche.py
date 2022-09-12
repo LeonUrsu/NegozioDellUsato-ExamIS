@@ -2,6 +2,9 @@ import datetime
 from dateutil.relativedelta import relativedelta
 
 from Database.PathDatabase import PathDatabase
+from MVC.Model.Attività.Account import Account
+from MVC.Model.Servizio.Categoria import Categoria
+from MVC.Model.Servizio.Prodotto import Prodotto
 from MVC.Model.SistemService.File import File
 
 
@@ -10,26 +13,20 @@ class Statistiche:
 
     # Costruttore della classe
     def __init__(self):
-        data = None
-        guadagnoTotale = 0
-        guadagnoInData = 0
-        numeroClientiProprietari = None
-        prodottiVendutiInData = 0
-        prodottiVendutiTotali = 0
-        tendenzaCategorie = None #prime tre categorie di tendenza
+        pass
 
 
     # Metodo per la defizizione di un oggetto Statistiche
-    def definizioneStatistiche(self):
+    def aggiungiStatistiche(self):
         listProdotti = self.getListProdottiVenduti()
-        listProdottiInData = self.getProdottiVendutiInData(listProdotti)
+        listProdottiInData = self.getProdottiVendutiInData()
         self.data = datetime.datetime.today()
         self.numeroClientiProprietari = self.getNumeroClienti()
         self.prodottiVendutiTotali = len(listProdotti)
         self.prodottiVendutiInData = len(listProdottiInData)
-        self.tendenzaCategorie = self.tendenzaCategorie(listProdotti)
-        self.guadagnoTotale = self.calcolaGuadagno(listProdotti)
-        self.guadagnoInData = self.calcolaGuadagno(listProdottiInData)
+        self.tendenzaCategorie = self.tendenzaCategorie()
+        self.guadagnoTotale = self.calcolaGuadagno(self.getListProdottiVenduti())
+        self.guadagnoInData = self.calcolaGuadagno(self.getProdottiVendutiInData())
         self.salvataggioStatitiche()
 
 
@@ -44,18 +41,14 @@ class Statistiche:
 
     # Metodo per vedere quanti clienti proprietari sono registrati
     def getNumeroClienti(self):
-        fileName = PathDatabase().accountTxt
-        file = File()
-        listClienti = file.deserializza(fileName)
+        listClienti = Account().recuperaListaOggetti()
         numeroClienti = len(listClienti)
         return numeroClienti
 
 
     # Metodo che prende la lista dei prodotti venduti
     def getListProdottiVenduti(self):
-        fileName = PathDatabase().vendutiTxt
-        file = File()
-        listVenduti = file.deserializza(fileName)
+        listVenduti = Prodotto().recuperaListaProdottiVenduti()
         return listVenduti
 
 
@@ -69,27 +62,30 @@ class Statistiche:
 
 
     # Metodo che prende la lista dei prodotti venduti nelle 24 ore anticedenti
-    def getProdottiVendutiInData(self, listProdotti):
-        list = []
+    def getProdottiVendutiInData(self):
+        listVenduti = self.getListProdottiVenduti()
         dataFiltro = datetime.datetime.today() - relativedelta(days=1)
-        for prodotto in listProdotti:
-            if prodotto.data >= dataFiltro:
-                list.append(prodotto)
-        return list
+        lista = list()
+        for prodotto in listVenduti:
+            if prodotto.dataEsposizione >= dataFiltro:
+                lista.append(prodotto)
+        return lista
 
 
     # Metodo che prende le categorie con tendenza maggiore e le restituisce come un dizionario
     # listProdotti = lista di prodotti da cui calcolare la repitizione delle loro categorie(tendenza)
-    def tendenzaCategorie(self, listProdotti):
+    def tendenzaCategorie(self):
         dict = {}
         numeroDiChiavi = 3
-        for prodotto in listProdotti:
+        listCategorie = Categoria().recuperaListaOggetti()
+        for categoria in listCategorie:
             try:
-                prova = dict[prodotto.nome]     # possibile generatore di KeyError
-                dict[prodotto.nome] += 1
+                prova = dict[categoria.idCategoria]     # possibile generatore di KeyError
+                dict[categoria.idCategoria.nome] += 1
             except KeyError:
-                dict[prodotto.nome] = 1
-        return self.topKeysInDict(dict, numeroDiChiavi)
+                dict[categoria.idCategoria.nome] = 1
+        topCategorie = self.topKeysInDict(dict, numeroDiChiavi)
+        return topCategorie
 
 
     # Metodo che prende il numeroDiChiavi con valore piu alto

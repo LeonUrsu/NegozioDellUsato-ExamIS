@@ -1,3 +1,4 @@
+import json
 from operator import index
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
@@ -53,13 +54,15 @@ class Categoria(ServizioInterface):
     # Metodo che ritorna il nuovo id da assegnare alla Categoria da inserire
     # return = nuovo ID per la Categoria
     def newID(self):
-        file = File()
         fileName = PathDatabase().parametriTxt
-        letto = file.deserializza(fileName)
-        newID = letto['lastcodiceCategoria'] + 1
-        letto['lastcodiceCategoria'] = newID
-        file.serializza(fileName, letto)
-        return newID
+        letto = File().leggi(fileName)
+        dictLetto = json.loads(letto)
+        newId = letto['lastcodiceCategoria'] + 1
+        letto['lastcodiceCategoria'] = newId
+        File().scrivi(fileName, json.dumps(dictLetto))
+        return newId
+
+
 
     # Metodo che serve ad aggiornare la lista delle categorie, cerca la caegoria con il codiceVecchio
     # e diminuisce il numero di oggetti di quella categoria di uno, cerca la categoria nuova grazie al codiceNuovo
