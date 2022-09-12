@@ -18,10 +18,10 @@ class Prodotto(ServizioInterface):
         pass
 
     # Metodo per aggiungere i valori all'istanza creata della classe
-    def aggiungiProdotto(self, codiceCategoria, dataEsposizione, idAccount, nomeProdotto,
+    def aggiungiProdotto(self, idCategoria, dataEsposizione, idAccount, nomeProdotto,
                          prezzoOriginale, idScaffale):
 
-        self.codiceCategoria = codiceCategoria
+        self.idCategoria = idCategoria
         self.dataEsposizione = dataEsposizione
         self.idAccount = idAccount
         self.dataPrimoSconto = dataEsposizione + relativedelta(months=2)
@@ -127,13 +127,13 @@ class Prodotto(ServizioInterface):
         return infoProdotto"""
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dalla classe amministratore
-    def aggiornaProdotto(self, codiceCategoria, dataEsposizione,
+    def aggiornaProdotto(self, idCategoria, dataEsposizione,
                          nomeProdotto, prezzoOriginale, idScaffale, idProdotto):
         fileName = PathDatabase().inVenditaTxt
         prodottoTrovato = Prodotto().rimuoviOggettoDaFileName(fileName, idProdotto)
-        if codiceCategoria != prodottoTrovato.codiceCategoria:
-            prodottoTrovato.codiceCategoria = codiceCategoria
-            Categoria().aggiornaCategoriaProdotto(prodottoTrovato, prodottoTrovato.codiceCategoria, codiceCategoria)
+        if idCategoria != prodottoTrovato.idCategoria:
+            prodottoTrovato.idCategoria = idCategoria
+            Categoria().aggiornaCategoriaProdotto(prodottoTrovato, prodottoTrovato.idCategoria, idCategoria)
         if dataEsposizione != prodottoTrovato.dataEsposizione: prodottoTrovato.dataEsposizione = dataEsposizione
         if nomeProdotto != prodottoTrovato.nomeProdotto: prodottoTrovato.nomeProdotto = nomeProdotto
         if prezzoOriginale != prodottoTrovato.prezzoOriginale: prodottoTrovato.prezzoOriginale = prezzoOriginale

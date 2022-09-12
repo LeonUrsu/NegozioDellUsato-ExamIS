@@ -26,9 +26,9 @@ class Amministratore(User):
         return account
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dall'amministratore
-    def aggiornaProdotto(self, codiceCategoria, dataEsposizione,
+    def aggiornaProdotto(self, idCategoria, dataEsposizione,
                          nomeProdotto, prezzoOriginale, idScaffale, idProdotto):
-        Prodotto().aggiornaProdotto(codiceCategoria, dataEsposizione,
+        Prodotto().aggiornaProdotto(idCategoria, dataEsposizione,
                          nomeProdotto, prezzoOriginale, idScaffale, idProdotto)
 
     # Metodo che effettua il backup del sistema in maniera manuale dall amministratore

@@ -35,11 +35,11 @@ class Categoria(ServizioInterface):
         File().serializza(fileName, listcategorie)
 
     # Metodo che permette di eliminare una categoria salvata nel database
-    def deleteInDatabase(self, codiceCategoria):
+    def deleteInDatabase(self, idCategoria):
         fileName = PathDatabase().categorieTxt
         listcategorie = self.recuperaListaOggetti()
         for x in listcategorie:
-            if x.codiceCategoria == codiceCategoria:
+            if x.idCategoria == idCategoria:
                 listcategorie.pop(index(x))
         file = File()
         file.serializza(fileName, listcategorie)
@@ -51,11 +51,11 @@ class Categoria(ServizioInterface):
         listCategorie = file.deserializza(fileName)
         return listCategorie
 
-    # Metodo per trovare una categoria tramite codiceCategoria
-    def trovaCategoria(self, codiceCategoria):
+    # Metodo per trovare una categoria tramite idCategoria
+    def trovaCategoria(self, idCategoria):
         listCategorie = self.recuperaListaOggetti()
         for x in listCategorie:
-            if x.codiceCategoria == codiceCategoria:
+            if x.idCategoria == idCategoria:
                 return listCategorie.pop(index(x))
         return None
 
@@ -65,12 +65,15 @@ class Categoria(ServizioInterface):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
+<<<<<<< HEAD
         newId = dictLetto['lastcodiceCategoria'] + 1
         dictLetto['lastcodiceCategoria'] = newId
+=======
+        newId = dictLetto['lastidCategoria'] + 1
+        dictLetto['lastidCategoria'] = newId
+>>>>>>> 5a97589bdcc387e34a15198dd5904d5ce27b5a74
         File().scrivi(fileName, json.dumps(dictLetto))
         return newId
-
-
 
     # Metodo che serve ad aggiornare la lista delle categorie, cerca la caegoria con il codiceVecchio
     # e diminuisce il numero di oggetti di quella categoria di uno, cerca la categoria nuova grazie al codiceNuovo
@@ -80,10 +83,10 @@ class Categoria(ServizioInterface):
         file = File()
         listCategorie = file.deserializza(fileName)
         for categoria in listCategorie:
-            if categoria.codiceCategoria == codiceVecchio:
+            if categoria.idCategoria == codiceVecchio:
                 categoria.oggettiTotali -= 1
         for categoria in listCategorie:
-            if categoria.codiceCategoria == codiceNuovo:
+            if categoria.idCategoria == codiceNuovo:
                 categoria.oggettiTotali += 1
 
     # Metodo che incrementa il numero di oggetti all'interno di una categoria
@@ -91,7 +94,11 @@ class Categoria(ServizioInterface):
         listCategorie = Categoria().recuperaListaOggetti()
         fileName = PathDatabase().categorieTxt
         for categoria in listCategorie:
+<<<<<<< HEAD
             if categoria.idCategoria == prodotto.codiceCategoria:
+=======
+            if categoria.idCategoria == prodotto.idCategoria:
+>>>>>>> 5a97589bdcc387e34a15198dd5904d5ce27b5a74
                 categoria.oggettiTotali += 1
                 File().serializza(fileName, listCategorie)
                 return True
@@ -101,7 +108,7 @@ class Categoria(ServizioInterface):
     def diminuisciProdottiInCategoria(self, prodotto):
         listCategorie = Categoria().recuperaListaOggetti()
         for categoria in listCategorie:
-            if categoria.codiceCategoria == prodotto.codiceCategoria:
+            if categoria.idCategoria == prodotto.idCategoria:
                 categoria.oggettiTotali -= 1
                 return True
         return False

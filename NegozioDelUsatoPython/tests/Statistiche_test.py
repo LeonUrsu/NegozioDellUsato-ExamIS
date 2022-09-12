@@ -32,9 +32,9 @@ class Statistiche_test(TestCase):
 
     # Metodo che crea ripristina il database dopo il test
     def tearDown(self):
-        print("m-m-m--m-m-m-mm-m-m-m-m-m-m--m-m-m-m-m-m-m-m-m-m-m-m--m-m-m-m-m-m-m-m-m-")
         mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
-        from_path = os.path.join(mainPath, "BackupFiles")
+        from_path = os.path.join(mainPath, "Database_temp")
+        #from_path = os.path.join(mainPath, "BackupFiles")
         to_path = os.path.join(mainPath, "Database")
         try:
             shutil.rmtree(to_path)
@@ -42,8 +42,7 @@ class Statistiche_test(TestCase):
             pass
         shutil.copytree(from_path, to_path)
         try:
-            pass
-            #shutil.rmtree(from_path)
+            shutil.rmtree(from_path)
         except:
             pass
 
@@ -55,14 +54,14 @@ class Statistiche_test(TestCase):
         dateToday = datetime.today()
         # inserimento oggett iassociati all'account User
         for iter in range(10):
-            Amministratore().inserisciProdotto(iter, dateToday - relativedelta(hours=iter + 20),
+            Amministratore().inserisciProdotto(iter, dateToday - relativedelta(hours=7),
                                                iter, dateToday.__str__(), iter, iter)
         # vendita di oggetti
         listaInVendita = Prodotto().recuperaListaProdottiInVendita()
         listTemp = list()
         for x in range(3):
             listTemp.append(listaInVendita.pop(x))
-        Amministratore().vendiProdotti(listTemp)
+        lista = Amministratore().vendiProdotti(listTemp)
 
     def setUp_2(self):
         for iter in range(3):
@@ -79,13 +78,13 @@ class Statistiche_test(TestCase):
             categoria = Categoria()
             categoria.aggiungiCategoria(name)
             for iter in range(3):
-                Amministratore().inserisciProdotto(categoria.idCategoria, dateToday - relativedelta(hours=iter + 20),
+                Amministratore().inserisciProdotto(categoria.idCategoria, dateToday - relativedelta(hours=7),
                                                    iter, dateToday.__str__(), iter, iter)
         categoria = Categoria()
         categoria.aggiungiCategoria("Casa")
         Amministratore().inserisciProdotto(categoria.idCategoria, dateToday, 1, dateToday.__str__(), 1, 1)
 
-    def test_calcoloGuafagno(self):
+    def test_calcoloGuadagno(self):
         listVenduti = Prodotto().recuperaListaProdottiVenduti()
         somma = 0
         for prodotto in listVenduti:
@@ -103,3 +102,7 @@ class Statistiche_test(TestCase):
         self.setUp_3()
         lista = Statistiche().tendenzaCategorie()
         print(lista)
+
+    def test_aggiungistatistiche(self):
+        Statistiche().aggiungiStatistiche()
+        return

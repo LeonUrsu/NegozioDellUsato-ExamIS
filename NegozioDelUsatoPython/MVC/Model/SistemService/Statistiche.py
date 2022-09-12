@@ -81,9 +81,9 @@ class Statistiche:
         for categoria in listCategorie:
             try:
                 prova = dict[categoria.idCategoria]     # possibile generatore di KeyError
-                dict[categoria.idCategoria.nome] += 1
+                dict[categoria.nome] += 1
             except KeyError:
-                dict[categoria.idCategoria.nome] = 1
+                dict[categoria.nome] = 1
         topCategorie = self.topKeysInDict(dict, numeroDiChiavi)
         return topCategorie
 
