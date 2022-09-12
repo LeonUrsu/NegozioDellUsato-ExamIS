@@ -41,9 +41,9 @@ class Amministratore(User):
         Account().eliminaAccount(IDAccount)
 
     # Metodo che elimina un prodotto dagli oggetti in vendita a quelli eliminati
-    def eliminaProdotto(self, prodotto):
-        Prodotto().eliminaProdotto(prodotto.idProdotto)
-        Notifica().gestioneEmailDiEliminazione(prodotto)
+    def eliminaProdotto(self, idProdotto):
+        Prodotto().eliminaProdotto(idProdotto)
+        Notifica().gestioneEmailDiEliminazione(idProdotto)
 
 
     # Metodo che filtra i clienti in base al nome o al cognome

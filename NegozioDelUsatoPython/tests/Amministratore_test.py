@@ -112,10 +112,11 @@ class Amministratore_test(TestCase):
         min = 1
         max = 10000
         i = random.randint(min, max)
-        prodottoInserito = Amministratore().inserisciProdotto(i, datetime.today(), i, "nome", i + 0.1, i)
-        Amministratore().eliminaProdotto(prodottoInserito)
+        Amministratore().inserisciProdotto(i, datetime.today(), i, "nome", i + 0.1, i)
+        prodottoInserito = Prodotto().trovaOggettoTramiteId(1)
+        Amministratore().eliminaProdotto(prodottoInserito.idProdotto)
         prodottoCercato = Prodotto().trovaOggettoTramiteId(prodottoInserito.idProdotto)
-        if prodottoCercato is not None:
+        if prodottoCercato is None:
             raise FileNotFoundError
         else:
             pass

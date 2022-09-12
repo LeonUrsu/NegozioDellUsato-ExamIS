@@ -224,10 +224,12 @@ class Prodotto(ServizioInterface):
         listProdottiInVendita = File().deserializza(PathDatabase().inVenditaTxt)
         listProdottiVenduti = File().deserializza(PathDatabase().vendutiTxt)
         listProdottiScaduti = File().deserializza(PathDatabase().scadutiTxt)
+        listProdottiEliminati = File().deserializza(PathDatabase().eliminatiTxt)
         listTotale = list()
         listTotale.append(listProdottiInVendita)
         listTotale.append(listProdottiVenduti)
         listTotale.append(listProdottiScaduti)
+        listTotale.append(listProdottiEliminati)
         return listTotale
 
     # se il prodotto non ha id cliente dee essere comunnque venduto#####################################################################################################################

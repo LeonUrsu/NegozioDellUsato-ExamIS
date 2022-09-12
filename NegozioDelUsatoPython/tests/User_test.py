@@ -65,7 +65,7 @@ class User_test(TestCase):
     def test_filtraProdottiConData(self):
         dataFine = datetime.today()
         dataInizio = dataFine - relativedelta(days=70)
-        filtrati = User().filtraProdottiConDataEsposiozione(dataInizio, dataFine)
+        filtrati = User().filtraProdottiConDataEsposizione(dataInizio, dataFine)
         for prodotto in filtrati:
             if prodotto.dataEsposizione < dataInizio:
                 raise Exception
