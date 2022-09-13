@@ -27,11 +27,11 @@
      <string>Indietro</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>110</y>
+      <x>270</x>
+      <y>300</y>
       <width>221</width>
       <height>71</height>
      </rect>
@@ -42,15 +42,15 @@
      </font>
     </property>
     <property name="text">
-     <string>Filtra prodotti con data</string>
+     <string>Ricerca Prodotto</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>10</y>
-      <width>221</width>
+      <x>220</x>
+      <y>100</y>
+      <width>441</width>
       <height>41</height>
      </rect>
     </property>
@@ -60,53 +60,35 @@
      </font>
     </property>
     <property name="text">
-     <string>Negozio Del Usato</string>
+     <string>Ricerca Prodotto Tramite Id</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>190</y>
-      <width>761</width>
-      <height>401</height>
+      <x>270</x>
+      <y>260</y>
+      <width>221</width>
+      <height>31</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>110</y>
-      <width>221</width>
-      <height>71</height>
+      <x>500</x>
+      <y>270</y>
+      <width>47</width>
+      <height>13</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Filtra prodotti con prezzo</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_4">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>110</y>
-      <width>221</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Filtra prodotti con categoria</string>
+     <string>Id</string>
     </property>
    </widget>
   </widget>
