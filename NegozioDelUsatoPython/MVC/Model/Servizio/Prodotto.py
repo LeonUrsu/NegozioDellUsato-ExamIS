@@ -20,7 +20,6 @@ class Prodotto(ServizioInterface):
     # Metodo per aggiungere i valori all'istanza creata della classe
     def aggiungiProdotto(self, idCategoria, dataEsposizione, idAccount, nomeProdotto,
                          prezzoOriginale, idScaffale):
-
         self.idCategoria = idCategoria
         self.dataEsposizione = dataEsposizione
         self.idAccount = idAccount
@@ -29,7 +28,7 @@ class Prodotto(ServizioInterface):
         self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
         self.dataScadenza = dataEsposizione + relativedelta(months=5)
         self.idProdotto = Prodotto().newId()
-        self.nomeProdotto = nomeProdotto
+        self.nomeProddotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
         self.idScaffale = idScaffale
