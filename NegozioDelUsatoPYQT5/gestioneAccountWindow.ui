@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="loginWidget">
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="indietro">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -45,7 +45,7 @@
      <string>Negozio Del Usato: gestione account</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="filtraAccount">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -63,7 +63,7 @@
      <string>Filtra Account</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="filtraAccountedit">
     <property name="geometry">
      <rect>
       <x>490</x>
@@ -91,7 +91,7 @@
      <string>Inserisci Nome o Cognome</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="ricercaAccount">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -127,7 +127,7 @@
      <string>Inserisci Id Account da Cercare</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="ricercaAccountedit">
     <property name="geometry">
      <rect>
       <x>490</x>
@@ -137,7 +137,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="inserisciAccoun">
     <property name="geometry">
      <rect>
       <x>280</x>

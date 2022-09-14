@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="loginWidget">
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="indietro">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -45,7 +45,7 @@
      <string>Negozio Del Usato: gestione prodotti</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="inserisciProdotto">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -63,7 +63,7 @@
      <string>Inserisci Prodotto</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="visualizzaProdotto">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -91,7 +91,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="visualizzaProdottoedit">
     <property name="geometry">
      <rect>
       <x>520</x>

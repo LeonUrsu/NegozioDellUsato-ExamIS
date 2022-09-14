@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="loginWidget">
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="indietro">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -27,7 +27,7 @@
      <string>Indietro</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="filtraConData">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -55,7 +55,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="filtraConPrezzo">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -73,7 +73,7 @@
      <string>Filtra prodotti con prezzo</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="filtraConCategoria">
     <property name="geometry">
      <rect>
       <x>560</x>

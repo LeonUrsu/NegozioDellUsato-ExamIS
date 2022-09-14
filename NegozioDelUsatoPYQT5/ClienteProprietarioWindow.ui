@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="loginWidget">
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="indietro">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -45,7 +45,7 @@
      <string>Negozio Del Usato: Cliente Proprietario</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="logout">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -63,7 +63,7 @@
      <string>Logout</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_8">
+   <widget class="QPushButton" name="visualizzaDatiPersonali">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -81,7 +81,7 @@
      <string>Visualizza dati personali</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_9">
+   <widget class="QPushButton" name="conntrollaStatoProdotti">
     <property name="geometry">
      <rect>
       <x>280</x>

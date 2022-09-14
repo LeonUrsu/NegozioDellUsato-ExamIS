@@ -32,7 +32,7 @@
      <string>Nome</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="cognomeMostrata">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -86,7 +86,7 @@
      <string>Data di nascita</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="indietro">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -207,7 +207,7 @@
      <string>Via</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_14">
+   <widget class="QLabel" name="nomeMostrata">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -225,7 +225,7 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_15">
+   <widget class="QLabel" name="cognomeMostrata_2">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -243,7 +243,7 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_16">
+   <widget class="QLabel" name="emailMostrata">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -261,7 +261,7 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_17">
+   <widget class="QLabel" name="dataDiNascitaMostrata">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -279,7 +279,7 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_19">
+   <widget class="QLabel" name="capMostrata">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -297,7 +297,7 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_21">
+   <widget class="QLabel" name="telefonoMostrata">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -315,7 +315,7 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_22">
+   <widget class="QLabel" name="citofonoMostrata">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -333,7 +333,7 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_23">
+   <widget class="QLabel" name="viaMostrata">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -351,7 +351,7 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_24">
+   <widget class="QLabel" name="cittaMostrata">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -369,7 +369,7 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_25">
+   <widget class="QLabel" name="civicoMostrata">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -621,7 +621,7 @@
      <string>Civico</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="nomeDaIns">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -631,7 +631,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="cognomeDaIns">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -641,7 +641,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="dataDiNascitaDaIns">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -651,7 +651,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
+   <widget class="QLineEdit" name="emailDaIns">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -661,7 +661,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_5">
+   <widget class="QLineEdit" name="citodfonoDaIns">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -671,7 +671,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_6">
+   <widget class="QLineEdit" name="capDaIns">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -681,7 +681,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_7">
+   <widget class="QLineEdit" name="numeroTelefonoDaIns">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -691,7 +691,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_8">
+   <widget class="QLineEdit" name="cittaDaIns">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -701,7 +701,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_9">
+   <widget class="QLineEdit" name="viaDaIns">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -711,7 +711,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_10">
+   <widget class="QLineEdit" name="civicoDaIns">
     <property name="geometry">
      <rect>
       <x>580</x>
