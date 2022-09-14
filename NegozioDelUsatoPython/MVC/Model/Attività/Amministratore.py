@@ -22,7 +22,7 @@ class Amministratore(User):
 
     # Metodo che aggiorna un account in base ai parametri passati dall'amministratore
     def aggiornaAccount(self, nome, cognome, dataDiNascita, email,idAccount, numeroTelefonico, residenza):
-        account =  Account().aggiornaAccount(nome, cognome, dataDiNascita, email,idAccount, numeroTelefonico, residenza)
+        account =  Account().aggiornaAccount(nome, cognome, dataDiNascita, email, idAccount, numeroTelefonico, residenza)
         return account
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dall'amministratore

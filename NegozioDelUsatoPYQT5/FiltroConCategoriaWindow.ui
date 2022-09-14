@@ -14,30 +14,12 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="loginWidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>210</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Data Iniziale</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>520</x>
       <y>250</y>
-      <width>121</width>
+      <width>141</width>
       <height>31</height>
      </rect>
     </property>
@@ -47,10 +29,10 @@
      </font>
     </property>
     <property name="text">
-     <string>Data Finale</string>
+     <string>nome Categoria</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="filtra">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -71,7 +53,7 @@
      <string>Return</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="indietro">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -84,17 +66,7 @@
      <string>Indietro</string>
     </property>
    </widget>
-   <widget class="QDateTimeEdit" name="dateTimeEdit">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>210</y>
-      <width>231</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDateTimeEdit" name="dateTimeEdit_2">
+   <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
       <x>280</x>

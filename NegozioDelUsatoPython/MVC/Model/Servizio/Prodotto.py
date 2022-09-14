@@ -126,6 +126,7 @@ class Prodotto(ServizioInterface):
         return infoProdotto"""
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dalla classe amministratore
+    # idCategoria
     def aggiornaProdotto(self, idCategoria, dataEsposizione,
                          nomeProdotto, prezzoOriginale, idScaffale, idProdotto):
         fileName = PathDatabase().inVenditaTxt
