@@ -30,6 +30,7 @@ class Amministratore_test(TestCase):
     def tearDown(self):
         mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
         from_path = os.path.join(mainPath, "Database_temp")
+        #from_path = os.path.join(mainPath, "BackupFiles")
         to_path = os.path.join(mainPath, "Database")
         try:
             shutil.rmtree(to_path)
@@ -37,6 +38,7 @@ class Amministratore_test(TestCase):
             pass
         shutil.copytree(from_path, to_path)
         try:
+            #pass
             shutil.rmtree(from_path)
         except:
             pass

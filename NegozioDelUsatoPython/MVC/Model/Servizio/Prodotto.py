@@ -28,7 +28,7 @@ class Prodotto(ServizioInterface):
         self.dataTerzoSconto = dataEsposizione + relativedelta(months=4)
         self.dataScadenza = dataEsposizione + relativedelta(months=5)
         self.idProdotto = Prodotto().newId()
-        self.nomeProddotto = nomeProdotto
+        self.nomeProdotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
         self.idScaffale = idScaffale
