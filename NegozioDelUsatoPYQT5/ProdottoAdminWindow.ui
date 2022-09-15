@@ -274,7 +274,7 @@ QPushButton:pressed {
      </rect>
     </property>
     <property name="title">
-     <string>GroupBox</string>
+     <string>Opzioni disponibili</string>
     </property>
     <widget class="QPushButton" name="EliminaProdotto">
      <property name="geometry">
