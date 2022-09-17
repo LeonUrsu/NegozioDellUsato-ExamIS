@@ -1,0 +1,103 @@
+{
+  "QCard": [
+    {
+      "cards": [
+        "productsFrame"
+      ],
+      "shadow": [
+        {
+          "color": "#000",
+          "blurRadius": 3,
+          "xOffset": 0,
+          "yOffset": 0
+        }
+      ]
+    }
+  ],
+  "QCustomSlideMenu": [
+    {
+      "name": "profileCont",
+      "floatPosition": [
+        {
+          "relativeTo": "centralwidget",
+          "position": "top-right",
+          "shadow": [
+            {
+              "color": "#000",
+              "blurRadius": 3,
+              "xOffset": 0,
+              "yOffset": 0
+            }
+          ]
+        }
+      ],
+      "defaultSize": [
+        {
+          "width": 0,
+          "height": "auto"
+        }
+      ],
+      "collapsedSize": [
+        {
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "expandedSize": [
+        {
+          "width": 100,
+          "height": "auto"
+        }
+      ],
+      "toggleButton": [
+        {
+          "buttonName": "accountButton"
+        }
+      ],
+      "menuTransitionAnimation": [
+        {
+          "animationDuration": 1000,
+          "animationEasingCurve": "OutBack"
+        }
+      ]
+    },
+    {
+      "name": "leftMenu",
+      "defaultSize": [
+        {
+          "width": 0,
+          "height": "parent"
+        }
+      ],
+      "collapsedSize": [
+        {
+          "width": 0,
+          "height": "parent"
+        }
+      ],
+      "expandedSize": [
+        {
+          "width": 230,
+          "height": "parent"
+        }
+      ],
+      "toggleButton": [
+        {
+          "buttonName": "menuButton",
+          "icons": [
+            {
+              "whenMenuIsCollapsed": ":/purpleIcons/assets/#78799c(purple) icons/menu.svg",
+              "whenMenuIsExpanded": ":/purpleIcons/assets/#78799c(purple) icons/x.svg"
+            }
+          ],
+          "menuTransitionAnimation": [
+            {
+              "animationDuration": 1000,
+              "animationEasingCurve": "OutInBack"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

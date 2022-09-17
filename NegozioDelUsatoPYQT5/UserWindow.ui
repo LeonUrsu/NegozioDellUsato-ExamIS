@@ -257,32 +257,23 @@ QPushButton:pressed {
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
-    <property name="text">
-     <string>Cerca...</string>
-    </property>
-    <property name="echoMode">
-     <enum>QLineEdit::Normal</enum>
-    </property>
-    <property name="clearButtonEnabled">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>90</y>
-      <width>21</width>
-      <height>16</height>
-     </rect>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	border: 2px solid;
+	border-radius: 10px;
+	padding-left:10px;
+}</string>
     </property>
     <property name="text">
      <string/>
     </property>
-    <property name="pixmap">
-     <pixmap>../../../../../Desktop/lente-di-ingrandimento-a-11550728676mukp56ljep.png</pixmap>
+    <property name="echoMode">
+     <enum>QLineEdit::Normal</enum>
     </property>
-    <property name="scaledContents">
+    <property name="placeholderText">
+     <string>Cerca...</string>
+    </property>
+    <property name="clearButtonEnabled">
      <bool>true</bool>
     </property>
    </widget>
@@ -386,7 +377,6 @@ QPushButton:pressed {
    <zorder>fconPrezzo</zorder>
    <zorder>fconCategoria</zorder>
    <zorder>lineEdit</zorder>
-   <zorder>label_2</zorder>
    <zorder>fconCategoria_2</zorder>
    <zorder>fconData</zorder>
   </widget>
