@@ -1,3 +1,4 @@
+import json
 import os
 import pathlib
 import random
@@ -72,17 +73,20 @@ class Statistiche_test(TestCase):
 
 
     def setUp_3(self):
-        listNomi = ("Informatica", "Motori", "Sport")
         dateToday = datetime.today()
+        categoria = Categoria()
+        categoria.aggiungiCategoria("Casa")
+        for iter in range(6):
+            Amministratore().inserisciProdotto(categoria.idCategoria, dateToday - relativedelta(hours=7),
+                                               iter, dateToday.__str__(), iter, iter)
+        listNomi = ("Informatica", "Motori", "Sport")
         for name in listNomi:
             categoria = Categoria()
             categoria.aggiungiCategoria(name)
             for iter in range(3):
                 Amministratore().inserisciProdotto(categoria.idCategoria, dateToday - relativedelta(hours=7),
                                                    iter, dateToday.__str__(), iter, iter)
-        categoria = Categoria()
-        categoria.aggiungiCategoria("Casa")
-        Amministratore().inserisciProdotto(categoria.idCategoria, dateToday, 1, dateToday.__str__(), 1, 1)
+
 
     def test_calcoloGuadagno(self):
         listVenduti = Prodotto().recuperaListaProdottiVenduti()
@@ -101,8 +105,16 @@ class Statistiche_test(TestCase):
     def test_tendenzaCategorie(self):
         self.setUp_3()
         lista = Statistiche().tendenzaCategorie()
-        print(lista)
+        self.assertEqual(lista[0].nome, "Casa")
 
     def test_aggiungistatistiche(self):
         Statistiche().aggiungiStatistiche()
         return
+
+    def test_topKeysInDict(self):
+        dict1 = {"Informatica": 3, "Motori": 6, "Sport": 55, "Casa": 1}
+        lista = Statistiche().topKeysInDict(dict1)
+        self.assertEqual(lista[0], "Casa")
+        self.assertEqual(lista[1], "Informatica")
+        self.assertEqual(lista[2], "Motori")
+        self.assertEqual(lista[3], "Sport")

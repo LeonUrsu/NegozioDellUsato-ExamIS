@@ -14,24 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="loginWidget">
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>120</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Prodotti in Vendita</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="indietro">
     <property name="geometry">
      <rect>
@@ -41,74 +23,107 @@
       <height>23</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: white;
+    border: 1px solid black;
+	border-radius:10px;
+}
+QPushButton:pressed {
+    background-color:  rgb(51, 153, 204);
+    border: 1px solid black;
+	border-radius:10px;
+}</string>
+    </property>
     <property name="text">
      <string>Indietro</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="ProdottiInVendita">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>30</x>
       <y>120</y>
-      <width>551</width>
-      <height>131</height>
+      <width>721</width>
+      <height>461</height>
      </rect>
     </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="title">
+        <string>Prodotti in vendita</string>
+       </property>
+       <widget class="QListWidget" name="prodottiVenduti_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>691</width>
+          <height>121</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="title">
+        <string>Prodotti venduti</string>
+       </property>
+       <widget class="QListWidget" name="prodottiVenduti">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>691</width>
+          <height>121</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
+        <string>Prodotti scaduti</string>
+       </property>
+       <widget class="QListWidget" name="prodottiVenduti_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>691</width>
+          <height>121</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QListWidget" name="prodottiScaduti">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>270</y>
-      <width>551</width>
-      <height>131</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="prodottiVenduti">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>420</y>
-      <width>551</width>
-      <height>131</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>270</y>
-      <width>171</width>
-      <height>31</height>
+      <x>280</x>
+      <y>40</y>
+      <width>221</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+      <underline>true</underline>
+      <strikeout>false</strikeout>
+      <stylestrategy>PreferAntialias</stylestrategy>
      </font>
     </property>
     <property name="text">
-     <string>Prodotti Scaduti</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>420</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Prodotti venduti</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Usato&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;Beato&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
   </widget>

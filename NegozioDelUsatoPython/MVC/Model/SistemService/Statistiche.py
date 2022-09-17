@@ -75,25 +75,30 @@ class Statistiche:
     # Metodo che prende le categorie con tendenza maggiore e le restituisce come un dizionario
     # listProdotti = lista di prodotti da cui calcolare la repitizione delle loro categorie(tendenza)
     def tendenzaCategorie(self):
-        dict = {}
-        numeroDiChiavi = 3
         listCategorie = Categoria().recuperaListaOggetti()
-        for categoria in listCategorie:
-            try:
-                prova = dict[categoria.idCategoria]     # possibile generatore di KeyError
-                dict[categoria.nome] += 1
-            except KeyError:
-                dict[categoria.nome] = 1
-        topCategorie = self.topKeysInDict(dict, numeroDiChiavi)
-        return topCategorie
+        listCategorie.sort(key=lambda x: x.oggettiTotali, reverse=True)
+        del listCategorie[3:len(listCategorie)]
+        return listCategorie
+
+
+    # Metodo che passata una lista di categorie trova la lista con piu oggetti
+    def maxOggettiCategoria(self, lista):
+        massimo = 0
+        for ogg in lista:
+            if ogg.oggettiTotali > massimo:
+                massimo = ogg.oggettiTotali
+        return massimo
+
 
 
     # Metodo che prende il
     # numeroDiChiavi con valore piu alto
     # return dizionario con le categorie di tendenenza
-    def topKeysInDict(self, dict, numeroDiChiavi):
-        my_keys = sorted(dict, key=dict.get, reverse=True)[:numeroDiChiavi]
-        return my_keys
+    def topKeysInDict(self, d):
+        lista = list()
+        for k in sorted(d, key=d.get, reverse=False):
+            lista.append(k)
+        return lista
 
 
     # Metodo che viene richiamato dall'Amministratore per la visualizzazione delle statistiche.

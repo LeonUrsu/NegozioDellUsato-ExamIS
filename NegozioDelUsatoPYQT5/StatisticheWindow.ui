@@ -23,19 +23,44 @@
       <height>23</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: white;
+    border: 1px solid black;
+	border-radius:10px;
+}
+QPushButton:pressed {
+    background-color:  rgb(51, 153, 204);
+    border: 1px solid black;
+	border-radius:10px;
+}</string>
+    </property>
     <property name="text">
      <string>Indietro</string>
     </property>
    </widget>
-   <widget class="QListView" name="listView">
+   <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>30</x>
       <y>50</y>
-      <width>781</width>
-      <height>541</height>
+      <width>741</width>
+      <height>531</height>
      </rect>
     </property>
+    <property name="title">
+     <string>Statistiche disponibili</string>
+    </property>
+    <widget class="QListView" name="listView">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>721</width>
+       <height>501</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
