@@ -380,7 +380,11 @@ class Ui_MainWindow2(object):
         self.retranslateUi(MainWindow)
 
         QMetaObject.connectSlotsByName(MainWindow)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 0ad95ab91ac87739ab91e22cc1da29833f0e7fed
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
