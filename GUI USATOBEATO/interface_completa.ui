@@ -1539,7 +1539,7 @@ QLabel{
     <item>
      <widget class="QCustomSlideMenu" name="profileCont" native="true">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -1561,7 +1561,7 @@ QLabel{
         <number>0</number>
        </property>
        <property name="rightMargin">
-        <number>8</number>
+        <number>0</number>
        </property>
        <property name="bottomMargin">
         <number>0</number>
@@ -1569,7 +1569,7 @@ QLabel{
        <item alignment="Qt::AlignTop">
         <widget class="QFrame" name="frame_3">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -1669,7 +1669,7 @@ QLabel{
  </customwidgets>
  <resources>
   <include location="resources.qrc"/>
-  <include location="GUI USATOBEATO/resources.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>

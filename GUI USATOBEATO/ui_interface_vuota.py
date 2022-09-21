@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_interfaceZjwAVq.ui'
+## Form generated from reading UI file 'interface_vuotaLInGHH.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.1
 ##
@@ -18,8 +18,9 @@ from PySide2.QtWidgets import *
 from Custom_Widgets.Widgets import QCustomSlideMenu
 
 import resources_rc
+import resources_rc
 
-class Ui_MainWindow2(object):
+class Ui_InterfaceVuota(object):
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
@@ -67,7 +68,7 @@ class Ui_MainWindow2(object):
 "	\n"
 "}\n"
 "\n"
-"#productsFrame{\n"
+"#frameVuoto{\n"
 "	background-color: #2a2c49;\n"
 "	border: solid;\n"
 "	border-radius: 20px;\n"
@@ -90,12 +91,11 @@ class Ui_MainWindow2(object):
 "	border-top-left-radius:25px;\n"
 "}\n"
 "\n"
-"#prodottiBtn, #statisticBtn, #infoBtn, QPushButton{\n"
+"#prodottiBtn, #statisticBtn, #infoBtn, #pushButton{\n"
 ""
                         "	padding : 10px 5px;\n"
 "	text-align:left;\n"
 "	color:#78799c;\n"
-"	font: 75 10pt \"Leelawadee UI\";\n"
 "}\n"
 "\n"
 "\n"
@@ -154,11 +154,10 @@ class Ui_MainWindow2(object):
         self.homeBtn = QPushButton(self.frame_6)
         self.homeBtn.setObjectName(u"homeBtn")
         font = QFont()
-        font.setFamily(u"Leelawadee UI")
+        font.setFamily(u"Leelawadee UI Semilight")
         font.setPointSize(10)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(9)
+        font.setBold(True)
+        font.setWeight(75)
         self.homeBtn.setFont(font)
         icon = QIcon()
         icon.addFile(u":/purpleIcons/assets/#78799c(purple) icons/home.svg", QSize(), QIcon.Normal, QIcon.Off)
@@ -302,7 +301,17 @@ class Ui_MainWindow2(object):
         self.horizontalLayout_2.addWidget(self.widget_3, 0, Qt.AlignRight|Qt.AlignTop)
 
 
-        self.verticalLayout.addWidget(self.mainFrame, 0, Qt.AlignTop)
+        self.verticalLayout.addWidget(self.mainFrame)
+
+        self.frameVuoto = QWidget(self.mainBody)
+        self.frameVuoto.setObjectName(u"frameVuoto")
+        sizePolicy.setHeightForWidth(self.frameVuoto.sizePolicy().hasHeightForWidth())
+        self.frameVuoto.setSizePolicy(sizePolicy)
+        self.verticalLayout_2 = QVBoxLayout(self.frameVuoto)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(-1, 9, -1, -1)
+
+        self.verticalLayout.addWidget(self.frameVuoto)
 
         self.statisticFrame = QWidget(self.mainBody)
         self.statisticFrame.setObjectName(u"statisticFrame")
@@ -316,7 +325,7 @@ class Ui_MainWindow2(object):
 
         self.profileCont = QCustomSlideMenu(self.centralwidget)
         self.profileCont.setObjectName(u"profileCont")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.profileCont.sizePolicy().hasHeightForWidth())
@@ -325,11 +334,14 @@ class Ui_MainWindow2(object):
         self.verticalLayout_6 = QVBoxLayout(self.profileCont)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.verticalLayout_6.setContentsMargins(0, 0, 8, 0)
+        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
         self.frame_3 = QFrame(self.profileCont)
         self.frame_3.setObjectName(u"frame_3")
-        sizePolicy2.setHeightForWidth(self.frame_3.sizePolicy().hasHeightForWidth())
-        self.frame_3.setSizePolicy(sizePolicy2)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.frame_3.sizePolicy().hasHeightForWidth())
+        self.frame_3.setSizePolicy(sizePolicy3)
         self.frame_3.setMinimumSize(QSize(30, 30))
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
@@ -337,17 +349,16 @@ class Ui_MainWindow2(object):
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.loginBtn = QPushButton(self.frame_3)
         self.loginBtn.setObjectName(u"loginBtn")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.loginBtn.sizePolicy().hasHeightForWidth())
-        self.loginBtn.setSizePolicy(sizePolicy3)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.loginBtn.sizePolicy().hasHeightForWidth())
+        self.loginBtn.setSizePolicy(sizePolicy4)
         font2 = QFont()
-        font2.setFamily(u"Leelawadee UI")
+        font2.setFamily(u"Leelawadee UI Semilight")
         font2.setPointSize(10)
-        font2.setBold(False)
-        font2.setItalic(False)
-        font2.setWeight(9)
+        font2.setBold(True)
+        font2.setWeight(75)
         font2.setStyleStrategy(QFont.PreferDefault)
         self.loginBtn.setFont(font2)
         icon6 = QIcon()
@@ -359,8 +370,8 @@ class Ui_MainWindow2(object):
 
         self.quitBtn = QPushButton(self.frame_3)
         self.quitBtn.setObjectName(u"quitBtn")
-        sizePolicy3.setHeightForWidth(self.quitBtn.sizePolicy().hasHeightForWidth())
-        self.quitBtn.setSizePolicy(sizePolicy3)
+        sizePolicy4.setHeightForWidth(self.quitBtn.sizePolicy().hasHeightForWidth())
+        self.quitBtn.setSizePolicy(sizePolicy4)
         self.quitBtn.setFont(font)
         icon7 = QIcon()
         icon7.addFile(u":/purpleIcons/assets/#78799c(purple) icons/x-octagon.svg", QSize(), QIcon.Normal, QIcon.Off)
@@ -380,6 +391,7 @@ class Ui_MainWindow2(object):
         self.retranslateUi(MainWindow)
 
         QMetaObject.connectSlotsByName(MainWindow)
+    # setupUi
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))

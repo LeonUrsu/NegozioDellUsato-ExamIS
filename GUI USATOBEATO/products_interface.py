@@ -17,7 +17,7 @@ from PySide2.QtWidgets import *
 
 import resources_rc
 
-class Ui_MainWindow3(object):
+class Ui_ProductsFrame(object):
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
