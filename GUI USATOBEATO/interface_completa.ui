@@ -242,7 +242,7 @@ QLabel{
                 <string>Home</string>
                </property>
                <property name="icon">
-                <iconset resource="GUI USATOBEATO/resources.qrc">
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/home.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/home.svg</iconset>
                </property>
                <property name="iconSize">
@@ -267,7 +267,7 @@ QLabel{
                 <string>Statistiche</string>
                </property>
                <property name="icon">
-                <iconset resource="GUI USATOBEATO/resources.qrc">
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/trending-up.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/trending-up.svg</iconset>
                </property>
                <property name="iconSize">
@@ -292,7 +292,7 @@ QLabel{
                 <string>Prodotti</string>
                </property>
                <property name="icon">
-                <iconset resource="GUI USATOBEATO/resources.qrc">
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/shopping-cart.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/shopping-cart.svg</iconset>
                </property>
                <property name="iconSize">
@@ -317,7 +317,7 @@ QLabel{
                 <string>Info</string>
                </property>
                <property name="icon">
-                <iconset resource="GUI USATOBEATO/resources.qrc">
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/info.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/info.svg</iconset>
                </property>
                <property name="iconSize">
@@ -403,7 +403,7 @@ QLabel{
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="GUI USATOBEATO/resources.qrc">
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/menu.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/menu.svg</iconset>
                </property>
                <property name="iconSize">
@@ -469,7 +469,7 @@ QLabel{
                    <string/>
                   </property>
                   <property name="pixmap">
-                   <pixmap resource="GUI USATOBEATO/resources.qrc">:/purpleIcons/assets/#78799c(purple) icons/search.svg</pixmap>
+                   <pixmap resource="resources.qrc">:/purpleIcons/assets/#78799c(purple) icons/search.svg</pixmap>
                   </property>
                   <property name="scaledContents">
                    <bool>true</bool>
@@ -520,7 +520,7 @@ QLabel{
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="GUI USATOBEATO/resources.qrc">
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/user.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/user.svg</iconset>
                </property>
                <property name="iconSize">
@@ -630,7 +630,7 @@ QLabel{
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="GUI USATOBEATO/resources.qrc">
+                   <iconset resource="resources.qrc">
                     <normaloff>:/blackIcons/assets/#000(black) icons/arrow-right.svg</normaloff>:/blackIcons/assets/#000(black) icons/arrow-right.svg</iconset>
                   </property>
                   <property name="iconSize">
@@ -1608,7 +1608,7 @@ QLabel{
              <string>Login</string>
             </property>
             <property name="icon">
-             <iconset resource="GUI USATOBEATO/resources.qrc">
+             <iconset resource="resources.qrc">
               <normaloff>:/purpleIcons/assets/#78799c(purple) icons/log-in.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/log-in.svg</iconset>
             </property>
             <property name="iconSize">
@@ -1639,7 +1639,7 @@ QLabel{
              <string>Quit</string>
             </property>
             <property name="icon">
-             <iconset resource="GUI USATOBEATO/resources.qrc">
+             <iconset resource="resources.qrc">
               <normaloff>:/purpleIcons/assets/#78799c(purple) icons/x-octagon.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/x-octagon.svg</iconset>
             </property>
             <property name="iconSize">
@@ -1668,6 +1668,7 @@ QLabel{
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="resources.qrc"/>
   <include location="GUI USATOBEATO/resources.qrc"/>
  </resources>
  <connections/>
