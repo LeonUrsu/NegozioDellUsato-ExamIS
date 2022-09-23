@@ -1,28 +1,26 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interface_vuotaLInGHH.ui'
+## Form generated from reading UI file 'interface_vuotarJDwjW.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.14.1
+## Created by: Qt User Interface Compiler version 5.15.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide2.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
-    QRect, QSize, QUrl, Qt)
-from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
-    QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
-    QRadialGradient)
+from PySide2.QtCore import *
+from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
 from Custom_Widgets.Widgets import QCustomSlideMenu
 
 import resources_rc
 import resources_rc
+import resources_rc
 
-class Ui_InterfaceVuota(object):
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        if MainWindow.objectName():
+        if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(912, 574)
         MainWindow.setStyleSheet(u"#MainWindow{\n"
@@ -68,7 +66,7 @@ class Ui_InterfaceVuota(object):
 "	\n"
 "}\n"
 "\n"
-"#frameVuoto{\n"
+"#finestreSecondarie{\n"
 "	background-color: #2a2c49;\n"
 "	border: solid;\n"
 "	border-radius: 20px;\n"
@@ -84,16 +82,15 @@ class Ui_InterfaceVuota(object):
 "\n"
 "#homeBtn{\n"
 "	color:#78799c;\n"
-"	border: 2px solid #1a1f39;\n"
 "	background-color:#1a1f39;\n"
 "	padding : 10px 5px;\n"
 "	text-align:left;\n"
 "	border-top-left-radius:25px;\n"
 "}\n"
 "\n"
-"#prodottiBtn, #statisticBtn, #infoBtn, #pushButton{\n"
-""
-                        "	padding : 10px 5px;\n"
+"#prodottiBtn, #statisticBtn, #infoBtn, #pushBut"
+                        "ton{\n"
+"	padding : 10px 5px;\n"
 "	text-align:left;\n"
 "	color:#78799c;\n"
 "}\n"
@@ -116,7 +113,7 @@ class Ui_InterfaceVuota(object):
         self.verticalLayout_3 = QVBoxLayout(self.leftMenu)
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout_3.setContentsMargins(0, 0, 4, 0)
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.frame_5 = QFrame(self.leftMenu)
         self.frame_5.setObjectName(u"frame_5")
         self.frame_5.setFrameShape(QFrame.StyledPanel)
@@ -124,9 +121,9 @@ class Ui_InterfaceVuota(object):
         self.horizontalLayout_9 = QHBoxLayout(self.frame_5)
         self.horizontalLayout_9.setSpacing(0)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.horizontalLayout_9.setContentsMargins(9, 60, 9, 0)
+        self.horizontalLayout_9.setContentsMargins(0, 68, 0, 0)
 
-        self.verticalLayout_3.addWidget(self.frame_5, 0, Qt.AlignTop)
+        self.verticalLayout_3.addWidget(self.frame_5)
 
         self.frame_2 = QFrame(self.leftMenu)
         self.frame_2.setObjectName(u"frame_2")
@@ -214,9 +211,8 @@ class Ui_InterfaceVuota(object):
         self.mainBody.setSizePolicy(sizePolicy1)
         self.mainBody.setMinimumSize(QSize(0, 0))
         self.verticalLayout = QVBoxLayout(self.mainBody)
-        self.verticalLayout.setSpacing(40)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(15, 0, 15, 0)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.mainFrame = QWidget(self.mainBody)
         self.mainFrame.setObjectName(u"mainFrame")
         self.horizontalLayout_2 = QHBoxLayout(self.mainFrame)
@@ -301,24 +297,42 @@ class Ui_InterfaceVuota(object):
         self.horizontalLayout_2.addWidget(self.widget_3, 0, Qt.AlignRight|Qt.AlignTop)
 
 
-        self.verticalLayout.addWidget(self.mainFrame)
+        self.verticalLayout.addWidget(self.mainFrame, 0, Qt.AlignTop)
 
-        self.frameVuoto = QWidget(self.mainBody)
-        self.frameVuoto.setObjectName(u"frameVuoto")
-        sizePolicy.setHeightForWidth(self.frameVuoto.sizePolicy().hasHeightForWidth())
-        self.frameVuoto.setSizePolicy(sizePolicy)
-        self.verticalLayout_2 = QVBoxLayout(self.frameVuoto)
+        self.widget_4 = QWidget(self.mainBody)
+        self.widget_4.setObjectName(u"widget_4")
+        sizePolicy.setHeightForWidth(self.widget_4.sizePolicy().hasHeightForWidth())
+        self.widget_4.setSizePolicy(sizePolicy)
+        self.verticalLayout_2 = QVBoxLayout(self.widget_4)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(-1, 9, -1, -1)
+        self.verticalLayout_2.setContentsMargins(40, 40, 40, 40)
+        self.finestreSecondarie = QStackedWidget(self.widget_4)
+        self.finestreSecondarie.setObjectName(u"finestreSecondarie")
+        self.home = QWidget()
+        self.home.setObjectName(u"home")
+        self.verticalLayout_8 = QVBoxLayout(self.home)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.label = QLabel(self.home)
+        self.label.setObjectName(u"label")
 
-        self.verticalLayout.addWidget(self.frameVuoto)
+        self.verticalLayout_8.addWidget(self.label, 0, Qt.AlignHCenter)
 
-        self.statisticFrame = QWidget(self.mainBody)
-        self.statisticFrame.setObjectName(u"statisticFrame")
-        sizePolicy.setHeightForWidth(self.statisticFrame.sizePolicy().hasHeightForWidth())
-        self.statisticFrame.setSizePolicy(sizePolicy)
+        self.finestreSecondarie.addWidget(self.home)
+        self.prodotti = QWidget()
+        self.prodotti.setObjectName(u"prodotti")
+        self.verticalLayout_9 = QVBoxLayout(self.prodotti)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.label_3 = QLabel(self.prodotti)
+        self.label_3.setObjectName(u"label_3")
 
-        self.verticalLayout.addWidget(self.statisticFrame)
+        self.verticalLayout_9.addWidget(self.label_3, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+
+        self.finestreSecondarie.addWidget(self.prodotti)
+
+        self.verticalLayout_2.addWidget(self.finestreSecondarie)
+
+
+        self.verticalLayout.addWidget(self.widget_4)
 
 
         self.horizontalLayout.addWidget(self.mainBody)
@@ -330,11 +344,11 @@ class Ui_InterfaceVuota(object):
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.profileCont.sizePolicy().hasHeightForWidth())
         self.profileCont.setSizePolicy(sizePolicy2)
-        self.profileCont.setMinimumSize(QSize(100, 0))
+        self.profileCont.setMinimumSize(QSize(115, 0))
         self.verticalLayout_6 = QVBoxLayout(self.profileCont)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_6.setContentsMargins(10, 0, 0, 0)
         self.frame_3 = QFrame(self.profileCont)
         self.frame_3.setObjectName(u"frame_3")
         sizePolicy3 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
@@ -356,7 +370,7 @@ class Ui_InterfaceVuota(object):
         self.loginBtn.setSizePolicy(sizePolicy4)
         font2 = QFont()
         font2.setFamily(u"Leelawadee UI Semilight")
-        font2.setPointSize(10)
+        font2.setPointSize(9)
         font2.setBold(True)
         font2.setWeight(75)
         font2.setStyleStrategy(QFont.PreferDefault)
@@ -372,7 +386,12 @@ class Ui_InterfaceVuota(object):
         self.quitBtn.setObjectName(u"quitBtn")
         sizePolicy4.setHeightForWidth(self.quitBtn.sizePolicy().hasHeightForWidth())
         self.quitBtn.setSizePolicy(sizePolicy4)
-        self.quitBtn.setFont(font)
+        font3 = QFont()
+        font3.setFamily(u"Leelawadee UI Semilight")
+        font3.setPointSize(9)
+        font3.setBold(True)
+        font3.setWeight(75)
+        self.quitBtn.setFont(font3)
         icon7 = QIcon()
         icon7.addFile(u":/purpleIcons/assets/#78799c(purple) icons/x-octagon.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.quitBtn.setIcon(icon7)
@@ -390,6 +409,9 @@ class Ui_InterfaceVuota(object):
 
         self.retranslateUi(MainWindow)
 
+        self.finestreSecondarie.setCurrentIndex(0)
+
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
@@ -404,6 +426,8 @@ class Ui_InterfaceVuota(object):
         self.label_2.setText("")
         self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Cerca", None))
         self.accountButton.setText("")
+        self.label.setText(QCoreApplication.translate("MainWindow", u"HOME", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"PRODOTTI", None))
         self.loginBtn.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         self.quitBtn.setText(QCoreApplication.translate("MainWindow", u"Quit", None))
     # retranslateUi

@@ -58,7 +58,7 @@ QLineEdit{
 	
 }
 
-#frameVuoto{
+#finestreSecondarie{
 	background-color: #2a2c49;
 	border: solid;
 	border-radius: 20px;
@@ -136,12 +136,12 @@ QLabel{
         <number>0</number>
        </property>
        <property name="rightMargin">
-        <number>4</number>
+        <number>0</number>
        </property>
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item alignment="Qt::AlignTop">
+       <item>
         <widget class="QFrame" name="frame_5">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -154,13 +154,13 @@ QLabel{
            <number>0</number>
           </property>
           <property name="leftMargin">
-           <number>9</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
-           <number>60</number>
+           <number>68</number>
           </property>
           <property name="rightMargin">
-           <number>9</number>
+           <number>0</number>
           </property>
           <property name="bottomMargin">
            <number>0</number>
@@ -352,22 +352,19 @@ QLabel{
        </size>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
-       <property name="spacing">
-        <number>40</number>
-       </property>
        <property name="leftMargin">
-        <number>15</number>
+        <number>0</number>
        </property>
        <property name="topMargin">
         <number>0</number>
        </property>
        <property name="rightMargin">
-        <number>15</number>
+        <number>0</number>
        </property>
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item>
+       <item alignment="Qt::AlignTop">
         <widget class="QWidget" name="mainFrame" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <property name="leftMargin">
@@ -538,7 +535,7 @@ QLabel{
         </widget>
        </item>
        <item>
-        <widget class="QWidget" name="frameVuoto" native="true">
+        <widget class="QWidget" name="widget_4" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -546,20 +543,48 @@ QLabel{
           </sizepolicy>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
-          <property name="topMargin">
-           <number>9</number>
+          <property name="leftMargin">
+           <number>40</number>
           </property>
+          <property name="topMargin">
+           <number>40</number>
+          </property>
+          <property name="rightMargin">
+           <number>40</number>
+          </property>
+          <property name="bottomMargin">
+           <number>40</number>
+          </property>
+          <item>
+           <widget class="QStackedWidget" name="finestreSecondarie">
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <widget class="QWidget" name="home">
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <item alignment="Qt::AlignHCenter">
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>HOME</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="prodotti">
+             <layout class="QVBoxLayout" name="verticalLayout_9">
+              <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+               <widget class="QLabel" name="label_3">
+                <property name="text">
+                 <string>PRODOTTI</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
          </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QWidget" name="statisticFrame" native="true">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
         </widget>
        </item>
       </layout>
@@ -575,7 +600,7 @@ QLabel{
       </property>
       <property name="minimumSize">
        <size>
-        <width>100</width>
+        <width>115</width>
         <height>0</height>
        </size>
       </property>
@@ -584,7 +609,7 @@ QLabel{
         <number>0</number>
        </property>
        <property name="leftMargin">
-        <number>0</number>
+        <number>10</number>
        </property>
        <property name="topMargin">
         <number>0</number>
@@ -627,7 +652,7 @@ QLabel{
             <property name="font">
              <font>
               <family>Leelawadee UI Semilight</family>
-              <pointsize>10</pointsize>
+              <pointsize>9</pointsize>
               <weight>75</weight>
               <bold>true</bold>
               <stylestrategy>PreferDefault</stylestrategy>
@@ -659,7 +684,7 @@ QLabel{
             <property name="font">
              <font>
               <family>Leelawadee UI Semilight</family>
-              <pointsize>10</pointsize>
+              <pointsize>9</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -699,6 +724,7 @@ QLabel{
  <resources>
   <include location="resources.qrc"/>
   <include location="resources.qrc"/>
+  <include location="../../../../../.designer/backup/resources.qrc"/>
  </resources>
  <connections/>
 </ui>

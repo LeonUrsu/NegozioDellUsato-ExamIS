@@ -34,19 +34,19 @@
       "defaultSize": [
         {
           "width": 0,
-          "height": "auto"
+          "height": "parent"
         }
       ],
       "collapsedSize": [
         {
           "width": 0,
-          "height": 0
+          "height": "parent"
         }
       ],
       "expandedSize": [
         {
-          "width": 100,
-          "height": "auto"
+          "width": 115,
+          "height": "parent"
         }
       ],
       "toggleButton": [
