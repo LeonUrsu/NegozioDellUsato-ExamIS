@@ -1,11 +1,13 @@
+import pathlib
+from datetime import datetime
 
 from MVC.Model.Attività.Amministratore import Amministratore
+from Database import PathDatabase
 
+mainPath = pathlib.Path().resolve().__str__()
+PathDatabase.PathDatabase().setup(mainPath)
 
 for iter in range(3):
-        acc = Amministratore().inserisciAccount("Regina", "Elisabetta", "21/04/1926",
-                                          "regiElisabetta26@mail.com".__add__(iter.__str__()),
-                                          "password", "0000000001", "62100", "Elisabetta", "Crathie", None, None,
-                                          None)
-print(acc)
+        prodotto = Amministratore().inserisciProdotto(0,datetime.today(),1,"nome",15,0)
+
 
