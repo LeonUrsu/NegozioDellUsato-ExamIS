@@ -38,7 +38,7 @@ QLineEdit{
 	background-color:transparent;
 }
 
-#searchFrame{
+#searchFrame, QLineEdit{
 	border-radius: 10px;
 	border: 2px solid #78799c;
 }
@@ -528,7 +528,7 @@ QTableWidget{
           <item>
            <widget class="QStackedWidget" name="finestreSecondarie">
             <property name="currentIndex">
-             <number>4</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="home">
              <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -593,6 +593,16 @@ QTableWidget{
                 <column>
                  <property name="text">
                   <string>Check</string>
+                 </property>
+                 <property name="toolTip">
+                  <string notr="true"/>
+                 </property>
+                 <property name="background">
+                  <color>
+                   <red>170</red>
+                   <green>170</green>
+                   <blue>255</blue>
+                  </color>
                  </property>
                 </column>
                 <column>
@@ -774,7 +784,7 @@ QTableWidget{
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_11">
+                      <layout class="QHBoxLayout" name="horizontalLayout_10">
                        <property name="spacing">
                         <number>0</number>
                        </property>
@@ -790,37 +800,70 @@ QTableWidget{
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
-                       <item>
-                        <widget class="QPushButton" name="pushButton_5">
-                         <property name="text">
-                          <string>Filtra Per Nome</string>
+                       <item alignment="Qt::AlignTop">
+                        <widget class="QGroupBox" name="groupBox">
+                         <property name="title">
+                          <string/>
                          </property>
-                         <property name="icon">
-                          <iconset resource="resources.qrc">
-                           <normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</iconset>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="pushButton_4">
-                         <property name="text">
-                          <string>Filtra Per Data</string>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="resources.qrc">
-                           <normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</iconset>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="pushButton_2">
-                         <property name="text">
-                          <string>Filtra Per Prezzo</string>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="resources.qrc">
-                           <normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</iconset>
-                         </property>
+                         <layout class="QVBoxLayout">
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QPushButton" name="pushButton_4">
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="text">
+                             <string>Filtra Per Data</string>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</iconset>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="pushButton_5">
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="text">
+                             <string>Filtra Per Nome</string>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</iconset>
+                            </property>
+                           </widget>
+                          </item>
+                          <item alignment="Qt::AlignTop">
+                           <widget class="QPushButton" name="pushButton_2">
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="text">
+                             <string>Filtra Per Prezzo</string>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</iconset>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
                         </widget>
                        </item>
                       </layout>
@@ -893,6 +936,137 @@ QTableWidget{
                      </widget>
                     </item>
                    </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="aggiungiProdottopg">
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <item>
+               <widget class="QFrame" name="addProdottoFrm">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_11">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLineEdit" name="nomeLe">
+                   <property name="font">
+                    <font>
+                     <pointsize>10</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="cursorPosition">
+                    <number>0</number>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Nome Prodotto</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="idAccountLe">
+                   <property name="font">
+                    <font>
+                     <pointsize>10</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="placeholderText">
+                    <string>idAccount</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="prezzoLe">
+                   <property name="font">
+                    <font>
+                     <pointsize>10</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Prezzo</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="idCategoriaLe">
+                   <property name="font">
+                    <font>
+                     <pointsize>10</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="placeholderText">
+                    <string>idCategoria</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="idScaffaleLe">
+                   <property name="font">
+                    <font>
+                     <pointsize>10</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="placeholderText">
+                    <string>idScaffale</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QPushButton" name="saveBtn">
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	color:#78799c;
+	background-color:#1a1f39;
+	border-radius: 15px;
+	padding : 10px 5px;
+	text-align:left;
+	padding : 10px 5px;
+	text-align:left;
+	color:#78799c;
+	font: 10pt &quot;Leelawadee UI&quot;;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Salva</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="resources.qrc">
+                     <normaloff>:/purpleIcons/assets/#78799c(purple) icons/save.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/save.svg</iconset>
+                   </property>
                   </widget>
                  </item>
                 </layout>

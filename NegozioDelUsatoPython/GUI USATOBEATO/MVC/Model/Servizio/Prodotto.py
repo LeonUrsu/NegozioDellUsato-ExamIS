@@ -82,7 +82,9 @@ class Prodotto(ServizioInterface):
             for prodotto in listProdotti:
                 if prodotto.idProdotto == id:
                     return listProdotti[listProdotti.index(prodotto)]
-        return None
+                else:
+                    return None
+
 
     # Metodo che rimuove un Prodotto da file e lo restituisce, la lista verrà serializzata su file senza
     # l'oggetto rimosso precedentemente
@@ -146,6 +148,7 @@ class Prodotto(ServizioInterface):
     # Metodo che ritorna il nuovo id da assegnare al prodotto da inserire
     # return = nuovo ID per il Prodotto
     def newId(self):
+        PathDatabase().setup()
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
@@ -232,4 +235,5 @@ class Prodotto(ServizioInterface):
         listTotale.append(listProdottiEliminati)
         return listTotale
 
-    # se il prodotto non ha id cliente dee essere comunnque venduto#####################################################################################################################
+    # se il prodotto non ha id cliente deve essere comunnque venduto#####################################################################################################################
+

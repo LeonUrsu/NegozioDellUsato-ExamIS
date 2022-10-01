@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interface_definitivaICrnyT.ui'
+## Form generated from reading UI file 'interface_definitivayIUnyF.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -46,7 +46,7 @@ class Ui_MainWindow(object):
 "	background-color:transparent;\n"
 "}\n"
 "\n"
-"#searchFrame{\n"
+"#searchFrame, QLineEdit{\n"
 "	border-radius: 10px;\n"
 "	border: 2px solid #78799c;\n"
 "}\n"
@@ -91,8 +91,8 @@ class Ui_MainWindow(object):
 "QPushButton{\n"
 "	padding : 10px 5px;\n"
 "	text-align:left;\n"
-"	color:#78799c;"
-                        "\n"
+"	col"
+                        "or:#78799c;\n"
 "	font: 10pt \"Leelawadee UI\";\n"
 "}\n"
 "\n"
@@ -334,6 +334,7 @@ class Ui_MainWindow(object):
         if (self.tableWidget.columnCount() < 5):
             self.tableWidget.setColumnCount(5)
         __qtablewidgetitem = QTableWidgetItem()
+        __qtablewidgetitem.setBackground(QColor(170, 170, 255));
         self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
@@ -406,29 +407,41 @@ class Ui_MainWindow(object):
         self.frame_7.setObjectName(u"frame_7")
         self.frame_7.setFrameShape(QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_11 = QVBoxLayout(self.frame_7)
-        self.verticalLayout_11.setSpacing(0)
-        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.verticalLayout_11.setContentsMargins(0, 15, 0, 0)
-        self.pushButton_5 = QPushButton(self.frame_7)
-        self.pushButton_5.setObjectName(u"pushButton_5")
+        self.horizontalLayout_10 = QHBoxLayout(self.frame_7)
+        self.horizontalLayout_10.setSpacing(0)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.horizontalLayout_10.setContentsMargins(0, 15, 0, 0)
+        self.groupBox = QGroupBox(self.frame_7)
+        self.groupBox.setObjectName(u"groupBox")
+        self.vboxLayout = QVBoxLayout(self.groupBox)
+        self.vboxLayout.setSpacing(0)
+        self.vboxLayout.setObjectName(u"vboxLayout")
+        self.vboxLayout.setContentsMargins(0, 0, 0, 0)
+        self.pushButton_4 = QPushButton(self.groupBox)
+        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
         icon8 = QIcon()
         icon8.addFile(u":/purpleIcons/assets/#78799c(purple) icons/filter.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_5.setIcon(icon8)
-
-        self.verticalLayout_11.addWidget(self.pushButton_5)
-
-        self.pushButton_4 = QPushButton(self.frame_7)
-        self.pushButton_4.setObjectName(u"pushButton_4")
         self.pushButton_4.setIcon(icon8)
 
-        self.verticalLayout_11.addWidget(self.pushButton_4)
+        self.vboxLayout.addWidget(self.pushButton_4)
 
-        self.pushButton_2 = QPushButton(self.frame_7)
+        self.pushButton_5 = QPushButton(self.groupBox)
+        self.pushButton_5.setObjectName(u"pushButton_5")
+        self.pushButton_5.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_5.setIcon(icon8)
+
+        self.vboxLayout.addWidget(self.pushButton_5)
+
+        self.pushButton_2 = QPushButton(self.groupBox)
         self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_2.setIcon(icon8)
 
-        self.verticalLayout_11.addWidget(self.pushButton_2)
+        self.vboxLayout.addWidget(self.pushButton_2, 0, Qt.AlignTop)
+
+
+        self.horizontalLayout_10.addWidget(self.groupBox, 0, Qt.AlignTop)
 
 
         self.verticalLayout_10.addWidget(self.frame_7, 0, Qt.AlignTop)
@@ -482,6 +495,77 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.addWidget(self.frame)
 
         self.finestreSecondarie.addWidget(self.prodotti)
+        self.aggiungiProdottopg = QWidget()
+        self.aggiungiProdottopg.setObjectName(u"aggiungiProdottopg")
+        self.horizontalLayout_11 = QHBoxLayout(self.aggiungiProdottopg)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.addProdottoFrm = QFrame(self.aggiungiProdottopg)
+        self.addProdottoFrm.setObjectName(u"addProdottoFrm")
+        self.addProdottoFrm.setFrameShape(QFrame.StyledPanel)
+        self.addProdottoFrm.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_11 = QVBoxLayout(self.addProdottoFrm)
+        self.verticalLayout_11.setSpacing(0)
+        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.verticalLayout_11.setContentsMargins(0, 0, 0, 0)
+        self.nomeLe = QLineEdit(self.addProdottoFrm)
+        self.nomeLe.setObjectName(u"nomeLe")
+        font2 = QFont()
+        font2.setPointSize(10)
+        font2.setBold(True)
+        font2.setWeight(75)
+        self.nomeLe.setFont(font2)
+        self.nomeLe.setCursorPosition(0)
+
+        self.verticalLayout_11.addWidget(self.nomeLe)
+
+        self.idAccountLe = QLineEdit(self.addProdottoFrm)
+        self.idAccountLe.setObjectName(u"idAccountLe")
+        self.idAccountLe.setFont(font2)
+
+        self.verticalLayout_11.addWidget(self.idAccountLe)
+
+        self.prezzoLe = QLineEdit(self.addProdottoFrm)
+        self.prezzoLe.setObjectName(u"prezzoLe")
+        self.prezzoLe.setFont(font2)
+
+        self.verticalLayout_11.addWidget(self.prezzoLe)
+
+        self.idCategoriaLe = QLineEdit(self.addProdottoFrm)
+        self.idCategoriaLe.setObjectName(u"idCategoriaLe")
+        self.idCategoriaLe.setFont(font2)
+
+        self.verticalLayout_11.addWidget(self.idCategoriaLe)
+
+        self.idScaffaleLe = QLineEdit(self.addProdottoFrm)
+        self.idScaffaleLe.setObjectName(u"idScaffaleLe")
+        self.idScaffaleLe.setFont(font2)
+
+        self.verticalLayout_11.addWidget(self.idScaffaleLe)
+
+        self.saveBtn = QPushButton(self.addProdottoFrm)
+        self.saveBtn.setObjectName(u"saveBtn")
+        self.saveBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.saveBtn.setStyleSheet(u"QPushButton{\n"
+"	color:#78799c;\n"
+"	background-color:#1a1f39;\n"
+"	border-radius: 15px;\n"
+"	padding : 10px 5px;\n"
+"	text-align:left;\n"
+"	padding : 10px 5px;\n"
+"	text-align:left;\n"
+"	color:#78799c;\n"
+"	font: 10pt \"Leelawadee UI\";\n"
+"}")
+        icon11 = QIcon()
+        icon11.addFile(u":/purpleIcons/assets/#78799c(purple) icons/save.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.saveBtn.setIcon(icon11)
+
+        self.verticalLayout_11.addWidget(self.saveBtn, 0, Qt.AlignHCenter)
+
+
+        self.horizontalLayout_11.addWidget(self.addProdottoFrm)
+
+        self.finestreSecondarie.addWidget(self.aggiungiProdottopg)
 
         self.verticalLayout_2.addWidget(self.finestreSecondarie)
 
@@ -523,18 +607,18 @@ class Ui_MainWindow(object):
         sizePolicy5.setVerticalStretch(0)
         sizePolicy5.setHeightForWidth(self.loginBtn.sizePolicy().hasHeightForWidth())
         self.loginBtn.setSizePolicy(sizePolicy5)
-        font2 = QFont()
-        font2.setFamily(u"Leelawadee UI")
-        font2.setPointSize(10)
-        font2.setBold(False)
-        font2.setItalic(False)
-        font2.setWeight(50)
-        font2.setStyleStrategy(QFont.PreferDefault)
-        self.loginBtn.setFont(font2)
+        font3 = QFont()
+        font3.setFamily(u"Leelawadee UI")
+        font3.setPointSize(10)
+        font3.setBold(False)
+        font3.setItalic(False)
+        font3.setWeight(50)
+        font3.setStyleStrategy(QFont.PreferDefault)
+        self.loginBtn.setFont(font3)
         self.loginBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon11 = QIcon()
-        icon11.addFile(u":/purpleIcons/assets/#78799c(purple) icons/log-in.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.loginBtn.setIcon(icon11)
+        icon12 = QIcon()
+        icon12.addFile(u":/purpleIcons/assets/#78799c(purple) icons/log-in.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.loginBtn.setIcon(icon12)
         self.loginBtn.setIconSize(QSize(32, 32))
 
         self.verticalLayout_7.addWidget(self.loginBtn)
@@ -545,9 +629,9 @@ class Ui_MainWindow(object):
         self.quitBtn.setSizePolicy(sizePolicy5)
         self.quitBtn.setFont(font)
         self.quitBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon12 = QIcon()
-        icon12.addFile(u":/purpleIcons/assets/#78799c(purple) icons/x-octagon.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.quitBtn.setIcon(icon12)
+        icon13 = QIcon()
+        icon13.addFile(u":/purpleIcons/assets/#78799c(purple) icons/x-octagon.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.quitBtn.setIcon(icon13)
         self.quitBtn.setIconSize(QSize(32, 32))
 
         self.verticalLayout_7.addWidget(self.quitBtn)
@@ -562,7 +646,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.finestreSecondarie.setCurrentIndex(4)
+        self.finestreSecondarie.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -608,11 +692,18 @@ class Ui_MainWindow(object):
         self.search_le.setInputMask("")
         self.search_le.setText("")
         self.search_le.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Cerca Prodotto", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Filtra Per Nome", None))
+        self.groupBox.setTitle("")
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Filtra Per Data", None))
+        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Filtra Per Nome", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Filtra Per Prezzo", None))
         self.aggiungiBtn.setText(QCoreApplication.translate("MainWindow", u"Aggiungi", None))
         self.rimuoviBtn.setText(QCoreApplication.translate("MainWindow", u"Rimuovi", None))
+        self.nomeLe.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Nome Prodotto", None))
+        self.idAccountLe.setPlaceholderText(QCoreApplication.translate("MainWindow", u"idAccount", None))
+        self.prezzoLe.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Prezzo", None))
+        self.idCategoriaLe.setPlaceholderText(QCoreApplication.translate("MainWindow", u"idCategoria", None))
+        self.idScaffaleLe.setPlaceholderText(QCoreApplication.translate("MainWindow", u"idScaffale", None))
+        self.saveBtn.setText(QCoreApplication.translate("MainWindow", u"Salva", None))
         self.loginBtn.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         self.quitBtn.setText(QCoreApplication.translate("MainWindow", u"Quit", None))
     # retranslateUi
