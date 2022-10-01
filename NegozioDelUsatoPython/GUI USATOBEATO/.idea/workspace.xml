@@ -5,18 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dce9d8ad-8b77-4d4c-aeae-0e21abccaa92" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/GUI USATOBEATO.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GUI USATOBEATO.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/NegozioDelUsatoPython.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/PathDatabase.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/PathDatabase.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/Prodotti/InVendita.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Prodotti/InVendita.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/parametri.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Database/parametri.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Model/Servizio/Prodotto.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/Servizio/Prodotto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_definitiva.ui" beforeDir="false" afterPath="$PROJECT_DIR$/interface_definitiva.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProdottoInterface.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProdottoInterface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface_definitiva.ui" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing_leon/prima.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing_leon/seconda.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing_leon/terza.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ui_interface_definitiva.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui_interface_definitiva.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,14 +44,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Leonardo\OneDrive\Università\IngegneriaSoftware\NegozioDelUsato-master\NegozioDelUsatoPython\GUI USATOBEATO\MVC\View" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.main">
+    <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="GUI USATOBEATO" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testing_leon" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testing_leon/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="GUI USATOBEATO" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -99,6 +123,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
@@ -127,13 +152,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MVC/Model/SistemService/File.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">

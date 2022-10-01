@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interface_definitivayIUnyF.ui'
+## Form generated from reading UI file 'interface_definitivahCOElW.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -320,12 +320,6 @@ class Ui_MainWindow(object):
         self.label_5.setObjectName(u"label_5")
         self.label_5.setGeometry(QRect(200, 130, 55, 16))
         self.finestreSecondarie.addWidget(self.accounts)
-        self.login = QWidget()
-        self.login.setObjectName(u"login")
-        self.label_4 = QLabel(self.login)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setGeometry(QRect(200, 160, 55, 16))
-        self.finestreSecondarie.addWidget(self.login)
         self.prodotti = QWidget()
         self.prodotti.setObjectName(u"prodotti")
         self.horizontalLayout_7 = QHBoxLayout(self.prodotti)
@@ -600,38 +594,18 @@ class Ui_MainWindow(object):
         self.verticalLayout_7 = QVBoxLayout(self.frame_3)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.verticalLayout_7.setContentsMargins(0, -1, 11, -1)
-        self.loginBtn = QPushButton(self.frame_3)
-        self.loginBtn.setObjectName(u"loginBtn")
+        self.quitBtn = QPushButton(self.frame_3)
+        self.quitBtn.setObjectName(u"quitBtn")
         sizePolicy5 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
         sizePolicy5.setHorizontalStretch(0)
         sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.loginBtn.sizePolicy().hasHeightForWidth())
-        self.loginBtn.setSizePolicy(sizePolicy5)
-        font3 = QFont()
-        font3.setFamily(u"Leelawadee UI")
-        font3.setPointSize(10)
-        font3.setBold(False)
-        font3.setItalic(False)
-        font3.setWeight(50)
-        font3.setStyleStrategy(QFont.PreferDefault)
-        self.loginBtn.setFont(font3)
-        self.loginBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon12 = QIcon()
-        icon12.addFile(u":/purpleIcons/assets/#78799c(purple) icons/log-in.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.loginBtn.setIcon(icon12)
-        self.loginBtn.setIconSize(QSize(32, 32))
-
-        self.verticalLayout_7.addWidget(self.loginBtn)
-
-        self.quitBtn = QPushButton(self.frame_3)
-        self.quitBtn.setObjectName(u"quitBtn")
         sizePolicy5.setHeightForWidth(self.quitBtn.sizePolicy().hasHeightForWidth())
         self.quitBtn.setSizePolicy(sizePolicy5)
         self.quitBtn.setFont(font)
         self.quitBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon13 = QIcon()
-        icon13.addFile(u":/purpleIcons/assets/#78799c(purple) icons/x-octagon.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.quitBtn.setIcon(icon13)
+        icon12 = QIcon()
+        icon12.addFile(u":/purpleIcons/assets/#78799c(purple) icons/x-octagon.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.quitBtn.setIcon(icon12)
         self.quitBtn.setIconSize(QSize(32, 32))
 
         self.verticalLayout_7.addWidget(self.quitBtn)
@@ -646,7 +620,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.finestreSecondarie.setCurrentIndex(0)
+        self.finestreSecondarie.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -665,7 +639,6 @@ class Ui_MainWindow(object):
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"HOME", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Statistiche", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Accounts", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Check", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
@@ -704,7 +677,6 @@ class Ui_MainWindow(object):
         self.idCategoriaLe.setPlaceholderText(QCoreApplication.translate("MainWindow", u"idCategoria", None))
         self.idScaffaleLe.setPlaceholderText(QCoreApplication.translate("MainWindow", u"idScaffale", None))
         self.saveBtn.setText(QCoreApplication.translate("MainWindow", u"Salva", None))
-        self.loginBtn.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         self.quitBtn.setText(QCoreApplication.translate("MainWindow", u"Quit", None))
     # retranslateUi
 
