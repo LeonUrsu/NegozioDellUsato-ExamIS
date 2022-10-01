@@ -1,3 +1,4 @@
+import unittest
 from datetime import datetime
 import os
 import pathlib
@@ -144,4 +145,4 @@ class Amministratore_test(TestCase):
 
 
 if __name__ == "__main__":
-    main()
+    unittest.main()
