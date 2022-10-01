@@ -1,9 +1,8 @@
 import sys
-
-import PyQt5
-from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication
+from PyQt5.uic import loadUi
+
 
 class Prima(QDialog):
     def __init__(self):
