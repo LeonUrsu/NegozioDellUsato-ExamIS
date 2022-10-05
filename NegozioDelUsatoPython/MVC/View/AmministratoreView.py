@@ -1,4 +1,9 @@
 from Custom_Widgets.Widgets import *
+<<<<<<< HEAD
+=======
+from PyQt5.QtWidgets import QWidget, QMainWindow
+from ProdottoInterface import ProdottoInterface
+>>>>>>> a1c425fe1dcedcd08c6db57fde24aa82f06a01ec
 from ui_interface_definitiva import *
 
 class AmministratoreView():
