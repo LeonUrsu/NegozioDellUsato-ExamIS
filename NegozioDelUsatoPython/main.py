@@ -1,6 +1,8 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication
+from PySide2 import *
+from PySide2.QtWidgets import QApplication, QWidget
+from PySide2.QtCore import QSize, Qt
 from Database.PathDatabase import PathDatabase
 from MVC.View.AmministratoreView import AmministratoreView
 
@@ -9,7 +11,6 @@ if __name__ == "__main__":
     PathDatabase().setup()
     app = QApplication(sys.argv)
     window = AmministratoreView()
-    window.showMaximized()
     sys.exit(app.exec_())
     #end
 
