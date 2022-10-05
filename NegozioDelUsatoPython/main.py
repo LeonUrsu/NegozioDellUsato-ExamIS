@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication
+from PySide2.QtWidgets import *
 from Database.PathDatabase import PathDatabase
 from MVC.View.AmministratoreView import AmministratoreView
 

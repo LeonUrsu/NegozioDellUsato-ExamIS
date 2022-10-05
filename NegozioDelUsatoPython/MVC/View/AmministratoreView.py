@@ -1,8 +1,6 @@
 
 from Custom_Widgets.Widgets import *
 from PyQt5.QtWidgets import QWidget, QMainWindow
-from PyQt5.uic import loadUi
-
 from ProdottoInterface import ProdottoInterface
 from ui_interface_definitiva import *
 from PyQt5 import *

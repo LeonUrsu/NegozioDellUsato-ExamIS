@@ -1,12 +1,13 @@
 import sys
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication
-from PyQt5.uic import loadUi
+
+from PySide2 import QtWidgets
+from PySide2.QtWidgets import QDialog, QApplication
 
 
 class Prima(QDialog):
     def __init__(self):
         super(Prima, self).__init__()
+        prima().
         loadUi("prima.ui", self)
         self.button.clicked.connect(self.gotosec)
 
