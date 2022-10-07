@@ -1,41 +1,37 @@
 from Custom_Widgets.Widgets import *
-<<<<<<< HEAD
-=======
-from PyQt5.QtWidgets import QWidget, QMainWindow
+from PySide6.QtWidgets import QMainWindow
+from PySide6.QtUiTools import QUiLoader
 from ProdottoInterface import ProdottoInterface
->>>>>>> a1c425fe1dcedcd08c6db57fde24aa82f06a01ec
-from ui_interface_definitiva import *
 
-class AmministratoreView():
+class AmministratoreView1(QMainWindow):
 
-    def __init__(self, parent= None ):
-        super(QMainWindow).__init__(parent)
-        loadUi("AmministratoreView.ui", self)
-        """
-                self.cambiaPagina(self.mainpage.aggiungiBtn, self.mainpage.aggiungiProdottopg)
-                self.cambiaPagina(self.mainpage.homeBtn, self.mainpage.home)
-                self.cambiaPagina(self.mainpage.prodottiBtn, self.mainpage.prodotti)
-                self.cambiaPagina(self.mainpage.accountBtn, self.mainpage.accounts)
-                self.cambiaPagina(self.mainpage.statisticBtn, self.mainpage.statistiche)
-                self.cambiaPagina(self.mainpage.saveBtn, self.mainpage.prodotti)
-                self.mainpage.saveBtn.clicked.connect(lambda: ProdottoInterface().test(self.mainpage.nomeLe))
-                self.mainpage.rimuoviBtn.clicked.connect(lambda: ProdottoInterface().inserisciProdottiTableWidget(self.mainpage.tableWidget))
-        
-        
-        
-        
-                # APPLY JSON STYLESHEET
-                # self = QMainWindow class
-                # self.ui = Ui_MainWindow / user interface class
-                loadJsonStyle(self, self.mainpage)
+    def __init__(self):
+
+        super(AmministratoreView1, self).__init__()
+        self.mainpage = QUiLoader().load("AmministratoreView.ui", self)
+
+        self.cambiaPagina(self.mainpage.aggiungiBtn, self.mainpage.aggiungiProdottopg)
+        self.cambiaPagina(self.mainpage.homeBtn, self.mainpage.home)
+        self.cambiaPagina(self.mainpage.prodottiBtn, self.mainpage.prodotti)
+        self.cambiaPagina(self.mainpage.accountBtn, self.mainpage.accounts)
+        self.cambiaPagina(self.mainpage.statisticBtn, self.mainpage.statistiche)
+        self.cambiaPagina(self.mainpage.saveBtn, self.mainpage.prodotti)
+        self.saveBtn.clicked.connect(lambda: ProdottoInterface().test(self.mainpage.nomeLe))
+        self.mainpage.rimuoviBtn.clicked.connect(lambda: ProdottoInterface().inserisciProdottiTableWidget(self.mainpage.tableWidget))
+
+
+
+        # APPLY JSON STYLESHEET
+        # self = QMainWindow class
+        # self.ui = Ui_MainWindow / user interface class
+        loadJsonStyle(self, self.mainpage)
                 ########################################################################
-        
-        
-                #quit Button
-                self.mainpage.quitBtn.clicked.connect(lambda: QtCore.QCoreApplication.instance().quit())
-        
-                self.show()
-            """
+
+
+        #quit Button
+        self.mainpage.quitBtn.clicked.connect(lambda: QtCore.QCoreApplication.instance().quit())
+        self.show()
+
 
     #Metodo che implementa il cambiamento della finestra al click di un PushButton
     def cambiaPagina(self,bottone,finestra):

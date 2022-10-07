@@ -1,25 +1,18 @@
 import sys
 
-<<<<<<< HEAD
-from PySide2 import *
-from PySide2.QtWidgets import QApplication, QWidget
-from PySide2.QtCore import QSize, Qt
-=======
-from PySide2.QtWidgets import *
->>>>>>> a1c425fe1dcedcd08c6db57fde24aa82f06a01ec
-from Database.PathDatabase import PathDatabase
-from MVC.View.AmministratoreView import AmministratoreView
+from PySide6.QtCore import QSize, Qt
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton
+from PySide6.QtUiTools import QUiLoader
+from PySide6 import QtCore , QtGui, QtWidgets
 
-# esegui app
-if __name__ == "__main__":
-    PathDatabase().setup()
+from MVC.View.AmministratoreView import AmministratoreView1
+from MVC.View.ui_AmministratoreView import Ui_MainWindow
+
+
+if __name__ == '__main__':
+
     app = QApplication(sys.argv)
-    window = AmministratoreView()
-    sys.exit(app.exec_())
-    #end
-
-
-
-
+    window = AmministratoreView1()
+    sys.exit(app.exec())
 
 
