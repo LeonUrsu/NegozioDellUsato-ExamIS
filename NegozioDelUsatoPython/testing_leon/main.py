@@ -7,7 +7,6 @@ from PySide2.QtWidgets import QDialog, QApplication
 class Prima(QDialog):
     def __init__(self):
         super(Prima, self).__init__()
-        prima().
         loadUi("prima.ui", self)
         self.button.clicked.connect(self.gotosec)
 
