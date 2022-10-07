@@ -1,15 +1,16 @@
 import sys
+from PySide6.QtCore import QSize, Qt
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QDialog
+from PySide6.QtUiTools import QUiLoader
+from PySide6 import QtCore , QtGui, QtWidgets
 
-from PySide2 import QtWidgets
-from PySide2.QtWidgets import QDialog, QApplication
 
 
 class Prima(QDialog):
     def __init__(self):
-        super(Prima, self).__init__()
-        prima().
-        loadUi("prima.ui", self)
-        self.button.clicked.connect(self.gotosec)
+        super().__init__()
+        self.mainpage = QUiLoader().load("prima.ui", self)
+        self.mainpage.button.clicked.connect(self.gotosec)
 
     def gotosec(self):
         seconda = Seconda()

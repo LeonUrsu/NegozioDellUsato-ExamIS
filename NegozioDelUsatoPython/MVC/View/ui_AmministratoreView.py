@@ -1,24 +1,77 @@
 # -*- coding: utf-8 -*-
-
+from PySide6 import QtCore
 ################################################################################
-## Form generated from reading UI file 'interface_definitivahCOElW.ui'
+## Form generated from reading UI file 'AmministratoreView.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.15.2
+## Created by: Qt User Interface Compiler version 6.3.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide2.QtCore import *
-from PySide2.QtGui import *
-from PySide2.QtWidgets import *
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QFrame, QGroupBox, QHBoxLayout,
+    QHeaderView, QLabel, QLineEdit, QMainWindow,
+    QPushButton, QSizePolicy, QStackedWidget, QTableWidget,
+    QTableWidgetItem, QVBoxLayout, QWidget)
 
-from Custom_Widgets.Widgets import QCustomSlideMenu
+from Custom_Widgets.Widgets import QCustomSlideMenu, loadJsonStyle
+import resources
 
-import resources_rc
-import resources_rc
-import resources_rc
+class AmministratoreView(QMainWindow):
 
-class Ui_MainWindow(object):
+        def __init__(self):
+                super().__init__()
+                self.mainpage = Ui_MainWindow()
+                self.mainpage.setupUi(self)
+
+                self.cambiaPagina(self.mainpage.aggiungiBtn, self.mainpage.aggiungiProdottopg)
+                self.cambiaPagina(self.mainpage.homeBtn, self.mainpage.home)
+                self.cambiaPagina(self.mainpage.prodottiBtn, self.mainpage.prodotti)
+                self.cambiaPagina(self.mainpage.accountBtn, self.mainpage.accounts)
+                self.cambiaPagina(self.mainpage.statisticBtn, self.mainpage.statistiche)
+                self.cambiaPagina(self.mainpage.saveBtn, self.mainpage.prodotti)
+                """ self.mainpage.saveBtn.clicked.connect(lambda: ProdottoInterface().test(self.mainpage.nomeLe))     """
+                """ self.mainpage.rimuoviBtn.clicked.connect(                                                         """
+                """ lambda: ProdottoInterface().inserisciProdottiTableWidget(self.mainpage.tableWidget))              """
+
+                # APPLY JSON STYLESHEET
+                # self = QMainWindow class
+                # self.ui = Ui_MainWindow / user interface class
+                loadJsonStyle(self, self.mainpage)
+                ########################################################################
+
+                # quit Button
+                self.mainpage.quitBtn.clicked.connect(lambda: QtCore.QCoreApplication.instance().quit())
+                self.show()
+
+        # Metodo che implementa il cambiamento della finestra al click di un PushButton
+        def cambiaPagina(self, bottone, finestra):
+                bottone.clicked.connect(lambda: self.mainpage.finestreSecondarie.setCurrentWidget(finestra))
+                bottone.clicked.connect(lambda: self.changeStyleSheet(bottone.objectName()))
+
+        # Metodo che implementa il cambio della grafica del PushButton cliccato
+        def changeStyleSheet(self, bottone):
+                self.mainpage.leftMenu.setStyleSheet(f"#{bottone}"
+                                                        "\n{"
+                                                        "background-color:#1a1f39;\n"
+                                                        "padding : 10px 5px;\n"
+                                                        "text-align:left;\n"
+                                                        "border-top-left-radius:25px;\n}\nQPushButton\n{\nbackground-color:#2a2c49;\n"
+                                                        "border = 0px;\n"
+                                                        "	padding : 10px 5px;\n"
+                                                        "	text-align:left;\n"
+                                                        "	color:#78799c;\n}")
+
+
+class Ui_MainWindow(QMainWindow):
+
+
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
@@ -156,11 +209,10 @@ class Ui_MainWindow(object):
         self.homeBtn = QPushButton(self.frame_6)
         self.homeBtn.setObjectName(u"homeBtn")
         font = QFont()
-        font.setFamily(u"Leelawadee UI")
+        font.setFamilies([u"Leelawadee UI"])
         font.setPointSize(10)
         font.setBold(False)
         font.setItalic(False)
-        font.setWeight(50)
         self.homeBtn.setFont(font)
         self.homeBtn.setCursor(QCursor(Qt.PointingHandCursor))
         icon = QIcon()
@@ -506,7 +558,6 @@ class Ui_MainWindow(object):
         font2 = QFont()
         font2.setPointSize(10)
         font2.setBold(True)
-        font2.setWeight(75)
         self.nomeLe.setFont(font2)
         self.nomeLe.setCursorPosition(0)
 

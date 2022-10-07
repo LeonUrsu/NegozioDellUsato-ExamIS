@@ -9,7 +9,6 @@ from PyQt5.QtWidgets import QTableWidget,QTableWidgetItem
 from PyQt5 import QtCore
 from PySide2 import *
 from MVC.Model.Attività.Amministratore import Amministratore
-from ui_interface_definitiva import Ui_MainWindow
 
 
 class ProdottoInterface(QtWidgets.QMainWindow):
