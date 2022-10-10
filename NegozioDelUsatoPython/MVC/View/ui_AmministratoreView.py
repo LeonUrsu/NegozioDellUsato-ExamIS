@@ -23,7 +23,7 @@ from PySide6.QtWidgets import (QApplication, QFrame, QGroupBox, QHBoxLayout,
 from Custom_Widgets.Widgets import QCustomSlideMenu, loadJsonStyle
 import resources
 
-class AmministratoreView(QMainWindow):
+class AmministratoreView(QWidget):
 
         def __init__(self):
                 super().__init__()
@@ -69,7 +69,7 @@ class AmministratoreView(QMainWindow):
                                                         "	color:#78799c;\n}")
 
 
-class Ui_MainWindow(QMainWindow):
+class Ui_MainWindow(QWidget):
 
 
     def setupUi(self, MainWindow):
