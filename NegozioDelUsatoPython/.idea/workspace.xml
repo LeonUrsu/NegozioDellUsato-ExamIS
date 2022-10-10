@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a235ff5-1e39-4f94-aa5a-4aae532ee26f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/NegozioDelUsatoPython.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NegozioDelUsatoPython.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/View/AmministratoreView.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/AmministratoreView.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProdottoInterface.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProdottoInterface.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources_rc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing_leon/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/testing_leon/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui_interface_definitiva.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui_interface_vuota_test_leon.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/View/ui_AmministratoreView.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/ui_AmministratoreView.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +46,7 @@
       <recent name="C:\Users\Leonardo\OneDrive\Università\IngegneriaSoftware\NegozioDelUsato-master\NegozioDelUsatoPython\MVC\View" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.main (2)">
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NegozioDelUsatoPython" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -68,6 +60,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testing_leon/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NegozioDelUsatoPython" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testing_leon2" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testing_leon2/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -120,6 +133,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main (2)" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.prova" />
         <item itemvalue="Python.main (1)" />

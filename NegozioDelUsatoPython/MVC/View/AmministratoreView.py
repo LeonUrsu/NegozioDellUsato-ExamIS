@@ -3,7 +3,7 @@ from PySide6.QtWidgets import QMainWindow
 from PySide6.QtUiTools import QUiLoader
 from ProdottoInterface import ProdottoInterface
 
-class AmministratoreView1(QMainWindow):
+class AmministratoreView1(QWidget):
 
     def __init__(self):
 
