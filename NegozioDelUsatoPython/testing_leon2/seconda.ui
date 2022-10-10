@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="gototerbtn">
+  <widget class="QPushButton" name="gotolistbtn">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>terza</string>
+    <string>list</string>
    </property>
   </widget>
   <widget class="QPushButton" name="gotopribtn">

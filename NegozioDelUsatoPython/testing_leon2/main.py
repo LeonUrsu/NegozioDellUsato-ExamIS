@@ -1,9 +1,10 @@
 import sys
-from PySide6 import QtWidgets
+
+import PySide6
+from PySide6 import QtWidgets, QtGui, QtCore
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QDialog, QApplication
-
+from PySide6.QtWidgets import QDialog, QApplication, QTableWidget, QWidget, QCheckBox, QTableWidgetItem
 
 
 class AmministratoreView(QDialog):
@@ -48,6 +49,7 @@ class Seconda(QDialog):
         seconda = loader.load(file, self)
         file.close()
         seconda.gotopribtn.clicked.connect(self.gotoprim)
+        seconda.gotolistbtn.clicked.connect(self.gotolist)
 
     def gotoprim(self):
         prima = Prima()
@@ -55,12 +57,67 @@ class Seconda(QDialog):
         widget.addWidget(prima)
         widget.setCurrentIndex(widget.currentIndex())
 
+    def gotolist(self):
+        form = Form()
+        widget.removeWidget(widget.currentWidget())
+        widget.addWidget(form)
+        widget.setCurrentIndex(widget.currentIndex())
+
+class Form(QDialog):
+    def __init__(self):
+        super(Form, self).__init__()
+        loader = QUiLoader()
+        file = QFile("Form.ui")
+        file.open(QFile.ReadOnly)
+        forma = loader.load(file, self)
+        file.close()
+        lista = self.listFiller()
+        forma.tab.setColumnWidth(0, 50)
+        forma.tab.setColumnWidth(1, 200)
+        forma.tab.setColumnWidth(2, 200)
+        row = 0
+        forma.tab.setRowCount(len(lista))
+        for persona in lista:
+            chkBoxItem = QTableWidgetItem()
+            chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
+            chkBoxItem.setCheckState(QtCore.Qt.Unchecked)
+            forma.tab.setItem(row, 0, chkBoxItem)
+            forma.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(persona.nome))
+            forma.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(persona.cognome))
+            row += 1
+        forma.ok.clicked.connect(lambda: self.printed(forma))
+
+    def printed(self, forma):
+        data = []
+        for row in range(forma.tab.rowCount()):
+            it = forma.tab.item(row, 0)
+            if it.checkState() == PySide6.QtCore.Qt.CheckState.Checked:
+                print(f"row {row} is True")
+            elif it.checkState() == PySide6.QtCore.Qt.CheckState.Unchecked:
+                print(f"row {row} is False")
+
+    def listFiller(self):
+        class persona(object):
+            def __init__(self, nome, cognome):
+                self.nome = nome
+                self.cognome = cognome
+        listaPerDeathNote = list()
+        for x in range(10):
+            listaPerDeathNote.append(persona(f"yvonne{x}", f"olivieri{x}"))
+        return listaPerDeathNote
+
+
+
+
+
+
+
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
-adminView = AmministratoreView()
-widget.addWidget(adminView)
-"""prima = Prima()
-widget.addWidget(prima)"""
+"""adminView = AmministratoreView()
+widget.addWidget(adminView)"""
+prima = Prima()
+widget.addWidget(prima)
 widget.setFixedHeight(570)
 widget.setFixedWidth(920)
 widget.show()
