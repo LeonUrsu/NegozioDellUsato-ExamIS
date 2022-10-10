@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a235ff5-1e39-4f94-aa5a-4aae532ee26f" name="Changes" comment="" />
+    <list default="true" id="1a235ff5-1e39-4f94-aa5a-4aae532ee26f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/MVC/Controller/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Controller/Controller.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +43,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\leonursu\Documents\is proj\NegozioDelUsatoPython\MVC\View" />
+      <recent name="C:\Users\leonursu\Documents\is proj\NegozioDelUsatoPython" />
       <recent name="C:\Users\Leonardo\OneDrive\Università\IngegneriaSoftware\NegozioDelUsato-master\NegozioDelUsatoPython" />
       <recent name="C:\Users\Leonardo\OneDrive\Università\IngegneriaSoftware\NegozioDelUsato-master\NegozioDelUsatoPython\MVC\View" />
     </key>
@@ -129,7 +133,7 @@
       <option name="presentableId" value="Default" />
       <updated>1664970047328</updated>
       <workItem from="1665218516396" duration="11000000" />
-      <workItem from="1665412328340" duration="911000" />
+      <workItem from="1665412328340" duration="1394000" />
     </task>
     <servers />
   </component>
