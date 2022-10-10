@@ -1,5 +1,4 @@
 import sys
-
 from PySide6 import QtWidgets
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
@@ -7,15 +6,15 @@ from PySide6.QtWidgets import QDialog, QApplication
 
 
 
-"""class AmministratoreView(QDialog):
-def __init__(self):
-    super(AmministratoreView, self).__init__()
-    loader = QUiLoader()
-    file = QFile("AmministratoreTestingView.ui")
-    
-    file.open(QFile.ReadOnly)
-    prima = loader.load(file, self)
-    file.close()"""
+class AmministratoreView(QDialog):
+    def __init__(self):
+        super(AmministratoreView, self).__init__()
+        loader = QUiLoader()
+        file = QFile("AmministratoreTestingView.ui")
+
+        file.open(QFile.ReadOnly)
+        prima = loader.load(file, self)
+        file.close()
 
 
 
@@ -58,10 +57,10 @@ class Seconda(QDialog):
 
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
-"""adminView = AmministratoreView()
-widget.addWidget(adminView)"""
-prima = Prima()
-widget.addWidget(prima)
+adminView = AmministratoreView()
+widget.addWidget(adminView)
+"""prima = Prima()
+widget.addWidget(prima)"""
 widget.setFixedHeight(570)
 widget.setFixedWidth(920)
 widget.show()
