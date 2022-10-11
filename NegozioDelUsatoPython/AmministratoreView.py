@@ -8,7 +8,7 @@ class AmministratoreView1(QWidget):
     def __init__(self):
 
         super(AmministratoreView1, self).__init__()
-        self.mainpage = QUiLoader().load("MVC/View/AmministratoreView.ui", self)
+        self.mainpage = QUiLoader().load("AmministratoreView.ui", self)
 
         self.cambiaPagina(self.mainpage.aggiungiBtn, self.mainpage.aggiungiProdottopg)
         self.cambiaPagina(self.mainpage.homeBtn, self.mainpage.home)

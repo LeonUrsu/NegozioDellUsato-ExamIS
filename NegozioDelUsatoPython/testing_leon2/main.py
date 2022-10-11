@@ -1,8 +1,7 @@
 import sys
-
 import PySide6
 from PySide6 import QtWidgets, QtGui, QtCore
-from PySide6.QtCore import QFile
+from PySide6.QtCore import QFile, QPropertyAnimation
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QDialog, QApplication, QTableWidget, QWidget, QCheckBox, QTableWidgetItem
 
@@ -11,12 +10,34 @@ class AmministratoreView(QDialog):
     def __init__(self):
         super(AmministratoreView, self).__init__()
         loader = QUiLoader()
-        file = QFile("AmministratoreTestingView.ui")
-
+        file = QFile("AmministratoreView.ui")
         file.open(QFile.ReadOnly)
         prima = loader.load(file, self)
         file.close()
+        prima.firstWidget.mainBody.mainFrame.widget.open_close_side_bar_btn.clicked.connect(self.slideLeftMenu())
 
+
+    def slideLeftMenu(self):
+        # Get current left menu width
+        width = self.leftMenu
+        # If minimized
+        if width == 0:
+            # Expand menu
+            newWidth = 200
+            self.ui.open_close_side_bar_btn.setIcon(QtGui.QIcon(u":/icons/chevron-left.svg"))
+        # If maximized
+        else:
+            # Restore menu
+            newWidth = 0
+            self.ui.open_close_side_bar_btn.setIcon(QtGui.QIcon(u":/icons/align-left.svg"))
+
+        # Animate the transition
+        self.animation = QPropertyAnimation(self.ui.slide_menu_container, b"maximumWidth")  # Animate minimumWidht
+        self.animation.setDuration(250)
+        self.animation.setStartValue(width)  # Start value is the current menu width
+        self.animation.setEndValue(newWidth)  # end value is the new menu width
+        self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+        self.animation.start()
 
 
 class Prima(QDialog):
@@ -114,10 +135,13 @@ class Form(QDialog):
 
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
-"""adminView = AmministratoreView()
-widget.addWidget(adminView)"""
-prima = Prima()
-widget.addWidget(prima)
+var = True
+if var:
+    adminView = AmministratoreView()
+    widget.addWidget(adminView)
+else:
+    prima = Prima()
+    widget.addWidget(prima)
 widget.setFixedHeight(570)
 widget.setFixedWidth(920)
 widget.show()
