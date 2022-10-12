@@ -251,7 +251,7 @@ QTableWidget{
                </property>
                <property name="icon">
                 <iconset resource="resources.qrc">
-                 <normaloff>:/purpleIcons/assets/#78799c(purple) icons/home.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/home.svg</iconset>
+                 <normaloff>:/assets/#78799c(purple) icons/home.svg</normaloff>:/assets/#78799c(purple) icons/home.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -280,7 +280,7 @@ QTableWidget{
                </property>
                <property name="icon">
                 <iconset resource="resources.qrc">
-                 <normaloff>:/purpleIcons/assets/#78799c(purple) icons/trending-up.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/trending-up.svg</iconset>
+                 <normaloff>:/assets/#78799c(purple) icons/trending-up.svg</normaloff>:/assets/#78799c(purple) icons/trending-up.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -309,7 +309,7 @@ QTableWidget{
                </property>
                <property name="icon">
                 <iconset resource="resources.qrc">
-                 <normaloff>:/purpleIcons/assets/#78799c(purple) icons/shopping-cart.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/shopping-cart.svg</iconset>
+                 <normaloff>:/assets/#78799c(purple) icons/shopping-cart.svg</normaloff>:/assets/#78799c(purple) icons/shopping-cart.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -329,7 +329,13 @@ QTableWidget{
                </property>
                <property name="icon">
                 <iconset resource="resources.qrc">
-                 <normaloff>:/purpleIcons/assets/#78799c(purple) icons/users.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/users.svg</iconset>
+                 <normaloff>:/assets/#78799c(purple) icons/users.svg</normaloff>:/assets/#78799c(purple) icons/users.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>24</width>
+                 <height>24</height>
+                </size>
                </property>
               </widget>
              </item>
@@ -352,7 +358,7 @@ QTableWidget{
                </property>
                <property name="icon">
                 <iconset resource="resources.qrc">
-                 <normaloff>:/purpleIcons/assets/#78799c(purple) icons/info.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/info.svg</iconset>
+                 <normaloff>:/assets/#78799c(purple) icons/info.svg</normaloff>:/assets/#78799c(purple) icons/info.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -435,7 +441,7 @@ QTableWidget{
                </property>
                <property name="icon">
                 <iconset resource="resources.qrc">
-                 <normaloff>:/purpleIcons/assets/#78799c(purple) icons/menu.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/menu.svg</iconset>
+                 <normaloff>:/assets/#78799c(purple) icons/menu.svg</normaloff>:/assets/#78799c(purple) icons/menu.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -487,7 +493,7 @@ QTableWidget{
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="resources.qrc">
+                <iconset>
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/user.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/user.svg</iconset>
                </property>
                <property name="iconSize">
@@ -710,7 +716,7 @@ QTableWidget{
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="resources.qrc">
+                       <iconset>
                         <normaloff>:/purpleIcons/assets/#78799c(purple) icons/search.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/search.svg</iconset>
                       </property>
                      </widget>
@@ -815,7 +821,7 @@ QTableWidget{
                              <string>Filtra Per Data</string>
                             </property>
                             <property name="icon">
-                             <iconset resource="resources.qrc">
+                             <iconset>
                               <normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</iconset>
                             </property>
                            </widget>
@@ -829,7 +835,7 @@ QTableWidget{
                              <string>Filtra Per Nome</string>
                             </property>
                             <property name="icon">
-                             <iconset resource="resources.qrc">
+                             <iconset>
                               <normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</iconset>
                             </property>
                            </widget>
@@ -843,7 +849,7 @@ QTableWidget{
                              <string>Filtra Per Prezzo</string>
                             </property>
                             <property name="icon">
-                             <iconset resource="resources.qrc">
+                             <iconset>
                               <normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</iconset>
                             </property>
                            </widget>
@@ -901,7 +907,7 @@ QTableWidget{
                        <string>Aggiungi</string>
                       </property>
                       <property name="icon">
-                       <iconset resource="resources.qrc">
+                       <iconset>
                         <normaloff>:/purpleIcons/assets/#78799c(purple) icons/plus.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/plus.svg</iconset>
                       </property>
                      </widget>
@@ -915,7 +921,7 @@ QTableWidget{
                        <string>Rimuovi</string>
                       </property>
                       <property name="icon">
-                       <iconset resource="resources.qrc">
+                       <iconset>
                         <normaloff>:/purpleIcons/assets/#78799c(purple) icons/minus.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/minus.svg</iconset>
                       </property>
                      </widget>
@@ -1049,7 +1055,7 @@ QTableWidget{
                     <string>Salva</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="resources.qrc">
+                    <iconset>
                      <normaloff>:/purpleIcons/assets/#78799c(purple) icons/save.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/save.svg</iconset>
                    </property>
                   </widget>
@@ -1149,7 +1155,7 @@ QTableWidget{
             </property>
             <property name="icon">
              <iconset resource="resources.qrc">
-              <normaloff>:/purpleIcons/assets/#78799c(purple) icons/x-octagon.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/x-octagon.svg</iconset>
+              <normaloff>:/assets/#78799c(purple) icons/x-circle.svg</normaloff>:/assets/#78799c(purple) icons/x-circle.svg</iconset>
             </property>
             <property name="iconSize">
              <size>
