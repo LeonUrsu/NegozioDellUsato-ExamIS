@@ -142,8 +142,6 @@ if var:
 else:
     prima = Prima()
     widget.addWidget(prima)
-widget.setFixedHeight(570)
-widget.setFixedWidth(920)
 widget.show()
 
 
