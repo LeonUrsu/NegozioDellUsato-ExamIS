@@ -20,7 +20,7 @@ if __name__ == '__main__':
     widget.setFixedHeight(570)
     widget.show()
     try:
-        sys.exit(app.exec_())
+        sys.exit(app.exec())
     except:
         print("exiting")
 

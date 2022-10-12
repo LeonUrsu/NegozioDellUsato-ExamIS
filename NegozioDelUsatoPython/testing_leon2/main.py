@@ -6,6 +6,31 @@ from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QDialog, QApplication, QTableWidget, QWidget, QCheckBox, QTableWidgetItem
 
 
+
+class Finestra(QWidget):
+    def __init__(self):
+        super(Finestra, self).__init__()
+        loader = QUiLoader()
+        file = QFile("finestra.ui")
+        file.open(QFile.ReadOnly)
+        loader.load(file, self)
+        file.close()
+
+
+class ClienteProprietarioView(QDialog):
+    def __init__(self):
+        super(ClienteProprietarioView, self).__init__()
+        loader = QUiLoader()
+        file = QFile("ClienteProprietarioView.ui")
+        file.open(QFile.ReadOnly)
+        prima = loader.load(file, self)
+        file.close()
+        widget.primoWidget.setMinimumWidth(920)
+        widget.primoWidget.setMinimumHeight(570)
+        #prima.firstWidget.mainBody.mainFrame.widget.open_close_side_bar_btn.clicked.connect(self.slideLeftMenu())
+
+
+
 class AmministratoreView(QDialog):
     def __init__(self):
         super(AmministratoreView, self).__init__()
@@ -14,7 +39,7 @@ class AmministratoreView(QDialog):
         file.open(QFile.ReadOnly)
         prima = loader.load(file, self)
         file.close()
-        prima.firstWidget.mainBody.mainFrame.widget.open_close_side_bar_btn.clicked.connect(self.slideLeftMenu())
+        #prima.firstWidget.mainBody.mainFrame.widget.open_close_side_bar_btn.clicked.connect(self.slideLeftMenu())
 
 
     def slideLeftMenu(self):
@@ -134,7 +159,9 @@ class Form(QDialog):
 
 
 app = QApplication(sys.argv)
+"""
 widget = QtWidgets.QStackedWidget()
+<<<<<<< HEAD
 var = True
 if var:
     adminView = AmministratoreView()
@@ -142,6 +169,24 @@ if var:
 else:
     prima = Prima()
     widget.addWidget(prima)
+=======
+var = 3
+if var == 1:
+    primoWidget = AmministratoreView()
+    widget.addWidget(primoWidget)
+elif var == 2:
+    primoWidget = Prima()
+    widget.addWidget(primoWidget)
+elif var == 3:
+    primoWidget = ClienteProprietarioView()
+    widget.addWidget(primoWidget)"""
+
+"""widget.primoWidget.setMinimumWidth(920)
+widget.primoWidget.setMinimumHeight(570)"""
+widget = Finestra()
+
+#widget = AmministratoreView()
+>>>>>>> 1238a42e8da49da60ce56a3708be6b3a68d7b8b2
 widget.show()
 
 
