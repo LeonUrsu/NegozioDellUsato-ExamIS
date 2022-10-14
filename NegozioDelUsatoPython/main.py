@@ -23,5 +23,12 @@ if __name__ == '__main__':
 
     # Timer for backup setup
     #TODO
+#setStyleSheet
+"#homeBtn{\n"
+"	color:#78799c;\n"
+"	background-color:#1a1f39;\n"
+"	padding : 10px 5px;\n"
+"	text-align:left;\n"
+"	border-top-left-radius:25px;\n""}\n"
 
 

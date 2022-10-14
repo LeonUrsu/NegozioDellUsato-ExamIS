@@ -21,19 +21,17 @@ class CentralWindow():
         file.close()
         self.apriUserView(mainPath)
 
+    # Metodo per aprire la finestra
     def apriClienteProprietarioView(self, mainPath):
         cliente = ClienteProprietarioView(mainPath)
         self.finestra.verticalLayout.addWidget(cliente.finestra)
 
+    # Metodo per aprire la finestra
     def apriUserView(self, mainPath):
         user = UserView(mainPath)
         self.finestra.verticalLayout.addWidget(user.finestra)
 
+    # Metodo per aprire la finestra
     def apriAmministratoreView(self, mainPath):
         amministratore = AmministratoreView(mainPath)
         self.finestra.verticalLayout.addWidget(amministratore.finestra)
-
-
-
-
-
