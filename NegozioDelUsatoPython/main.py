@@ -1,10 +1,9 @@
 import pathlib
 import sys
 
-from PySide6 import QtWidgets
 from PySide6.QtWidgets import QApplication
-
 from Database.PathDatabase import PathDatabase
+from MVC.View.CentralWindow import CentralWindow
 
 if __name__ == '__main__':
     # Path setup
@@ -13,12 +12,10 @@ if __name__ == '__main__':
 
     # Window setup
     app = QApplication(sys.argv)
-    widget = QtWidgets.QStackedWidget()
-    userView = UserView()
-    widget.addWidget(userView)
-    widget.setFixedWidth(920)
-    widget.setFixedHeight(570)
-    widget.show()
+    centralWindow = CentralWindow(mainPath)
+    centralWindow.finestra.show()
+
+    # exit app setup
     try:
         sys.exit(app.exec())
     except:

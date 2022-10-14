@@ -333,6 +333,13 @@ QTableWidget{
     </widget>
    </item>
    <item>
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QWidget" name="mainBody" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
