@@ -241,7 +241,6 @@ background-color: #2a2c49;
                <font>
                 <family>Leelawadee UI</family>
                 <pointsize>10</pointsize>
-                <weight>50</weight>
                 <italic>false</italic>
                 <bold>false</bold>
                </font>
@@ -253,7 +252,7 @@ background-color: #2a2c49;
                <string>Prodotti</string>
               </property>
               <property name="icon">
-               <iconset resource="resources.qrc">
+               <iconset>
                 <normaloff>:/assets/#78799c(purple) icons/shopping-cart.svg</normaloff>:/assets/#78799c(purple) icons/shopping-cart.svg</iconset>
               </property>
               <property name="iconSize">
@@ -270,7 +269,6 @@ background-color: #2a2c49;
                <font>
                 <family>Leelawadee UI</family>
                 <pointsize>10</pointsize>
-                <weight>50</weight>
                 <italic>false</italic>
                 <bold>false</bold>
                </font>
@@ -282,7 +280,7 @@ background-color: #2a2c49;
                <string>Info</string>
               </property>
               <property name="icon">
-               <iconset resource="resources.qrc">
+               <iconset>
                 <normaloff>:/assets/#78799c(purple) icons/info.svg</normaloff>:/assets/#78799c(purple) icons/info.svg</iconset>
               </property>
               <property name="iconSize">
@@ -362,7 +360,7 @@ background-color: #2a2c49;
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="resources.qrc">
+            <iconset>
              <normaloff>:/assets/#78799c(purple) icons/menu.svg</normaloff>:/assets/#78799c(purple) icons/menu.svg</iconset>
            </property>
            <property name="iconSize">
@@ -386,7 +384,7 @@ background-color: #2a2c49;
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="resources.qrc">
+            <iconset>
              <normaloff>:/assets/#78799c(purple) icons/user.svg</normaloff>:/assets/#78799c(purple) icons/user.svg</iconset>
            </property>
            <property name="iconSize">
@@ -463,7 +461,7 @@ background-color: #2a2c49;
                    <item>
                     <widget class="QComboBox" name="comboBox_4">
                      <property name="currentText">
-                      <string>Ultimo Giorno</string>
+                      <string/>
                      </property>
                      <property name="iconSize">
                       <size>
@@ -471,7 +469,7 @@ background-color: #2a2c49;
                        <height>24</height>
                       </size>
                      </property>
-                     <property name="placeholderText" stdset="0">
+                     <property name="placeholderText">
                       <string>Filtra Data</string>
                      </property>
                      <item>
@@ -493,14 +491,14 @@ background-color: #2a2c49;
                    </item>
                    <item>
                     <widget class="QComboBox" name="comboBox_5">
-                     <property name="placeholderText" stdset="0">
+                     <property name="placeholderText">
                       <string>Filtra Categoria</string>
                      </property>
                     </widget>
                    </item>
                    <item>
                     <widget class="QComboBox" name="comboBox_6">
-                     <property name="placeholderText" stdset="0">
+                     <property name="placeholderText">
                       <string>Filtra Prezzo</string>
                      </property>
                      <item>
@@ -564,6 +562,12 @@ background-color: #2a2c49;
           </property>
           <item>
            <widget class="QWidget" name="widget" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>200</height>
+             </size>
+            </property>
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <property name="spacing">
               <number>0</number>
@@ -653,7 +657,7 @@ background-color: #2a2c49;
          <string>Login</string>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
+         <iconset>
           <normaloff>:/assets/#78799c(purple) icons/log-in.svg</normaloff>:/assets/#78799c(purple) icons/log-in.svg</iconset>
         </property>
         <property name="iconSize">
@@ -670,7 +674,7 @@ background-color: #2a2c49;
          <string>Quit</string>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
+         <iconset>
           <normaloff>:/assets/#78799c(purple) icons/x-circle.svg</normaloff>:/assets/#78799c(purple) icons/x-circle.svg</iconset>
         </property>
         <property name="iconSize">
