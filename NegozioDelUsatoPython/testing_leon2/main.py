@@ -163,6 +163,19 @@ app = QApplication(sys.argv)
 
 
 """
+<<<<<<< HEAD
+=======
+widget = QtWidgets.QStackedWidget()
+<<<<<<< HEAD
+var = True
+if var:
+    adminView = AmministratoreView()
+    widget.addWidget(adminView)
+else:
+    prima = Prima()
+    widget.addWidget(prima)
+=======
+>>>>>>> c32fa2adec740ce657f5462d2b45356973c991fa
 var = 3
 if var == 1:
     primoWidget = AmministratoreView()
@@ -177,6 +190,12 @@ elif var == 3:
 """widget.primoWidget.setMinimumWidth(920)
 widget.primoWidget.setMinimumHeight(570)"""
 
+<<<<<<< HEAD
+=======
+#widget = AmministratoreView()
+>>>>>>> 1238a42e8da49da60ce56a3708be6b3a68d7b8b2
+widget.show()
+>>>>>>> c32fa2adec740ce657f5462d2b45356973c991fa
 
 
 #widget = QtWidgets.QStackedWidget()
