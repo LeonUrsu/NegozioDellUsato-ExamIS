@@ -3,18 +3,19 @@ import PySide6
 from PySide6 import QtWidgets, QtGui, QtCore
 from PySide6.QtCore import QFile, QPropertyAnimation
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QDialog, QApplication, QTableWidget, QWidget, QCheckBox, QTableWidgetItem
-
+from PySide6.QtWidgets import QDialog, QApplication, QTableWidget, QWidget, QCheckBox, QTableWidgetItem, QVBoxLayout, \
+    QLayout, QHBoxLayout, QGridLayout, QPushButton
 
 
 class Finestra(QWidget):
     def __init__(self):
-        super(Finestra, self).__init__()
+        super().__init__()
         loader = QUiLoader()
         file = QFile("finestra.ui")
         file.open(QFile.ReadOnly)
-        loader.load(file, self)
+        loader.load(file)
         file.close()
+
 
 
 class ClienteProprietarioView(QDialog):
@@ -71,10 +72,10 @@ class Prima(QDialog):
         loader = QUiLoader()
         file = QFile("prima.ui")
         file.open(QFile.ReadOnly)
-        prima = loader.load(file, self)
+        self.prima = loader.load(file, self)
         file.close()
-        prima.gotosecbtn.clicked.connect(self.gotosec)
-        prima.exitbtn.clicked.connect(self.exit)
+        #self.prima.gotosecbtn.clicked.connect(self.gotosec)
+        #self.prima.exitbtn.clicked.connect(self.exit)
 
 
     def gotosec(self):
@@ -92,10 +93,10 @@ class Seconda(QDialog):
         loader = QUiLoader()
         file = QFile("seconda.ui")
         file.open(QFile.ReadOnly)
-        seconda = loader.load(file, self)
+        self.seconda = loader.load(file, self)
         file.close()
-        seconda.gotopribtn.clicked.connect(self.gotoprim)
-        seconda.gotolistbtn.clicked.connect(self.gotolist)
+        self.seconda.gotopribtn.clicked.connect(self.gotoprim)
+        self.seconda.gotolistbtn.clicked.connect(self.gotolist)
 
     def gotoprim(self):
         prima = Prima()
@@ -159,8 +160,9 @@ class Form(QDialog):
 
 
 app = QApplication(sys.argv)
+
+
 """
-widget = QtWidgets.QStackedWidget()
 var = 3
 if var == 1:
     primoWidget = AmministratoreView()
@@ -174,13 +176,37 @@ elif var == 3:
 
 """widget.primoWidget.setMinimumWidth(920)
 widget.primoWidget.setMinimumHeight(570)"""
-widget = Finestra()
 
-#widget = AmministratoreView()
-widget.show()
 
+
+#widget = QtWidgets.QStackedWidget()
+loader = QUiLoader()
+file = QFile("stacked.ui")
+file.open(QFile.ReadOnly)
+rar = loader.load(file)
+file.close()
+
+file = QFile("ClienteProprietarioView.ui")
+file.open(QFile.ReadOnly)
+prima = loader.load(file)
+file.close()
+
+rar.verticalLayout.addWidget(prima)
+
+
+"""for i in reversed(range(rar.verticalLayout.count())):
+    rar.verticalLayout.itemAt(i).widget().setParent(None)
+
+file = QFile("seconda.ui")
+file.open(QFile.ReadOnly)
+seconda = loader.load(file)
+file.close()
+rar.verticalLayout.addWidget(seconda)
+"""
+
+rar.show()
 
 try:
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 except:
     print("exiting")

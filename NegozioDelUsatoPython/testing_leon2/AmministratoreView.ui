@@ -505,7 +505,7 @@ QTableWidget{
          <item>
           <widget class="QStackedWidget" name="finestreSecondarie">
            <property name="currentIndex">
-            <number>3</number>
+            <number>1</number>
            </property>
            <widget class="QWidget" name="home">
             <layout class="QVBoxLayout" name="verticalLayout_8">

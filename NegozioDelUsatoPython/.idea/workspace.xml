@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a235ff5-1e39-4f94-aa5a-4aae532ee26f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/testing_leon2/ClienteProprietarioView.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MVC/View/AmministratoreView.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MVC/View/ClienteProprietarioView.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MVC/View/View.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/View/ClienteProprietarioView.ui" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/ClienteProprietarioView.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing_leon2/AmministratoreView.ui" beforeDir="false" afterPath="$PROJECT_DIR$/testing_leon2/AmministratoreView.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing_leon2/ClienteProprietarioView.ui" beforeDir="false" afterPath="$PROJECT_DIR$/testing_leon2/ClienteProprietarioView.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing_leon2/finestra.ui" beforeDir="false" afterPath="$PROJECT_DIR$/testing_leon2/finestra.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testing_leon2/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/testing_leon2/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing_leon2/prima.ui" beforeDir="false" afterPath="$PROJECT_DIR$/testing_leon2/prima.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing_leon2/seconda.ui" beforeDir="false" afterPath="$PROJECT_DIR$/testing_leon2/seconda.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +152,10 @@
       <workItem from="1665492748435" duration="1619000" />
       <workItem from="1665568610429" duration="4008000" />
       <workItem from="1665578320294" duration="553000" />
-      <workItem from="1665581164505" duration="448000" />
+      <workItem from="1665581164505" duration="1033000" />
+      <workItem from="1665654328398" duration="2777000" />
+      <workItem from="1665658706863" duration="1798000" />
+      <workItem from="1665742615524" duration="4740000" />
     </task>
     <servers />
   </component>
@@ -175,7 +185,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/NegozioDelUsatoPython$main.coverage" NAME="main Coverage Results" MODIFIED="1665581369684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testing_leon2" />
+    <SUITE FILE_PATH="coverage/NegozioDelUsatoPython$main.coverage" NAME="main Coverage Results" MODIFIED="1665751012863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testing_leon2" />
     <SUITE FILE_PATH="coverage/resources_py$main.coverage" NAME="main Coverage Results" MODIFIED="1665421267247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testing_leon2" />
   </component>
 </project>
