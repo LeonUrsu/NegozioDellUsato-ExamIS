@@ -14,6 +14,6 @@ class UserView():
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         file.close()
-        #self.finestra.homeBtn.clicked.connect(lambda: self.homeBtnClicked(self.finestra))
+        self.finestra.homeBtn.clicked.connect(lambda: self.homeBtnClicked(self.finestra))
         #self.finestra.iMieiDatiBtn.clicked.connect(lambda: self.iMieiDatiBtnClicked(self.finestra))
         #self.finestra.iMieiProdottiBtn.clicked.connect(lambda: self.iMieiProdottiBtnClicked(self.finestra))

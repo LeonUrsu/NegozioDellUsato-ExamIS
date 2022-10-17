@@ -7,6 +7,7 @@ from PySide6.QtWidgets import QApplication
 
 from MVC.View.AmministratoreView import AmministratoreView
 from MVC.View.ClienteProprietarioView import ClienteProprietarioView
+from MVC.View.LoginView import LoginView
 from MVC.View.UserView import UserView
 
 
@@ -19,7 +20,7 @@ class CentralWindow():
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         file.close()
-        self.apriUserView(mainPath)
+        self.apriLoginView(mainPath)
 
     # Metodo per aprire la finestra
     def apriClienteProprietarioView(self, mainPath):
@@ -35,3 +36,7 @@ class CentralWindow():
     def apriAmministratoreView(self, mainPath):
         amministratore = AmministratoreView(mainPath)
         self.finestra.verticalLayout.addWidget(amministratore.finestra)
+
+    def apriLoginView(self, mainPath):
+        login = LoginView(mainPath)
+        self.finestra.verticalLayout.addWidget(login.finestra)
