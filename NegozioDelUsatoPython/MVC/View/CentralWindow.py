@@ -1,7 +1,5 @@
 import os
 import pathlib
-import sys
-
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
 from MVC.View.AmministratoreView import AmministratoreView
@@ -41,13 +39,15 @@ class CentralWindow():
         self.removeItem(self.finestra.verticalLayout)
         amministratore = AmministratoreView(mainPath)
         self.finestra.verticalLayout.addWidget(amministratore.finestra)
-
+        come restituire il risultato del metodo controlla email e password dalla classe Login???
     # Metodo che apre la finestra del login
     def apriLoginView(self, mainPath):
         self.removeItem(self.finestra.verticalLayout)
         login = LoginView(mainPath)
         self.finestra.verticalLayout.addWidget(login.finestra)
         login.finestra.indietroBtn.clicked.connect(lambda: self.apriUserView(mainPath))
+        login.finestra.confermaBtn.clicked.connect(lambda: login.confermaBtn(login.finestra))
+
 
     # Metodo che tenta di rimuovere la finestra precedentemente aggiunta al layout
     def removeItem(self, layout):

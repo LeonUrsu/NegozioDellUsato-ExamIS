@@ -24,3 +24,6 @@ class LoginView(QWidget):
         password = finestra.passwordEd.text()
         risultato = Controller().userLoginController(email, password)
         print(risultato)
+
+    def ciao(self):
+        print("ciaoooo")

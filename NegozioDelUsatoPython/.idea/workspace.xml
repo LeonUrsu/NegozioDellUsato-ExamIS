@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1a235ff5-1e39-4f94-aa5a-4aae532ee26f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/Model/SistemService/Logging.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/SistemService/Logging.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/View/CentralWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/CentralWindow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/View/LoginView.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/LoginView.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/View/LoginView.ui" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/LoginView.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/View/UserView.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/UserView.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/View/UserView.ui" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/UserView.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +151,7 @@
       <workItem from="1665742615524" duration="14673000" />
       <workItem from="1665765179016" duration="3778000" />
       <workItem from="1666021353688" duration="5242000" />
-      <workItem from="1666096161980" duration="5448000" />
+      <workItem from="1666096161980" duration="6765000" />
     </task>
     <servers />
   </component>
@@ -186,7 +181,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/NegozioDelUsatoPython$main.coverage" NAME="main Coverage Results" MODIFIED="1666101497424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/NegozioDelUsatoPython$main.coverage" NAME="main Coverage Results" MODIFIED="1666102782798" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/NegozioDelUsatoPython$CentralWindow.coverage" NAME="CentralWindow Coverage Results" MODIFIED="1665758320784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MVC/View" />
     <SUITE FILE_PATH="coverage/NegozioDelUsatoPython$ClienteProprietarioView.coverage" NAME="ClienteProprietarioView Coverage Results" MODIFIED="1665755668105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MVC/View" />
     <SUITE FILE_PATH="coverage/resources_py$main.coverage" NAME="main Coverage Results" MODIFIED="1665421267247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testing_leon2" />
