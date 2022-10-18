@@ -110,8 +110,6 @@ class Logging:
     # metodo per loggare l'amministratore
     def loginAdmin(self, password):
         fileName = PathDatabase().amministratoreTxt
-        #adminDict = File().deserializza(fileName)
-        #adminDict = File().leggi(fileName).__dict__
         str = File().leggi(fileName)
         adminDict = json.loads(str)
         if adminDict["adminPassword"] == password:

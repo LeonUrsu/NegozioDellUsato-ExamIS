@@ -16,7 +16,7 @@ class LoginView(QWidget):
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         file.close()
-        self.finestra.confermaBtn.clicked.connect(lambda: self.confermaBtn(self.finestra))
+
 
 
     def confermaBtn(self, finestra):
