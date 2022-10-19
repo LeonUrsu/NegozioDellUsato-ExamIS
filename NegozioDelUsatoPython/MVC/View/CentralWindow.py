@@ -39,7 +39,7 @@ class CentralWindow():
         self.removeItem(self.finestra.verticalLayout)
         amministratore = AmministratoreView(mainPath)
         self.finestra.verticalLayout.addWidget(amministratore.finestra)
-        come restituire il risultato del metodo controlla email e password dalla classe Login???
+        #come restituire il risultato del metodo controlla email e password dalla classe Login???
     # Metodo che apre la finestra del login
     def apriLoginView(self, mainPath):
         self.removeItem(self.finestra.verticalLayout)
