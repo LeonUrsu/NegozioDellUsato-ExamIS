@@ -1,18 +1,21 @@
 import pathlib
 import sys
-
+import sys
+from PySide6.QtWidgets import QApplication, QPushButton
 from PySide6.QtWidgets import QApplication
 from Database.PathDatabase import PathDatabase
 from MVC.View.CentralWindow import CentralWindow
 
 if __name__ == '__main__':
-    # Path setup
+
+    #Path setup
     mainPath = pathlib.Path().resolve().__str__()
     PathDatabase().setup(mainPath)
 
     # Window setup
     app = QApplication(sys.argv)
-    centralWindow = CentralWindow(mainPath)
+    centralWindow = CentralWindow()
+    centralWindow.apriCentralWindowView(pathlib.Path().resolve().__str__())
     centralWindow.finestra.show()
 
     # exit app setup

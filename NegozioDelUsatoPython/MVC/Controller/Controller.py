@@ -1,6 +1,8 @@
+from MVC.Model.Attività.User import User
 
 
+class Controller(object):
 
-class Cotroller(object):
-    #TODO FARE IL CONTROLLER èER IL PROGRAMMA
 
+    def userLoginController(self, email, password):
+        return User().login(email, password)

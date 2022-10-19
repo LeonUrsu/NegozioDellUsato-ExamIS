@@ -1,3 +1,4 @@
+import json
 from datetime import datetime, timedelta
 
 from Database.PathDatabase import PathDatabase
@@ -109,8 +110,9 @@ class Logging:
     # metodo per loggare l'amministratore
     def loginAdmin(self, password):
         fileName = PathDatabase().amministratoreTxt
-        admin = File().deserializza(fileName)
-        if admin.password == password:
+        str = File().leggi(fileName)
+        adminDict = json.loads(str)
+        if adminDict["adminPassword"] == password:
             return True
         return False
 

@@ -34,8 +34,7 @@ class User(object):
         return filtered
 
     def login(self, email, password):
-        Logging().login(email, password)
-        return True
+        return Logging().login(email, password)
 
     # MEtodo che recupera la lista dei prodotti in vendita
     def visualizzaProdotti(self):
