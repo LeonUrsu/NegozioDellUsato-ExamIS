@@ -113,6 +113,7 @@ class Logging:
         str = File().leggi(fileName)
         adminDict = json.loads(str)
         if adminDict["adminPassword"] == password:
+            Logging.accountLoggato = "admin"
             return True
         return False
 

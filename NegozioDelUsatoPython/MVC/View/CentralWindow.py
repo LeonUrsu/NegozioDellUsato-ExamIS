@@ -2,6 +2,10 @@ import os
 import pathlib
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
+
+from MVC.Model.Attività.Amministratore import Amministratore
+from MVC.Model.Attività.ClienteProprietario import ClienteProprietario
+from MVC.Model.SistemService.Logging import Logging
 from MVC.View.AmministratoreView import AmministratoreView
 from MVC.View.ClienteProprietarioView import ClienteProprietarioView
 from MVC.View.LoginView import LoginView
@@ -12,6 +16,7 @@ class CentralWindow():
 
     def __init__(self):
         pass
+
     def apriCentralWindowView(self, mainPath):
         loader = QUiLoader()
         path = os.path.join(mainPath, "MVC", "View", "CentralWindow.ui")
@@ -26,6 +31,7 @@ class CentralWindow():
         self.removeItem(self.finestra.verticalLayout)
         cliente = ClienteProprietarioView(mainPath)
         self.finestra.verticalLayout.addWidget(cliente.finestra)
+        cliente.finestra.quitBtn.clicked.connect(lambda: self.apriUserView(mainPath))
 
     # Metodo per aprire la finestra dell'user
     def apriUserView(self, mainPath):
@@ -39,14 +45,16 @@ class CentralWindow():
         self.removeItem(self.finestra.verticalLayout)
         amministratore = AmministratoreView(mainPath)
         self.finestra.verticalLayout.addWidget(amministratore.finestra)
-        come restituire il risultato del metodo controlla email e password dalla classe Login???
+        amministratore.finestra.quitBtn.clicked.connect(lambda: self.apriUserView(mainPath))
+
     # Metodo che apre la finestra del login
     def apriLoginView(self, mainPath):
         self.removeItem(self.finestra.verticalLayout)
         login = LoginView(mainPath)
         self.finestra.verticalLayout.addWidget(login.finestra)
         login.finestra.indietroBtn.clicked.connect(lambda: self.apriUserView(mainPath))
-        login.finestra.confermaBtn.clicked.connect(lambda: login.confermaBtn(login.finestra))
+        login.finestra.confermaBtn.clicked.connect(lambda: self.loginViewConfermaView(mainPath, login))
+
 
 
     # Metodo che tenta di rimuovere la finestra precedentemente aggiunta al layout
@@ -56,3 +64,13 @@ class CentralWindow():
             self.finestra.verticalLayout.removeItem(self.finestra.verticalLayout.itemAt(0))
         except:
             pass
+
+    def loginViewConfermaView(self, mainPath, login):
+        login.confermaBtn(login.finestra)
+        if isinstance(Logging.accountLoggato, ClienteProprietario):
+            self.apriClienteProprietarioView(mainPath)
+        elif Logging.accountLoggato == "admin":
+            self.apriAmministratoreView(mainPath)
+        elif Logging.accountLoggato == None:
+            self.apriLoginView(mainPath)
+

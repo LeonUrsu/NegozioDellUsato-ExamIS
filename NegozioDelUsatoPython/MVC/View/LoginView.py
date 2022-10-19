@@ -17,13 +17,10 @@ class LoginView(QWidget):
         self.finestra = loader.load(file)
         file.close()
 
-
-
     def confermaBtn(self, finestra):
         email = finestra.emailEd.text()
         password = finestra.passwordEd.text()
         risultato = Controller().userLoginController(email, password)
-        print(risultato)
 
     def ciao(self):
         print("ciaoooo")
