@@ -77,7 +77,8 @@ QLabel{
 	background-color:#1a1f39;
 	padding : 10px 5px;
 	text-align:left;
-	border-top-left-radius:25px;
+	border-top-left-radius:15px;
+	border-bottom-left-radius:15px;
 }
 
 QPushButton{

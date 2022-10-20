@@ -43,10 +43,10 @@ class ClienteProprietarioView():
 
     def pushedStyleSheet(self):
         #style = 'QPushButton {background-color: #1a1f39; color: #78799c;}'
-        style = "QPushButton {color: #78799c; background-color: #1a1f39; padding:10px 5px; text-align: left; border-top-left-radius: 25px;}"
+        style = "QPushButton {color: #78799c; background-color: #1a1f39; padding:10px 5px; text-align: left; border-top-left-radius: 15px; border-bottom-left-radius: 15px}"
         return style
 
     def unPushedStyleSheet(self):
         #style = 'QPushButton {background-color: #2a2c49; color: #78799c;}'
-        style = "QPushButton {color: #78799c; background-color: #2a2c49; padding: 10px 5px; text-align: left; border-top-left-radius: 25px;}"
+        style = "QPushButton {color: #78799c; background-color: #2a2c49; padding: 10px 5px; text-align: left; border-top-left-radius: 25px; border-bottom-left-radius: 25px;}"
         return style
