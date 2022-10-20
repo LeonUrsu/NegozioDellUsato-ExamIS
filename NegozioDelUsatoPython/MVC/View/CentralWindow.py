@@ -10,7 +10,7 @@ from MVC.View.AmministratoreView import AmministratoreView
 from MVC.View.ClienteProprietarioView import ClienteProprietarioView
 from MVC.View.LoginView import LoginView
 from MVC.View.UserView import UserView
-
+from MVC.View.resources import *
 
 class CentralWindow():
 
