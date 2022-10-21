@@ -1,7 +1,11 @@
 import os
 import pathlib
-from PySide6.QtCore import QFile
+
+import PySide6
+from PySide6 import QtGui
+from PySide6.QtCore import QFile, QPropertyAnimation
 from PySide6.QtUiTools import QUiLoader
+from PySide6.QtWidgets import QWidget
 
 from MVC.Model.Attività.Amministratore import Amministratore
 from MVC.Model.Attività.ClienteProprietario import ClienteProprietario
@@ -39,6 +43,7 @@ class CentralWindow():
         user = UserView(mainPath)
         self.finestra.verticalLayout.addWidget(user.finestra)
         user.finestra.loginBtn.clicked.connect(lambda: self.apriLoginView(mainPath))
+        user.finestra.openBtn.clicked.connect(lambda: self.slideLeftMenu(user))
 
     # Metodo per aprire la finestra dell'admin
     def apriAmministratoreView(self, mainPath):
@@ -75,4 +80,27 @@ class CentralWindow():
             self.apriAmministratoreView(mainPath)
         elif Logging.accountLoggato == None:
             self.apriLoginView(mainPath)
+
+    def slideLeftMenu(self, login):
+        # Get current left menu width
+        width = login.finestra.rightMenu.width()
+
+        # If minimized
+        if width == 0:
+            # Expand menu
+            newWidth = 200
+            login.finestra.openBtn.setIcon(QtGui.QIcon(u":/icons/icons/chevron-left.svg"))
+        # If maximized
+        else:
+            # Restore menu
+            newWidth = 0
+            login.finestra.openBtn.setIcon(QtGui.QIcon(u":/icons/icons/align-left.svg"))
+
+        # Animate the transition
+        self.animation = QPropertyAnimation(login.finestra.rightMenu, b"maximumWidth")#Animate minimumWidht
+        self.animation.setDuration(250)
+        self.animation.setStartValue(width)#Start value is the current menu width
+        self.animation.setEndValue(newWidth)#end value is the new menu width
+        self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+        self.animation.start()
 

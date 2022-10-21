@@ -214,7 +214,7 @@ border-radius: 10px;
              </widget>
             </item>
             <item alignment="Qt::AlignRight">
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="openBtn">
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -440,8 +440,14 @@ border-radius: 10px;
     <widget class="QWidget" name="rightMenu" native="true">
      <property name="minimumSize">
       <size>
-       <width>100</width>
+       <width>0</width>
        <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>0</width>
+       <height>16777215</height>
       </size>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
