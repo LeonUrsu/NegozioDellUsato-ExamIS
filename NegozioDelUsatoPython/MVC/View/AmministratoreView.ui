@@ -117,7 +117,7 @@ QTableWidget{
      <number>0</number>
     </property>
     <item>
-     <widget class="QCustomSlideMenu" name="leftMenu" native="true">
+     <widget class="QWidget" name="leftMenu" native="true">
       <property name="minimumSize">
        <size>
         <width>230</width>
@@ -250,7 +250,7 @@ QTableWidget{
                 <string>Home</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/home.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/home.svg</iconset>
                </property>
                <property name="iconSize">
@@ -278,7 +278,7 @@ QTableWidget{
                 <string>Statistiche</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/trending-up.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/trending-up.svg</iconset>
                </property>
                <property name="iconSize">
@@ -306,7 +306,7 @@ QTableWidget{
                 <string>Prodotti</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/shopping-cart.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/shopping-cart.svg</iconset>
                </property>
                <property name="iconSize">
@@ -326,7 +326,7 @@ QTableWidget{
                 <string>Accounts</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/users.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/users.svg</iconset>
                </property>
               </widget>
@@ -335,6 +335,10 @@ QTableWidget{
               <widget class="QPushButton" name="backupBtn">
                <property name="text">
                 <string>Backup dei Dati</string>
+               </property>
+               <property name="icon">
+                <iconset resource="resources.qrc">
+                 <normaloff>:/purpleIcons/assets/#78799c(purple) icons/upload.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/upload.svg</iconset>
                </property>
               </widget>
              </item>
@@ -355,7 +359,7 @@ QTableWidget{
                 <string>Info</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/info.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/info.svg</iconset>
                </property>
                <property name="iconSize">
@@ -438,7 +442,7 @@ QTableWidget{
                 <string/>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/menu.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/menu.svg</iconset>
                </property>
                <property name="iconSize">
@@ -483,7 +487,7 @@ QTableWidget{
               <number>0</number>
              </property>
              <item>
-              <widget class="QPushButton" name="accountButton">
+              <widget class="QPushButton" name="openRightMenu">
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
@@ -491,7 +495,7 @@ QTableWidget{
                 <string/>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resources.qrc">
                  <normaloff>:/purpleIcons/assets/#78799c(purple) icons/user.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/user.svg</iconset>
                </property>
                <property name="iconSize">
@@ -532,7 +536,7 @@ QTableWidget{
           <item>
            <widget class="QStackedWidget" name="finestreSecondarie">
             <property name="currentIndex">
-             <number>2</number>
+             <number>4</number>
             </property>
             <widget class="QWidget" name="home">
              <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -714,7 +718,7 @@ QTableWidget{
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset>
+                       <iconset resource="resources.qrc">
                         <normaloff>:/purpleIcons/assets/#78799c(purple) icons/search.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/search.svg</iconset>
                       </property>
                      </widget>
@@ -819,7 +823,7 @@ QTableWidget{
                              <string>Filtra Per Data</string>
                             </property>
                             <property name="icon">
-                             <iconset>
+                             <iconset resource="resources.qrc">
                               <normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</iconset>
                             </property>
                            </widget>
@@ -833,7 +837,7 @@ QTableWidget{
                              <string>Filtra Per Nome</string>
                             </property>
                             <property name="icon">
-                             <iconset>
+                             <iconset resource="resources.qrc">
                               <normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</iconset>
                             </property>
                            </widget>
@@ -847,7 +851,7 @@ QTableWidget{
                              <string>Filtra Per Prezzo</string>
                             </property>
                             <property name="icon">
-                             <iconset>
+                             <iconset resource="resources.qrc">
                               <normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/filter.svg</iconset>
                             </property>
                            </widget>
@@ -905,7 +909,7 @@ QTableWidget{
                        <string>Aggiungi</string>
                       </property>
                       <property name="icon">
-                       <iconset>
+                       <iconset resource="resources.qrc">
                         <normaloff>:/purpleIcons/assets/#78799c(purple) icons/plus.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/plus.svg</iconset>
                       </property>
                      </widget>
@@ -919,7 +923,7 @@ QTableWidget{
                        <string>Rimuovi</string>
                       </property>
                       <property name="icon">
-                       <iconset>
+                       <iconset resource="resources.qrc">
                         <normaloff>:/purpleIcons/assets/#78799c(purple) icons/minus.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/minus.svg</iconset>
                       </property>
                      </widget>
@@ -1048,7 +1052,7 @@ QTableWidget{
                     <string>Salva</string>
                    </property>
                    <property name="icon">
-                    <iconset>
+                    <iconset resource="resources.qrc">
                      <normaloff>:/purpleIcons/assets/#78799c(purple) icons/save.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/save.svg</iconset>
                    </property>
                   </widget>
@@ -1067,7 +1071,7 @@ QTableWidget{
      </widget>
     </item>
     <item>
-     <widget class="QCustomSlideMenu" name="profileCont" native="true">
+     <widget class="QWidget" name="rightMenu" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -1076,8 +1080,14 @@ QTableWidget{
       </property>
       <property name="minimumSize">
        <size>
-        <width>115</width>
+        <width>0</width>
         <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>0</width>
+        <height>16777215</height>
        </size>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1146,7 +1156,7 @@ QTableWidget{
              <string>Quit</string>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="resources.qrc">
               <normaloff>:/purpleIcons/assets/#78799c(purple) icons/x-octagon.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/x-octagon.svg</iconset>
             </property>
             <property name="iconSize">
@@ -1166,14 +1176,6 @@ QTableWidget{
    </layout>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QCustomSlideMenu</class>
-   <extends>QWidget</extends>
-   <header location="global">Custom_Widgets.Widgets.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="resources.qrc"/>
   <include location="resources.qrc"/>

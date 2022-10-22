@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1093</width>
-    <height>713</height>
+    <width>814</width>
+    <height>521</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -98,7 +98,7 @@ background-color: #2a2c49;
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="QCustomSlideMenu" name="leftMenu" native="true">
+    <widget class="QWidget" name="leftMenu" native="true">
      <property name="minimumSize">
       <size>
        <width>230</width>
@@ -445,7 +445,7 @@ background-color: #2a2c49;
              <number>0</number>
             </property>
             <item>
-             <widget class="QPushButton" name="accountButton">
+             <widget class="QPushButton" name="openRightMenu">
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -1063,7 +1063,7 @@ background-color: #2a2c49;
     </widget>
    </item>
    <item>
-    <widget class="QCustomSlideMenu" name="rightMenu" native="true">
+    <widget class="QWidget" name="rightMenu" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -1072,8 +1072,14 @@ background-color: #2a2c49;
      </property>
      <property name="minimumSize">
       <size>
-       <width>115</width>
+       <width>0</width>
        <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>0</width>
+       <height>16777215</height>
       </size>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1161,14 +1167,6 @@ background-color: #2a2c49;
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QCustomSlideMenu</class>
-   <extends>QWidget</extends>
-   <header location="global">Custom_Widgets.Widgets.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

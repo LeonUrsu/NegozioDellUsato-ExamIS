@@ -14,15 +14,11 @@ class AmministratoreView(QWidget):
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         file.close()
-        self.finestra.homeBtn.clicked.connect(lambda: self.homeBtnClicked(self.finestra))
-        self.finestra.statisticheBtn.clicked.connect(lambda: self.statisticheBtnClicked(self.finestra))
-        self.finestra.prodottiBtn.clicked.connect(lambda: self.prodottiBtnClicked(self.finestra))
-        self.finestra.accountsBtn.clicked.connect(lambda: self.accountsBtnClicked(self.finestra))
-        self.finestra.backupBtn.clicked.connect(lambda: self.backupBtnClicked(self.finestra))
+
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def homeBtnClicked(self, finestra):
-        finestra.finestreSecondarie.setCurrentIndex(1)
+        finestra.finestreSecondarie.setCurrentIndex(3)
         finestra.homeBtn.setStyleSheet(self.pushedStyleSheet())
         finestra.statisticheBtn.setStyleSheet(self.unPushedStyleSheet())
         finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
@@ -31,7 +27,7 @@ class AmministratoreView(QWidget):
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def statisticheBtnClicked(self, finestra):
-        finestra.finestreSecondarie.setCurrentIndex(1)
+        #finestra.finestreSecondarie.setCurrentIndex(5)
         finestra.homeBtn.setStyleSheet(self.unPushedStyleSheet())
         finestra.statisticheBtn.setStyleSheet(self.pushedStyleSheet())
         finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
@@ -40,7 +36,7 @@ class AmministratoreView(QWidget):
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def prodottiBtnClicked(self, finestra):
-        finestra.finestreSecondarie.setCurrentIndex(1)
+        #finestra.finestreSecondarie.setCurrentIndex(4)
         finestra.homeBtn.setStyleSheet(self.unPushedStyleSheet())
         finestra.statisticheBtn.setStyleSheet(self.unPushedStyleSheet())
         finestra.prodottiBtn.setStyleSheet(self.pushedStyleSheet())
@@ -58,7 +54,7 @@ class AmministratoreView(QWidget):
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def backupBtnClicked(self, finestra):
-        finestra.finestreSecondarie.setCurrentIndex(1)
+        #finestra.finestreSecondarie.setCurrentIndex(5)
         finestra.homeBtn.setStyleSheet(self.unPushedStyleSheet())
         finestra.statisticheBtn.setStyleSheet(self.unPushedStyleSheet())
         finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
