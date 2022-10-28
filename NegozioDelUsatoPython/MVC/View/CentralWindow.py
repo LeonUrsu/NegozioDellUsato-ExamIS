@@ -28,7 +28,6 @@ class CentralWindow():
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         file.close()
-        #self.apriUserView(pathlib.Path().resolve().__str__())
         self.apriAmministratoreView(pathlib.Path().resolve().__str__())
 
     # Metodo per aprire la finestra dell'cliente proprietario
@@ -44,38 +43,47 @@ class CentralWindow():
         user = UserView(mainPath)
         self.finestra.verticalLayout.addWidget(user.finestra)
         user.finestra.loginBtn.clicked.connect(lambda: self.apriLoginView(mainPath))
-        user.finestra.openRightMenu.clicked.connect(lambda: self.slideLeftMenu(user))
+        user.finestra.openRightMenu.clicked.connect(lambda: self.slideRightMenu(user))
 
     # Metodo per aprire la finestra dell'admin
     def apriAmministratoreView(self, mainPath):
-        self.removeItem(self.finestra.verticalLayout)
         amministratore = AmministratoreView(mainPath)
-        self.finestra.verticalLayout.addWidget(amministratore.finestra)
+        self.removeAndAdd(amministratore)
         amministratore.finestra.quitBtn.clicked.connect(lambda: self.apriUserView(mainPath))
-        amministratore.finestra.openRightMenu.clicked.connect(lambda: self.slideLeftMenu(amministratore))
+        amministratore.finestra.openRightMenu.clicked.connect(lambda: self.slideRightMenu(amministratore))
+        amministratore.finestra.openLeftMenu.clicked.connect(lambda: self.slideLeftMenu(amministratore))
         #come restituire il risultato del metodo controlla email e password dalla classe Login???
-        amministratore.finestra.homeBtn.clicked.connect(lambda: amministratore.homeBtnClicked(amministratore.finestra))
-        amministratore.finestra.statisticheBtn.clicked.connect(lambda: amministratore.statisticheBtnClicked(amministratore.finestra))
-        amministratore.finestra.prodottiBtn.clicked.connect(lambda: amministratore.prodottiBtnClicked(amministratore.finestra))
-        amministratore.finestra.accountsBtn.clicked.connect(lambda: amministratore.accountsBtnClicked(amministratore.finestra))
-        amministratore.finestra.backupBtn.clicked.connect(lambda: amministratore.backupBtnClicked(amministratore.finestra))
+        amministratore.finestra.homeBtn.clicked.connect(lambda: amministratore.homeBtnClicked(mainPath, amministratore))
+        amministratore.finestra.statisticheBtn.clicked.connect(lambda: amministratore.statisticheBtnClicked(mainPath, amministratore))
+        amministratore.finestra.prodottiBtn.clicked.connect(lambda: amministratore.prodottiBtnClicked(mainPath, amministratore))
+        amministratore.finestra.accountsBtn.clicked.connect(lambda: amministratore.accountsBtnClicked(mainPath, amministratore))
+        amministratore.finestra.backupBtn.clicked.connect(lambda: amministratore.backupBtnClicked(mainPath, amministratore))
 
     # Metodo che apre la finestra del login
     def apriLoginView(self, mainPath):
         self.removeItem(self.finestra.verticalLayout)
         login = LoginView(mainPath)
-        self.finestra.verticalLayout.addWidget(login.finestra)
+        self.finestra.verticalLayout_toPaste.addWidget(login.finestra)
         login.finestra.indietroBtn.clicked.connect(lambda: self.apriUserView(mainPath))
         login.finestra.confermaBtn.clicked.connect(lambda: self.loginViewConfermaView(mainPath, login))
 
 
 
+    def removeAndAdd(self, item):
+        for i in range(self.finestra.verticalLayout.count()): self.finestra.verticalLayout.itemAt(i).widget().deleteLater()
+        self.finestra.verticalLayout.addWidget(item.finestra)
+
+
     # Metodo che tenta di rimuovere la finestra precedentemente aggiunta al layout
     def removeItem(self, layout):
-        if layout.itemAt(0) == None: return
+        if layout.itemAt(0) == None:
+            print("vuoto")
+            return
         try:
-            self.finestra.verticalLayout.removeItem(self.finestra.verticalLayout.itemAt(0))
+            layout.removeItem(self.finestra.verticalLayout.itemAt(0))
+            print("eliminato")
         except:
+            print("fallito")
             pass
 
     def loginViewConfermaView(self, mainPath, login):
@@ -87,7 +95,7 @@ class CentralWindow():
         elif Logging.accountLoggato == None:
             self.apriLoginView(mainPath)
 
-    def slideLeftMenu(self, login):
+    def slideRightMenu(self, login):
         # Get current left menu width
         width = login.finestra.rightMenu.width()
 
@@ -110,3 +118,26 @@ class CentralWindow():
         self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
         self.animation.start()
 
+
+    def slideLeftMenu(self, login):
+        # Get current left menu width
+        width = login.finestra.leftMenu.width()
+
+        # If minimized
+        if width == 0:
+            # Expand menu
+            newWidth = 200
+            login.finestra.openLeftMenu.setIcon(QtGui.QIcon(u":/icons/icons/chevron-left.svg"))
+        # If maximized
+        else:
+            # Restore menu
+            newWidth = 0
+            login.finestra.openLeftMenu.setIcon(QtGui.QIcon(u":/icons/icons/align-left.svg"))
+
+        # Animate the transition
+        self.animation = QPropertyAnimation(login.finestra.leftMenu, b"maximumWidth")  # Animate minimumWidht
+        self.animation.setDuration(250)
+        self.animation.setStartValue(width)  # Start value is the current menu width
+        self.animation.setEndValue(newWidth)  # end value is the new menu width
+        self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+        self.animation.start()

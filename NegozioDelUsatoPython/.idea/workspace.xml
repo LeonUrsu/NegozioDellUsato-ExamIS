@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="6234e9bb-af3a-4797-b186-6bb91a1ce04c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AmministratoreView.py" beforeDir="false" afterPath="$PROJECT_DIR$/AmministratoreView.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVC/Model/SistemService/Filtri.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/Model/SistemService/Filtri.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/View/AmministratoreView.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/AmministratoreView.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/View/AmministratoreView.ui" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/AmministratoreView.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/View/CentralWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/CentralWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/View/ClienteProprietarioView.ui" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/ClienteProprietarioView.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/View/UserView.ui" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/UserView.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +159,10 @@
       <workItem from="1666249171473" duration="1903000" />
       <workItem from="1666370666970" duration="1637000" />
       <workItem from="1666456279177" duration="374000" />
-      <workItem from="1666457067198" duration="2877000" />
+      <workItem from="1666457067198" duration="3472000" />
+      <workItem from="1666522805925" duration="12193000" />
+      <workItem from="1666792830901" duration="1341000" />
+      <workItem from="1666947244683" duration="6686000" />
     </task>
     <servers />
   </component>
@@ -189,6 +192,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/NegozioDelUsatoPython$main.coverage" NAME="main Coverage Results" MODIFIED="1666459368246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/NegozioDelUsatoPython$main.coverage" NAME="main Coverage Results" MODIFIED="1666963459912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/NegozioDelUsatoPython$AmministratoreView.coverage" NAME="AmministratoreView Coverage Results" MODIFIED="1666959509854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
