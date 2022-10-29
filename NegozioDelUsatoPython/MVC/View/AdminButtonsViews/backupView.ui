@@ -22,6 +22,9 @@
   <property name="styleSheet">
    <string notr="true">#Prodotti{
 	background-color:#1a1f39;
+}
+#frame{
+	background-color:#1a0f39;
 }</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">

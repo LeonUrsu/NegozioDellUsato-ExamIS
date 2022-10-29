@@ -95,6 +95,7 @@ class CentralWindow():
         elif Logging.accountLoggato == None:
             self.apriLoginView(mainPath)
 
+    # Metodo per animare lo scorrimento del menu
     def slideRightMenu(self, login):
         # Get current left menu width
         width = login.finestra.rightMenu.width()
@@ -118,7 +119,7 @@ class CentralWindow():
         self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
         self.animation.start()
 
-
+    # Metodo per animare lo scorrimento del menu
     def slideLeftMenu(self, login):
         # Get current left menu width
         width = login.finestra.leftMenu.width()

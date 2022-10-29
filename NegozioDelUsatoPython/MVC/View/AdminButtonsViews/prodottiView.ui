@@ -303,7 +303,7 @@
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <item alignment="Qt::AlignHCenter">
-          <widget class="QPushButton" name="aggiungiBtn">
+          <widget class="QPushButton" name="aggiungiProdottoBtn">
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>

@@ -33,22 +33,7 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_11">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QLineEdit" name="nomeLe">
         <property name="font">
@@ -117,13 +102,34 @@
         </property>
        </widget>
       </item>
-      <item alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="saveBtn">
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
+      <item>
+       <widget class="QFrame" name="frame">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>60</height>
+         </size>
         </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QPushButton" name="indietroBtn">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
 	color:#78799c;
 	background-color:#1a1f39;
 	border-radius: 15px;
@@ -134,14 +140,50 @@
 	color:#78799c;
 	font: 10pt &quot;Leelawadee UI&quot;;
 }</string>
-        </property>
-        <property name="text">
-         <string>Salva</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../resources.qrc">
-          <normaloff>:/purpleIcons/assets/#78799c(purple) icons/save.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/save.svg</iconset>
-        </property>
+           </property>
+           <property name="text">
+            <string>Indietro</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../resources.qrc">
+             <normaloff>:/purpleIcons/assets/#78799c(purple) icons/rewind.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/rewind.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="saveBtn">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+	color:#78799c;
+	background-color:#1a1f39;
+	border-radius: 15px;
+	padding : 10px 5px;
+	text-align:left;
+	padding : 10px 5px;
+	text-align:left;
+	color:#78799c;
+	font: 10pt &quot;Leelawadee UI&quot;;
+}</string>
+           </property>
+           <property name="text">
+            <string>Salva</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../resources.qrc">
+             <normaloff>:/purpleIcons/assets/#78799c(purple) icons/save.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/save.svg</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>

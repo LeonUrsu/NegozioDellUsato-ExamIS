@@ -47,6 +47,8 @@ class AmministratoreView(QWidget):
         amministratore.finestra.prodottiBtn.setStyleSheet(self.pushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
+        obj.aggiungiProdottoBtn.clicked.connect(
+            lambda: amministratore.aggiungiProdottoBtnClicked(mainPath, amministratore))
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def accountsBtnClicked(self, mainPath, amministratore):
@@ -70,6 +72,23 @@ class AmministratoreView(QWidget):
         amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.pushedStyleSheet())
 
+    def aggiungiProdottoBtnClicked(self, mainPath, amministratore):
+        name = "inserisciProdottoView.ui"
+        obj = self.caricaView(mainPath, name)
+        self.removeAndAdd(obj)
+        obj.saveBtn.clicked.connect(lambda: self.saveBtnClicked(mainPath, obj, amministratore))
+        obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore))
+
+    def saveBtnClicked(self, mainPath, obj, amministratore):
+        # QLineEdit.text()
+        nomeLe = obj.nomeLe.text()
+        idAccountLe = obj.idAccountLe
+        prezzoLe = obj.prezzoLe
+        idCategoriaLe = obj.idCategoriaLe
+        idScaffaleLe = obj.idScaffaleLe
+        #TODO salvataggio nel sistema del prodotto e il relativo controllo dell'input
+        self.prodottiBtnClicked(mainPath, amministratore)
+
     def pushedStyleSheet(self):
         # style = 'QPushButton {background-color: #1a1f39; color: #78799c;}'
         style = "QPushButton {color: #78799c; background-color: #1a1f39; padding:10px 5px; text-align: left; border-top-left-radius: 15px; border-bottom-left-radius: 15px}"
@@ -80,9 +99,12 @@ class AmministratoreView(QWidget):
         style = "QPushButton {color: #78799c; background-color: #2a2c49; padding: 10px 5px; text-align: left; border-top-left-radius: 25px; border-bottom-left-radius: 25px;}"
         return style
 
+    # Metodo che: rimuove un widget B che era stato messo in un widget A e mette un widget C nel widget A
     def removeAndAdd(self, item):
-        for i in range(self.finestra.verticalLayout_toPaste.count()):
-            self.finestra.verticalLayout_toPaste.itemAt(i).widget().deleteLater()
+        try:
+            self.finestra.verticalLayout_toPaste.itemAt(0).widget().deleteLater()
+        except:
+            pass
         self.finestra.verticalLayout_toPaste.addWidget(item)
 
     def caricaView(self, mainPath, name):
