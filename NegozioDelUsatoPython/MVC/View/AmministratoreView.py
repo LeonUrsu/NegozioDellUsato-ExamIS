@@ -1,8 +1,13 @@
 import os
+from datetime import datetime
 
+import PySide6
+from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QWidget, QTableWidgetItem
+
+from MVC.Controller.Controller import Controller
 
 
 class AmministratoreView(QWidget):
@@ -47,8 +52,8 @@ class AmministratoreView(QWidget):
         amministratore.finestra.prodottiBtn.setStyleSheet(self.pushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
-        obj.aggiungiProdottoBtn.clicked.connect(
-            lambda: amministratore.aggiungiProdottoBtnClicked(mainPath, amministratore))
+        self.aggiungiProdottiAllaTab(obj)
+        obj.aggiungiBtn.clicked.connect(lambda: amministratore.aggiungiProdottoBtnClicked(mainPath, amministratore))
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def accountsBtnClicked(self, mainPath, amministratore):
@@ -60,6 +65,8 @@ class AmministratoreView(QWidget):
         amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.pushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
+        obj.aggiungiBtn.clicked.connect(
+            lambda: amministratore.aggiungiClienteBtnClicked(mainPath, amministratore))
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def backupBtnClicked(self, mainPath, amministratore):
@@ -76,17 +83,42 @@ class AmministratoreView(QWidget):
         name = "inserisciProdottoView.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
-        obj.saveBtn.clicked.connect(lambda: self.saveBtnClicked(mainPath, obj, amministratore))
+        obj.saveBtn.clicked.connect(lambda: self.saveProdottoBtnClicked(mainPath, obj, amministratore))
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore))
 
-    def saveBtnClicked(self, mainPath, obj, amministratore):
-        # QLineEdit.text()
+
+    def aggiungiClienteBtnClicked(self, mainPath, amministratore):
+        name = "inserisciClienteView.ui"
+        obj = self.caricaView(mainPath, name)
+        self.removeAndAdd(obj)
+        obj.saveBtn.clicked.connect(lambda: self.saveClienteBtnClicked(mainPath, obj, amministratore))
+        obj.indietroBtn.clicked.connect(lambda: self.accountsBtnClicked(mainPath, amministratore))
+
+
+    def saveProdottoBtnClicked(self, mainPath, obj, amministratore):
         nomeLe = obj.nomeLe.text()
-        idAccountLe = obj.idAccountLe
-        prezzoLe = obj.prezzoLe
-        idCategoriaLe = obj.idCategoriaLe
-        idScaffaleLe = obj.idScaffaleLe
-        #TODO salvataggio nel sistema del prodotto e il relativo controllo dell'input
+        idAccountLe = obj.idAccountLe.text()
+        prezzoLe = obj.prezzoLe.text()
+        idCategoriaLe = obj.idCategoriaLe.text()
+        idScaffaleLe = obj.idScaffaleLe.text()
+        Controller().amministratoresaveProdottoBtn(nomeLe, idAccountLe, datetime.today(), prezzoLe, idCategoriaLe, idScaffaleLe)
+        self.prodottiBtnClicked(mainPath, amministratore)
+
+
+    def saveCLienteBtnClicked(self, mainPath, obj, amministratore):
+        nomeLe = obj.nomeLe.text()
+        cognomeLe = obj.cognomeLe.text()
+        dataNascitaLe = obj.dataNascitaLe.text()
+        emailLe = obj.emailLe.text()
+        passwordLe = obj.passwordLe.text()
+        telefonoLe = obj.telefonoLe.text()
+        capLe = obj.capLe.text()
+        cittaLe = obj.cittaLe.text()
+        viaLe = obj.viaLe.text()
+        piazzaLe = obj.piazzaLe.text()
+        civicoLe = obj.civicoLe.text()
+        citofonoLe = obj.citofonoLe.text()
+        #TODO salvataggio nel sistema del cliente e il relativo controllo dell'input
         self.prodottiBtnClicked(mainPath, amministratore)
 
     def pushedStyleSheet(self):
@@ -115,3 +147,37 @@ class AmministratoreView(QWidget):
         finestra = loader.load(file)
         file.close()
         return finestra
+
+    def aggiungiProdottiAllaTab(self, obj):
+        lista = Controller().recuperaListaProdottiInVendita()
+        colonne = 5
+        obj.tab.setColumnCount(colonne)
+        obj.tab.setColumnWidth(0, 15)
+        for i in range(colonne):
+            obj.tab.setColumnWidth(i+1, 100)
+        obj.tab.setHorizontalHeaderLabels((None, "nome", "prezzo", "idProdotto", "dataScadenza"))
+
+        row = 0
+        obj.tab.setRowCount(len(lista))
+        for prodotto in lista:
+            chkBoxItem = QTableWidgetItem()
+            chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
+            chkBoxItem.setCheckState(QtCore.Qt.Unchecked)
+            obj.tab.setItem(row, 0, chkBoxItem)
+            obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(prodotto.nomeProdotto))
+            obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(prodotto.prezzoCorrente))
+            obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(prodotto.idProdotto))
+            obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(prodotto.dataScadenza))
+            row += 1
+        """
+        numRows = self.tableWidget.rowCount()
+        self.tableWidget.insertRow(numRows)
+        # Add text to the row
+        self.tableWidget.setItem(numRows, 0, QtWidgets.QTableWidgetItem(x))
+        self.tableWidget.setItem(numRows, 1, QtWidgets.QTableWidgetItem(y))
+        self.tableWidget.setItem(numRows, 2, QtWidgets.QTableWidgetItem(z))
+        num = 10
+        obj.tab.setRowCount(num)v
+        #obj.tab.setColumnCount(10)v
+        obj.tab.setHorizontalHeaderLabels(('Col 1', 'Col 2', 'Col 3'))v
+        obj.tab.setItem(1, 1, QtWidgets.QTableWidgetItem("ciao"))"""
