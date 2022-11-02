@@ -68,7 +68,7 @@ class CentralWindow():
         login.finestra.confermaBtn.clicked.connect(lambda: self.loginViewConfermaView(mainPath, login))
 
 
-
+    # Metodo che rimuove un widget da un layout e ne mette un altro
     def removeAndAdd(self, item):
         for i in range(self.finestra.verticalLayout.count()): self.finestra.verticalLayout.itemAt(i).widget().deleteLater()
         self.finestra.verticalLayout.addWidget(item.finestra)
@@ -86,6 +86,9 @@ class CentralWindow():
             print("fallito")
             pass
 
+    # Metodo che gestisce l'interazioone con il pulsante conferma della loginView, apre una nuova finestra se
+    # le credenziali sono errate
+    # login = widget del login
     def loginViewConfermaView(self, mainPath, login):
         login.confermaBtn(login.finestra)
         if isinstance(Logging.accountLoggato, ClienteProprietario):
