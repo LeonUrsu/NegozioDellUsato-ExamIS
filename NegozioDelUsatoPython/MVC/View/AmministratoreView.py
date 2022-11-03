@@ -52,6 +52,7 @@ class AmministratoreView(QWidget):
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
         self.aggiungiProdottiAllaTab(obj)
         obj.aggiungiBtn.clicked.connect(lambda: amministratore.aggiungiProdottoBtnClicked(mainPath, amministratore))
+        #TODO obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviProdottoBtnClicked(mainPath, amministratore))
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def accountsBtnClicked(self, mainPath, amministratore):
@@ -64,8 +65,8 @@ class AmministratoreView(QWidget):
         amministratore.finestra.accountsBtn.setStyleSheet(self.pushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
         self.aggiungiAccountsAllaTab(obj)
-        obj.aggiungiBtn.clicked.connect(
-            lambda: amministratore.aggiungiClienteBtnClicked(mainPath, amministratore))
+        obj.aggiungiBtn.clicked.connect(lambda: amministratore.aggiungiClienteBtnClicked(mainPath, amministratore))
+        #TODO obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviClienteBtnClicked(mainPath, amministratore))
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def backupBtnClicked(self, mainPath, amministratore):
@@ -214,7 +215,7 @@ class AmministratoreView(QWidget):
                             QtWidgets.QTableWidgetItem(f"{account.idAccount}"))  # serve solo per fare int in str
             obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(account.email))
             row += 1
-       
+
     # Metodo per controllare la validità dei dati inseriti dall'utente
     def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, datetime, prezzoLe, idCategoriaLe, idScaffaleLe):
         if nomeLe != "":
