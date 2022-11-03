@@ -37,8 +37,8 @@ class Amministratore(User):
         Backup().effettuaBackup()
 
     # Metodo che elimina un account dal database
-    def eliminaAccount(sel, IDAccount):
-        Account().eliminaAccount(IDAccount)
+    def eliminaAccount(sel, idAccount):
+        Account().eliminaAccount(idAccount)
 
     # Metodo che elimina un prodotto dagli oggetti in vendita a quelli eliminati
     def eliminaProdotto(self, idProdotto):

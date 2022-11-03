@@ -5,7 +5,7 @@ import PySide6
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QWidget, QTableWidgetItem
+from PySide6.QtWidgets import QWidget, QTableWidgetItem, QLabel
 
 from MVC.Controller.Controller import Controller
 
@@ -65,6 +65,7 @@ class AmministratoreView(QWidget):
         amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.pushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
+        self.aggiungiAccountsAllaTab(obj)
         obj.aggiungiBtn.clicked.connect(
             lambda: amministratore.aggiungiClienteBtnClicked(mainPath, amministratore))
 
@@ -78,6 +79,15 @@ class AmministratoreView(QWidget):
         amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.pushedStyleSheet())
+        obj.pushButton.clicked.connect(lambda: self.effettuaBackup(obj))
+
+    # Metodo per effettuare il backup dei dati
+    def effettuaBackup(self, obj):
+        Controller().effettuaBackup()
+        obj.stato.setText("Backup eseguito")
+
+
+
 
     # Metodo che si attiva alla pressione del prodottiBtn
     def aggiungiProdottoBtnClicked(self, mainPath, amministratore):
@@ -102,9 +112,12 @@ class AmministratoreView(QWidget):
         prezzoLe = obj.prezzoLe.text()
         idCategoriaLe = obj.idCategoriaLe.text()
         idScaffaleLe = obj.idScaffaleLe.text()
-        if self.checkerSaveProdottoBtnClicked(): pass
-        else: self.prodottiBtnClicked(mainPath, amministratore)
-        Controller().amministratoresaveProdottoBtn(nomeLe, idAccountLe, datetime.today(), prezzoLe, idCategoriaLe, idScaffaleLe)
+        if self.checkerSaveProdottoBtnClicked():
+            pass
+        else:
+            self.prodottiBtnClicked(mainPath, amministratore)
+        Controller().amministratoresaveProdottoBtn(nomeLe, idAccountLe, datetime.today(), prezzoLe, idCategoriaLe,
+                                                   idScaffaleLe)
         self.prodottiBtnClicked(mainPath, amministratore)
 
     # Metodo che si attiva alla pressione del saveClienteBtn
@@ -121,9 +134,13 @@ class AmministratoreView(QWidget):
         piazzaLe = obj.piazzaLe.text()
         civicoLe = obj.civicoLe.text()
         citofonoLe = obj.citofonoLe.text()
-        if self.checkerSaveCLienteBtnClicked(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe, citofonoLe, viaLe, piazzaLe, civicoLe, citofonoLe): pass
-        else: self.accountsBtnClicked(mainPath, amministratore)
-        Controller().saveCLienteBtnClicked(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe, citofonoLe, viaLe, piazzaLe, civicoLe, citofonoLe)
+        if self.checkerSaveCLienteBtnClicked(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
+                                             citofonoLe, viaLe, piazzaLe, civicoLe, citofonoLe):
+            pass
+        else:
+            self.accountsBtnClicked(mainPath, amministratore)
+        Controller().saveCLienteBtnClicked(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
+                                           citofonoLe, viaLe, piazzaLe, civicoLe, citofonoLe)
         self.prodottiBtnClicked(mainPath, amministratore)
 
     # Metodo che restitiusce la stringa nel metodo
@@ -131,7 +148,6 @@ class AmministratoreView(QWidget):
         # style = 'QPushButton {background-color: #1a1f39; color: #78799c;}'
         style = "QPushButton {color: #78799c; background-color: #1a1f39; padding:10px 5px; text-align: left; border-top-left-radius: 15px; border-bottom-left-radius: 15px}"
         return style
-
 
     # Metodo che restitiusce la stringa nel metodo
     def unPushedStyleSheet(self):
@@ -164,7 +180,7 @@ class AmministratoreView(QWidget):
         obj.tab.setColumnCount(colonne)
         obj.tab.setColumnWidth(0, 15)
         for i in range(colonne):
-            obj.tab.setColumnWidth(i+1, 100)
+            obj.tab.setColumnWidth(i + 1, 100)
         obj.tab.setHorizontalHeaderLabels((None, "nome", "prezzo", "idProdotto", "dataScadenza"))
 
         row = 0
@@ -179,6 +195,29 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(prodotto.idProdotto))
             obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(prodotto.dataScadenza))
             row += 1
+
+    # Metodo che aggiunge i prodotti in vendita al tableWidget
+    def aggiungiAccountsAllaTab(self, obj):
+        lista = Controller().recuperaListaAccounts()
+        colonne = 5
+        obj.tab.setColumnCount(colonne)
+        obj.tab.setColumnWidth(0, 15)
+        for i in range(colonne):
+            obj.tab.setColumnWidth(i + 1, 100)
+        obj.tab.setHorizontalHeaderLabels((None, "nome", "cognome", "idAccount", "email"))
+
+        row = 0
+        obj.tab.setRowCount(len(lista))
+        for account in lista:
+            chkBoxItem = QTableWidgetItem()
+            chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
+            chkBoxItem.setCheckState(QtCore.Qt.Unchecked)
+            obj.tab.setItem(row, 0, chkBoxItem)
+            obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(account.nome))
+            obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(account.cognome))
+            obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(account.idAccount))
+            obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(account.email))
+            row += 1
         """
         numRows = self.tableWidget.rowCount()
         self.tableWidget.insertRow(numRows)
@@ -192,7 +231,6 @@ class AmministratoreView(QWidget):
         obj.tab.setHorizontalHeaderLabels(('Col 1', 'Col 2', 'Col 3'))v
         obj.tab.setItem(1, 1, QtWidgets.QTableWidgetItem("ciao"))"""
 
-
     # Metodo per controllare la validità dei dati inseriti dall'utente
     def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, datetime, prezzoLe, idCategoriaLe, idScaffaleLe):
         if nomeLe != "":
@@ -202,7 +240,6 @@ class AmministratoreView(QWidget):
                         if idScaffaleLe.isalnum():
                             return True
         return False
-
 
     # Metodo per controllare la validità dei dati inseriti dall'utente
     def checkerSaveCLienteBtnClicked(self, nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
@@ -214,8 +251,6 @@ class AmministratoreView(QWidget):
                         if capLe.isalnum():
                             return True
         return False
-
-
 
     def validateDate(self, date_text):
         try:

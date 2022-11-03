@@ -19,6 +19,7 @@ class Backup(object):
         copytree(from_path, to_path)
 
 
+
     # Metodo che elimina una cartella se esistente
     def eliminaCartella(self, pathName):
         if (os.path.exists(pathName)):
