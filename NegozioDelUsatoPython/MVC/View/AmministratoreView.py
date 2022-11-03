@@ -1,7 +1,5 @@
 import os
 from datetime import datetime
-
-import PySide6
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
@@ -86,9 +84,6 @@ class AmministratoreView(QWidget):
         Controller().effettuaBackup()
         obj.stato.setText("Backup eseguito")
 
-
-
-
     # Metodo che si attiva alla pressione del prodottiBtn
     def aggiungiProdottoBtnClicked(self, mainPath, amministratore):
         name = "inserisciProdottoView.ui"
@@ -121,7 +116,7 @@ class AmministratoreView(QWidget):
         self.prodottiBtnClicked(mainPath, amministratore)
 
     # Metodo che si attiva alla pressione del saveClienteBtn
-    def saveCLienteBtnClicked(self, mainPath, obj, amministratore):
+    def saveClienteBtnClicked(self, mainPath, obj, amministratore):
         nomeLe = obj.nomeLe.text()
         cognomeLe = obj.cognomeLe.text()
         dataNascitaLe = obj.dataNascitaLe.text()
@@ -134,14 +129,14 @@ class AmministratoreView(QWidget):
         piazzaLe = obj.piazzaLe.text()
         civicoLe = obj.civicoLe.text()
         citofonoLe = obj.citofonoLe.text()
-        if self.checkerSaveCLienteBtnClicked(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
+        if self.checkerSaveClienteBtnClicked(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
                                              citofonoLe, viaLe, piazzaLe, civicoLe, citofonoLe):
             pass
         else:
             self.accountsBtnClicked(mainPath, amministratore)
+            return
         Controller().saveCLienteBtnClicked(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
                                            citofonoLe, viaLe, piazzaLe, civicoLe, citofonoLe)
-        self.prodottiBtnClicked(mainPath, amministratore)
 
     # Metodo che restitiusce la stringa nel metodo
     def pushedStyleSheet(self):
@@ -215,22 +210,11 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 0, chkBoxItem)
             obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(account.nome))
             obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(account.cognome))
-            obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(account.idAccount))
+            obj.tab.setItem(row, 3,
+                            QtWidgets.QTableWidgetItem(f"{account.idAccount}"))  # serve solo per fare int in str
             obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(account.email))
             row += 1
-        """
-        numRows = self.tableWidget.rowCount()
-        self.tableWidget.insertRow(numRows)
-        # Add text to the row
-        self.tableWidget.setItem(numRows, 0, QtWidgets.QTableWidgetItem(x))
-        self.tableWidget.setItem(numRows, 1, QtWidgets.QTableWidgetItem(y))
-        self.tableWidget.setItem(numRows, 2, QtWidgets.QTableWidgetItem(z))
-        num = 10
-        obj.tab.setRowCount(num)v
-        #obj.tab.setColumnCount(10)v
-        obj.tab.setHorizontalHeaderLabels(('Col 1', 'Col 2', 'Col 3'))v
-        obj.tab.setItem(1, 1, QtWidgets.QTableWidgetItem("ciao"))"""
-
+       
     # Metodo per controllare la validità dei dati inseriti dall'utente
     def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, datetime, prezzoLe, idCategoriaLe, idScaffaleLe):
         if nomeLe != "":
@@ -242,7 +226,7 @@ class AmministratoreView(QWidget):
         return False
 
     # Metodo per controllare la validità dei dati inseriti dall'utente
-    def checkerSaveCLienteBtnClicked(self, nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
+    def checkerSaveClienteBtnClicked(self, nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
                                      cittaLe, viaLe, piazzaLe, civicoLe, citofonoLe):
         if nomeLe != "":
             if cognomeLe != "":
@@ -254,7 +238,7 @@ class AmministratoreView(QWidget):
 
     def validateDate(self, date_text):
         try:
-            datetime.strptime(date_text, '%d-%m-%Y')
+            datetime.strptime(date_text, '%d/%m/%Y')
             return True
         except:
             return False
