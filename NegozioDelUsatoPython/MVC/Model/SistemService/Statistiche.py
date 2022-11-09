@@ -38,6 +38,18 @@ class Statistiche:
         listStatistiche.append(self)
         file.serializza(fileName, listStatistiche)
 
+    # Metodo che cerca tra le statistiche dsponibili e trova la più recente, ritorna None se non ci sono statistiche
+    def trovaUltimeStatistiche(self):
+        fileName = PathDatabase().statisticheTxt
+        file = File()
+        listStatistiche = file.deserializza(fileName)
+        if len(listStatistiche) == 0: return None
+        statistica = None
+        ultimaData = listStatistiche[0].data
+        for stats in listStatistiche:
+            if stats.data >= ultimaData:
+                statistica = stats
+        return statistica
 
     # Metodo per vedere quanti clienti proprietari sono registrati
     def getNumeroClienti(self):

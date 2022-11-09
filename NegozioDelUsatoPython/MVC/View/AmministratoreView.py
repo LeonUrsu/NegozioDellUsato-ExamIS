@@ -3,7 +3,7 @@ from datetime import datetime
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QWidget, QTableWidgetItem, QLabel
+from PySide6.QtWidgets import QWidget, QTableWidgetItem, QLabel, QToolButton
 
 from MVC.Controller.Controller import Controller
 
@@ -39,6 +39,15 @@ class AmministratoreView(QWidget):
         amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
+        stats = Controller().trovaUltimeStatistiche()
+        if stats != None:
+            obj.guadagnoTotaleLabel.setText(stats.prodottiVendutiTotali)
+            obj.prodottiVendutiLabel.setText(stats.guadagnoTotale)
+            obj.clientiProprietariLabel.setText(stats.numeroClientiProprietari)
+            obj.cat1.setText(stats.tendenzaCategorie[0])
+            obj.cat2.setText(stats.tendenzaCategorie[1])
+            obj.cat3.setText(stats.tendenzaCategorie[2])
+
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def prodottiBtnClicked(self, mainPath, amministratore):
@@ -108,7 +117,7 @@ class AmministratoreView(QWidget):
         prezzoLe = obj.prezzoLe.text()
         idCategoriaLe = obj.idCategoriaLe.text()
         idScaffaleLe = obj.idScaffaleLe.text()
-        if self.checkerSaveProdottoBtnClicked():
+        if self.checkerSaveProdottoBtnClicked(nomeLe, idAccountLe, prezzoLe, idCategoriaLe, idScaffaleLe):
             pass
         else:
             self.prodottiBtnClicked(mainPath, amministratore)
@@ -189,8 +198,9 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(prodotto.nomeProdotto))
             obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(prodotto.prezzoCorrente))
             obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(prodotto.idProdotto))
-            obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(prodotto.dataScadenza))
+            obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(f"{prodotto.dataScadenza}"))
             row += 1
+            self.aggiungiBottoniAllaTabProdotti(row, obj)
 
     # Metodo che aggiunge i prodotti in vendita al tableWidget
     def aggiungiAccountsAllaTab(self, obj):
@@ -201,7 +211,6 @@ class AmministratoreView(QWidget):
         for i in range(colonne):
             obj.tab.setColumnWidth(i + 1, 100)
         obj.tab.setHorizontalHeaderLabels((None, "nome", "cognome", "idAccount", "email"))
-
         row = 0
         obj.tab.setRowCount(len(lista))
         for account in lista:
@@ -211,13 +220,32 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 0, chkBoxItem)
             obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(account.nome))
             obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(account.cognome))
-            obj.tab.setItem(row, 3,
-                            QtWidgets.QTableWidgetItem(f"{account.idAccount}"))  # serve solo per fare int in str
+            obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{account.idAccount}"))  # serve solo per fare int a str
             obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(account.email))
             row += 1
 
+    def aggiungiBottoniAllaTabProdotti(self, rowNumber, obj):
+        #QWidget.__init__(self, parent)
+        #self.button_layout = QHBoxLayout()
+        #self.widget_layout = QVBoxLayout()
+        for button_number in range(rowNumber):
+            button = QToolButton()
+            button.setText(str(button_number))
+            button.setObjectName('Button%d' % button_number)
+            button.released.connect(self.button_released)
+            #self.button_layout.addWidget(button)
+            obj.tab.setItem(button_number, 5, button)
+        #self.status_label = QLabel('No button clicked')
+        #self.widget_layout.addItem(self.button_layout)
+        #self.widget_layout.addWidget(self.status_label)
+        #self.setLayout(self.widget_layout)
+
+    def button_released(self):
+        sending_button = self.sender()
+        self.status_label.setText('%s Clicked!' % str(sending_button.objectName()))
+
     # Metodo per controllare la validità dei dati inseriti dall'utente
-    def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, datetime, prezzoLe, idCategoriaLe, idScaffaleLe):
+    def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, prezzoLe, idCategoriaLe, idScaffaleLe):
         if nomeLe != "":
             if idAccountLe.isalnum():
                 if prezzoLe.isalnum():

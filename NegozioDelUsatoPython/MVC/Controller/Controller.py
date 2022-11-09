@@ -2,6 +2,7 @@ from MVC.Model.Attività.Account import Account
 from MVC.Model.Attività.Amministratore import Amministratore
 from MVC.Model.Attività.User import User
 from MVC.Model.Servizio.Prodotto import Prodotto
+from MVC.Model.SistemService.Statistiche import Statistiche
 
 
 class Controller(object):
@@ -27,3 +28,6 @@ class Controller(object):
 
     def effettuaBackup(self):
         Amministratore().effettuaBackup()
+
+    def trovaUltimeStatistiche(self):
+        return Statistiche().trovaUltimeStatistiche()
