@@ -77,13 +77,10 @@ class CentralWindow():
     # Metodo che tenta di rimuovere la finestra precedentemente aggiunta al layout
     def removeItem(self, layout):
         if layout.itemAt(0) == None:
-            print("vuoto")
             return
         try:
             layout.removeItem(self.finestra.verticalLayout.itemAt(0))
-            print("eliminato")
         except:
-            print("fallito")
             pass
 
     # Metodo che gestisce l'interazioone con il pulsante conferma della loginView, apre una nuova finestra se
@@ -107,12 +104,13 @@ class CentralWindow():
         if width == 0:
             # Expand menu
             newWidth = 200
-            login.finestra.openRightMenu.setIcon(QtGui.QIcon(u":/icons/icons/chevron-left.svg"))
+            #login.finestra.openRightMenu.setIcon(QtGui.QIcon(u":/icons/icons/chevron-left.svg"))
+
         # If maximized
         else:
             # Restore menu
             newWidth = 0
-            login.finestra.openRightMenu.setIcon(QtGui.QIcon(u":/icons/icons/align-left.svg"))
+            #login.finestra.openRightMenu.setIcon(QtGui.QIcon(u":/icons/icons/align-left.svg"))
 
         # Animate the transition
         self.animation = QPropertyAnimation(login.finestra.rightMenu, b"maximumWidth")#Animate minimumWidht
@@ -131,12 +129,12 @@ class CentralWindow():
         if width == 0:
             # Expand menu
             newWidth = 200
-            login.finestra.openLeftMenu.setIcon(QtGui.QIcon(u":/icons/icons/chevron-left.svg"))
+            #login.finestra.openLeftMenu.setIcon(QtGui.QIcon(u":/icons/icons/chevron-left.svg"))
         # If maximized
         else:
             # Restore menu
             newWidth = 0
-            login.finestra.openLeftMenu.setIcon(QtGui.QIcon(u":/icons/icons/align-left.svg"))
+            #login.finestra.openLeftMenu.setIcon(QtGui.QIcon(u":/icons/icons/align-left.svg"))
 
         # Animate the transition
         self.animation = QPropertyAnimation(login.finestra.leftMenu, b"maximumWidth")  # Animate minimumWidht
