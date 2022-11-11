@@ -50,3 +50,7 @@ class ClienteProprietarioView():
         #style = 'QPushButton {background-color: #2a2c49; color: #78799c;}'
         style = "QPushButton {color: #78799c; background-color: #2a2c49; padding: 10px 5px; text-align: left; border-top-left-radius: 25px; border-bottom-left-radius: 25px;}"
         return style
+
+    #TODO fare metodo che aggiunge i prodotti posseduti dal cliente proprietario
+
+    #TODO fare metrodo per usare le tendine dei filtri nel cliente e amministratore

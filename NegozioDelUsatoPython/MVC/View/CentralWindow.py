@@ -29,6 +29,7 @@ class CentralWindow():
         self.finestra = loader.load(file)
         file.close()
         self.apriAmministratoreView(pathlib.Path().resolve().__str__())
+        self.apriClienteProprietarioView (pathlib.Path().resolve().__str__())
 
     # Metodo per aprire la finestra dell'cliente proprietario
     def apriClienteProprietarioView(self, mainPath):
@@ -52,7 +53,7 @@ class CentralWindow():
         amministratore.finestra.quitBtn.clicked.connect(lambda: self.apriUserView(mainPath))
         amministratore.finestra.openRightMenu.clicked.connect(lambda: self.slideRightMenu(amministratore))
         amministratore.finestra.openLeftMenu.clicked.connect(lambda: self.slideLeftMenu(amministratore))
-        #come restituire il risultato del metodo controlla email e password dalla classe Login???
+        #TODO come restituire il risultato del metodo controlla email e password dalla classe Login???
         amministratore.finestra.homeBtn.clicked.connect(lambda: amministratore.homeBtnClicked(mainPath, amministratore))
         amministratore.finestra.statisticheBtn.clicked.connect(lambda: amministratore.statisticheBtnClicked(mainPath, amministratore))
         amministratore.finestra.prodottiBtn.clicked.connect(lambda: amministratore.prodottiBtnClicked(mainPath, amministratore))

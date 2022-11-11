@@ -224,6 +224,8 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(account.email))
             row += 1
 
+    # Metodo per aggiungere un bottone su ogni riga della tabella per poter visualizzare le info del prodotto
+    #TODO metono non funzionante
     def aggiungiBottoniAllaTabProdotti(self, rowNumber, obj):
         #QWidget.__init__(self, parent)
         #self.button_layout = QHBoxLayout()
@@ -235,11 +237,13 @@ class AmministratoreView(QWidget):
             button.released.connect(self.button_released)
             #self.button_layout.addWidget(button)
             obj.tab.setItem(button_number, 5, button)
+
         #self.status_label = QLabel('No button clicked')
         #self.widget_layout.addItem(self.button_layout)
         #self.widget_layout.addWidget(self.status_label)
         #self.setLayout(self.widget_layout)
 
+    # Metodo che accompagna il metodo aggiungiBottoniAllaTabProdotti()
     def button_released(self):
         sending_button = self.sender()
         self.status_label.setText('%s Clicked!' % str(sending_button.objectName()))
