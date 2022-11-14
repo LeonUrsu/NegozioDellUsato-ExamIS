@@ -31,3 +31,6 @@ class Controller(object):
 
     def trovaUltimeStatistiche(self):
         return Statistiche().trovaUltimeStatistiche()
+
+    def trovaOggettoTramiteId(self, idProdotto):
+        return Prodotto().trovaOggettoTramiteId(idProdotto)
