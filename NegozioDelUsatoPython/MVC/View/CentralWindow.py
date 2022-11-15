@@ -29,7 +29,7 @@ class CentralWindow():
         self.finestra = loader.load(file)
         file.close()
         self.apriAmministratoreView(pathlib.Path().resolve().__str__())
-        self.apriClienteProprietarioView (pathlib.Path().resolve().__str__())
+        #self.apriClienteProprietarioView (pathlib.Path().resolve().__str__())
 
     # Metodo per aprire la finestra dell'cliente proprietario
     def apriClienteProprietarioView(self, mainPath):

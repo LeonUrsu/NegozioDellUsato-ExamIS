@@ -131,7 +131,7 @@
            <property name="styleSheet">
             <string notr="true">QPushButton{
 	color:#78799c;
-	background-color:#1a1f39;
+	background-color:#1a0f39;
 	border-radius: 15px;
 	padding : 10px 5px;
 	text-align:left;
@@ -164,7 +164,7 @@
            <property name="styleSheet">
             <string notr="true">QPushButton{
 	color:#78799c;
-	background-color:#1a1f39;
+	background-color:#1a0f39;
 	border-radius: 15px;
 	padding : 10px 5px;
 	text-align:left;
