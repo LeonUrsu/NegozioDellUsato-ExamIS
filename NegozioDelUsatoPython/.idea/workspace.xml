@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6234e9bb-af3a-4797-b186-6bb91a1ce04c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/NegozioDelUsatoPython.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVC/View/AmministratoreView.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/AmministratoreView.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/View/CentralWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/CentralWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MVC/View/ClienteProprietarioView.py" beforeDir="false" afterPath="$PROJECT_DIR$/MVC/View/ClienteProprietarioView.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +170,8 @@
       <workItem from="1668003812839" duration="9948000" />
       <workItem from="1668172941292" duration="5877000" />
       <workItem from="1668178878660" duration="170000" />
-      <workItem from="1668179086068" duration="657000" />
+      <workItem from="1668179086068" duration="976000" />
+      <workItem from="1668507223165" duration="728000" />
     </task>
     <servers />
   </component>

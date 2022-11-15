@@ -59,7 +59,8 @@ class AmministratoreView(QWidget):
         amministratore.finestra.prodottiBtn.setStyleSheet(self.pushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
-        self.aggiungiProdottiAllaTab(obj)
+        lista = Controller().recuperaListaProdottiInVendita()
+        self.aggiungiProdottiAllaTab(obj, lista)
         obj.aggiungiBtn.clicked.connect(lambda: amministratore.aggiungiProdottoBtnClicked(mainPath, amministratore))
         #TODO obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviProdottoBtnClicked(mainPath, amministratore))
 
@@ -179,8 +180,8 @@ class AmministratoreView(QWidget):
         return finestra
 
     # Metodo che aggiunge i prodotti in vendita al tableWidget
-    def aggiungiProdottiAllaTab(self, obj):
-        lista = Controller().recuperaListaProdottiInVendita()
+    def aggiungiProdottiAllaTab(self, obj, lista):
+        #lista = Controller().recuperaListaProdottiInVendita()
         colonne = 5
         obj.tab.setColumnCount(colonne)
         obj.tab.setColumnWidth(0, 15)
