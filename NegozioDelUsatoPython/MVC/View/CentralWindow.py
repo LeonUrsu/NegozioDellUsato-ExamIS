@@ -56,7 +56,7 @@ class CentralWindow():
         #TODO come restituire il risultato del metodo controlla email e password dalla classe Login???
         amministratore.finestra.homeBtn.clicked.connect(lambda: amministratore.homeBtnClicked(mainPath, amministratore))
         amministratore.finestra.statisticheBtn.clicked.connect(lambda: amministratore.statisticheBtnClicked(mainPath, amministratore))
-        amministratore.finestra.prodottiBtn.clicked.connect(lambda: amministratore.prodottiBtnClicked(mainPath, amministratore))
+        amministratore.finestra.prodottiBtn.clicked.connect(lambda: amministratore.prodottiBtnClicked(mainPath, amministratore, None))
         amministratore.finestra.accountsBtn.clicked.connect(lambda: amministratore.accountsBtnClicked(mainPath, amministratore))
         amministratore.finestra.backupBtn.clicked.connect(lambda: amministratore.backupBtnClicked(mainPath, amministratore))
 
