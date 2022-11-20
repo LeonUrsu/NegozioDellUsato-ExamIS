@@ -34,3 +34,11 @@ class Controller(object):
 
     def trovaOggettoTramiteId(self, idProdotto):
         return Prodotto().trovaOggettoTramiteId(idProdotto)
+
+    def eliminaProdottiTramiteListaId(self, listaId):
+        Amministratore().eliminaProdottiTramiteListaId(listaId)
+
+    def vendiProdottiTramiteListaId(self, listaId):
+        Amministratore().vendiProdottiTramiteListaId(listaId)
+
+

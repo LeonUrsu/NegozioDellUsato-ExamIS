@@ -21,15 +21,15 @@ class Amministratore(User):
         self.password = "admin"
 
     # Metodo che aggiorna un account in base ai parametri passati dall'amministratore
-    def aggiornaAccount(self, nome, cognome, dataDiNascita, email,idAccount, numeroTelefonico, residenza):
-        account =  Account().aggiornaAccount(nome, cognome, dataDiNascita, email, idAccount, numeroTelefonico, residenza)
+    def aggiornaAccount(self, nome, cognome, dataDiNascita, email, idAccount, numeroTelefonico, residenza):
+        account = Account().aggiornaAccount(nome, cognome, dataDiNascita, email, idAccount, numeroTelefonico, residenza)
         return account
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dall'amministratore
     def aggiornaProdotto(self, idCategoria, dataEsposizione,
                          nomeProdotto, prezzoOriginale, idScaffale, idProdotto):
         Prodotto().aggiornaProdotto(idCategoria, dataEsposizione,
-                         nomeProdotto, prezzoOriginale, idScaffale, idProdotto)
+                                    nomeProdotto, prezzoOriginale, idScaffale, idProdotto)
 
     # Metodo che effettua il backup del sistema in maniera manuale dall amministratore
     # mentre il metodo nella classe Backup verra' richiamato dal sistema ad una determinata ora
@@ -43,8 +43,23 @@ class Amministratore(User):
     # Metodo che elimina un prodotto dagli oggetti in vendita a quelli eliminati
     def eliminaProdotto(self, idProdotto):
         Prodotto().eliminaProdotto(idProdotto)
-        Notifica().gestioneEmailDiEliminazione(idProdotto)
+        try: Notifica().gestioneEmailDiEliminazione(idProdotto)
+        except: pass
+    # Metodo che rimuove i prodotti tramite una lista di id
+    def eliminaProdottiTramiteListaId(self, listaId):
+        for id in listaId:
+            self.eliminaProdotto(id)
 
+    # Metodo che rimuove i prodotti tramite una lista di id
+    def vendiProdottiTramiteListaId(self, listaId):
+        prodottiTrovati = Prodotto().recuperaListaProdottiInVendita()
+        prodottiFiltrati = list()
+        for prodotto in prodottiTrovati:
+            for id in listaId:
+                if id == prodotto.idProdotto:
+                    prodottiFiltrati.append(prodotto)
+        ricevuta = self.vendiProdotti(prodottiFiltrati)
+        return ricevuta
 
     # Metodo che filtra i clienti in base al nome o al cognome
     # return = lista delle persone con dati passati
@@ -66,7 +81,7 @@ class Amministratore(User):
     # credenziali via emailProdotto().recuperaListaOggetti
     # credenziali via emailProdotto().recuperaListaOggetti
     def inserisciAccount(self, nome, cognome, dataDiNascita, email, password,
-                           numeroTelefonico, cap, citofono, citta, civico, piazza, via):
+                         numeroTelefonico, cap, citofono, citta, civico, piazza, via):
         account = Account()
         if account.checkEmailUtente(email) == True:
             return False
@@ -99,4 +114,3 @@ class Amministratore(User):
     # Metodo che recupera le statistiche sul sistema
     def visualizzaStatistiche(self):
         Statistiche().visualizzaStatistiche()
-

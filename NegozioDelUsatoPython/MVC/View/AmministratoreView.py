@@ -59,11 +59,31 @@ class AmministratoreView(QWidget):
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
         if lista == None:
             lista = Controller().recuperaListaProdottiInVendita()
-        # self.aggiungiProdottiAllaTab(mainPath, obj, amministratore)
         self.aggiungiProdottiAllaTab(mainPath, obj, amministratore, lista)
         obj.aggiungiBtn.clicked.connect(lambda: amministratore.aggiungiProdottoBtnClicked(mainPath, amministratore))
-        # TODO obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviProdottoBtnClicked(mainPath, amministratore))
-        # TODO obj.vendiBtn.clicked.connect(lambda: amministratore.vendiProdottoBtnClicked(mainPath, amministratore))
+        obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviProdottoBtnClicked(mainPath, amministratore, obj))
+        obj.vendiBtn.clicked.connect(lambda: amministratore.vendiProdottoBtnClicked(mainPath, amministratore, obj))
+        # TODO fare un finestra che si apre al posto della ricevuta di acquisto
+        # TODO fare il puntatore del mouse quando si punta sul pulsane di ricerca del prodotto
+        # TODO fare la ricerca del prodotto
+        # TODO fare il filtraggio dei prodotti
+
+    # Metodo che elimina gli oggetti nel database tramite la lista id
+    def rimuoviProdottoBtnClicked(self, mainPath, amministratore, obj):
+        listaId = list()
+        for box in range(obj.tab.rowCount()):
+            if obj.tab.item(box, 0).checkState() == QtCore.Qt.Checked:
+                listaId.append(int(obj.tab.item(box, 3).text()))
+        Controller().eliminaProdottiTramiteListaId(listaId)
+        self.prodottiBtnClicked(mainPath, amministratore, None)  # TODO da eliminare il passaggio di lista None
+
+    def vendiProdottoBtnClicked(self, mainPath, amministratore, obj):
+        listaId = list()
+        for box in range(obj.tab.rowCount()):
+            if obj.tab.item(box, 0).checkState() == QtCore.Qt.Checked:
+                listaId.append(int(obj.tab.item(box, 3).text()))
+        Controller().vendiProdottiTramiteListaId(listaId)
+        self.prodottiBtnClicked(mainPath, amministratore, None)
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def accountsBtnClicked(self, mainPath, amministratore):
@@ -78,6 +98,8 @@ class AmministratoreView(QWidget):
         self.aggiungiAccountsAllaTab(obj)
         obj.aggiungiBtn.clicked.connect(lambda: amministratore.aggiungiClienteBtnClicked(mainPath, amministratore))
         # TODO obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviClienteBtnClicked(mainPath, amministratore))
+        # TODO fare il filtraggio dei account e anche la loro ricerca tramite id
+        # TODO fare la ricerca tramite id degli account
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def backupBtnClicked(self, mainPath, amministratore):
@@ -102,7 +124,7 @@ class AmministratoreView(QWidget):
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
         obj.saveBtn.clicked.connect(lambda: self.saveProdottoBtnClicked(mainPath, obj, amministratore))
-        obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore))
+        obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, None))
 
     def vendiProdottiBtnClicked(self, mainPath, amministratore):
         # TODO
@@ -126,10 +148,10 @@ class AmministratoreView(QWidget):
         if self.checkerSaveProdottoBtnClicked(nomeLe, idAccountLe, prezzoLe, idCategoriaLe, idScaffaleLe):
             pass
         else:
-            self.prodottiBtnClicked(mainPath, amministratore)
+            self.prodottiBtnClicked(mainPath, amministratore, None)
         Controller().amministratoresaveProdottoBtn(nomeLe, idAccountLe, datetime.today(), prezzoLe, idCategoriaLe,
                                                    idScaffaleLe)
-        self.prodottiBtnClicked(mainPath, amministratore)
+        self.prodottiBtnClicked(mainPath, amministratore, None)
 
     # Metodo che si attiva alla pressione del saveClienteBtn
     def saveClienteBtnClicked(self, mainPath, obj, amministratore):
@@ -169,7 +191,9 @@ class AmministratoreView(QWidget):
     # Metodo che: rimuove un widget B che era stato messo in un widget A e mette un widget C nel widget A
     def removeAndAdd(self, item):
         try:
-            self.finestra.verticalLayout_toPaste.itemAt(0).widget().deleteLater()
+            # print(f"{self.finestra.verticalLayout_toPaste.count()}")
+            for wid in range(self.finestra.verticalLayout_toPaste.count()):
+                self.finestra.verticalLayout_toPaste.itemAt(wid).widget().deleteLater()
         except:
             pass
         self.finestra.verticalLayout_toPaste.addWidget(item)
@@ -227,7 +251,7 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 0, chkBoxItem)
             obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(account.nome))
             obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(account.cognome))
-            obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{account.idAccount}"))#serve solo per fare int a str
+            obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{account.idAccount}"))  # serve solo per fare int a str
             obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(account.email))
             row += 1
 
@@ -253,9 +277,7 @@ class AmministratoreView(QWidget):
         obj.idProdottoDaIns.setText(f"{prodottoTrovato.idProdotto}")
         obj.idScaffaleDaIns.setText(f"{prodottoTrovato.idScaffale}")
         obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.idCategoria}")
-        # obj.indietroBtn.clicked.connect(lambda: self.caricaView(mainPath, "ProdottiView.ui"))
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, lista))
-        # obj.indietroBtn.clicked.connect(lambda: self.removeAndAdd(self.caricaView(mainPath, "ProdottiView.ui")))
 
     # Metodo per controllare la validità dei dati inseriti dall'utente
     def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, prezzoLe, idCategoriaLe, idScaffaleLe):

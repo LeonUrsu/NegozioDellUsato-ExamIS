@@ -234,5 +234,9 @@ class Prodotto(ServizioInterface):
         listTotale.append(listProdottiEliminati)
         return listTotale
 
+
+
+
+
     # se il prodotto non ha id cliente deve essere comunnque venduto#####################################################################################################################
 

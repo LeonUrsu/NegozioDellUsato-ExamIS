@@ -25,7 +25,10 @@ if __name__ == '__main__':
         print("exiting")
 
     # Timer for backup setup
-    #TODO
+    # TODO
+
+
+
 #setStyleSheet
 "#homeBtn{\n"
 "	color:#78799c;\n"
