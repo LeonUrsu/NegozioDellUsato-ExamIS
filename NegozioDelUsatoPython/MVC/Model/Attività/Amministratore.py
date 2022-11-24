@@ -40,6 +40,10 @@ class Amministratore(User):
     def eliminaAccount(sel, idAccount):
         Account().eliminaAccount(idAccount)
 
+    def eliminaAccountTramiteListaId(self,listaId):
+        for id in listaId:
+            self.eliminaAccount(id)
+
     # Metodo che elimina un prodotto dagli oggetti in vendita a quelli eliminati
     def eliminaProdotto(self, idProdotto):
         Prodotto().eliminaProdotto(idProdotto)

@@ -2,6 +2,7 @@ import copy
 import json
 from operator import index
 
+
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from MVC.Model.SistemService.File import File
 from Database.PathDatabase import PathDatabase
@@ -140,13 +141,11 @@ class Account(ServizioInterface):
     # return = True if esiste già l'email nel sistema
     def checkEmailUtente(self, email):
         accountFile = PathDatabase().accountTxt
-        adminFile = PathDatabase().amministratoreTxt
         listAccount = File().deserializza(accountFile)
-        listAdmin = File().deserializza(adminFile)
-        admin = json.loads(listAdmin)
         for account in listAccount:
-            if account.email == admin["adminEmail"]:
-                return False
+            if account.email == "admin":
+                print("Impossibile creare un account Admin")
+                return True
             if account.email == email:
                 return True
         return False

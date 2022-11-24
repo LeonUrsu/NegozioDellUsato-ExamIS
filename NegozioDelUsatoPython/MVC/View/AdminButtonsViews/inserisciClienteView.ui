@@ -72,7 +72,7 @@
          </font>
         </property>
         <property name="placeholderText">
-         <string>Data di nascita gg/mm/aa</string>
+         <string>Data di nascita gg/mm/aaaa</string>
         </property>
        </widget>
       </item>

@@ -41,4 +41,6 @@ class Controller(object):
     def vendiProdottiTramiteListaId(self, listaId):
         Amministratore().vendiProdottiTramiteListaId(listaId)
 
+    def eliminaAccountTramiteListaId(self, listaId):
+        Amministratore().eliminaAccount(listaId)
 

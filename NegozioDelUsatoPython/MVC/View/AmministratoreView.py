@@ -77,6 +77,7 @@ class AmministratoreView(QWidget):
         Controller().eliminaProdottiTramiteListaId(listaId)
         self.prodottiBtnClicked(mainPath, amministratore, None)  # TODO da eliminare il passaggio di lista None
 
+
     def vendiProdottoBtnClicked(self, mainPath, amministratore, obj):
         listaId = list()
         for box in range(obj.tab.rowCount()):
@@ -100,6 +101,14 @@ class AmministratoreView(QWidget):
         # TODO obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviClienteBtnClicked(mainPath, amministratore))
         # TODO fare il filtraggio dei account e anche la loro ricerca tramite id
         # TODO fare la ricerca tramite id degli account
+
+        """ def rimuoviClienteBtnClicked(self, mainPath, amministratore, obj):
+        listaId = list()
+        for box in range(obj.tab.rowCount()):
+            if obj.tab.item(box, 0).checkState() == QtCore.Qt.Checked:
+                listaId.append(int(obj.tab.item(box, 3).text()))
+        Controller().eliminaAccountTramiteListaId(listaId)
+        self.accountsBtnClicked(mainPath, amministratore, None)"""
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def backupBtnClicked(self, mainPath, amministratore):
