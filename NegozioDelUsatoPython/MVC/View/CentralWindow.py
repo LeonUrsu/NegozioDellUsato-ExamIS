@@ -64,9 +64,10 @@ class CentralWindow():
     def apriLoginView(self, mainPath):
         self.removeItem(self.finestra.verticalLayout)
         login = LoginView(mainPath)
-        self.finestra.verticalLayout_toPaste.addWidget(login.finestra)
+        self.finestra.verticalLayout.addWidget(login.finestra)
         login.finestra.indietroBtn.clicked.connect(lambda: self.apriUserView(mainPath))
         login.finestra.confermaBtn.clicked.connect(lambda: self.loginViewConfermaView(mainPath, login))
+        login.finestra.toggleEchoBtn.clicked.connect(lambda: login.toggleVisibility(login))
 
 
     # Metodo che rimuove un widget da un layout e ne mette un altro

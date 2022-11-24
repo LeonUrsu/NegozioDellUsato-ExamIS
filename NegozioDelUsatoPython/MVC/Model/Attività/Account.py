@@ -92,7 +92,7 @@ class Account(ServizioInterface):
         File().serializza(startfileName, listAccount)
         return popped"""
 
-    #TODO rislolvare il problema del metodo metti oggettoSuListaNelFile, in alcuni luoghi gli si passsa il path mentre in altri no fare un secondo metodo
+    #TODO risolvere il problema del metodo metti oggettoSuListaNelFile, in alcuni luoghi gli si passsa il path mentre in altri no fare un secondo metodo
     # Metodo che viene richiamato sull'istanza di Account che deve essere messa su un file
     def mettiOggettoSuListaNelFile(self):
         listAccount = Account.recuperaListaOggetti(self)
@@ -139,9 +139,14 @@ class Account(ServizioInterface):
     # email = email da verificare
     # return = True if esiste già l'email nel sistema
     def checkEmailUtente(self, email):
-        fileName = PathDatabase().accountTxt
-        listAccount = File().deserializza(fileName)
+        accountFile = PathDatabase().accountTxt
+        adminFile = PathDatabase().amministratoreTxt
+        listAccount = File().deserializza(accountFile)
+        listAdmin = File().deserializza(adminFile)
+        admin = json.loads(listAdmin)
         for account in listAccount:
+            if account.email == admin["adminEmail"]:
+                return False
             if account.email == email:
                 return True
         return False
