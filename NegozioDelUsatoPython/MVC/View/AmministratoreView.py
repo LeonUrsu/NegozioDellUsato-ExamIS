@@ -63,10 +63,45 @@ class AmministratoreView(QWidget):
         obj.aggiungiBtn.clicked.connect(lambda: amministratore.aggiungiProdottoBtnClicked(mainPath, amministratore))
         obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviProdottoBtnClicked(mainPath, amministratore, obj))
         obj.vendiBtn.clicked.connect(lambda: amministratore.vendiProdottoBtnClicked(mainPath, amministratore, obj))
+        obj.cercaBtn.clicked.connect(lambda: amministratore.cercaProdottoBtnClicked(mainPath, amministratore, obj))
         # TODO fare un finestra che si apre al posto della ricevuta di acquisto
         # TODO fare il puntatore del mouse quando si punta sul pulsane di ricerca del prodotto
         # TODO fare la ricerca del prodotto
         # TODO fare il filtraggio dei prodotti
+
+    # Metodo che cerca il prodotto in base al nome passato
+    def cercaProdottoBtnClicked(self, mainPath, amministratore, obj):
+        """
+         #lista = Controller().recuperaListaProdottiInVendita()
+        textData = str(obj.filtraPerData.currentText())
+        textPrezzo = str(obj.filtraPerPrezzo.currentText())
+        listaCorrispondenti = list()
+        listaCorrispondentiData = self.ifFiltraPerDataSelected(lista, textData)
+        listaCorrispondentiPrezzo = self.ifFiltraPerPrezzo(lista, textPrezzo)
+        # TODO filtri progettati male perche bisogna passare una lista da filtrare e non un nome di file
+        for prodottoData in listaCorrispondentiData:
+            for prodottoPrezzo in listaCorrispondentiData:
+                if prodottoData == prodottoPrezzo:
+                    listaCorrispondenti.append(prodottoPrezzo)
+        if obj.search_le.text() != "":
+            name = obj.search_le.text()
+            temp = list()
+            for prodotto in listaCorrispondenti:
+                if prodotto.nomeProdotto == name:
+                    temp.append(prodotto)
+            listaCorrispondenti = temp
+        self.prodottiBtnClicked(mainPath, amministratore, listaCorrispondenti)
+        """
+        #TODO da completarez
+        pass
+
+    def ifFiltraPerDataSelected(self, lista, data):
+
+        return
+
+    def ifFiltraPerPrezzo(self, lista, prezzo):
+        return
+
 
     # Metodo che elimina gli oggetti nel database tramite la lista id
     def rimuoviProdottoBtnClicked(self, mainPath, amministratore, obj):
