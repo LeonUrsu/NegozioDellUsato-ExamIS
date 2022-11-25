@@ -77,7 +77,7 @@ class AmministratoreView(QWidget):
         Controller().eliminaProdottiTramiteListaId(listaId)
         self.prodottiBtnClicked(mainPath, amministratore, None)  # TODO da eliminare il passaggio di lista None
 
-
+    # Metodo che vende i prodotti selezionati nella lista dei prodotti
     def vendiProdottoBtnClicked(self, mainPath, amministratore, obj):
         listaId = list()
         for box in range(obj.tab.rowCount()):
@@ -98,7 +98,7 @@ class AmministratoreView(QWidget):
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
         self.aggiungiAccountsAllaTab(obj)
         obj.aggiungiBtn.clicked.connect(lambda: amministratore.aggiungiClienteBtnClicked(mainPath, amministratore))
-        # TODO obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviClienteBtnClicked(mainPath, amministratore))
+        obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviClienteBtnClicked(mainPath, obj, amministratore))
         # TODO fare il filtraggio dei account e anche la loro ricerca tramite id
         # TODO fare la ricerca tramite id degli account
 
@@ -146,6 +146,15 @@ class AmministratoreView(QWidget):
         self.removeAndAdd(obj)
         obj.saveBtn.clicked.connect(lambda: self.saveClienteBtnClicked(mainPath, obj, amministratore))
         obj.indietroBtn.clicked.connect(lambda: self.accountsBtnClicked(mainPath, amministratore))
+
+    # Metodo che rimuove account dal database del sistema e si attiva alla pressione di rimuoviBtn
+    def rimuoviClienteBtnClicked(self, mainPath, obj, amministratore):
+        listaId = list()
+        for box in range(obj.tab.rowCount()):
+            if obj.tab.item(box, 0).checkState() == QtCore.Qt.Checked:
+                listaId.append(int(obj.tab.item(box, 3).text()))
+        Controller().eliminaAccountTramiteListaId(listaId)
+        self.accountsBtnClicked(mainPath, amministratore)
 
     # Metodo che si attiva alla pressione del saveProdottoBtn
     def saveProdottoBtnClicked(self, mainPath, obj, amministratore):
@@ -290,24 +299,23 @@ class AmministratoreView(QWidget):
 
     # Metodo per controllare la validità dei dati inseriti dall'utente
     def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, prezzoLe, idCategoriaLe, idScaffaleLe):
-        if nomeLe != "":
-            if idAccountLe.isalnum():
-                if prezzoLe.isalnum():
-                    if idCategoriaLe.isalnum():
-                        if idScaffaleLe.isalnum():
-                            return True
-        return False
+        if nomeLe == "": return False
+        if not idAccountLe.isalnum(): return False
+        if not prezzoLe.isalnum(): return False
+        if prezzoLe != "": return False
+        if not idCategoriaLe.isalnum(): return False
+        if not idScaffaleLe.isalnum(): return False
+        return True
 
     # Metodo per controllare la validità dei dati inseriti dall'utente
     def checkerSaveClienteBtnClicked(self, nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
                                      cittaLe, viaLe, piazzaLe, civicoLe, citofonoLe):
-        if nomeLe != "":
-            if cognomeLe != "":
-                if self.validateDate(dataNascitaLe):
-                    if telefonoLe.isalnum():
-                        if capLe.isalnum():
-                            return True
-        return False
+        if nomeLe != "": return False
+        if cognomeLe != "": return False
+        if not self.validateDate(dataNascitaLe): return False
+        if not telefonoLe.isalnum(): return False
+        if not capLe.isalnum(): return False
+        return True
 
     def validateDate(self, date_text):
         try:
