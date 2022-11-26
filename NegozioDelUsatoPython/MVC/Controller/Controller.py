@@ -2,6 +2,7 @@ from MVC.Model.Attività.Account import Account
 from MVC.Model.Attività.Amministratore import Amministratore
 from MVC.Model.Attività.User import User
 from MVC.Model.Servizio.Prodotto import Prodotto
+from MVC.Model.SistemService.Filtri import Filtri
 from MVC.Model.SistemService.Statistiche import Statistiche
 
 
@@ -44,4 +45,9 @@ class Controller(object):
     def eliminaAccountTramiteListaId(self, listaId):
         Amministratore().eliminaAccountTramiteListaId(listaId)
 
+    def filtraDataEsposizione(self, start, stop, fileName):
+        return Filtri().filtraDataEsposizione(start, stop, fileName)
+
+    def filtraPrezzo(self, start, stop, fileName):
+        return Filtri().filtraPrezzo(start, stop, fileName)
 

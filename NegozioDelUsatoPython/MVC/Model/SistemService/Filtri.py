@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from MVC.Model.Attività.Account import Account
 from MVC.Model.SistemService.File import File
 
@@ -17,7 +19,7 @@ class Filtri:
         prodottiList = File().deserializza(fileName)
         prodottiFiltratiList = []
         for prodotto in prodottiList:
-            if prezzoMin <= prodotto.prezzoCorrente and prodotto.prezzoCorrente <= prezzoMax:
+            if prezzoMin <= int(prodotto.prezzoCorrente) and int(prodotto.prezzoCorrente) <= prezzoMax:
                 prodottiFiltratiList.append(prodotto)
         self.filtrati = prodottiFiltratiList
         return prodottiFiltratiList

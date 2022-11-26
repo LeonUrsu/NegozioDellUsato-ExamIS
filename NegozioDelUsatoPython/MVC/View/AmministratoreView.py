@@ -4,6 +4,9 @@ from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton
+from dateutil.relativedelta import relativedelta
+
+from Database.PathDatabase import PathDatabase
 from MVC.Controller.Controller import Controller
 
 
@@ -65,24 +68,18 @@ class AmministratoreView(QWidget):
         obj.vendiBtn.clicked.connect(lambda: amministratore.vendiProdottoBtnClicked(mainPath, amministratore, obj))
         obj.cercaBtn.clicked.connect(lambda: amministratore.cercaProdottoBtnClicked(mainPath, amministratore, obj))
         # TODO fare un finestra che si apre al posto della ricevuta di acquisto
-        # TODO fare il puntatore del mouse quando si punta sul pulsane di ricerca del prodotto
-        # TODO fare la ricerca del prodotto
-        # TODO fare il filtraggio dei prodotti
 
     # Metodo che cerca il prodotto in base al nome passato
     def cercaProdottoBtnClicked(self, mainPath, amministratore, obj):
-        """
-         #lista = Controller().recuperaListaProdottiInVendita()
         textData = str(obj.filtraPerData.currentText())
         textPrezzo = str(obj.filtraPerPrezzo.currentText())
+        listaCorrispondentiData = self.ifFiltraPerDataSelected(textData)
+        listaCorrispondentiPrezzo = self.ifFiltraPerPrezzo(textPrezzo)
         listaCorrispondenti = list()
-        listaCorrispondentiData = self.ifFiltraPerDataSelected(lista, textData)
-        listaCorrispondentiPrezzo = self.ifFiltraPerPrezzo(lista, textPrezzo)
-        # TODO filtri progettati male perche bisogna passare una lista da filtrare e non un nome di file
         for prodottoData in listaCorrispondentiData:
-            for prodottoPrezzo in listaCorrispondentiData:
-                if prodottoData == prodottoPrezzo:
-                    listaCorrispondenti.append(prodottoPrezzo)
+            for prodottoPrezzo in listaCorrispondentiPrezzo:
+                if prodottoData.idProdotto == prodottoPrezzo.idProdotto:
+                    listaCorrispondenti.append(prodottoData)
         if obj.search_le.text() != "":
             name = obj.search_le.text()
             temp = list()
@@ -91,17 +88,35 @@ class AmministratoreView(QWidget):
                     temp.append(prodotto)
             listaCorrispondenti = temp
         self.prodottiBtnClicked(mainPath, amministratore, listaCorrispondenti)
-        """
-        #TODO da completarez
-        pass
 
-    def ifFiltraPerDataSelected(self, lista, data):
+    # Metodo che filtra i prodotti in base al periodo scelto
+    def ifFiltraPerDataSelected(self, textData):
+        lista = None
+        if textData == "tutte le date":
+            lista = Controller().recuperaListaProdottiInVendita()
+        elif textData == "ultima settimana":
+            lista = Controller().filtraDataEsposizione(datetime.today() - relativedelta(days=7),
+                                                       datetime.today(), PathDatabase().inVenditaTxt)
+        elif textData == "ultimo mese":
+            lista = Controller().filtraDataEsposizione(datetime.today() - relativedelta(months=1),
+                                                       datetime.today(), PathDatabase().inVenditaTxt)
+        elif textData == "ultimi tre mesi":
+            lista = Controller().filtraDataEsposizione(datetime.today() - relativedelta(months=3),
+                                                       datetime.today(), PathDatabase().inVenditaTxt)
+        return lista
 
-        return
-
-    def ifFiltraPerPrezzo(self, lista, prezzo):
-        return
-
+    # Metodo che filtra i prodotti in base al prezzo massimo scelto
+    def ifFiltraPerPrezzo(self, textPrezzo):
+        lista = None
+        if textPrezzo == "tutti i prezzi":
+            lista = Controller().recuperaListaProdottiInVendita()
+        elif textPrezzo == "100 euro":
+            lista = Controller().filtraPrezzo(0, 100, PathDatabase().inVenditaTxt)
+        elif textPrezzo == "50 euro":
+            lista = Controller().filtraPrezzo(0, 50, PathDatabase().inVenditaTxt)
+        elif textPrezzo == "20 euro":
+            lista = Controller().filtraPrezzo(0, 20, PathDatabase().inVenditaTxt)
+        return lista
 
     # Metodo che elimina gli oggetti nel database tramite la lista id
     def rimuoviProdottoBtnClicked(self, mainPath, amministratore, obj):
