@@ -150,13 +150,6 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="QLineEdit" name="cognome_le">
-              <property name="placeholderText">
-               <string>cognome cliente</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QLineEdit" name="nome_le">
               <property name="inputMask">
                <string/>
@@ -166,6 +159,13 @@
               </property>
               <property name="placeholderText">
                <string>nome cliente</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="cognome_le">
+              <property name="placeholderText">
+               <string>cognome cliente</string>
               </property>
              </widget>
             </item>

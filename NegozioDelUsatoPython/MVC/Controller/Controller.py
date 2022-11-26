@@ -38,8 +38,11 @@ class Controller(object):
     def trovaUltimeStatistiche(self):
         return Statistiche().trovaUltimeStatistiche()
 
-    def trovaOggettoTramiteId(self, idProdotto):
+    def trovaProdottoTramiteId(self, idProdotto):
         return Prodotto().trovaOggettoTramiteId(idProdotto)
+
+    def trovaAccountTramiteId(self, idAccount):
+        return Account().trovaOggettoTramiteId(idAccount)
 
     def eliminaProdottiTramiteListaId(self, listaId):
         Amministratore().eliminaProdottiTramiteListaId(listaId)

@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 
 from MVC.Model.Attività.Account import Account
@@ -56,6 +57,6 @@ class Filtri:
         if nome != "" or cognome != "":
             for cliente in listClienti:
                 if cliente.nome == nome or cliente.cognome == cognome:
-                    listClienti.append(cliente)
-                    return listClienti
+                    listClientiConNome.append(cliente)
+                    return listClientiConNome
         return None

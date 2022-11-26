@@ -2,6 +2,7 @@ import os
 from datetime import datetime
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
+from PySide6.QtGui import QCursor
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton
 from dateutil.relativedelta import relativedelta
@@ -208,8 +209,8 @@ class AmministratoreView(QWidget):
         name = "inserisciClienteView.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
-        obj.saveBtn.clicked.connect(lambda: self.saveClienteBtnClicked(mainPath, obj, amministratore))
-        obj.indietroBtn.clicked.connect(lambda: self.accountsBtnClicked(mainPath, amministratore))
+        obj.saveBtn.clicked.connect(lambda: self.saveClienteBtnClicked(mainPath, obj, amministratore, None))
+        obj.indietroBtn.clicked.connect(lambda: self.accountsBtnClicked(mainPath, amministratore, None))
 
     # Metodo che rimuove account dal database del sistema e si attiva alla pressione di rimuoviBtn
     def rimuoviClienteBtnClicked(self, mainPath, obj, amministratore):
@@ -236,7 +237,7 @@ class AmministratoreView(QWidget):
         self.prodottiBtnClicked(mainPath, amministratore, None)
 
     # Metodo che si attiva alla pressione del saveClienteBtn
-    def saveClienteBtnClicked(self, mainPath, obj, amministratore):
+    def saveClienteBtnClicked(self, mainPath, obj, amministratore, lista):
         nomeLe = obj.nomeLe.text()
         cognomeLe = obj.cognomeLe.text()
         dataNascitaLe = obj.dataNascitaLe.text()
@@ -253,10 +254,12 @@ class AmministratoreView(QWidget):
                                              citofonoLe, viaLe, piazzaLe, civicoLe, citofonoLe):
             pass
         else:
-            self.accountsBtnClicked(mainPath, amministratore)
+            self.accountsBtnClicked(mainPath, amministratore, None)
             return
         Controller().saveCLienteBtnClicked(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
                                            citofonoLe, viaLe, piazzaLe, civicoLe, citofonoLe)
+        self.accountsBtnClicked(mainPath, amministratore, None)
+
 
     # Metodo che restitiusce la stringa nel metodo
     def pushedStyleSheet(self):
@@ -312,18 +315,18 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{prodotto.idProdotto}"))
             obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(f"{prodotto.dataScadenza}"))
             obj.tab.setCellWidget(row, 5,
-                                  self.creaBottoneQualsiasi(mainPath, prodotto.idProdotto, amministratore, lista))
+                                  self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto.idProdotto, amministratore, lista))
             row += 1
 
     # Metodo che aggiunge i prodotti in vendita al tableWidget
     def aggiungiAccountsAllaTab(self, mainPath, obj, amministratore, lista):
         #lista = Controller().recuperaListaAccounts()
-        colonne = 5
+        colonne = 6
         obj.tab.setColumnCount(colonne)
         obj.tab.setColumnWidth(0, 15)
         for i in range(colonne):
             obj.tab.setColumnWidth(i + 1, 100)
-        obj.tab.setHorizontalHeaderLabels((None, "nome", "cognome", "idAccount", "email",))
+        obj.tab.setHorizontalHeaderLabels((None, "nome", "cognome", "idAccount", "email", "bottini visualizza"))
         row = 0
         obj.tab.setRowCount(len(lista))
         for account in lista:
@@ -335,17 +338,32 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(account.cognome))
             obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{account.idAccount}"))  # serve solo per fare int a str
             obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(account.email))
+            obj.tab.setCellWidget(row, 5,
+                                  self.creaBottoneVisualizzaAccountQualsiasi(mainPath, account.idAccount, amministratore, lista))
             row += 1
 
     # Metodo che crea un bottone grazie al idProdotto
-    def creaBottoneQualsiasi(self, mainPath, idProdotto, amministratore, lista):
+    def creaBottoneVisualizzaProdottoQualsiasi(self, mainPath, idProdotto, amministratore, lista):
         # button = QToolButton()
         button = QPushButton()
         button.setText("Visualizza")
         button.clicked.connect(lambda: self.caricaifoProdottoView(mainPath, "infoProdottoView.ui",
-                                                                  Controller().trovaOggettoTramiteId(idProdotto),
+                                                                  Controller().trovaProdottoTramiteId(idProdotto),
                                                                   amministratore, lista))
         return button
+
+
+    # Metodo che crea un bottone grazie al idAccount
+    def creaBottoneVisualizzaAccountQualsiasi(self, mainPath, idAccount, amministratore, lista):
+        # button = QToolButton()
+        button = QPushButton()
+        button.setText("Visualizza")
+        button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+        button.clicked.connect(lambda: self.caricaifoAccountView(mainPath, "infoaccountView.ui",
+                                                                  Controller().trovaAccountTramiteId(idAccount),
+                                                                  amministratore, lista))
+        return button
+
 
     # Metodo che carica le info di un prodotto all'interno della View
     def caricaifoProdottoView(self, mainPath, fileName, prodottoTrovato, amministratore, lista):
@@ -361,6 +379,25 @@ class AmministratoreView(QWidget):
         obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.idCategoria}")
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, lista))
 
+
+    # Metodo che carica le info di un account all'interno della View
+    def caricaifoAccountView(self, mainPath, fileName, account, amministratore, lista):
+        obj = self.caricaView(mainPath, fileName)
+        self.removeAndAdd(obj)
+        obj.nomeDaIns.setText(account.nome)
+        obj.cognomeDaIns.setText(account.cognome)
+        obj.dataDiNascitaDaIns.setText(account.dataDiNascita)
+        obj.emailDaIns.setText(account.email)
+        obj.idAccountDaIns.setText(f"{account.idAccount}")
+        obj.numeroTelefonicoDaIns.setText(account.numeroTelefonico)
+        obj.cittaDaIns.setText(account.residenza.citta)
+        obj.capDaIns.setText(account.residenza.cap)
+        obj.citofonoDaIns.setText(account.residenza.citofono)
+        obj.viaDaIns.setText(account.residenza.via)
+        obj.piazzaDaIns.setText(account.residenza.piazza)
+        obj.civicoDaIns.setText(account.residenza.civico)
+        obj.indietroBtn.clicked.connect(lambda: self.accountsBtnClicked(mainPath, amministratore, lista))
+
     # Metodo per controllare la validità dei dati inseriti dall'utente
     def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, prezzoLe, idCategoriaLe, idScaffaleLe):
         if nomeLe == "": return False
@@ -374,8 +411,8 @@ class AmministratoreView(QWidget):
     # Metodo per controllare la validità dei dati inseriti dall'utente
     def checkerSaveClienteBtnClicked(self, nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
                                      cittaLe, viaLe, piazzaLe, civicoLe, citofonoLe):
-        if nomeLe != "": return False
-        if cognomeLe != "": return False
+        if nomeLe == "": return False
+        if cognomeLe == "": return False
         if not self.validateDate(dataNascitaLe): return False
         if not telefonoLe.isalnum(): return False
         if not capLe.isalnum(): return False
