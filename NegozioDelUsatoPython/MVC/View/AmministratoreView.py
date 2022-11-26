@@ -70,10 +70,6 @@ class AmministratoreView(QWidget):
         obj.cercaBtn.clicked.connect(lambda: amministratore.cercaProdottoBtnClicked(mainPath, amministratore, obj))
         # TODO fare un finestra che si apre al posto della ricevuta di acquisto
 
-
-
-
-
     # Metodo che cerca il prodotto in base al nome passato
     def cercaProdottoBtnClicked(self, mainPath, amministratore, obj):
         textData = str(obj.filtraPerData.currentText())
@@ -157,13 +153,10 @@ class AmministratoreView(QWidget):
         obj.aggiungiBtn.clicked.connect(lambda: amministratore.aggiungiClienteBtnClicked(mainPath, amministratore))
         obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviClienteBtnClicked(mainPath, obj, amministratore))
         obj.cercaBtn.clicked.connect(lambda: amministratore.cercaClienteBtnClicked(mainPath, obj, amministratore))
-        # TODO fare il filtraggio dei account
-        # TODO fare la ricerca tramite id degli account
 
     def cercaClienteBtnClicked(self, mainPath, obj, amministratore):
         textNome = str(obj.nome_le.text())
         textCognome = str(obj.cognome_le.text())
-        #TODO da finire, sembra che la lista non venga filtrata
         lista = Controller().filtraClienti(textNome, textCognome)
         self.accountsBtnClicked(mainPath, amministratore, lista)
 
@@ -199,10 +192,6 @@ class AmministratoreView(QWidget):
         self.removeAndAdd(obj)
         obj.saveBtn.clicked.connect(lambda: self.saveProdottoBtnClicked(mainPath, obj, amministratore))
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, None))
-
-    def vendiProdottiBtnClicked(self, mainPath, amministratore):
-        # TODO
-        pass
 
     # Metodo che si attiva alla pressione del aggiungiBtn
     def aggiungiClienteBtnClicked(self, mainPath, amministratore):
@@ -260,7 +249,6 @@ class AmministratoreView(QWidget):
                                            citofonoLe, viaLe, piazzaLe, civicoLe, citofonoLe)
         self.accountsBtnClicked(mainPath, amministratore, None)
 
-
     # Metodo che restitiusce la stringa nel metodo
     def pushedStyleSheet(self):
         # style = 'QPushButton {background-color: #1a1f39; color: #78799c;}'
@@ -315,12 +303,13 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{prodotto.idProdotto}"))
             obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(f"{prodotto.dataScadenza}"))
             obj.tab.setCellWidget(row, 5,
-                                  self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto.idProdotto, amministratore, lista))
+                                  self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto.idProdotto,
+                                                                              amministratore, lista))
             row += 1
 
     # Metodo che aggiunge i prodotti in vendita al tableWidget
     def aggiungiAccountsAllaTab(self, mainPath, obj, amministratore, lista):
-        #lista = Controller().recuperaListaAccounts()
+        # lista = Controller().recuperaListaAccounts()
         colonne = 6
         obj.tab.setColumnCount(colonne)
         obj.tab.setColumnWidth(0, 15)
@@ -339,7 +328,8 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{account.idAccount}"))  # serve solo per fare int a str
             obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(account.email))
             obj.tab.setCellWidget(row, 5,
-                                  self.creaBottoneVisualizzaAccountQualsiasi(mainPath, account.idAccount, amministratore, lista))
+                                  self.creaBottoneVisualizzaAccountQualsiasi(mainPath, account.idAccount,
+                                                                             amministratore, lista))
             row += 1
 
     # Metodo che crea un bottone grazie al idProdotto
@@ -352,7 +342,6 @@ class AmministratoreView(QWidget):
                                                                   amministratore, lista))
         return button
 
-
     # Metodo che crea un bottone grazie al idAccount
     def creaBottoneVisualizzaAccountQualsiasi(self, mainPath, idAccount, amministratore, lista):
         # button = QToolButton()
@@ -360,10 +349,9 @@ class AmministratoreView(QWidget):
         button.setText("Visualizza")
         button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         button.clicked.connect(lambda: self.caricaifoAccountView(mainPath, "infoaccountView.ui",
-                                                                  Controller().trovaAccountTramiteId(idAccount),
-                                                                  amministratore, lista))
+                                                                 Controller().trovaAccountTramiteId(idAccount),
+                                                                 amministratore, lista))
         return button
-
 
     # Metodo che carica le info di un prodotto all'interno della View
     def caricaifoProdottoView(self, mainPath, fileName, prodottoTrovato, amministratore, lista):
@@ -378,7 +366,6 @@ class AmministratoreView(QWidget):
         obj.idScaffaleDaIns.setText(f"{prodottoTrovato.idScaffale}")
         obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.idCategoria}")
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, lista))
-
 
     # Metodo che carica le info di un account all'interno della View
     def caricaifoAccountView(self, mainPath, fileName, account, amministratore, lista):
