@@ -8,20 +8,25 @@ from MVC.Model.SistemService.Statistiche import Statistiche
 
 class Controller(object):
 
-
     def userLoginController(self, email, password):
         return User().login(email, password)
 
-    def amministratoresaveProdottoBtn(self, nomeLe, idAccountLe, dataEsposizione, prezzoLe, idCategoriaLe, idScaffaleLe):
-        return Amministratore().inserisciProdotto(idCategoriaLe, dataEsposizione, idAccountLe, nomeLe, prezzoLe, idScaffaleLe)
+    def amministratoresaveProdottoBtn(self, nomeLe, idAccountLe, dataEsposizione, prezzoLe, idCategoriaLe,
+                                      idScaffaleLe):
+        return Amministratore().inserisciProdotto(idCategoriaLe, dataEsposizione, idAccountLe, nomeLe, prezzoLe,
+                                                  idScaffaleLe)
 
     def recuperaListaProdottiInVendita(self):
         return Prodotto().recuperaListaProdottiInVendita()
 
+    def recuperaListaClienti(self):
+        return Account().recuperaListaOggetti()
+
     def saveCLienteBtnClicked(self, nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
                               cittaLe, viaLe, piazzaLe, civicoLe, citofonoLe):
-        return Amministratore().inserisciAccount(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe, citofonoLe, cittaLe, civicoLe, piazzaLe, viaLe)
-        #TODO verificare esistenza di probabile bug con l'iserimento di date DD-MM-YY rispetto a quello che restituisce il
+        return Amministratore().inserisciAccount(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe,
+                                                 capLe, citofonoLe, cittaLe, civicoLe, piazzaLe, viaLe)
+        # TODO verificare esistenza di probabile bug con l'iserimento di date DD-MM-YY rispetto a quello che restituisce il
         # metodo datetime.today()
 
     def recuperaListaAccounts(self):
@@ -51,3 +56,5 @@ class Controller(object):
     def filtraPrezzo(self, start, stop, fileName):
         return Filtri().filtraPrezzo(start, stop, fileName)
 
+    def filtraClienti(self, nome, cognome):
+        return Filtri().filtraClienti(nome, cognome)

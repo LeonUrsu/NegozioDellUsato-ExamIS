@@ -57,7 +57,7 @@ class CentralWindow():
         amministratore.finestra.homeBtn.clicked.connect(lambda: amministratore.homeBtnClicked(mainPath, amministratore))
         amministratore.finestra.statisticheBtn.clicked.connect(lambda: amministratore.statisticheBtnClicked(mainPath, amministratore))
         amministratore.finestra.prodottiBtn.clicked.connect(lambda: amministratore.prodottiBtnClicked(mainPath, amministratore, None))
-        amministratore.finestra.accountsBtn.clicked.connect(lambda: amministratore.accountsBtnClicked(mainPath, amministratore))
+        amministratore.finestra.accountsBtn.clicked.connect(lambda: amministratore.accountsBtnClicked(mainPath, amministratore, None))
         amministratore.finestra.backupBtn.clicked.connect(lambda: amministratore.backupBtnClicked(mainPath, amministratore))
 
     # Metodo che apre la finestra del login

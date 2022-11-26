@@ -69,6 +69,10 @@ class AmministratoreView(QWidget):
         obj.cercaBtn.clicked.connect(lambda: amministratore.cercaProdottoBtnClicked(mainPath, amministratore, obj))
         # TODO fare un finestra che si apre al posto della ricevuta di acquisto
 
+
+
+
+
     # Metodo che cerca il prodotto in base al nome passato
     def cercaProdottoBtnClicked(self, mainPath, amministratore, obj):
         textData = str(obj.filtraPerData.currentText())
@@ -125,7 +129,7 @@ class AmministratoreView(QWidget):
             if obj.tab.item(box, 0).checkState() == QtCore.Qt.Checked:
                 listaId.append(int(obj.tab.item(box, 3).text()))
         Controller().eliminaProdottiTramiteListaId(listaId)
-        self.prodottiBtnClicked(mainPath, amministratore, None)  # TODO da eliminare il passaggio di lista None
+        self.prodottiBtnClicked(mainPath, amministratore, None)
 
     # Metodo che vende i prodotti selezionati nella lista dei prodotti
     def vendiProdottoBtnClicked(self, mainPath, amministratore, obj):
@@ -137,28 +141,38 @@ class AmministratoreView(QWidget):
         self.prodottiBtnClicked(mainPath, amministratore, None)
 
     # Metodo per cambiare al pulsante il colore dopo premuto
-    def accountsBtnClicked(self, mainPath, amministratore):
+    def accountsBtnClicked(self, mainPath, amministratore, lista):
         name = "accountsView.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
+        if lista == None:
+            lista = Controller().recuperaListaClienti()
         amministratore.finestra.homeBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.statisticheBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.pushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
-        self.aggiungiAccountsAllaTab(obj)
+        self.aggiungiAccountsAllaTab(mainPath, obj, amministratore, lista)
         obj.aggiungiBtn.clicked.connect(lambda: amministratore.aggiungiClienteBtnClicked(mainPath, amministratore))
         obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviClienteBtnClicked(mainPath, obj, amministratore))
-        # TODO fare il filtraggio dei account e anche la loro ricerca tramite id
+        obj.cercaBtn.clicked.connect(lambda: amministratore.cercaClienteBtnClicked(mainPath, obj, amministratore))
+        # TODO fare il filtraggio dei account
         # TODO fare la ricerca tramite id degli account
 
-        """ def rimuoviClienteBtnClicked(self, mainPath, amministratore, obj):
-        listaId = list()
-        for box in range(obj.tab.rowCount()):
-            if obj.tab.item(box, 0).checkState() == QtCore.Qt.Checked:
-                listaId.append(int(obj.tab.item(box, 3).text()))
-        Controller().eliminaAccountTramiteListaId(listaId)
-        self.accountsBtnClicked(mainPath, amministratore, None)"""
+    def cercaClienteBtnClicked(self, mainPath, obj, amministratore):
+        textNome = str(obj.nome_le.text())
+        textCognome = str(obj.cognome_le.text())
+        #TODO da finire, sembra che la lista non venga filtrata
+        lista = Controller().filtraClienti(textNome, textCognome)
+        self.accountsBtnClicked(mainPath, amministratore, lista)
+
+    """ def rimuoviClienteBtnClicked(self, mainPath, amministratore, obj):
+    listaId = list()
+    for box in range(obj.tab.rowCount()):
+        if obj.tab.item(box, 0).checkState() == QtCore.Qt.Checked:
+            listaId.append(int(obj.tab.item(box, 3).text()))
+    Controller().eliminaAccountTramiteListaId(listaId)
+    self.accountsBtnClicked(mainPath, amministratore, None)"""
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def backupBtnClicked(self, mainPath, amministratore):
@@ -302,8 +316,8 @@ class AmministratoreView(QWidget):
             row += 1
 
     # Metodo che aggiunge i prodotti in vendita al tableWidget
-    def aggiungiAccountsAllaTab(self, obj):
-        lista = Controller().recuperaListaAccounts()
+    def aggiungiAccountsAllaTab(self, mainPath, obj, amministratore, lista):
+        #lista = Controller().recuperaListaAccounts()
         colonne = 5
         obj.tab.setColumnCount(colonne)
         obj.tab.setColumnWidth(0, 15)

@@ -127,7 +127,10 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="pushButton_6">
+          <widget class="QPushButton" name="cercaBtn">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -147,14 +150,14 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="QLineEdit" name="lineEdit_2">
+             <widget class="QLineEdit" name="cognome_le">
               <property name="placeholderText">
                <string>cognome cliente</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="search_le">
+             <widget class="QLineEdit" name="nome_le">
               <property name="inputMask">
                <string/>
               </property>

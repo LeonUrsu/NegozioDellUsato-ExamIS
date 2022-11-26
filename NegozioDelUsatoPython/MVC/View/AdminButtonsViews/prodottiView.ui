@@ -131,6 +131,11 @@
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
+           <property name="styleSheet">
+            <string notr="true">#cercaBtn {
+	color:#78799c;
+}</string>
+           </property>
            <property name="text">
             <string/>
            </property>

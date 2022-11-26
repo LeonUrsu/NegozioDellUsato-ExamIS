@@ -53,9 +53,9 @@ class Filtri:
     def filtraClienti(self, nome, cognome):
         listClientiConNome = list()
         listClienti = Account().recuperaListaOggetti()
-        if nome != None or cognome != None:
+        if nome != "" or cognome != "":
             for cliente in listClienti:
                 if cliente.nome == nome or cliente.cognome == cognome:
-                    listClientiConNome.append(cliente)
-                    return listClientiConNome
+                    listClienti.append(cliente)
+                    return listClienti
         return None
