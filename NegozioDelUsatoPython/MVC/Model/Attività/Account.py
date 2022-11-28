@@ -144,7 +144,7 @@ class Account(ServizioInterface):
         listAccount = File().deserializza(accountFile)
         for account in listAccount:
             if email == "admin":
-                print("Impossibile creare un account Admin")
+
                 return True
             if account.email == email:
                 return True
