@@ -20,7 +20,7 @@ class UserView():
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         file.close()
-
+        self.removeAndAdd(self.caricaClienteProdottiView(mainPath))
         #self.aggiungiProdottiAllaTab(mainPath, self.finestra)
         #self.finestra.homeBtn.clicked.connect(lambda: self.homeBtnClicked(self.finestra))
         #self.finestra.iMieiProdottiBtn.clicked.connect(lambda: self.iMieiProdottiBtnClicked(self.finestra))
@@ -59,8 +59,20 @@ class UserView():
 
     def caricaifoProdottoView(self, mainPath, prodotto):
         pass
-    
-    def caricaClienteProdottiView(self):
+
+    def caricaClienteProdottiView(self, mainPath, obj):
         filename = "UserViewProdotti.ui"
+
+        # Metodo che: rimuove un widget B che era stato messo in un widget A e mette un widget C nel widget A
+
+    def removeAndAdd(self, item):
+        try:
+            # print(f"{self.finestra.verticalLayout_toPaste.count()}")
+            for wid in range(self.finestra.verticalLayout_toPaste.count()):
+                self.finestra.verticalLayout_toPaste.itemAt(wid).widget().deleteLater()
+        except:
+            pass
+        self.finestra.verticalLayout_toPaste.addWidget(item)
+
 
 

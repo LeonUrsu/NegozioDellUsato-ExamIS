@@ -238,7 +238,7 @@ border-radius: 10px;
          </item>
          <item>
           <widget class="QWidget" name="toPaste" native="true">
-           <layout class="QVBoxLayout" name="verticalLayout_5"/>
+           <layout class="QVBoxLayout" name="verticalLayout_toPaste"/>
           </widget>
          </item>
         </layout>
