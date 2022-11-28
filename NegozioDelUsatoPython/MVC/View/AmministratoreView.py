@@ -22,7 +22,7 @@ class AmministratoreView(QWidget):
         self.finestra = loader.load(file)
         file.close()
 
-    # Metodo per cambiare al pulsante il colore dopo premuto
+    # Metodo per gestire i pulsanti premuti sul menu sinistro
     def homeBtnClicked(self, mainPath, amministratore):
         name = "homeView.ui"
         obj = self.caricaView(mainPath, name)
@@ -32,14 +32,8 @@ class AmministratoreView(QWidget):
         amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
-        self.testing()
 
-    def testing(self):
-        lista = Controller().recuperaListaAccounts()
-        for cliente in lista:
-            print(f" citta --> {cliente.residenza.citta}")
-
-    # Metodo per cambiare al pulsante il colore dopo premuto
+    # Metodo per gestire i pulsanti premuti sul menu sinistro
     def statisticheBtnClicked(self, mainPath, amministratore):
         name = "statisticheView.ui"
         obj = self.caricaView(mainPath, name)
@@ -58,7 +52,7 @@ class AmministratoreView(QWidget):
             obj.cat2.setText(stats.tendenzaCategorie[1])
             obj.cat3.setText(stats.tendenzaCategorie[2])
 
-    # Metodo per cambiare al pulsante il colore dopo premuto
+    # Metodo per gestire i pulsanti premuti sul menu sinistroo
     def prodottiBtnClicked(self, mainPath, amministratore, lista):
         name = "prodottiView.ui"
         obj = self.caricaView(mainPath, name)
@@ -144,7 +138,7 @@ class AmministratoreView(QWidget):
         self.prodottiBtnClicked(mainPath, amministratore, None)
         # TODO fare un finestra che si apre al posto della ricevuta di acquisto
 
-    # Metodo per cambiare al pulsante il colore dopo premuto
+    # Metodo per gestire i pulsanti premuti sul menu sinistro
     def accountsBtnClicked(self, mainPath, amministratore, lista):
         name = "accountsView.ui"
         obj = self.caricaView(mainPath, name)
@@ -167,7 +161,7 @@ class AmministratoreView(QWidget):
         lista = Controller().filtraClienti(textNome, textCognome)
         self.accountsBtnClicked(mainPath, amministratore, lista)
 
-    # Metodo per cambiare al pulsante il colore dopo premuto
+    # Metodo per gestire i pulsanti premuti sul menu sinistro
     def backupBtnClicked(self, mainPath, amministratore):
         name = "backupView.ui"
         obj = self.caricaView(mainPath, name)
@@ -251,13 +245,15 @@ class AmministratoreView(QWidget):
     # Metodo che restitiusce la stringa nel metodo
     def pushedStyleSheet(self):
         # style = 'QPushButton {background-color: #1a1f39; color: #78799c;}'
-        style = "QPushButton {color: #78799c; background-color: #1a1f39; padding:10px 5px; text-align: left; border-top-left-radius: 15px; border-bottom-left-radius: 15px}"
+        style = "QPushButton {color: #78799c; background-color: #1a1f39; padding:10px 5px; text-align: left; " \
+                "border-top-left-radius: 15px; border-bottom-left-radius: 15px}"
         return style
 
     # Metodo che restitiusce la stringa nel metodo
     def unPushedStyleSheet(self):
         # style = 'QPushButton {background-color: #2a2c49; color: #78799c;}'
-        style = "QPushButton {color: #78799c; background-color: #2a2c49; padding: 10px 5px; text-align: left; border-top-left-radius: 25px; border-bottom-left-radius: 25px;}"
+        style = "QPushButton {color: #78799c; background-color: #2a2c49; padding: 10px 5px; text-align: left; " \
+                "border-top-left-radius: 25px; border-bottom-left-radius: 25px;}"
         return style
 
     # Metodo che: rimuove un widget B che era stato messo in un widget A e mette un widget C nel widget A

@@ -21,9 +21,10 @@ class LoginView(QWidget):
         email = finestra.emailEd.text()
         password = finestra.passwordEd.text()
         risultato = Controller().userLoginController(email, password)
+        # TODO fare il login
 
     #Metodo che permette di visualizzare la password inserita
-    def toggleVisibility(self,login):
+    def toggleVisibility(self, login):
         if login.finestra.passwordEd.echoMode() == QLineEdit.Normal:
             login.finestra.passwordEd.setEchoMode(QLineEdit.Password)
         else:
