@@ -9,6 +9,7 @@ from dateutil.relativedelta import relativedelta
 
 from Database.PathDatabase import PathDatabase
 from MVC.Controller.Controller import Controller
+from MVC.Model.Attività.Account import Account
 
 
 class AmministratoreView(QWidget):
@@ -31,6 +32,12 @@ class AmministratoreView(QWidget):
         amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
+        self.testing()
+
+    def testing(self):
+        lista = Controller().recuperaListaAccounts()
+        for cliente in lista:
+            print(f" citta --> {cliente.residenza.citta}")
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def statisticheBtnClicked(self, mainPath, amministratore):
@@ -68,7 +75,6 @@ class AmministratoreView(QWidget):
         obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviProdottoBtnClicked(mainPath, amministratore, obj))
         obj.vendiBtn.clicked.connect(lambda: amministratore.vendiProdottoBtnClicked(mainPath, amministratore, obj))
         obj.cercaBtn.clicked.connect(lambda: amministratore.cercaProdottoBtnClicked(mainPath, amministratore, obj))
-        # TODO fare un finestra che si apre al posto della ricevuta di acquisto
 
     # Metodo che cerca il prodotto in base al nome passato
     def cercaProdottoBtnClicked(self, mainPath, amministratore, obj):
@@ -136,6 +142,7 @@ class AmministratoreView(QWidget):
                 listaId.append(int(obj.tab.item(box, 3).text()))
         Controller().vendiProdottiTramiteListaId(listaId)
         self.prodottiBtnClicked(mainPath, amministratore, None)
+        # TODO fare un finestra che si apre al posto della ricevuta di acquisto
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def accountsBtnClicked(self, mainPath, amministratore, lista):
@@ -143,7 +150,7 @@ class AmministratoreView(QWidget):
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
         if lista == None:
-            lista = Controller().recuperaListaClienti()
+            lista = Controller().recuperaListaAccounts()
         amministratore.finestra.homeBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.statisticheBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
@@ -159,14 +166,6 @@ class AmministratoreView(QWidget):
         textCognome = str(obj.cognome_le.text())
         lista = Controller().filtraClienti(textNome, textCognome)
         self.accountsBtnClicked(mainPath, amministratore, lista)
-
-    """ def rimuoviClienteBtnClicked(self, mainPath, amministratore, obj):
-    listaId = list()
-    for box in range(obj.tab.rowCount()):
-        if obj.tab.item(box, 0).checkState() == QtCore.Qt.Checked:
-            listaId.append(int(obj.tab.item(box, 3).text()))
-    Controller().eliminaAccountTramiteListaId(listaId)
-    self.accountsBtnClicked(mainPath, amministratore, None)"""
 
     # Metodo per cambiare al pulsante il colore dopo premuto
     def backupBtnClicked(self, mainPath, amministratore):
@@ -208,7 +207,7 @@ class AmministratoreView(QWidget):
             if obj.tab.item(box, 0).checkState() == QtCore.Qt.Checked:
                 listaId.append(int(obj.tab.item(box, 3).text()))
         Controller().eliminaAccountTramiteListaId(listaId)
-        self.accountsBtnClicked(mainPath, amministratore,None)
+        self.accountsBtnClicked(mainPath, amministratore, None)
 
     # Metodo che si attiva alla pressione del saveProdottoBtn
     def saveProdottoBtnClicked(self, mainPath, obj, amministratore):
@@ -246,7 +245,7 @@ class AmministratoreView(QWidget):
             self.accountsBtnClicked(mainPath, amministratore, None)
             return
         Controller().saveCLienteBtnClicked(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
-                                           citofonoLe, viaLe, piazzaLe, civicoLe, citofonoLe)
+                                           cittaLe, viaLe, piazzaLe, civicoLe, citofonoLe)
         self.accountsBtnClicked(mainPath, amministratore, None)
 
     # Metodo che restitiusce la stringa nel metodo
@@ -290,7 +289,7 @@ class AmministratoreView(QWidget):
         for i in range(column):
             obj.tab.setColumnWidth(i + 1, 100)
         obj.tab.setHorizontalHeaderLabels(
-            (None, "nome", "prezzo", "id Prodotto", "data Scadenza", "bottini visualizza"))
+            (None, "nome", "prezzo", "id prodotto", "data scadenza", "click su visualizza"))
         row = 0
         obj.tab.setRowCount(len(lista))
         for prodotto in lista:
@@ -315,7 +314,7 @@ class AmministratoreView(QWidget):
         obj.tab.setColumnWidth(0, 15)
         for i in range(colonne):
             obj.tab.setColumnWidth(i + 1, 100)
-        obj.tab.setHorizontalHeaderLabels((None, "nome", "cognome", "idAccount", "email", "bottini visualizza"))
+        obj.tab.setHorizontalHeaderLabels((None, "nome", "cognome", "id account", "email", "click su visualizza"))
         row = 0
         obj.tab.setRowCount(len(lista))
         for account in lista:
@@ -396,11 +395,11 @@ class AmministratoreView(QWidget):
         return True
 
     # Metodo per controllare la validità dei dati inseriti dall'utente
-    def checkerSaveClienteBtnClicked(self, nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
+    def checkerSaveClienteBtnClicked(self, nomeLe, cognomeLe, dataDiNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
                                      cittaLe, viaLe, piazzaLe, civicoLe, citofonoLe):
         if nomeLe == "": return False
         if cognomeLe == "": return False
-        if not self.validateDate(dataNascitaLe): return False
+        if not self.validateDate(dataDiNascitaLe): return False
         if not telefonoLe.isalnum(): return False
         if not capLe.isalnum(): return False
         return True
@@ -410,4 +409,5 @@ class AmministratoreView(QWidget):
             datetime.strptime(date_text, '%d/%m/%Y')
             return True
         except:
+            print("data non valida")
             return False
