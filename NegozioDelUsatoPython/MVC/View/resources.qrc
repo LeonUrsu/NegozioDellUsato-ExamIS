@@ -288,4 +288,9 @@
     <file>assets/#78799c(purple) icons/zoom-in.svg</file>
     <file>assets/#78799c(purple) icons/zoom-out.svg</file>
   </qresource>
+  <qresource prefix="utils">
+    <file>assets/utils icons/56-warning (2).svg</file>
+    <file>assets/utils icons/56-warning.svg</file>
+    <file>assets/utils icons/56-warning (1).svg</file>
+  </qresource>
 </RCC>
