@@ -374,6 +374,7 @@ class AmministratoreView(QWidget):
         obj.cognomeDaIns.setText(account.cognome)
         obj.dataDiNascitaDaIns.setText(account.dataDiNascita)
         obj.emailDaIns.setText(account.email)
+        obj.passwordDaIns.setText(account.password)
         obj.idAccountDaIns.setText(f"{account.idAccount}")
         obj.numeroTelefonicoDaIns.setText(account.numeroTelefonico)
         obj.cittaDaIns.setText(account.residenza.citta)

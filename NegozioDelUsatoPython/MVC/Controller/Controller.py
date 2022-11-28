@@ -23,7 +23,6 @@ class Controller(object):
                               cittaLe, viaLe, piazzaLe, civicoLe, citofonoLe):
         return Amministratore().inserisciAccount(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe,
                                                  capLe, citofonoLe, cittaLe, civicoLe, piazzaLe, viaLe)
-        # TODO verificare esistenza di probabile bug con l'iserimento di date DD-MM-YY rispetto a quello che restituisce il
 
     def recuperaListaAccounts(self):
         return Account().recuperaListaOggetti()
