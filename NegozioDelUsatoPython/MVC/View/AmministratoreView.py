@@ -208,7 +208,7 @@ class AmministratoreView(QWidget):
             if obj.tab.item(box, 0).checkState() == QtCore.Qt.Checked:
                 listaId.append(int(obj.tab.item(box, 3).text()))
         Controller().eliminaAccountTramiteListaId(listaId)
-        self.accountsBtnClicked(mainPath, amministratore)
+        self.accountsBtnClicked(mainPath, amministratore,None)
 
     # Metodo che si attiva alla pressione del saveProdottoBtn
     def saveProdottoBtnClicked(self, mainPath, obj, amministratore):

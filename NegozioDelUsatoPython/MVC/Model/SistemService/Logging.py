@@ -26,7 +26,6 @@ class Logging:
         File().serializza(fileName, listLogging)
         return True
 
-    # TODO quando un amministratore inserisce l'account fare il cointrollo sulla email che non sia "admin"
     # Metodo che gestisce il login di un utente
     # return valore booleano a seconda se il login è andato a buon fine
     def login(self, email, password):

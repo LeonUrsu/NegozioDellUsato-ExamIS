@@ -143,7 +143,7 @@ class Account(ServizioInterface):
         accountFile = PathDatabase().accountTxt
         listAccount = File().deserializza(accountFile)
         for account in listAccount:
-            if account.email == "admin":
+            if email == "admin":
                 print("Impossibile creare un account Admin")
                 return True
             if account.email == email:
