@@ -11,59 +11,32 @@ from MVC.Controller.Controller import Controller
 
 class UserView():
 
-
     def __init__(self, mainPath):
-        #super().__init__()
+        # super().__init__()
         loader = QUiLoader()
         path = os.path.join(mainPath, "MVC", "View", "UserView.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         file.close()
-        self.removeAndAdd(self.caricaClienteProdottiView(mainPath))
-        #self.aggiungiProdottiAllaTab(mainPath, self.finestra)
-        #self.finestra.homeBtn.clicked.connect(lambda: self.homeBtnClicked(self.finestra))
-        #self.finestra.iMieiProdottiBtn.clicked.connect(lambda: self.iMieiProdottiBtnClicked(self.finestra))
-
-    # Metodo che aggiunge i prodotti in vendita al tableWidget
-    def aggiungiProdottiAllaTab(self, mainPath, obj):
-        lista = Controller().recuperaListaProdottiInVendita()
-        objList = {"nome", "prezzo", "id prodotto", "data scadenza", "click su visualizza"}
-        column = len(objList)
-        obj.tab.setColumnCount(column)
-        for i in range(column):
-            obj.tab.setColumnWidth(i, 120)
-        obj.tab.setHorizontalHeaderLabels((objList[0], objList[1], objList[2], objList[3], objList[4]))
-        row = 0
-        obj.tab.setRowCount(len(lista))
-        for prodotto in lista:
-            chkBoxItem = QTableWidgetItem()
-            chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
-            chkBoxItem.setCheckState(QtCore.Qt.Unchecked)
-            #obj.tab.setItem(row, 0, chkBoxItem)
-            obj.tab.setItem(row, 0, QtWidgets.QTableWidgetItem(f"{prodotto.nomeProdotto}"))
-            obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(f"{prodotto.prezzoCorrente}"))
-            obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(f"{prodotto.idProdotto}"))
-            obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{prodotto.dataScadenza}"))
-            obj.tab.setCellWidget(row, 4,
-                                  self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto.idProdotto, lista))
-            row += 1
+        self.caricaUserProdottiView(mainPath)
+        # self.aggiungiProdottiAllaTab(mainPath, self.finestra)
+        # self.finestra.homeBtn.clicked.connect(lambda: self.homeBtnClicked(self.finestra))
+        # self.finestra.iMieiProdottiBtn.clicked.connect(lambda: self.iMieiProdottiBtnClicked(self.finestra))
 
     # Metodo che crea un bottone grazie al idProdotto
-    def creaBottoneVisualizzaProdottoQualsiasi(self, mainPath, idProdotto, lista):
+    def creaBottoneVisualizzaProdottoQualsiasi(self, mainPath, prodotto):
+        prod = prodotto  # TODO anche in admin si puo fare in qursto modo per risparmiare velocità, si potrebbe  modificare admin per avere un'ereditarietà
         button = QPushButton()
         button.setText("Visualizza")
-        button.clicked.connect(lambda: self.caricaifoProdottoView(mainPath, "infoProdottoPerClienteView.ui",
-                                Controller().trovaProdottoTramiteId(idProdotto), lista))
+        button.clicked.connect(lambda: self.caricaifoProdottoView(mainPath, "infoProdottoClienteView.ui", prod))
         return button
 
-    def caricaifoProdottoView(self, mainPath, prodotto):
-        pass
-
-    def caricaClienteProdottiView(self, mainPath, obj):
-        filename = "UserViewProdotti.ui"
-
-        # Metodo che: rimuove un widget B che era stato messo in un widget A e mette un widget C nel widget A
+    def caricaifoProdottoView(self, mainPath, fileName, prodotto):
+        obj = self.caricaView(mainPath, fileName)
+        self.removeAndAdd(obj)
+        # TODO caricare una nuova view delle indo del prodotto, qui andrà rimossa anche la vecchia view removeAndAdd
+        self.finestra.indietroBtn.clicked.connect(lambda: self.caricaUserProdottiView(mainPath))
 
     def removeAndAdd(self, item):
         try:
@@ -74,5 +47,41 @@ class UserView():
             pass
         self.finestra.verticalLayout_toPaste.addWidget(item)
 
+    def caricaUserProdottiView(self, mainPath):
+        obj = self.caricaView(mainPath, "UserViewProdotti.ui")
+        self.removeAndAdd(obj)
+        self.aggiungiProdottiAllaTab(mainPath, obj)
 
 
+    # Metodo che carica una view presente nella UserViews grazie al nome passato
+    def caricaView(self, mainPath, name):
+        loader = QUiLoader()
+        path = os.path.join(mainPath, "MVC", "View", "UserViews", name)
+        file = QFile(path)
+        file.open(QFile.ReadOnly)
+        finestra = loader.load(file)
+        file.close()
+        return finestra
+
+    # Metodo che aggiunge i prodotti in vendita al tableWidget
+    # TODO impelmentare un menìtodo simile anche in admin, sembra più efficiente
+    def aggiungiProdottiAllaTab(self, mainPath, obj):
+        lista = Controller().recuperaListaProdottiInVendita()
+        objList = ("nome", "prezzo", "id prodotto", "data scadenza", "click su visualizza")
+        column = len(objList)
+        obj.tab.setColumnCount(column)
+        for i in range(column):
+            obj.tab.setColumnWidth(i, 120)
+        obj.tab.setHorizontalHeaderLabels(objList)
+        row = 0
+        obj.tab.setRowCount(len(lista))
+        for prodotto in lista:
+            chkBoxItem = QTableWidgetItem()
+            chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
+            obj.tab.setItem(row, 0, QtWidgets.QTableWidgetItem(f"{prodotto.nomeProdotto}"))
+            obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(f"{prodotto.prezzoCorrente}"))
+            obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(f"{prodotto.idProdotto}"))
+            obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{prodotto.dataScadenza}"))
+            obj.tab.setCellWidget(row, 4,
+                                  self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto))
+            row += 1

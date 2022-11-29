@@ -170,7 +170,7 @@ border-radius: 10px;
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset resource="resources.qrc">
+                  <iconset resource="../resources.qrc">
                    <normaloff>:/purpleIcons/assets/#78799c(purple) icons/search.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/search.svg</iconset>
                  </property>
                  <property name="iconSize">
@@ -301,6 +301,21 @@ border-radius: 10px;
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QTableWidget" name="tab"/>
             </item>
@@ -316,7 +331,7 @@ border-radius: 10px;
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../resources.qrc"/>
  </resources>
  <connections/>
 </ui>
