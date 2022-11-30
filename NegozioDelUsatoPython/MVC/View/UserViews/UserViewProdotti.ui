@@ -203,7 +203,7 @@ border-radius: 10px;
                <item>
                 <widget class="QComboBox" name="comboBox_4">
                  <property name="currentText">
-                  <string>Ultimo Giorno</string>
+                  <string>Tutte le date</string>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -214,6 +214,11 @@ border-radius: 10px;
                  <property name="placeholderText" stdset="0">
                   <string>Filtra Data</string>
                  </property>
+                 <item>
+                  <property name="text">
+                   <string>Tutte le date</string>
+                  </property>
+                 </item>
                  <item>
                   <property name="text">
                    <string>Ultimo Giorno</string>
@@ -229,11 +234,6 @@ border-radius: 10px;
                    <string>Ultimo Mese</string>
                   </property>
                  </item>
-                 <item>
-                  <property name="text">
-                   <string>Tutti</string>
-                  </property>
-                 </item>
                 </widget>
                </item>
                <item>
@@ -243,7 +243,7 @@ border-radius: 10px;
                  </property>
                  <item>
                   <property name="text">
-                   <string>Tutte</string>
+                   <string>Tutte le categorie</string>
                   </property>
                  </item>
                 </widget>
@@ -253,6 +253,11 @@ border-radius: 10px;
                  <property name="placeholderText" stdset="0">
                   <string>Filtra Prezzo</string>
                  </property>
+                 <item>
+                  <property name="text">
+                   <string>Tutti i prezzi</string>
+                  </property>
+                 </item>
                  <item>
                   <property name="text">
                    <string>0€ - 10€ </string>
@@ -271,11 +276,6 @@ border-radius: 10px;
                  <item>
                   <property name="text">
                    <string>&gt;50€</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Tutti</string>
                   </property>
                  </item>
                 </widget>
