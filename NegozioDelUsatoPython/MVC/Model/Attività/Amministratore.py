@@ -19,6 +19,7 @@ class Amministratore(User):
         super().__init__()
         self.email = "admin"
         self.password = "admin"
+        # TODO controllare se la password funziona per admin, perché l'accesso sembra che non dipenda dalla password
 
     # Metodo che aggiorna un account in base ai parametri passati dall'amministratore
     def aggiornaAccount(self, nome, cognome, dataDiNascita, email, idAccount, numeroTelefonico, residenza):
@@ -88,8 +89,6 @@ class Amministratore(User):
         if idAccount != None: Account().associaProdottoAdAccount(prodotto)
         if nomeCategoria != "": Categoria().aggiungiProdottiInCategoria(prodotto)
         return prodotto
-
-
 
     # Metodo che serve per l'inserimento di un cliente Proprietario all'interno del database e la comunicazione delle
     # credenziali via emailProdotto().recuperaListaOggetti

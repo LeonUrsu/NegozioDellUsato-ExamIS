@@ -1,13 +1,8 @@
 import os
 import pathlib
 
-import PySide6
-from PySide6 import QtGui
 from PySide6.QtCore import QFile, QPropertyAnimation
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QWidget
-
-from MVC.Model.Attività.Amministratore import Amministratore
 from MVC.Model.Attività.ClienteProprietario import ClienteProprietario
 from MVC.Model.SistemService.Logging import Logging
 from MVC.View.AmministratoreView import AmministratoreView
@@ -54,7 +49,7 @@ class CentralWindow():
         amministratore.finestra.quitBtn.clicked.connect(lambda: self.apriUserView(mainPath))
         amministratore.finestra.openRightMenu.clicked.connect(lambda: self.slideRightMenu(amministratore))
         amministratore.finestra.openLeftMenu.clicked.connect(lambda: self.slideLeftMenu(amministratore))
-        #TODO come restituire il risultato del metodo controlla email e password dalla classe Login???
+        # TODO come restituire il risultato del metodo controlla email e password dalla classe Login???
         amministratore.finestra.homeBtn.clicked.connect(lambda: amministratore.homeBtnClicked(mainPath, amministratore))
         amministratore.finestra.statisticheBtn.clicked.connect(lambda: amministratore.statisticheBtnClicked(mainPath, amministratore))
         amministratore.finestra.prodottiBtn.clicked.connect(lambda: amministratore.prodottiBtnClicked(mainPath, amministratore, None))
