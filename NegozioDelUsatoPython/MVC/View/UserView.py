@@ -43,7 +43,7 @@ class UserView():
         obj.dataDiScadenzaDaIns.setText(f"{prodottoTrovato.dataScadenza}")
         obj.idProdottoDaIns.setText(f"{prodottoTrovato.idProdotto}")
         obj.idScaffaleDaIns.setText(f"{prodottoTrovato.idScaffale}")
-        obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.idCategoria}")
+        obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.nomeCategoria}")
         obj.indietroBtn.clicked.connect(lambda: self.caricaUserProdottiView(mainPath, None))
 
     # Metodo che cerca il prodotto in base al nome passato e alle opzion scelte nella tendina
