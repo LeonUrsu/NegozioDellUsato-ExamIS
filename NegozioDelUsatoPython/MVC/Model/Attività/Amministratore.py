@@ -80,7 +80,6 @@ class Amministratore(User):
         if categoria == None:
             categoria = Categoria()
             categoria.aggiungiCategoria(nomeCategoria)
-            categoria.creaInDatabase()
         prodotto = Prodotto()
         prodotto.aggiungiProdotto(categoria.idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
                                   idScaffale, nomeCategoria)

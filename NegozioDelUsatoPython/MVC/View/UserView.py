@@ -114,7 +114,7 @@ class UserView():
         for prodotto in listaProdotti:
             if prodotto.idCategoria == categoriaIdFiltro:
                 listaProdottiTrovati.append(prodotto)
-        if listaProdottiTrovati.isEmpty():
+        if not listaProdottiTrovati:
             return listaProdotti
         else:
             return listaProdottiTrovati
@@ -145,7 +145,7 @@ class UserView():
     def setItemsOfComboboxCategorie(self, obj):
         categorie = Controller().recuperaListaCategorie()  # TODO
         for cat in categorie:
-            obj.filtraPerData.addItem(cat.nome)
+            obj.filtraPerCategoria.addItem(cat.nome)
         self.categorieList = categorie
 
     # Metodo che carica una view presente nella UserViews grazie al nome passato
