@@ -19,8 +19,9 @@ class Prodotto(ServizioInterface):
 
     # Metodo per aggiungere i valori all'istanza creata della classe
     def aggiungiProdotto(self, idCategoria, dataEsposizione, idAccount, nomeProdotto,
-                         prezzoOriginale, idScaffale):
+                         prezzoOriginale, idScaffale, nomeCategoria):
         self.idCategoria = idCategoria
+        self.nomeCategoria = nomeCategoria
         # TODO il prodotto deve essere inserito con il nome della categoria e non con l'id categoria, e se il nome della categoria non esiste deve essere creata
         self.dataEsposizione = dataEsposizione
         self.idAccount = idAccount
@@ -83,8 +84,7 @@ class Prodotto(ServizioInterface):
             for prodotto in listProdotti:
                 if prodotto.idProdotto == id:
                     return listProdotti[listProdotti.index(prodotto)]
-                else:
-                    return None
+        return None
 
 
     # Metodo che rimuove un Prodotto da file e lo restituisce, la lista verrà serializzata su file senza

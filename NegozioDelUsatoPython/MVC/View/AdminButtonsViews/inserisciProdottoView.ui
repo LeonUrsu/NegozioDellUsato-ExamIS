@@ -195,7 +195,7 @@ QLineEdit{
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="idCategoriaLe">
+          <widget class="QLineEdit" name="nomeCategoriaLe">
            <property name="placeholderText">
             <string>Nome Categoria</string>
            </property>

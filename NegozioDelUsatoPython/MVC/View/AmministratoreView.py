@@ -109,15 +109,6 @@ class AmministratoreView(QWidget):
 
     # Metodo che filtra i prodotti in base al prezzo massimo scelto
     def ifFiltraPerPrezzo(self, textPrezzo):
-        lista = None
-        if textPrezzo == "Tutti i Prezzi":
-            lista = Controller().recuperaListaProdottiInVendita()
-        elif textPrezzo == "<100€":
-            lista = Controller().filtraPrezzo(0, 100, PathDatabase().inVenditaTxt)
-        elif textPrezzo == "<50€":
-            lista = Controller().filtraPrezzo(0, 50, PathDatabase().inVenditaTxt)
-        elif textPrezzo == "<20€":
-            lista = Controller().filtraPrezzo(0, 20, PathDatabase().inVenditaTxt)
         lista = Controller().recuperaListaProdottiInVendita()
         if textPrezzo == "tutti i prezzi":
             return lista
@@ -226,8 +217,8 @@ class AmministratoreView(QWidget):
             pass
         else:
             self.prodottiBtnClicked(mainPath, amministratore, None)
-        Controller().amministratoresaveProdottoBtn(nomeLe, idAccountLe, datetime.today(), prezzoLe, nomeCategoriaLe,
-                                                   idScaffaleLe)
+        Controller().amministratoresaveProdottoBtn(datetime.today(), idAccountLe, nomeLe, prezzoLe, idScaffaleLe, nomeCategoriaLe)
+                                                 #(dataEsposizione, idAccount, nomeProdotto, prezzoOriginale, idScaffale, nomeCategoria):
         self.prodottiBtnClicked(mainPath, amministratore, None)
 
     # Metodo che si attiva alla pressione del saveClienteBtn
@@ -271,7 +262,6 @@ class AmministratoreView(QWidget):
     # Metodo che: rimuove un widget B che era stato messo in un widget A e mette un widget C nel widget A
     def removeAndAdd(self, item):
         try:
-            # print(f"{self.finestra.verticalLayout_toPaste.count()}")
             for wid in range(self.finestra.verticalLayout_toPaste.count()):
                 self.finestra.verticalLayout_toPaste.itemAt(wid).widget().deleteLater()
         except:
@@ -310,7 +300,8 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{prodotto.idProdotto}"))
             obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(f"{prodotto.dataScadenza}"))
             obj.tab.setCellWidget(row, 5,
-                                  self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto,amministratore))
+                                  self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto.idProdotto,
+                                                                              amministratore, lista))
             row += 1
 
     # Metodo che aggiunge i prodotti in vendita al tableWidget
@@ -338,36 +329,15 @@ class AmministratoreView(QWidget):
                                                                              amministratore, lista))
             row += 1
 
-        # Metodo che crea un bottone grazie al idProdotto
-        """def creaBottoneVisualizzaProdottoQualsiasi(self, mainPath, idProdotto, amministratore, lista):
+    # Metodo che crea un bottone grazie al idProdotto
+    def creaBottoneVisualizzaProdottoQualsiasi(self, mainPath, idProdotto, amministratore, lista):
         # button = QToolButton()
         button = QPushButton()
         button.setText("Visualizza")
         button.clicked.connect(lambda: self.caricaifoProdottoView(mainPath, "infoProdottoView.ui",
                                                                   Controller().trovaProdottoTramiteId(idProdotto),
                                                                   amministratore, lista))
-        return button"""
-    #Metodo che crea un bottone per visualizzare le informazioni relative ad esso
-    def creaBottoneVisualizzaProdottoQualsiasi(self, mainPath, prodotto,amministratore):
-        prod = prodotto 
-        button = QPushButton()
-        button.setText("Visualizza")
-        button.clicked.connect(lambda: self.caricaifoProdottoView(mainPath, "infoProdottoView.ui", prod, amministratore))
         return button
-
-    #Metodo che carica le informazioni relative ad un singolo prodotto nell'interfaccia grafica
-    def caricaifoProdottoView(self, mainPath, fileName, prodottoTrovato, amministratore):
-        obj = self.caricaView(mainPath, fileName)
-        self.removeAndAdd(obj)
-        obj.nomeProdottoDaIns.setText(prodottoTrovato.nomeProdotto)
-        obj.prezzoCorrenteDaIns.setText(prodottoTrovato.prezzoCorrente)
-        obj.prezzoOriginaleDaIns.setText(prodottoTrovato.prezzoOriginale)
-        obj.dataDiEsposizioneDaIns.setText(f"{prodottoTrovato.dataEsposizione}")
-        obj.dataDiScadenzaDaIns.setText(f"{prodottoTrovato.dataScadenza}")
-        obj.idProdottoDaIns.setText(f"{prodottoTrovato.idProdotto}")
-        obj.idScaffaleDaIns.setText(f"{prodottoTrovato.idScaffale}")
-        obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.idCategoria}")
-        obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath,amministratore,None))
 
     # Metodo che crea un bottone grazie al idAccount
     def creaBottoneVisualizzaAccountQualsiasi(self, mainPath, idAccount, amministratore, lista):
@@ -381,7 +351,7 @@ class AmministratoreView(QWidget):
         return button
 
     # Metodo che carica le info di un prodotto all'interno della View
-    """  def caricaifoProdottoView(self, mainPath, fileName, prodottoTrovato, amministratore, lista):
+    def caricaifoProdottoView(self, mainPath, fileName, prodottoTrovato, amministratore, lista):
         obj = self.caricaView(mainPath, fileName)
         self.removeAndAdd(obj)
         obj.nomeProdottoDaIns.setText(prodottoTrovato.nomeProdotto)
@@ -391,8 +361,8 @@ class AmministratoreView(QWidget):
         obj.dataDiScadenzaDaIns.setText(f"{prodottoTrovato.dataScadenza}")
         obj.idProdottoDaIns.setText(f"{prodottoTrovato.idProdotto}")
         obj.idScaffaleDaIns.setText(f"{prodottoTrovato.idScaffale}")
-        obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.idCategoria}")
-        obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, lista))"""
+        obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.nomeCategoria}")
+        obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, lista))
 
     # Metodo che carica le info di un account all'interno della View
     def caricaifoAccountView(self, mainPath, fileName, account, amministratore, lista):

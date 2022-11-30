@@ -12,11 +12,10 @@ class Controller(object):
     def userLoginController(self, email, password):
         return User().login(email, password)
 
-    def amministratoresaveProdottoBtn(self, nomeLe, idAccountLe, dataEsposizione, prezzoLe,
-                                      idScaffaleLe, nomeCategoria):
-        return Amministratore().inserisciProdotto(dataEsposizione, idAccountLe, nomeLe, prezzoLe,
-                                                  idScaffaleLe, nomeCategoria)
-
+    def amministratoresaveProdottoBtn(self, dataEsposizione, idAccount,
+                          nomeProdotto, prezzoOriginale, idScaffale, nomeCategoria):
+        return Amministratore().inserisciProdotto(dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
+                                                  idScaffale, nomeCategoria)
     def recuperaListaProdottiInVendita(self):
         return Prodotto().recuperaListaProdottiInVendita()
 
