@@ -67,7 +67,6 @@ class UserView():
                 if prodotto.nomeProdotto == name:
                     temp.append(prodotto)
             listaCorrispondenti = temp
-        print(f"fafafaf{len(listaCorrispondenti)}")
         self.caricaUserProdottiView(mainPath, listaCorrispondenti)
 
     # Metodo che filtra i prodotti in base al periodo scelto
@@ -115,7 +114,10 @@ class UserView():
         for prodotto in listaProdotti:
             if prodotto.idCategoria == categoriaIdFiltro:
                 listaProdottiTrovati.append(prodotto)
-        return listaProdottiTrovati
+        if listaProdottiTrovati.isEmpty():
+            return listaProdotti
+        else:
+            return listaProdottiTrovati
 
     # Metodo che recupera i nomi delle categorie presenti nella comboBox
     def getITemsOfComboboxOfCategoria(self, obj):
@@ -138,7 +140,6 @@ class UserView():
         self.setItemsOfComboboxCategorie(obj)
         # TODO filtro per categorie ancora non funzionante
         obj.cercaBtn.clicked.connect(lambda: self.cercaProdottoBtnClicked(mainPath, obj))
-
 
     # Metodo che grazie alle categorie che ci sono in dataBase si aggiungono alla tendina
     def setItemsOfComboboxCategorie(self, obj):

@@ -109,6 +109,7 @@ class AmministratoreView(QWidget):
 
     # Metodo che filtra i prodotti in base al prezzo massimo scelto
     def ifFiltraPerPrezzo(self, textPrezzo):
+<<<<<<< HEAD
         lista = None
         if textPrezzo == "Tutti i Prezzi":
             lista = Controller().recuperaListaProdottiInVendita()
@@ -118,6 +119,8 @@ class AmministratoreView(QWidget):
             lista = Controller().filtraPrezzo(0, 50, PathDatabase().inVenditaTxt)
         elif textPrezzo == "<20€":
             lista = Controller().filtraPrezzo(0, 20, PathDatabase().inVenditaTxt)
+=======
+>>>>>>> 45b5ff1b17f3cf3065024424a14a9e7e275a3317
         lista = Controller().recuperaListaProdottiInVendita()
         if textPrezzo == "tutti i prezzi":
             return lista
