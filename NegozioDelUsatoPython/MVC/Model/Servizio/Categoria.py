@@ -93,7 +93,7 @@ class Categoria(ServizioInterface):
                 if categoria.idCategoria == prodotto.idCategoria:
                     categoria.oggettiTotali += 1
                     File().serializza(fileName, listCategorie)
-                    return True
+                    return categoria.idCategoria
         return False
 
     # Metodo che decrementa il numero di oggetti all'interno di una categoria
@@ -112,3 +112,12 @@ class Categoria(ServizioInterface):
             if cat.idCategoria == idCategoria:
                 return cat
         return None
+
+    # Metodo che recupera una categoria tramite nome
+    def trovaCategoriaTramiteNome(self, nomeCategoria):
+        lista = self.recuperaListaOggetti()
+        for cat in lista:
+            if cat.nome == nomeCategoria:
+                return cat
+        return None
+

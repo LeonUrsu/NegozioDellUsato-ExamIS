@@ -47,8 +47,11 @@ class Amministratore(User):
     # Metodo che elimina un prodotto dagli oggetti in vendita a quelli eliminati
     def eliminaProdotto(self, idProdotto):
         Prodotto().eliminaProdotto(idProdotto)
-        try: Notifica().gestioneEmailDiEliminazione(idProdotto)
-        except: pass
+        try:
+            Notifica().gestioneEmailDiEliminazione(idProdotto)
+        except:
+            pass
+
     # Metodo che rimuove i prodotti tramite una lista di id
     def eliminaProdottiTramiteListaId(self, listaId):
         for id in listaId:
@@ -71,14 +74,18 @@ class Amministratore(User):
         return Filtri().filtraClienti(nome, cognome)
 
     # Metodo per inserire un prodotto nel database
-    def inserisciProdotto(self, idCategoria, dataEsposizione, idAccount,
-                          nomeProdotto, prezzoOriginale, idScaffale):
+    def inserisciProdotto(self, dataEsposizione, idAccount,
+                          nomeProdotto, prezzoOriginale, idScaffale, nomeCategoria):
+        categoria = Categoria()
+        categoria.aggiungiCategoria(nomeCategoria)
+        categoria.creaInDatabase()
         prodotto = Prodotto()
-        prodotto.aggiungiProdotto(idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale, idScaffale)
+        prodotto.aggiungiProdotto(categoria.idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
+                                  idScaffale)
         prodotto.mettiOggettoSuListaNelFile()
         if idScaffale != None: Scaffale().associaProdottoAScaffale(prodotto)
         if idAccount != None: Account().associaProdottoAdAccount(prodotto)
-        if idCategoria != None: Categoria().aggiungiProdottiInCategoria(prodotto)
+        if nomeCategoria != "": Categoria().aggiungiProdottiInCategoria(prodotto)
         return prodotto
 
     # Metodo che serve per l'inserimento di un cliente Proprietario all'interno del database e la comunicazione delle

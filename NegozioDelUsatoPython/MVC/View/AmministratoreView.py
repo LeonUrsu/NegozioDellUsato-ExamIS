@@ -211,13 +211,13 @@ class AmministratoreView(QWidget):
         nomeLe = obj.nomeLe.text()
         idAccountLe = obj.idAccountLe.text()
         prezzoLe = obj.prezzoLe.text()
-        idCategoriaLe = obj.idCategoriaLe.text()
+        nomeCategoriaLe = obj.nomeCategoriaLe.text()
         idScaffaleLe = obj.idScaffaleLe.text()
-        if self.checkerSaveProdottoBtnClicked(nomeLe, idAccountLe, prezzoLe, idCategoriaLe, idScaffaleLe):
+        if self.checkerSaveProdottoBtnClicked(nomeLe, idAccountLe, prezzoLe, nomeCategoriaLe, idScaffaleLe):
             pass
         else:
             self.prodottiBtnClicked(mainPath, amministratore, None)
-        Controller().amministratoresaveProdottoBtn(nomeLe, idAccountLe, datetime.today(), prezzoLe, idCategoriaLe,
+        Controller().amministratoresaveProdottoBtn(nomeLe, idAccountLe, datetime.today(), prezzoLe, nomeCategoriaLe,
                                                    idScaffaleLe)
         self.prodottiBtnClicked(mainPath, amministratore, None)
 
@@ -385,12 +385,12 @@ class AmministratoreView(QWidget):
         obj.indietroBtn.clicked.connect(lambda: self.accountsBtnClicked(mainPath, amministratore, lista))
 
     # Metodo per controllare la validità dei dati inseriti dall'utente
-    def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, prezzoLe, idCategoriaLe, idScaffaleLe):
+    def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, prezzoLe, nomeCategoriaLe, idScaffaleLe):
         if nomeLe == "": return False
         if not idAccountLe.isalnum(): return False
         if not prezzoLe.isalnum(): return False
         if prezzoLe != "": return False
-        if not idCategoriaLe.isalnum(): return False
+        if not nomeCategoriaLe == "": return False
         if not idScaffaleLe.isalnum(): return False
         return True
 
