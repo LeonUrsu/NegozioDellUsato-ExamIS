@@ -1,4 +1,5 @@
 import os
+import sys
 from datetime import datetime
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
@@ -108,15 +109,17 @@ class AmministratoreView(QWidget):
 
     # Metodo che filtra i prodotti in base al prezzo massimo scelto
     def ifFiltraPerPrezzo(self, textPrezzo):
-        lista = None
+        lista = Controller().recuperaListaProdottiInVendita()
         if textPrezzo == "tutti i prezzi":
-            lista = Controller().recuperaListaProdottiInVendita()
-        elif textPrezzo == "100 euro":
-            lista = Controller().filtraPrezzo(0, 100, PathDatabase().inVenditaTxt)
-        elif textPrezzo == "50 euro":
-            lista = Controller().filtraPrezzo(0, 50, PathDatabase().inVenditaTxt)
-        elif textPrezzo == "20 euro":
-            lista = Controller().filtraPrezzo(0, 20, PathDatabase().inVenditaTxt)
+            return lista
+        elif textPrezzo == "0€ - 10€ ":
+            lista = Controller().filtraPrezzo(0, 10, PathDatabase().inVenditaTxt)
+        elif textPrezzo == "10€ - 20€":
+            lista = Controller().filtraPrezzo(10, 20, PathDatabase().inVenditaTxt)
+        elif textPrezzo == "20€ - 50€":
+            lista = Controller().filtraPrezzo(20, 50, PathDatabase().inVenditaTxt)
+        elif textPrezzo == ">50€":
+            lista = Controller().filtraPrezzo(50, sys.maxsize, PathDatabase().inVenditaTxt)
         return lista
 
     # Metodo che elimina gli oggetti nel database tramite la lista id
