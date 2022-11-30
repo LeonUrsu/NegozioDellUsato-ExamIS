@@ -59,3 +59,6 @@ class Controller(object):
 
     def recuperaListaCategorie(self):
         return Categoria().recuperaListaOggetti()
+
+    def checkEsistenzaCategoriaInDatabase(self, str):
+        return Categoria().checkEsistenzaCategoriaInDatabase(str)

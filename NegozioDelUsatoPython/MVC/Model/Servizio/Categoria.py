@@ -19,6 +19,16 @@ class Categoria(ServizioInterface):
         self.oggettiTotali = 0
         self.creaInDatabase()
 
+    # Metodo che controlla se esiste già una categoria con lo stresso nome, ipotesi vale anche con diverse grandezza
+    # delle lettere
+    def checkEsistenzaCategoriaInDatabase(self, stringa):
+        lista = self.recuperaListaOggetti()
+        for cat in lista:
+            if cat.nome.toUpperCase() == stringa.toUpperCase():
+                return True
+        return False
+
+
 
     # Metodo che permette di clonare un'istanza della classe
     # return Categoria

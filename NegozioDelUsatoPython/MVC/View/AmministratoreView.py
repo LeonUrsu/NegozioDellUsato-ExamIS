@@ -390,6 +390,7 @@ class AmministratoreView(QWidget):
         if not prezzoLe.isalnum(): return False
         if prezzoLe != "": return False
         if not nomeCategoriaLe == "": return False
+        if Controller().checkEsistenzaCategoriaInDatabase(nomeCategoriaLe): return False
         if not idScaffaleLe.isalnum(): return False
         return True
 
