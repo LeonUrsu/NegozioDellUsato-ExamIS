@@ -316,17 +316,22 @@ QPushButton{
                  </item>
                  <item>
                   <property name="text">
-                   <string>&lt;100€</string>
+                   <string>0€ - 10€ </string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>&lt;50€</string>
+                   <string>10€ - 20€ </string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>&lt;20€</string>
+                   <string>20€ - 50€ </string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>&gt;50€</string>
                   </property>
                  </item>
                 </widget>

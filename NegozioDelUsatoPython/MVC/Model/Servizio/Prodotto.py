@@ -21,6 +21,7 @@ class Prodotto(ServizioInterface):
     def aggiungiProdotto(self, idCategoria, dataEsposizione, idAccount, nomeProdotto,
                          prezzoOriginale, idScaffale):
         self.idCategoria = idCategoria
+        # TODO il prodotto deve essere inserito con il nome della categoria e non con l'id categoria, e se il nome della categoria non esiste deve essere creata
         self.dataEsposizione = dataEsposizione
         self.idAccount = idAccount
         self.dataPrimoSconto = dataEsposizione + relativedelta(months=2)

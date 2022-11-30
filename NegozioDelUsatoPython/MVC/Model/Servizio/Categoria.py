@@ -104,3 +104,11 @@ class Categoria(ServizioInterface):
                 categoria.oggettiTotali -= 1
                 return True
         return False
+
+    # Metodo che recupera una categoria tramite id
+    def trovaCategoriaTramiteId(self, idCategoria):
+        lista = self.recuperaListaOggetti()
+        for cat in lista:
+            if cat.idCategoria == idCategoria:
+                return cat
+        return None
