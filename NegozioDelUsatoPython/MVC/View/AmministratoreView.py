@@ -93,15 +93,15 @@ class AmministratoreView(QWidget):
     # Metodo che filtra i prodotti in base al periodo scelto
     def ifFiltraPerDataSelected(self, textData):
         lista = None
-        if textData == "tutte le date":
+        if textData == "Da Sempre":
             lista = Controller().recuperaListaProdottiInVendita()
-        elif textData == "ultima settimana":
+        elif textData == "Ultima Settimana":
             lista = Controller().filtraDataEsposizione(datetime.today() - relativedelta(days=7),
                                                        datetime.today(), PathDatabase().inVenditaTxt)
-        elif textData == "ultimo mese":
+        elif textData == "Ultimo Mese":
             lista = Controller().filtraDataEsposizione(datetime.today() - relativedelta(months=1),
                                                        datetime.today(), PathDatabase().inVenditaTxt)
-        elif textData == "ultimi tre mesi":
+        elif textData == "Ultimo Trimestre":
             lista = Controller().filtraDataEsposizione(datetime.today() - relativedelta(months=3),
                                                        datetime.today(), PathDatabase().inVenditaTxt)
         return lista
@@ -109,13 +109,13 @@ class AmministratoreView(QWidget):
     # Metodo che filtra i prodotti in base al prezzo massimo scelto
     def ifFiltraPerPrezzo(self, textPrezzo):
         lista = None
-        if textPrezzo == "tutti i prezzi":
+        if textPrezzo == "Tutti i Prezzi":
             lista = Controller().recuperaListaProdottiInVendita()
-        elif textPrezzo == "100 euro":
+        elif textPrezzo == "<100€":
             lista = Controller().filtraPrezzo(0, 100, PathDatabase().inVenditaTxt)
-        elif textPrezzo == "50 euro":
+        elif textPrezzo == "<50€":
             lista = Controller().filtraPrezzo(0, 50, PathDatabase().inVenditaTxt)
-        elif textPrezzo == "20 euro":
+        elif textPrezzo == "<20€":
             lista = Controller().filtraPrezzo(0, 20, PathDatabase().inVenditaTxt)
         return lista
 
@@ -183,7 +183,7 @@ class AmministratoreView(QWidget):
         name = "inserisciProdottoView.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
-        obj.saveBtn.clicked.connect(lambda: self.saveProdottoBtnClicked(mainPath, obj, amministratore))
+        obj.aggiungiBtn.clicked.connect(lambda: self.saveProdottoBtnClicked(mainPath, obj, amministratore))
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, None))
 
     # Metodo che si attiva alla pressione del aggiungiBtn
@@ -203,7 +203,7 @@ class AmministratoreView(QWidget):
         Controller().eliminaAccountTramiteListaId(listaId)
         self.accountsBtnClicked(mainPath, amministratore, None)
 
-    # Metodo che si attiva alla pressione del saveProdottoBtn
+    # Metodo che si attiva alla pressione del aggiungiProdottoBtn
     def saveProdottoBtnClicked(self, mainPath, obj, amministratore):
         nomeLe = obj.nomeLe.text()
         idAccountLe = obj.idAccountLe.text()

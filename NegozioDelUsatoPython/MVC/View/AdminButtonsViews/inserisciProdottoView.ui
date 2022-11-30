@@ -21,9 +21,6 @@
 #inserisciProdottoView{
 	background-color:#1a1f39;
 }
-#topFrame{
-	background-color: #2a2c49;
-}
 #infoProdottoContent{
 	background-color: #2a2c49;
 	border-radius: 20px;
@@ -39,8 +36,12 @@ QPushButton{
 	background-color: rgba(26, 31, 57,150);
 }
 #indietroBtn,#aggiungiBtn{
-	background-color: #1a1f39;
-	border-radius: 7px;
+	background-color: #1a0f39;
+	border-radius: 15px;
+	padding : 10px 5px;
+	text-align:left;
+	color:#78799c;
+	font: 10pt &quot;Leelawadee UI&quot;;
 }
 QLineEdit{
 	border-radius: 10px;
@@ -98,7 +99,7 @@ QLineEdit{
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
-         <item alignment="Qt::AlignHCenter">
+         <item>
           <widget class="QPushButton" name="indietroBtn">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -136,13 +137,6 @@ QLineEdit{
            </property>
            <property name="autoDefault">
             <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="applicationName">
-           <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt;Usato&lt;/span&gt;&lt;span style=&quot; font-size:28pt; font-weight:600; color:#aaaaff;&quot;&gt;Beato&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
