@@ -17,9 +17,8 @@ class Amministratore(User):
 
     def __init__(self):
         super().__init__()
-        self.email = "admin"
-        self.password = "admin"
-        # TODO controllare se la password funziona per admin, perché l'accesso sembra che non dipenda dalla password
+        self.email = "admin" # TODO questa email non ha nulla a che fare con admin, da togliere
+        self.password = "admin" # TODO questa password non ha nulla a che fare con admin, da togliere
 
     # Metodo che aggiorna un account in base ai parametri passati dall'amministratore
     def aggiornaAccount(self, nome, cognome, dataDiNascita, email, idAccount, numeroTelefonico, residenza):

@@ -20,8 +20,8 @@ class LoginView(QWidget):
     def confermaBtn(self, finestra):
         email = finestra.emailEd.text()
         password = finestra.passwordEd.text()
-        risultato = Controller().userLoginController(email, password)
-        # TODO fare il login
+        return Controller().userLoginController(email, password) # ritorna un Account() o None
+
 
     #Metodo che permette di visualizzare la password inserita
     def toggleVisibility(self, login):

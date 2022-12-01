@@ -24,15 +24,19 @@ class CentralWindow():
         self.finestra = loader.load(file)
         file.close()
         #self.apriAmministratoreView(pathlib.Path().resolve().__str__())
-        #self.apriClienteProprietarioView (pathlib.Path().resolve().__str__())
-        self.apriUserView(pathlib.Path().resolve().__str__())
+        self.apriClienteProprietarioView (pathlib.Path().resolve().__str__(), None)
+        #self.apriUserView(pathlib.Path().resolve().__str__())
 
     # Metodo per aprire la finestra dell'cliente proprietario
-    def apriClienteProprietarioView(self, mainPath):
+    def apriClienteProprietarioView(self, mainPath, account):
         self.removeItem(self.finestra.verticalLayout)
-        cliente = ClienteProprietarioView(mainPath)
-        self.finestra.verticalLayout.addWidget(cliente.finestra)
-        cliente.finestra.quitBtn.clicked.connect(lambda: self.apriUserView(mainPath))
+        view = ClienteProprietarioView(mainPath)
+        self.finestra.verticalLayout.addWidget(view.finestra)
+        view.finestra.quitBtn.clicked.connect(lambda: self.apriUserView(mainPath))
+        view.finestra.openRightMenu.clicked.connect(lambda: self.slideRightMenu(view))
+        view.finestra.openLeftMenu.clicked.connect(lambda: self.slideLeftMenu(view))
+        view.finestra.quitBtn.clicked.connect(lambda: self.apriUserView(mainPath))
+
 
     # Metodo per aprire la finestra dell'user
     def apriUserView(self, mainPath):
@@ -81,16 +85,17 @@ class CentralWindow():
         except:
             pass
 
+
     # Metodo che gestisce l'interazioone con il pulsante conferma della loginView, apre una nuova finestra se
     # le credenziali sono errate
     # login = widget del login
     def loginViewConfermaView(self, mainPath, login):
-        login.confermaBtn(login.finestra)
-        if isinstance(Logging.accountLoggato, ClienteProprietario):
-            self.apriClienteProprietarioView(mainPath)
-        elif Logging.accountLoggato == "admin":
+        account = login.confermaBtn(login.finestra)
+        if Logging.TypeClienteProprietario:
+            self.apriClienteProprietarioView(mainPath, account)
+        elif Logging.TypeAmministratore:
             self.apriAmministratoreView(mainPath)
-        elif Logging.accountLoggato == None:
+        elif not Logging.TypeAmministratore and not Logging.TypeClienteProprietario:
             self.apriLoginView(mainPath)
 
     # Metodo per animare lo scorrimento del menu

@@ -9,6 +9,7 @@ class ClienteProprietario(User):
 
     def __init__(self):
         super().__init__()
+        self.finestra.iMieiProdottiBtn.clicked.connect(print("ciaooooooooooo"))
 
 
     # Metodo che restituisce 3 liste di Prodotti: inVendita, venduti, scaduti.

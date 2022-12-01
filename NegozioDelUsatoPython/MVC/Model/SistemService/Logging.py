@@ -8,6 +8,8 @@ from MVC.Model.SistemService.File import File
 
 class Logging:
     accountLoggato = None
+    TypeClienteProprietario = False
+    TypeAmministratore = False
 
     # Costruttore della classe
     def __init__(self):
@@ -41,6 +43,8 @@ class Logging:
         if not self.verificaDettagliLogin(log, account, password):
             return None
         Logging.accountLoggato = account
+        Logging.TypeClienteProprietario = True
+        Logging.TypeAmministratore = False
         return account
 
 
@@ -48,6 +52,8 @@ class Logging:
     # Metodo per effettuare il logout
     def logout(self):
         self.accountLoggato = None
+        Logging.TypeClienteProprietario = False
+        Logging.TypeAmministratore = False
         return True
 
     # Metodo che crea l'oggett Logging nel database e
@@ -113,12 +119,14 @@ class Logging:
         adminDict = json.loads(str)
         if adminDict["adminPassword"] == password:
             Logging.accountLoggato = "admin"
+            Logging.TypeAmministratore = True
+            Logging.TypeClienteProprietario = False
             return True
         return False
 
     # Metodo che verifica se l'utente è loggato
     def checkAccontLoggato(self):
-        if Logging().accountLoggato == None:
-            return False
-        else:
+        if Logging.TypeClienteProprietario or Logging.TypeAmministratore:
             return True
+        else:
+            return False

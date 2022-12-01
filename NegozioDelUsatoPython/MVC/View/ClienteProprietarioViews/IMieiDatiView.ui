@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>814</width>
+    <height>520</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+*{
+color: #78799c;
+border: none;
+}
+
+#firstWidget, #frame_2, #frame_5{
+	background-color: #2a2c49;
+}
+
+#mainBody,#Form{
+	background-color: #1a1f39;
+}
+
+QLineEdit{
+	background-color:transparent;
+}
+
+#searchFrame, QLineEdit{
+	border-radius: 10px;
+	border: 2px solid #78799c;
+}
+
+#appHeader{
+	color:#78799c;
+}
+
+#prodottiHeader{
+	color:  #a06ce3;
+}
+
+#avantiarw{
+	border: 1px solid #a06ce3;
+	background-color: #a06ce3 ;
+	border-radius: 5px;
+	
+}
+
+#finestreSecondarie{
+	background-color: #2a2c49;
+	border: solid;
+	border-radius: 20px;
+}
+
+QLabel{
+	color:#78799c;
+}
+
+#mainFrame{
+	background-color: #2a2c49;
+}
+
+#homeBtn{
+	color:#78799c;
+	background-color:#1a1f39;
+	padding : 10px 5px;
+	text-align:left;
+	border-top-left-radius:25px;
+}
+
+QPushButton{
+	padding : 10px 5px;
+	text-align:left;
+	color:#78799c;
+	font: 10pt &quot;Leelawadee UI&quot;;
+}
+
+
+#frame_3{
+	background-color:#2a2c49;
+	border: solid;
+	border-radius: 20px;
+}
+QTableWidget{
+	background-color:#2a2c49;
+	border: solid;
+}
+#leftMenu,#frame{
+background-color: #2a2c49;
+}
+</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="frame_11">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_14">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QTableWidget" name="tableWidget_2">
+        <column>
+         <property name="text">
+          <string>Check</string>
+         </property>
+         <property name="toolTip">
+          <string notr="true"/>
+         </property>
+         <property name="background">
+          <color>
+           <red>170</red>
+           <green>170</green>
+           <blue>255</blue>
+          </color>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Prezzo</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>ID</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Nome</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Data</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
