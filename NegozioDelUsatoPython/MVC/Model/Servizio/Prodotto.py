@@ -235,9 +235,15 @@ class Prodotto(ServizioInterface):
         listTotale.append(listProdottiEliminati)
         return listTotale
 
-
-
-
+    # Metodo che recupera gli oggetti associati ad un account
+    def recuperaListaProdottiInAssociatiAdAccount(self, account):
+        lista = self.recuperaListaProdottiInVendita()
+        listaFiltrata = list()
+        for oggetto in lista:
+            if oggetto.idAccount.isalnum():
+                if account.idAccount == int(oggetto.idAccount):
+                    listaFiltrata.append(oggetto)
+        return listaFiltrata
 
     # se il prodotto non ha id cliente deve essere comunnque venduto#####################################################################################################################
 

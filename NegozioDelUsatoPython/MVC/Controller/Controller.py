@@ -62,3 +62,6 @@ class Controller(object):
 
     def checkEsistenzaCategoriaInDatabase(self, str):
         return Categoria().checkEsistenzaCategoriaInDatabase(str)
+
+    def recuperaListaProdottiInAssociatiAdAccount(self, account):
+        return Prodotto().recuperaListaProdottiInAssociatiAdAccount(account)

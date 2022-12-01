@@ -137,43 +137,7 @@ background-color: #2a2c49;
        <number>0</number>
       </property>
       <item>
-       <widget class="QTableWidget" name="tab">
-        <column>
-         <property name="text">
-          <string>Check</string>
-         </property>
-         <property name="toolTip">
-          <string notr="true"/>
-         </property>
-         <property name="background">
-          <color>
-           <red>170</red>
-           <green>170</green>
-           <blue>255</blue>
-          </color>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Prezzo</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>ID</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nome</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Data</string>
-         </property>
-        </column>
-       </widget>
+       <widget class="QTableWidget" name="tab"/>
       </item>
      </layout>
     </widget>
