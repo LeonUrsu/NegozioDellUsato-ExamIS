@@ -30,10 +30,10 @@ class UserView():
         prod = prodotto  # TODO anche in admin si puo fare in qusto modo per risparmiare velocità, si potrebbe modificare admin per avere un'ereditarietà
         button = QPushButton()
         button.setText("Visualizza")
-        button.clicked.connect(lambda: self.caricaifoProdottoView(mainPath, "infoProdottoClienteView.ui", prod))
+        button.clicked.connect(lambda: self.caricainfoProdottoView(mainPath, "infoProdottoClienteView.ui", prod))
         return button
 
-    def caricaifoProdottoView(self, mainPath, fileName, prodottoTrovato):
+    def caricainfoProdottoView(self, mainPath, fileName, prodottoTrovato):
         obj = self.caricaView(mainPath, fileName)
         self.removeAndAdd(obj)
         obj.nomeProdottoDaIns.setText(prodottoTrovato.nomeProdotto)

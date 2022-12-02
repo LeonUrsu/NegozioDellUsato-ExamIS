@@ -7,10 +7,8 @@ from PySide6.QtGui import QCursor
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton
 from dateutil.relativedelta import relativedelta
-
 from Database.PathDatabase import PathDatabase
 from MVC.Controller.Controller import Controller
-from MVC.Model.Attività.Account import Account
 
 
 class AmministratoreView(QWidget):
@@ -334,7 +332,7 @@ class AmministratoreView(QWidget):
         # button = QToolButton()
         button = QPushButton()
         button.setText("Visualizza")
-        button.clicked.connect(lambda: self.caricaifoProdottoView(mainPath, "infoProdottoView.ui",
+        button.clicked.connect(lambda: self.caricainfoProdottoView(mainPath, "infoProdottoView.ui",
                                                                   Controller().trovaProdottoTramiteId(idProdotto),
                                                                   amministratore, lista))
         return button
@@ -345,13 +343,13 @@ class AmministratoreView(QWidget):
         button = QPushButton()
         button.setText("Visualizza")
         button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
-        button.clicked.connect(lambda: self.caricaifoAccountView(mainPath, "infoaccountView.ui",
+        button.clicked.connect(lambda: self.caricainfoAccountView(mainPath, "infoaccountView.ui",
                                                                  Controller().trovaAccountTramiteId(idAccount),
                                                                  amministratore, lista))
         return button
 
     # Metodo che carica le info di un prodotto all'interno della View
-    def caricaifoProdottoView(self, mainPath, fileName, prodottoTrovato, amministratore, lista):
+    def caricainfoProdottoView(self, mainPath, fileName, prodottoTrovato, amministratore, lista):
         obj = self.caricaView(mainPath, fileName)
         self.removeAndAdd(obj)
         obj.nomeProdottoDaIns.setText(prodottoTrovato.nomeProdotto)
@@ -365,7 +363,7 @@ class AmministratoreView(QWidget):
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, lista))
 
     # Metodo che carica le info di un account all'interno della View
-    def caricaifoAccountView(self, mainPath, fileName, account, amministratore, lista):
+    def caricainfoAccountView(self, mainPath, fileName, account, amministratore, lista):
         obj = self.caricaView(mainPath, fileName)
         self.removeAndAdd(obj)
         obj.nomeDaIns.setText(account.nome)

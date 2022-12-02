@@ -212,10 +212,10 @@ class ClienteProprietarioView():
         button = QPushButton()
         button.setText("Visualizza")
         button.clicked.connect(
-            lambda: self.caricaifoProdottoView(mainPath, "infoProdottoClienteProprietarioView.ui", prodotto))
+            lambda: self.caricainfoProdottoView(mainPath, "infoProdottoClienteProprietarioView.ui", prodotto))
         return button
 
-    def caricaifoProdottoView(self, mainPath, fileName, prodottoTrovato):
+    def caricainfoProdottoView(self, mainPath, fileName, prodottoTrovato):
         obj = self.caricaView(mainPath, fileName)
         self.removeAndAdd(obj)
         obj.nomeProdottoDaIns.setText(prodottoTrovato.nomeProdotto)
