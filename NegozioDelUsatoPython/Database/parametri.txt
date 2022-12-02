@@ -1,1 +1,1 @@
-{"lastIdProdotto": 49, "lastIdRicevuta": 8, "lastIdAccount": 16, "lastidCategoria": 7}
+{"lastIdProdotto": 55, "lastIdRicevuta": 16, "lastIdAccount": 16, "lastidCategoria": 7}

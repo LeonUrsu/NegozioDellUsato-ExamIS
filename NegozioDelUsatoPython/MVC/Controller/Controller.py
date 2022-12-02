@@ -43,7 +43,7 @@ class Controller(object):
         Amministratore().eliminaProdottiTramiteListaId(listaId)
 
     def vendiProdottiTramiteListaId(self, listaId):
-        Amministratore().vendiProdottiTramiteListaId(listaId)
+       return Amministratore().vendiProdottiTramiteListaId(listaId)
 
     def eliminaAccountTramiteListaId(self, listaId):
         Amministratore().eliminaAccountTramiteListaId(listaId)

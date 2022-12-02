@@ -135,9 +135,38 @@ class AmministratoreView(QWidget):
         for box in range(obj.tab.rowCount()):
             if obj.tab.item(box, 0).checkState() == QtCore.Qt.Checked:
                 listaId.append(int(obj.tab.item(box, 3).text()))
-        Controller().vendiProdottiTramiteListaId(listaId)
+        ricevuta = Controller().vendiProdottiTramiteListaId(listaId)
         self.prodottiBtnClicked(mainPath, amministratore, None)
-        # TODO fare un finestra che si apre al posto della ricevuta di acquisto
+        self.aperturaRicevuta(mainPath, amministratore, ricevuta)
+
+    # Metodo per gestire l'apertura di una view per inserirci i dati della ricevuta
+    def aperturaRicevuta(self, mainPath, amministratore, ricevuta):
+        name = "ricevutaUsatoBeato.ui"
+        obj = self.caricaView(mainPath, name)
+        self.removeAndAdd(obj)
+        obj.dataDaIns.setText(f"{datetime.today()}")
+        lista = ricevuta.prodotti
+        if lista == None:
+            return
+        objList = ("nome", "prezzo vendita", "id")
+        column = len(objList)
+        obj.tab.setColumnCount(column)
+        for i in range(column):
+            obj.tab.setColumnWidth(i, 120)
+        obj.tab.setHorizontalHeaderLabels(objList)
+        row = 0
+        obj.tab.setRowCount(len(lista))
+        totale = 0
+        for prodotto in lista:
+            chkBoxItem = QTableWidgetItem()
+            chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
+            obj.tab.setItem(row, 0, QtWidgets.QTableWidgetItem(prodotto["nomeProdotto"]))
+            obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(prodotto["prezzoCorrente"]))
+            obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(prodotto["idProdotto"]))
+            totale += int(prodotto["prezzoCorrente"])
+            row += 1
+        obj.totaleDaIns.setText(f"{totale}")
+        obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, None))
 
     # Metodo per gestire i pulsanti premuti sul menu sinistro
     def accountsBtnClicked(self, mainPath, amministratore, lista):
@@ -215,8 +244,9 @@ class AmministratoreView(QWidget):
             pass
         else:
             self.prodottiBtnClicked(mainPath, amministratore, None)
-        Controller().amministratoresaveProdottoBtn(datetime.today(), idAccountLe, nomeLe, prezzoLe, idScaffaleLe, nomeCategoriaLe)
-                                                 #(dataEsposizione, idAccount, nomeProdotto, prezzoOriginale, idScaffale, nomeCategoria):
+        Controller().amministratoresaveProdottoBtn(datetime.today(), idAccountLe, nomeLe, prezzoLe, idScaffaleLe,
+                                                   nomeCategoriaLe)
+        # (dataEsposizione, idAccount, nomeProdotto, prezzoOriginale, idScaffale, nomeCategoria):
         self.prodottiBtnClicked(mainPath, amministratore, None)
 
     # Metodo che si attiva alla pressione del saveClienteBtn
@@ -333,8 +363,8 @@ class AmministratoreView(QWidget):
         button = QPushButton()
         button.setText("Visualizza")
         button.clicked.connect(lambda: self.caricainfoProdottoView(mainPath, "infoProdottoView.ui",
-                                                                  Controller().trovaProdottoTramiteId(idProdotto),
-                                                                  amministratore, lista))
+                                                                   Controller().trovaProdottoTramiteId(idProdotto),
+                                                                   amministratore, lista))
         return button
 
     # Metodo che crea un bottone grazie al idAccount
@@ -344,8 +374,8 @@ class AmministratoreView(QWidget):
         button.setText("Visualizza")
         button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         button.clicked.connect(lambda: self.caricainfoAccountView(mainPath, "infoaccountView.ui",
-                                                                 Controller().trovaAccountTramiteId(idAccount),
-                                                                 amministratore, lista))
+                                                                  Controller().trovaAccountTramiteId(idAccount),
+                                                                  amministratore, lista))
         return button
 
     # Metodo che carica le info di un prodotto all'interno della View
