@@ -13,7 +13,6 @@ from MVC.Model.SistemService.File import File
 
 class Filtri:
 
-
     # Costruttore della classe
     def __init__(self):
         self.filtrati = None
@@ -47,7 +46,7 @@ class Filtri:
 
     # Metodo di filtraggio dei prodotti in base alla categoria
     # idCategoria = codice della categoria su cui fare la selezione
-    # file =
+    # file = nome del file da cui prelecare i prodotti e filtrarli
     def filtraCategoria(self, idCategoria, fileName):
         prodottiList = File().deserializza(fileName)
         prodottiFiltratiList = []
@@ -57,6 +56,9 @@ class Filtri:
         self.filtrati = prodottiFiltratiList
         return prodottiFiltratiList
 
+    # Metodo che filtra gli account in base al nome a al cognome
+    # nome = nome del account
+    # cognome = nome del account
     def filtraClienti(self, nome, cognome):
         listClientiConNome = list()
         listClienti = Account().recuperaListaOggetti()
@@ -66,6 +68,7 @@ class Filtri:
                     listClientiConNome.append(cliente)
                     return listClientiConNome
         return None
+
 
     # Metodo che cerca il prodotto in base al nome passato e alle opzion scelte nella tendina
     def elaboraCercaProdottoBtnClicked(self, name, textData, textPrezzo, textCategoria):
@@ -87,9 +90,10 @@ class Filtri:
         return listaCorrispondenti
 
     # Metodo che filtra i prodotti in base al periodo scelto
+    # textData = parametro di filtraggio dei prodotti
     def ifFiltraPerDataSelected(self, textData):
         lista = Prodotto().recuperaListaProdottiInVendita()
-        if textData == "Tutte le date":
+        if textData == "tutte le date":
             return lista
         elif textData == "ultima settimana":
             lista = self.filtraDataEsposizione(datetime.today() - relativedelta(days=7),
@@ -103,29 +107,26 @@ class Filtri:
         return lista
 
     # Metodo che filtra i prodotti in base al prezzo massimo scelto
+    # textPrezzo = parametro di filtraggio dei prodotti
     def ifFiltraPerPrezzo(self, textPrezzo):
         lista = Prodotto().recuperaListaProdottiInVendita()
         if textPrezzo == "tutti i prezzi":
             return lista
         elif textPrezzo == "0€ - 10€ ":
-            #lista = Controller().filtraPrezzo(0, 10, PathDatabase().inVenditaTxt)
             lista = self.filtraPrezzo(0, 10, PathDatabase().inVenditaTxt)
         elif textPrezzo == "10€ - 20€":
-            #lista = Controller().filtraPrezzo(10, 20, PathDatabase().inVenditaTxt)
             lista = self.filtraPrezzo(10, 20, PathDatabase().inVenditaTxt)
         elif textPrezzo == "20€ - 50€":
-            #lista = Controller().filtraPrezzo(20, 50, PathDatabase().inVenditaTxt)
             lista = self.filtraPrezzo(20, 50, PathDatabase().inVenditaTxt)
         elif textPrezzo == ">50€":
-            #lista = Controller().filtraPrezzo(50, sys.maxsize, PathDatabase().inVenditaTxt)
             lista = self.filtraPrezzo()(50, sys.maxsize, PathDatabase().inVenditaTxt)
         return lista
 
     # Metodo che filtra i prodotti in base alla categoria scelta nella tendina della view
+    # textCategoria = parametro di filtraggio dei prodotti
     def ifFiltraPerCategoria(self, textCategoria):
-        #listaProdotti = Controller().recuperaListaProdottiInVendita()
         listaProdotti = Prodotto().recuperaListaProdottiInVendita()
-        if textCategoria == "Tutte le categorie" or textCategoria == "":
+        if textCategoria == "tutte le categorie" or textCategoria == "":
             return listaProdotti
         categoriaIdFiltro = None
         categorieList = Categoria().recuperaListaOggetti()
@@ -133,9 +134,8 @@ class Filtri:
             if textCategoria == categoria.nome:
                 categoriaIdFiltro = categoria.idCategoria
         listaProdottiTrovati = list()
-        if categoriaIdFiltro == None: return None
+        if categoriaIdFiltro == None: listaProdotti
         for prodotto in listaProdotti:
-            #print(f"{prodotto.idCategoria}-{categoriaIdFiltro}")
             if prodotto.idCategoria == categoriaIdFiltro:
                 listaProdottiTrovati.append(prodotto)
         if listaProdottiTrovati:

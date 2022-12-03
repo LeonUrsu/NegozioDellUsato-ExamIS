@@ -203,7 +203,7 @@ border-radius: 10px;
                <item>
                 <widget class="QComboBox" name="filtraPerData">
                  <property name="currentText">
-                  <string>Tutte le date</string>
+                  <string>tutte le date</string>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -216,7 +216,7 @@ border-radius: 10px;
                  </property>
                  <item>
                   <property name="text">
-                   <string>Tutte le date</string>
+                   <string>tutte le date</string>
                   </property>
                  </item>
                  <item>
@@ -243,7 +243,7 @@ border-radius: 10px;
                  </property>
                  <item>
                   <property name="text">
-                   <string>Tutte le categorie</string>
+                   <string>tutte le categorie</string>
                   </property>
                  </item>
                 </widget>
@@ -255,7 +255,7 @@ border-radius: 10px;
                  </property>
                  <item>
                   <property name="text">
-                   <string>Tutti i prezzi</string>
+                   <string>tutti i prezzi</string>
                   </property>
                  </item>
                  <item>

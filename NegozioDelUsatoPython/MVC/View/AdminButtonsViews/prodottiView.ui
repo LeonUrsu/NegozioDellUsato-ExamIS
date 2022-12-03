@@ -258,22 +258,22 @@ QPushButton{
               <property name="title">
                <string/>
               </property>
-              <layout class="QVBoxLayout">
-               <property name="spacing">
-                <number>6</number>
-               </property>
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
+              <layout class="QVBoxLayout" name="verticalLayout_3">
+               <item>
+                <widget class="QComboBox" name="filtraPerCategoria">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="currentText">
+                  <string>tutte le categorie</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>tutte le categorie</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
                <item>
                 <widget class="QComboBox" name="filtraPerData">
                  <property name="cursor">
@@ -281,7 +281,7 @@ QPushButton{
                  </property>
                  <item>
                   <property name="text">
-                   <string>Da Sempre</string>
+                   <string>tutte le date</string>
                   </property>
                  </item>
                  <item>
@@ -307,11 +307,11 @@ QPushButton{
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="currentText">
-                  <string>Tutti i Prezzi</string>
+                  <string>tutti i prezzi</string>
                  </property>
                  <item>
                   <property name="text">
-                   <string>Tutti i Prezzi</string>
+                   <string>tutti i prezzi</string>
                   </property>
                  </item>
                  <item>

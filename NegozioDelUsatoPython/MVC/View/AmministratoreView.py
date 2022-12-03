@@ -22,6 +22,8 @@ class AmministratoreView(QWidget):
         file.close()
 
     # Metodo per gestire i pulsanti premuti sul menu sinistro
+    # mainPath = path del main
+    # amministratore = oggetto AmministratoreView
     def homeBtnClicked(self, mainPath, amministratore):
         name = "homeView.ui"
         obj = self.caricaView(mainPath, name)
@@ -33,6 +35,8 @@ class AmministratoreView(QWidget):
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
 
     # Metodo per gestire i pulsanti premuti sul menu sinistro
+    # mainPath = path del main
+    # amministratore = oggetto AmministratoreView
     def statisticheBtnClicked(self, mainPath, amministratore):
         name = "statisticheView.ui"
         obj = self.caricaView(mainPath, name)
@@ -52,10 +56,14 @@ class AmministratoreView(QWidget):
             obj.cat3.setText(stats.tendenzaCategorie[2])
 
     # Metodo per gestire i pulsanti premuti sul menu sinistroo
+    # mainPath = path del main
+    # lista = lista con prodotti da caricare nella tab
+    # amministratore = oggetto AmministratoreView
     def prodottiBtnClicked(self, mainPath, amministratore, lista):
         name = "prodottiView.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
+        self.setItemsOfComboboxCategorie(obj)
         amministratore.finestra.homeBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.statisticheBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.prodottiBtn.setStyleSheet(self.pushedStyleSheet())
@@ -69,27 +77,28 @@ class AmministratoreView(QWidget):
         obj.vendiBtn.clicked.connect(lambda: amministratore.vendiProdottoBtnClicked(mainPath, amministratore, obj))
         obj.cercaBtn.clicked.connect(lambda: amministratore.cercaProdottoBtnClicked(mainPath, amministratore, obj))
 
+    # Metodo che grazie alle categorie che ci sono in dataBase si aggiungono alla tendina
+    # obj = view caricata
+    def setItemsOfComboboxCategorie(self, obj):
+        categorie = Controller().recuperaListaCategorie()
+        for cat in categorie:
+            obj.filtraPerCategoria.addItem(cat.nome)
+        self.categorieList = categorie
+
     # Metodo che cerca il prodotto in base al nome passato
+    # mainPath = path del main
+    # obj = view caricata
+    # amministratore = oggetto AmministratoreView
     def cercaProdottoBtnClicked(self, mainPath, amministratore, obj):
         textData = str(obj.filtraPerData.currentText())
         textPrezzo = str(obj.filtraPerPrezzo.currentText())
-        listaCorrispondentiData = self.ifFiltraPerDataSelected(textData)
-        listaCorrispondentiPrezzo = self.ifFiltraPerPrezzo(textPrezzo)
-        listaCorrispondenti = list()
-        for prodottoData in listaCorrispondentiData:
-            for prodottoPrezzo in listaCorrispondentiPrezzo:
-                if prodottoData.idProdotto == prodottoPrezzo.idProdotto:
-                    listaCorrispondenti.append(prodottoData)
-        if obj.search_le.text() != "":
-            name = obj.search_le.text()
-            temp = list()
-            for prodotto in listaCorrispondenti:
-                if prodotto.nomeProdotto == name:
-                    temp.append(prodotto)
-            listaCorrispondenti = temp
+        textCategoria = str(obj.filtraPerCategoria.currentText())
+        name = obj.search_le.text()
+        listaCorrispondenti = Controller().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
         self.prodottiBtnClicked(mainPath, amministratore, listaCorrispondenti)
 
     # Metodo che filtra i prodotti in base al periodo scelto
+    # textData = str con il parametro di filtraggio
     def ifFiltraPerDataSelected(self, textData):
         lista = None
         if textData == "Da Sempre":
@@ -106,6 +115,7 @@ class AmministratoreView(QWidget):
         return lista
 
     # Metodo che filtra i prodotti in base al prezzo massimo scelto
+    # textPrezzo = str con il parametro di filtraggio
     def ifFiltraPerPrezzo(self, textPrezzo):
         lista = Controller().recuperaListaProdottiInVendita()
         if textPrezzo == "tutti i prezzi":
@@ -121,6 +131,7 @@ class AmministratoreView(QWidget):
         return lista
 
     # Metodo che filtra i prodotti in base alla categoria scelta nella tendina della view
+    # textCategorie = str con il parametro di filtraggio
     def ifFiltraPerCategoria(self, textCategoria):
         listaProdotti = Controller().recuperaListaProdottiInVendita()
         if textCategoria == "Tutte le Categorie" or textCategoria == "":
@@ -141,6 +152,9 @@ class AmministratoreView(QWidget):
             return listaProdottiTrovati
 
     # Metodo che elimina gli oggetti nel database tramite la lista id
+    # mainPath = path del main
+    # obj = view caricata
+    # amministratore = oggetto AmministratoreView
     def rimuoviProdottoBtnClicked(self, mainPath, amministratore, obj):
         listaId = list()
         for box in range(obj.tab.rowCount()):
@@ -150,6 +164,9 @@ class AmministratoreView(QWidget):
         self.prodottiBtnClicked(mainPath, amministratore, None)
 
     # Metodo che vende i prodotti selezionati nella lista dei prodotti
+    # mainPath = path del main
+    # obj = view caricata
+    # amministratore = oggetto AmministratoreView
     def vendiProdottoBtnClicked(self, mainPath, amministratore, obj):
         listaId = list()
         for box in range(obj.tab.rowCount()):
@@ -160,6 +177,9 @@ class AmministratoreView(QWidget):
         self.aperturaRicevuta(mainPath, amministratore, ricevuta)
 
     # Metodo per gestire l'apertura di una view per inserirci i dati della ricevuta
+    # mainPath = path del main
+    # amministratore = oggetto AmministratoreView
+    # ricevuta = ricevuta da essere usata per caricare i dati dei prodotti venduti
     def aperturaRicevuta(self, mainPath, amministratore, ricevuta):
         name = "ricevutaUsatoBeato.ui"
         obj = self.caricaView(mainPath, name)
@@ -189,6 +209,9 @@ class AmministratoreView(QWidget):
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, None))
 
     # Metodo per gestire i pulsanti premuti sul menu sinistro
+    # mainPath = path del main
+    # amministratore = oggetto AmministratoreView
+    # lista = lista prodotti da aggiungere alla tab
     def accountsBtnClicked(self, mainPath, amministratore, lista):
         name = "accountsView.ui"
         obj = self.caricaView(mainPath, name)
@@ -205,6 +228,11 @@ class AmministratoreView(QWidget):
         obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviClienteBtnClicked(mainPath, obj, amministratore))
         obj.cercaBtn.clicked.connect(lambda: amministratore.cercaClienteBtnClicked(mainPath, obj, amministratore))
 
+    # Metodo che gestisce la ricerca di in cliente nella view
+    # mainPath = path del main
+    # obj = view caricata
+    # amministratore = oggetto AmministratoreView
+    # lista = lista prodotti da aggiungere alla tab
     def cercaClienteBtnClicked(self, mainPath, obj, amministratore):
         textNome = str(obj.nome_le.text())
         textCognome = str(obj.cognome_le.text())
@@ -212,6 +240,8 @@ class AmministratoreView(QWidget):
         self.accountsBtnClicked(mainPath, amministratore, lista)
 
     # Metodo per gestire i pulsanti premuti sul menu sinistro
+    # mainPath = path del main
+    # amministratore = oggetto AmministratoreView
     def backupBtnClicked(self, mainPath, amministratore):
         name = "backupView.ui"
         obj = self.caricaView(mainPath, name)
@@ -224,11 +254,14 @@ class AmministratoreView(QWidget):
         obj.pushButton.clicked.connect(lambda: self.effettuaBackup(obj))
 
     # Metodo per effettuare il backup dei dati
+    # obj = view caricata
     def effettuaBackup(self, obj):
         Controller().effettuaBackup()
         obj.stato.setText("Backup eseguito")
 
     # Metodo che si attiva alla pressione del prodottiBtn
+    # mainPath = path del main
+    # amministratore = oggetto AmministratoreView
     def aggiungiProdottoBtnClicked(self, mainPath, amministratore):
         name = "inserisciProdottoView.ui"
         obj = self.caricaView(mainPath, name)
@@ -237,14 +270,20 @@ class AmministratoreView(QWidget):
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, None))
 
     # Metodo che si attiva alla pressione del aggiungiBtn
+    # mainPath = path del main
+    # amministratore = oggetto AmministratoreView
     def aggiungiClienteBtnClicked(self, mainPath, amministratore):
         name = "inserisciClienteView.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
-        obj.aggiungiBtn.clicked.connect(lambda: self.saveClienteBtnClicked(mainPath, obj, amministratore, None))
+        obj.aggiungiBtn.clicked.connect(lambda: self.saveClienteBtnClicked(mainPath, obj, amministratore))
         obj.indietroBtn.clicked.connect(lambda: self.accountsBtnClicked(mainPath, amministratore, None))
 
     # Metodo che rimuove account dal database del sistema e si attiva alla pressione di rimuoviBtn
+    # mainPath = path del main
+    # obj = view caricata
+    # amministratore = oggetto AmministratoreView
+    # lista = lista prodotti da aggiungere alla tab
     def rimuoviClienteBtnClicked(self, mainPath, obj, amministratore):
         listaId = list()
         for box in range(obj.tab.rowCount()):
@@ -254,6 +293,9 @@ class AmministratoreView(QWidget):
         self.accountsBtnClicked(mainPath, amministratore, None)
 
     # Metodo che si attiva alla pressione del aggiungiProdottoBtn
+    # mainPath = path del main
+    # obj = view caricata
+    # amministratore = oggetto AmministratoreView
     def saveProdottoBtnClicked(self, mainPath, obj, amministratore):
         nomeLe = obj.nomeLe.text()
         idAccountLe = obj.idAccountLe.text()
@@ -270,7 +312,10 @@ class AmministratoreView(QWidget):
         self.prodottiBtnClicked(mainPath, amministratore, None)
 
     # Metodo che si attiva alla pressione del saveClienteBtn
-    def saveClienteBtnClicked(self, mainPath, obj, amministratore, lista):
+    # mainPath = path del main
+    # obj = view caricata
+    # amministratore = oggetto AmministratoreView
+    def saveClienteBtnClicked(self, mainPath, obj, amministratore):
         nomeLe = obj.nomeLe.text()
         cognomeLe = obj.cognomeLe.text()
         dataNascitaLe = obj.dataNascitaLe.text()
@@ -295,19 +340,18 @@ class AmministratoreView(QWidget):
 
     # Metodo che restitiusce la stringa nel metodo
     def pushedStyleSheet(self):
-        # style = 'QPushButton {background-color: #1a1f39; color: #78799c;}'
         style = "QPushButton {color: #78799c; background-color: #1a1f39; padding:10px 5px; text-align: left; " \
                 "border-top-left-radius: 15px; border-bottom-left-radius: 15px}"
         return style
 
     # Metodo che restitiusce la stringa nel metodo
     def unPushedStyleSheet(self):
-        # style = 'QPushButton {background-color: #2a2c49; color: #78799c;}'
         style = "QPushButton {color: #78799c; background-color: #2a2c49; padding: 10px 5px; text-align: left; " \
                 "border-top-left-radius: 25px; border-bottom-left-radius: 25px;}"
         return style
 
     # Metodo che: rimuove un widget B che era stato messo in un widget A e mette un widget C nel widget A
+    # item = oggetto nuovo da caricare nel CentralWidget
     def removeAndAdd(self, item):
         try:
             for wid in range(self.finestra.verticalLayout_toPaste.count()):
@@ -317,6 +361,8 @@ class AmministratoreView(QWidget):
         self.finestra.verticalLayout_toPaste.addWidget(item)
 
     # Metodo che carica una view presente nelle AdminButtonsViews grazie al nome passato
+    # mainPath = path del main
+    # name = nome del file da caricare
     def caricaView(self, mainPath, name):
         loader = QUiLoader()
         path = os.path.join(mainPath, "MVC", "View", "AdminButtonsViews", name)
@@ -326,16 +372,21 @@ class AmministratoreView(QWidget):
         file.close()
         return finestra
 
-    # Metodo che aggiunge i prodotti in vendita al tableWidget
+    # Metodo che aggiunge i prodotti in vendita al tableWidget della finestra
+    # mainPath = path del main
+    # obj = view caricata
+    # amministratore = oggetto AmministratoreView
+    # lista = lista prodotti da aggiungere alla tab
     def aggiungiProdottiAllaTab(self, mainPath, obj, amministratore, lista):
-        # lista = Controller().recuperaListaProdottiInVendita()
-        column = 6
+        if lista == None:
+            lista = Controller().recuperaListaProdottiInVendita()
+        objList = (None, "nome", "prezzo", "id prodotto", "data scadenza", "click su visualizza")
+        column = len(objList)
         obj.tab.setColumnCount(column)
         obj.tab.setColumnWidth(0, 15)
         for i in range(column):
             obj.tab.setColumnWidth(i + 1, 100)
-        obj.tab.setHorizontalHeaderLabels(
-            (None, "nome", "prezzo", "id prodotto", "data scadenza", "click su visualizza"))
+        obj.tab.setHorizontalHeaderLabels(objList)
         row = 0
         obj.tab.setRowCount(len(lista))
         for prodotto in lista:
@@ -353,8 +404,11 @@ class AmministratoreView(QWidget):
             row += 1
 
     # Metodo che aggiunge i prodotti in vendita al tableWidget
+    # mainPath = path del main
+    # obj = view caricata
+    # amministratore = oggetto AmministratoreView
+    # lista = lista prodotti da aggiungere alla tab
     def aggiungiAccountsAllaTab(self, mainPath, obj, amministratore, lista):
-        # lista = Controller().recuperaListaAccounts()
         colonne = 6
         obj.tab.setColumnCount(colonne)
         obj.tab.setColumnWidth(0, 15)
@@ -378,8 +432,11 @@ class AmministratoreView(QWidget):
             row += 1
 
     # Metodo che crea un bottone grazie al idProdotto
+    # mainPath = path del main
+    # obj = view caricata
+    # amministratore = oggetto AmministratoreView
+    # lista = lista prodotti da aggiungere alla tab
     def creaBottoneVisualizzaProdottoQualsiasi(self, mainPath, idProdotto, amministratore, lista):
-        # button = QToolButton()
         button = QPushButton()
         button.setText("Visualizza")
         button.clicked.connect(lambda: self.caricainfoProdottoView(mainPath, "infoProdottoView.ui",
@@ -388,8 +445,11 @@ class AmministratoreView(QWidget):
         return button
 
     # Metodo che crea un bottone grazie al idAccount
+    # mainPath = path del main
+    # obj = view caricata
+    # amministratore = oggetto AmministratoreView
+    # lista = lista prodotti da aggiungere alla tab
     def creaBottoneVisualizzaAccountQualsiasi(self, mainPath, idAccount, amministratore, lista):
-        # button = QToolButton()
         button = QPushButton()
         button.setText("Visualizza")
         button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
@@ -413,6 +473,11 @@ class AmministratoreView(QWidget):
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, lista))
 
     # Metodo che carica le info di un account all'interno della View
+    # mainPath = path del main
+    # fileName = nome del file da caricare
+    # account = account da cui caricare dati
+    # amministratore = oggetto AmministratoreView
+    # lista = lista prodotti da aggiungere alla tab
     def caricainfoAccountView(self, mainPath, fileName, account, amministratore, lista):
         obj = self.caricaView(mainPath, fileName)
         self.removeAndAdd(obj)
@@ -432,6 +497,7 @@ class AmministratoreView(QWidget):
         obj.indietroBtn.clicked.connect(lambda: self.accountsBtnClicked(mainPath, amministratore, lista))
 
     # Metodo per controllare la validità dei dati inseriti dall'utente
+    # * = parametri str o datetime da controllare per errori umani
     def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, prezzoLe, nomeCategoriaLe, idScaffaleLe):
         if nomeLe == "": return False
         if not idAccountLe.isalnum(): return False
@@ -442,7 +508,8 @@ class AmministratoreView(QWidget):
         if not idScaffaleLe.isalnum(): return False
         return True
 
-    # Metodo per controllare la validità dei dati inseriti dall'utente
+    # Metodo per controllare la validità dei dati inseriti dall'utente]
+    # * = parametri str o datetime da controllare per errori umani
     def checkerSaveClienteBtnClicked(self, nomeLe, cognomeLe, dataDiNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
                                      cittaLe, viaLe, piazzaLe, civicoLe, citofonoLe):
         if nomeLe == "": return False
@@ -452,10 +519,10 @@ class AmministratoreView(QWidget):
         if not capLe.isalnum(): return False
         return True
 
+    # Metodo per validare la data nel formato corretto se è corretta restituisce True, False altrimenti
     def validateDate(self, date_text):
         try:
             datetime.strptime(date_text, '%d/%m/%Y')
             return True
         except:
-            print("data non valida")
             return False

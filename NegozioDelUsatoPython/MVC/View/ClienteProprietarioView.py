@@ -1,14 +1,8 @@
 import os
-import sys
-from datetime import datetime
-
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QTableWidgetItem, QPushButton
-from dateutil.relativedelta import relativedelta
-
-from BackupFiles.PathDatabase import PathDatabase
 from MVC.Controller.Controller import Controller
 from MVC.Model.SistemService.Logging import Logging
 
@@ -28,7 +22,7 @@ class ClienteProprietarioView():
 
     # pulsante leftMenu, porta alla schermata home del cliente priorietario
     def homeBtnClicked(self, mainPath, finestra, lista):
-        name = "ClienteProprietarioViewProdotti.ui"  # TODO fare la home inesistente
+        name = "ClienteProprietarioViewProdotti.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
         if lista == None:
@@ -36,82 +30,18 @@ class ClienteProprietarioView():
         self.aggiungiProdottiAllaTab(mainPath, obj, lista)
         self.setItemsOfComboboxCategorie(obj)
         obj.cercaBtn.clicked.connect(lambda: self.cercaProdottoBtnClicked(mainPath, obj))
-        if Logging.accountLoggato != None: pass  # TODO
+        if Logging.accountLoggato != None: pass
         finestra.iMieiDatiBtn.setStyleSheet(self.unPushedStyleSheet())
         finestra.homeBtn.setStyleSheet(self.pushedStyleSheet())
         finestra.iMieiProdottiBtn.setStyleSheet(self.unPushedStyleSheet())
-
-    # Metodo che filtra i prodotti in base al periodo scelto
-    def ifFiltraPerDataSelected(self, textData):
-        lista = Controller().recuperaListaProdottiInVendita()
-        if textData == "Tutte le date":
-            return lista
-        elif textData == "ultima settimana":
-            lista = Controller().filtraDataEsposizione(datetime.today() - relativedelta(days=7),
-                                                       datetime.today(), PathDatabase().inVenditaTxt)
-        elif textData == "ultimo mese":
-            lista = Controller().filtraDataEsposizione(datetime.today() - relativedelta(months=1),
-                                                       datetime.today(), PathDatabase().inVenditaTxt)
-        elif textData == "ultimi tre mesi":
-            lista = Controller().filtraDataEsposizione(datetime.today() - relativedelta(months=3),
-                                                       datetime.today(), PathDatabase().inVenditaTxt)
-        return lista
-
-    # Metodo che filtra i prodotti in base al prezzo massimo scelto
-    def ifFiltraPerPrezzo(self, textPrezzo):
-        lista = Controller().recuperaListaProdottiInVendita()
-        if textPrezzo == "tutti i prezzi":
-            return lista
-        elif textPrezzo == "0€ - 10€ ":
-            lista = Controller().filtraPrezzo(0, 10, PathDatabase().inVenditaTxt)
-        elif textPrezzo == "10€ - 20€":
-            lista = Controller().filtraPrezzo(10, 20, PathDatabase().inVenditaTxt)
-        elif textPrezzo == "20€ - 50€":
-            lista = Controller().filtraPrezzo(20, 50, PathDatabase().inVenditaTxt)
-        elif textPrezzo == ">50€":
-            lista = Controller().filtraPrezzo(50, sys.maxsize, PathDatabase().inVenditaTxt)
-        return lista
-
-    # Metodo che filtra i prodotti in base alla categoria scelta nella tendina della view
-    def ifFiltraPerCategoria(self, textCategoria):
-        listaProdotti = Controller().recuperaListaProdottiInVendita()
-        if textCategoria == "Tutte le Categorie" or textCategoria == "":
-            return listaProdotti
-        categoriaIdFiltro = None
-        for categoria in self.categorieList:
-            if textCategoria == categoria.nome:
-                categoriaIdFiltro = categoria.idCategoria
-        listaProdottiTrovati = list()
-        if categoriaIdFiltro == None: return listaProdotti
-        for prodotto in listaProdotti:
-            if prodotto.idCategoria == categoriaIdFiltro:
-                listaProdottiTrovati.append(prodotto)
-        if not listaProdottiTrovati:
-            return listaProdotti
-        else:
-            return listaProdottiTrovati
 
     # Metodo che cerca il prodotto in base al nome passato e alle opzion scelte nella tendina
     def cercaProdottoBtnClicked(self, mainPath, obj):
         textData = str(obj.filtraPerData.currentText())
         textPrezzo = str(obj.filtraPerPrezzo.currentText())
         textCategoria = str(obj.filtraPerCategoria.currentText())
-        listaCorrispondentiData = self.ifFiltraPerDataSelected(textData)
-        listaCorrispondentiPrezzo = self.ifFiltraPerPrezzo(textPrezzo)
-        listaCorrispondentiCategoria = self.ifFiltraPerCategoria(textCategoria)
-        listaCorrispondenti = list()
-        for prodottoData in listaCorrispondentiData:
-            for prodottoPrezzo in listaCorrispondentiPrezzo:
-                for prodottoCategoria in listaCorrispondentiCategoria:
-                    if prodottoData.idProdotto == prodottoPrezzo.idProdotto == prodottoCategoria.idProdotto:
-                        listaCorrispondenti.append(prodottoData)
-        if obj.search_le.text() != "":
-            name = obj.search_le.text()
-            temp = list()
-            for prodotto in listaCorrispondenti:
-                if prodotto.nomeProdotto == name:
-                    temp.append(prodotto)
-            listaCorrispondenti = temp
+        name = obj.search_le.text()
+        listaCorrispondenti = Controller().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
         self.homeBtnClicked(mainPath, self.finestra, listaCorrispondenti)
 
     # Metodo che grazie alle categorie che ci sono in dataBase si aggiungono alla tendina
@@ -155,9 +85,6 @@ class ClienteProprietarioView():
                 "border-top-left-radius: 25px; border-bottom-left-radius: 25px;}"
         return style
 
-    # TODO fare metodo che aggiunge i prodotti posseduti dal cliente proprietario
-    # TODO fare metrodo per usare le tendine dei filtri nel cliente e amministratore
-
     # Metodo che carica una view presente nelle AdminButtonsViews grazie al nome passato
     def caricaView(self, mainPath, name):
         loader = QUiLoader()
@@ -169,6 +96,7 @@ class ClienteProprietarioView():
         return finestra
 
     # Metodo che: rimuove un widget B che era stato messo in un widget A e mette un widget C nel widget A
+    # item = oggetto nuovo da caricare nel CentralWidget
     def removeAndAdd(self, item):
         try:
             for wid in range(self.finestra.verticalLayout_toPaste.count()):
@@ -183,7 +111,6 @@ class ClienteProprietarioView():
         obj.cognomeDaIns.setText(account.cognome)
         obj.dataDiNascitaDaIns.setText(account.dataDiNascita)
         obj.idAccountDaIns.setText(f"{account.idAccount}")
-        # indietro
 
     # Metodo che aggiunge i prodotti in vendita al tableWidget
     def aggiungiProdottiAllaTab(self, mainPath, obj, lista):
