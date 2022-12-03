@@ -8,7 +8,7 @@ from MVC.View.CentralWindow import CentralWindow
 
 if __name__ == '__main__':
 
-    # TODO da ritrovare i test spariti
+    # TODO ripristinare i test eliminati il 14 nov
     # Path setup
     mainPath = pathlib.Path().resolve().__str__()
     PathDatabase().setup(mainPath)
