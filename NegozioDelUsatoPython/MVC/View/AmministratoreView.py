@@ -120,6 +120,26 @@ class AmministratoreView(QWidget):
             lista = Controller().filtraPrezzo(50, sys.maxsize, PathDatabase().inVenditaTxt)
         return lista
 
+    # Metodo che filtra i prodotti in base alla categoria scelta nella tendina della view
+    def ifFiltraPerCategoria(self, textCategoria):
+        listaProdotti = Controller().recuperaListaProdottiInVendita()
+        if textCategoria == "Tutte le Categorie" or textCategoria == "":
+            return listaProdotti
+        categoriaIdFiltro = None
+        categorieList = Controller().recuperaListaCategorie()
+        for categoria in categorieList:
+            if textCategoria == categoria.nome:
+                categoriaIdFiltro = categoria.idCategoria
+        listaProdottiTrovati = list()
+        if categoriaIdFiltro == None: return listaProdotti
+        for prodotto in listaProdotti:
+            if prodotto.idCategoria == categoriaIdFiltro:
+                listaProdottiTrovati.append(prodotto)
+        if not listaProdottiTrovati:
+            return listaProdotti
+        else:
+            return listaProdottiTrovati
+
     # Metodo che elimina gli oggetti nel database tramite la lista id
     def rimuoviProdottoBtnClicked(self, mainPath, amministratore, obj):
         listaId = list()
@@ -221,7 +241,7 @@ class AmministratoreView(QWidget):
         name = "inserisciClienteView.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
-        obj.saveBtn.clicked.connect(lambda: self.saveClienteBtnClicked(mainPath, obj, amministratore, None))
+        obj.aggiungiBtn.clicked.connect(lambda: self.saveClienteBtnClicked(mainPath, obj, amministratore, None))
         obj.indietroBtn.clicked.connect(lambda: self.accountsBtnClicked(mainPath, amministratore, None))
 
     # Metodo che rimuove account dal database del sistema e si attiva alla pressione di rimuoviBtn

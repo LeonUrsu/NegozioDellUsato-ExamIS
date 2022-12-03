@@ -116,7 +116,7 @@ class ClienteProprietarioView():
 
     # Metodo che grazie alle categorie che ci sono in dataBase si aggiungono alla tendina
     def setItemsOfComboboxCategorie(self, obj):
-        categorie = Controller().recuperaListaCategorie()  # TODO
+        categorie = Controller().recuperaListaCategorie()
         for cat in categorie:
             obj.filtraPerCategoria.addItem(cat.nome)
         self.categorieList = categorie

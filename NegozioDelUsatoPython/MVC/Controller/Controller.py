@@ -65,3 +65,6 @@ class Controller(object):
 
     def recuperaListaProdottiInAssociatiAdAccount(self, account):
         return Prodotto().recuperaListaProdottiInAssociatiAdAccount(account)
+
+    def elaboraCercaProdottoBtnClicked(self, name, textData, textPrezzo, textCategoria):
+        return Filtri().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)

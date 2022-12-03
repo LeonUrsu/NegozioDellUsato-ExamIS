@@ -51,22 +51,8 @@ class UserView():
         textData = str(obj.filtraPerData.currentText())
         textPrezzo = str(obj.filtraPerPrezzo.currentText())
         textCategoria = str(obj.filtraPerCategoria.currentText())
-        listaCorrispondentiData = self.ifFiltraPerDataSelected(textData)
-        listaCorrispondentiPrezzo = self.ifFiltraPerPrezzo(textPrezzo)
-        listaCorrispondentiCategoria = self.ifFiltraPerCategoria(textCategoria)
-        listaCorrispondenti = list()
-        for prodottoData in listaCorrispondentiData:
-            for prodottoPrezzo in listaCorrispondentiPrezzo:
-                for prodottoCategoria in listaCorrispondentiCategoria:
-                    if prodottoData.idProdotto == prodottoPrezzo.idProdotto == prodottoCategoria.idProdotto:
-                        listaCorrispondenti.append(prodottoData)
-        if obj.search_le.text() != "":
-            name = obj.search_le.text()
-            temp = list()
-            for prodotto in listaCorrispondenti:
-                if prodotto.nomeProdotto == name:
-                    temp.append(prodotto)
-            listaCorrispondenti = temp
+        name = obj.search_le.text()
+        listaCorrispondenti = Controller().elaboraCercaProdottoBtnClickedm
         self.caricaUserProdottiView(mainPath, listaCorrispondenti)
 
     # Metodo che filtra i prodotti in base al periodo scelto
@@ -103,21 +89,23 @@ class UserView():
     # Metodo che filtra i prodotti in base alla categoria scelta nella tendina della view
     def ifFiltraPerCategoria(self, textCategoria):
         listaProdotti = Controller().recuperaListaProdottiInVendita()
-        if textCategoria == "Tutte le Categorie" or textCategoria == "":
+        if textCategoria == "Tutte le categorie" or textCategoria == "":
             return listaProdotti
         categoriaIdFiltro = None
         for categoria in self.categorieList:
             if textCategoria == categoria.nome:
                 categoriaIdFiltro = categoria.idCategoria
         listaProdottiTrovati = list()
-        if categoriaIdFiltro == None: return listaProdotti
+        if categoriaIdFiltro == None: return None
         for prodotto in listaProdotti:
+            #print(f"{prodotto.idCategoria}-{categoriaIdFiltro}")
             if prodotto.idCategoria == categoriaIdFiltro:
+                print("entrato com")
                 listaProdottiTrovati.append(prodotto)
-        if not listaProdottiTrovati:
-            return listaProdotti
-        else:
+        if listaProdottiTrovati:
             return listaProdottiTrovati
+        else:
+            return list()
 
     # Metodo che recupera i nomi delle categorie presenti nella comboBox
     def getITemsOfComboboxOfCategoria(self, obj):
