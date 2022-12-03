@@ -10,11 +10,9 @@ from MVC.Model.SistemService.File import File
 
 class Statistiche:
 
-
     # Costruttore della classe
     def __init__(self):
         pass
-
 
     # Metodo per la defizizione di un oggetto Statistiche
     def aggiungiStatistiche(self):
@@ -28,7 +26,6 @@ class Statistiche:
         self.guadagnoTotale = self.calcolaGuadagno(self.getListProdottiVenduti())
         self.guadagnoInData = self.calcolaGuadagno(self.getProdottiVendutiInData())
         self.salvataggioStatitiche()
-
 
     # Metodo che appende la satistica creata e salva tutte le statistiche nel database
     def salvataggioStatitiche(self):
@@ -57,12 +54,10 @@ class Statistiche:
         numeroClienti = len(listClienti)
         return numeroClienti
 
-
     # Metodo che prende la lista dei prodotti venduti
     def getListProdottiVenduti(self):
         listVenduti = Prodotto().recuperaListaProdottiVenduti()
         return listVenduti
-
 
     # Metodo che calcola l'ammontare complessivo dei prodotti passati tramite listProdotti
     # listProdotti = lista dei prodotti
@@ -71,7 +66,6 @@ class Statistiche:
         for prodotto in listProdotti:
             totale += prodotto.prezzoCorrente
         return totale
-
 
     # Metodo che prende la lista dei prodotti venduti nelle 24 ore anticedenti
     def getProdottiVendutiInData(self):
@@ -83,7 +77,6 @@ class Statistiche:
                 lista.append(prodotto)
         return lista
 
-
     # Metodo che prende le categorie con tendenza maggiore e le restituisce come un dizionario
     # listProdotti = lista di prodotti da cui calcolare la repitizione delle loro categorie(tendenza)
     def tendenzaCategorie(self):
@@ -91,7 +84,6 @@ class Statistiche:
         listCategorie.sort(key=lambda x: x.oggettiTotali, reverse=True)
         del listCategorie[3:len(listCategorie)]
         return listCategorie
-
 
     # Metodo che passata una lista di categorie trova la lista con piu oggetti
     def maxOggettiCategoria(self, lista):
@@ -101,17 +93,14 @@ class Statistiche:
                 massimo = ogg.oggettiTotali
         return massimo
 
-
-
     # Metodo che prende il
     # numeroDiChiavi con valore piu alto
     # return dizionario con le categorie di tendenenza
-    def topKeysInDict(self, d):
+    def topKeysInDict(self, dict):
         lista = list()
-        for k in sorted(d, key=d.get, reverse=False):
-            lista.append(k)
+        for obj in sorted(dict, key=dict.get, reverse=False):
+            lista.append(obj)
         return lista
-
 
     # Metodo che viene richiamato dall'Amministratore per la visualizzazione delle statistiche.
     # Esegue una lettura nel database di tutte le statistiche presenti e le restituisce come lista,
