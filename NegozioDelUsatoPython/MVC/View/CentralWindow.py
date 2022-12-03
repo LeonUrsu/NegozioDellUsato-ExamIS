@@ -1,15 +1,14 @@
 import os
 import pathlib
-
 from PySide6.QtCore import QFile, QPropertyAnimation
 from PySide6.QtUiTools import QUiLoader
-from MVC.Model.Attività.ClienteProprietario import ClienteProprietario
 from MVC.Model.SistemService.Logging import Logging
 from MVC.View.AmministratoreView import AmministratoreView
 from MVC.View.ClienteProprietarioView import ClienteProprietarioView
 from MVC.View.LoginView import LoginView
 from MVC.View.UserView import UserView
 from MVC.View.resources import *
+
 
 class CentralWindow():
 
@@ -24,8 +23,8 @@ class CentralWindow():
         self.finestra = loader.load(file)
         file.close()
         self.apriAmministratoreView(pathlib.Path().resolve().__str__())
-        #self.apriClienteProprietarioView (pathlib.Path().resolve().__str__(), None)
-        #self.apriUserView(pathlib.Path().resolve().__str__())
+        # self.apriClienteProprietarioView (pathlib.Path().resolve().__str__(), None)
+        # self.apriUserView(pathlib.Path().resolve().__str__())
 
     # Metodo per aprire la finestra dell'cliente proprietario
     def apriClienteProprietarioView(self, mainPath, account):
@@ -36,7 +35,6 @@ class CentralWindow():
         view.finestra.openRightMenu.clicked.connect(lambda: self.slideRightMenu(view))
         view.finestra.openLeftMenu.clicked.connect(lambda: self.slideLeftMenu(view))
         view.finestra.quitBtn.clicked.connect(lambda: self.apriUserView(mainPath))
-
 
     # Metodo per aprire la finestra dell'user
     def apriUserView(self, mainPath):
@@ -55,10 +53,14 @@ class CentralWindow():
         amministratore.finestra.openLeftMenu.clicked.connect(lambda: self.slideLeftMenu(amministratore))
         # TODO come restituire il risultato del metodo controlla email e password dalla classe Login???
         amministratore.finestra.homeBtn.clicked.connect(lambda: amministratore.homeBtnClicked(mainPath, amministratore))
-        amministratore.finestra.statisticheBtn.clicked.connect(lambda: amministratore.statisticheBtnClicked(mainPath, amministratore))
-        amministratore.finestra.prodottiBtn.clicked.connect(lambda: amministratore.prodottiBtnClicked(mainPath, amministratore, None))
-        amministratore.finestra.accountsBtn.clicked.connect(lambda: amministratore.accountsBtnClicked(mainPath, amministratore, None))
-        amministratore.finestra.backupBtn.clicked.connect(lambda: amministratore.backupBtnClicked(mainPath, amministratore))
+        amministratore.finestra.statisticheBtn.clicked.connect(
+            lambda: amministratore.statisticheBtnClicked(mainPath, amministratore))
+        amministratore.finestra.prodottiBtn.clicked.connect(
+            lambda: amministratore.prodottiBtnClicked(mainPath, amministratore, None))
+        amministratore.finestra.accountsBtn.clicked.connect(
+            lambda: amministratore.accountsBtnClicked(mainPath, amministratore, None))
+        amministratore.finestra.backupBtn.clicked.connect(
+            lambda: amministratore.backupBtnClicked(mainPath, amministratore))
 
     # Metodo che apre la finestra del login
     def apriLoginView(self, mainPath):
@@ -69,12 +71,11 @@ class CentralWindow():
         login.finestra.confermaBtn.clicked.connect(lambda: self.loginViewConfermaView(mainPath, login))
         login.finestra.toggleEchoBtn.clicked.connect(lambda: login.toggleVisibility(login))
 
-
     # Metodo che rimuove un widget da un layout e ne mette un altro
     def removeAndAdd(self, item):
-        for i in range(self.finestra.verticalLayout.count()): self.finestra.verticalLayout.itemAt(i).widget().deleteLater()
+        for i in range(self.finestra.verticalLayout.count()): self.finestra.verticalLayout.itemAt(
+            i).widget().deleteLater()
         self.finestra.verticalLayout.addWidget(item.finestra)
-
 
     # Metodo che tenta di rimuovere la finestra precedentemente aggiunta al layout
     def removeItem(self, layout):
@@ -84,7 +85,6 @@ class CentralWindow():
             layout.removeItem(self.finestra.verticalLayout.itemAt(0))
         except:
             pass
-
 
     # Metodo che gestisce l'interazioone con il pulsante conferma della loginView, apre una nuova finestra se
     # le credenziali sono errate
@@ -107,19 +107,19 @@ class CentralWindow():
         if width == 0:
             # Expand menu
             newWidth = 200
-            #login.finestra.openRightMenu.setIcon(QtGui.QIcon(u":/icons/icons/chevron-left.svg"))
+            # login.finestra.openRightMenu.setIcon(QtGui.QIcon(u":/icons/icons/chevron-left.svg"))
 
         # If maximized
         else:
             # Restore menu
             newWidth = 0
-            #login.finestra.openRightMenu.setIcon(QtGui.QIcon(u":/icons/icons/align-left.svg"))
+            # login.finestra.openRightMenu.setIcon(QtGui.QIcon(u":/icons/icons/align-left.svg"))
 
         # Animate the transition
-        self.animation = QPropertyAnimation(login.finestra.rightMenu, b"maximumWidth")#Animate minimumWidht
+        self.animation = QPropertyAnimation(login.finestra.rightMenu, b"maximumWidth")  # Animate minimumWidht
         self.animation.setDuration(250)
-        self.animation.setStartValue(width)#Start value is the current menu width
-        self.animation.setEndValue(newWidth)#end value is the new menu width
+        self.animation.setStartValue(width)  # Start value is the current menu width
+        self.animation.setEndValue(newWidth)  # end value is the new menu width
         self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
         self.animation.start()
 
@@ -132,12 +132,12 @@ class CentralWindow():
         if width == 0:
             # Expand menu
             newWidth = 200
-            #login.finestra.openLeftMenu.setIcon(QtGui.QIcon(u":/icons/icons/chevron-left.svg"))
+            # login.finestra.openLeftMenu.setIcon(QtGui.QIcon(u":/icons/icons/chevron-left.svg"))
         # If maximized
         else:
             # Restore menu
             newWidth = 0
-            #login.finestra.openLeftMenu.setIcon(QtGui.QIcon(u":/icons/icons/align-left.svg"))
+            # login.finestra.openLeftMenu.setIcon(QtGui.QIcon(u":/icons/icons/align-left.svg"))
 
         # Animate the transition
         self.animation = QPropertyAnimation(login.finestra.leftMenu, b"maximumWidth")  # Animate minimumWidht

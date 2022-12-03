@@ -1,9 +1,6 @@
-import json
 import sys
 from datetime import datetime
-
 from dateutil.relativedelta import relativedelta
-
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
 from MVC.Model.Servizio.Categoria import Categoria
