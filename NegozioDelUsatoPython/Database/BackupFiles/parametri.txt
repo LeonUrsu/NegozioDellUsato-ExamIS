@@ -1,0 +1,1 @@
+{"lastIdProdotto": 56, "lastIdRicevuta": 17, "lastIdAccount": 16, "lastidCategoria": 7}

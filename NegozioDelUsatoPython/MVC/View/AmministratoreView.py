@@ -48,14 +48,15 @@ class AmministratoreView(QWidget):
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
         stats = Controller().trovaUltimeStatistiche()
         if stats != None:
-            obj.guadagnoTotaleLabel.setText(stats.prodottiVendutiTotali)
-            obj.prodottiVendutiLabel.setText(stats.guadagnoTotale)
-            obj.clientiProprietariLabel.setText(stats.numeroClientiProprietari)
-            obj.cat1.setText(stats.tendenzaCategorie[0])
-            obj.cat2.setText(stats.tendenzaCategorie[1])
-            obj.cat3.setText(stats.tendenzaCategorie[2])
+            obj.guadagnoTotaleLabel.setText(str(stats.prodottiVendutiTotali))
+            obj.prodottiVendutiLabel.setText(str(stats.guadagnoTotale))
+            obj.clientiProprietariLabel.setText(str(stats.numeroClientiProprietari))
+            if len(stats.tendenzaCategorie) >= 3:
+                obj.cat1.setText(stats.tendenzaCategorie[0])
+                obj.cat2.setText(stats.tendenzaCategorie[1])
+                obj.cat3.setText(stats.tendenzaCategorie[2])
 
-    # Metodo per gestire i pulsanti premuti sul menu sinistroo
+    # Metodo per gestire i pulsanti premuti sul menu sinistro
     # mainPath = path del main
     # lista = lista con prodotti da caricare nella tab
     # amministratore = oggetto AmministratoreView

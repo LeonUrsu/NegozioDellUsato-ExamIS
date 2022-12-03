@@ -1,1 +1,0 @@
-{"adminEmail" : "password", "adminPassword" : "password" }
