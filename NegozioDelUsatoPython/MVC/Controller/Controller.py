@@ -68,3 +68,6 @@ class Controller(object):
 
     def elaboraCercaProdottoBtnClicked(self, name, textData, textPrezzo, textCategoria):
         return Filtri().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
+
+    def aggiornaProdotto(self, nomeCategoriaLe, data, nomeProdotto, prezzoLe, nomeScaffaleLe, idProdotto):
+        Amministratore().aggiornaProdotto(nomeCategoriaLe, None, nomeProdotto, prezzoLe, nomeScaffaleLe, idProdotto)

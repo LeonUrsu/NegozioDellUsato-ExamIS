@@ -83,16 +83,19 @@ class Categoria(ServizioInterface):
     # Metodo che serve ad aggiornare la lista delle categorie, cerca la caegoria con il codiceVecchio
     # e diminuisce il numero di oggetti di quella categoria di uno, cerca la categoria nuova grazie al codiceNuovo
     # e al suo interno aumenta di uno il numero di oggetti presenti
-    def aggiornaCategoriaProdotto(self, prodotto, codiceVecchio, codiceNuovo):
+    def aggiornaCategoriaProdotto(self, nomeVecchio, nomeNuovo):
+        if self.trovaCategoriaTramiteNome(nomeVecchio) == None:
+            categoria = Categoria()
+            categoria.aggiungiCategoria(nomeNuovo)
         fileName = PathDatabase().categorieTxt
-        file = File()
-        listCategorie = file.deserializza(fileName)
+        listCategorie = File().deserializza(fileName)
         for categoria in listCategorie:
-            if categoria.idCategoria == codiceVecchio:
+            if categoria.nome == nomeVecchio:
                 categoria.oggettiTotali -= 1
         for categoria in listCategorie:
-            if categoria.idCategoria == codiceNuovo:
+            if categoria.nome == nomeNuovo:
                 categoria.oggettiTotali += 1
+        self.salvaListaOggetti(listCategorie)
 
     # Metodo che incrementa il numero di oggetti all'interno di una categoria
     def aggiungiProdottiInCategoria(self, prodotto):

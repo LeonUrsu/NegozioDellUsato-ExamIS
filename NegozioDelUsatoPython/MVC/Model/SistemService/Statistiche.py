@@ -24,6 +24,12 @@ class Statistiche:
         self.prodottiVendutiTotali = len(listProdotti)
         self.prodottiVendutiInData = len(listProdottiInData)
         self.tendenzaCategorie = self.tendenzaCategorie()
+        self.nomePrimaCategoriaTendenza = ""
+        self.nomeSecondaCategoriaTendenza = ""
+        self.nomeTerzaCategoriaTendenza = ""
+        self.numeroPrimaCategoriaTendenza = 0
+        self.numeroSecondaCategoriaTendenza = 0
+        self.numeroTerzaCategoriaTendenza = 0
         self.guadagnoTotale = self.calcolaGuadagno(self.getListProdottiVenduti())
         self.guadagnoInData = self.calcolaGuadagno(self.getProdottiVendutiInData())
         self.salvataggioStatitiche()
@@ -82,8 +88,22 @@ class Statistiche:
     # listProdotti = lista di prodotti da cui calcolare la repitizione delle loro categorie(tendenza)
     def tendenzaCategorie(self):
         listCategorie = Categoria().recuperaListaOggetti()
-        listCategorie.sort(key=lambda x: x.oggettiTotali, reverse=True)
-        del listCategorie[3:len(listCategorie)]
+        for obj in listCategorie:
+            if obj.oggettiTotali > self.numeroTerzaCategoriaTendenza \
+                    and obj.oggettiTotali > self.numeroSecondaCategoriaTendenza \
+                    and obj.oggettiTotali > self.numeroPrimaCategoriaTendenza:
+                self.numeroPrimaCategoriaTendenza = obj.oggettiTotali
+                self.nomePrimaCategoriaTendenza = obj.nome
+            elif obj.oggettiTotali > self.numeroTerzaCategoriaTendenza \
+                    and obj.oggettiTotali > self.numeroSecondaCategoriaTendenza \
+                    and obj.oggettiTotali < self.numeroPrimaCategoriaTendenza:
+                self.numeroSecondaCategoriaTendenza = obj.oggettiTotali
+                self.nomeSecondaCategoriaTendenza = obj.nome
+            elif obj.oggettiTotali > self.numeroTerzaCategoriaTendenza \
+                    and obj.oggettiTotali < self.numeroSecondaCategoriaTendenza \
+                    and obj.oggettiTotali < self.numeroPrimaCategoriaTendenza:
+                self.numeroTerzaCategoriaTendenza = obj.oggettiTotali
+                self.nomeTerzaCategoriaTendenza = obj.nome
         return listCategorie
 
     # Metodo che passata una lista di categorie trova la lista con piu oggetti

@@ -33,7 +33,7 @@ class Prodotto(ServizioInterface):
         self.nomeProdotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
-        self.nomeScaffaleLe = nomeScaffaleLe
+        self.nomeScaffale = nomeScaffaleLe
 
 
     # Metodo che viene richiamato su un prodotto e serve per inserirlo nella
@@ -130,18 +130,21 @@ class Prodotto(ServizioInterface):
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dalla classe amministratore
     # idCategoria
-    def aggiornaProdotto(self, idCategoria, dataEsposizione,
-                         nomeProdotto, prezzoOriginale, nomeScaffaleLe, idProdotto):
+    def aggiornaProdotto(self, nomeCategoria, dataEsposizione,
+                         nomeProdotto, prezzoCorrente, nomeScaffaleLe, idProdotto):
         fileName = PathDatabase().inVenditaTxt
         prodottoTrovato = Prodotto().rimuoviOggettoDaFileName(fileName, idProdotto)
-        if idCategoria != prodottoTrovato.idCategoria:
-            prodottoTrovato.idCategoria = idCategoria
-            Categoria().aggiornaCategoriaProdotto(prodottoTrovato, prodottoTrovato.idCategoria, idCategoria)
-        if dataEsposizione != prodottoTrovato.dataEsposizione: prodottoTrovato.dataEsposizione = dataEsposizione
-        if nomeProdotto != prodottoTrovato.nomeProdotto: prodottoTrovato.nomeProdotto = nomeProdotto
-        if prezzoOriginale != prodottoTrovato.prezzoOriginale: prodottoTrovato.prezzoOriginale = prezzoOriginale
+        if nomeCategoria != prodottoTrovato.idCategoria and nomeCategoria != "":
+            prodottoTrovato.nomeCategoria = nomeCategoria
+            Categoria().aggiornaCategoriaProdotto(prodottoTrovato.nomeCategoria, nomeCategoria)
+        if dataEsposizione != prodottoTrovato.dataEsposizione and dataEsposizione != None:
+            prodottoTrovato.dataEsposizione = dataEsposizione
+        if nomeProdotto != prodottoTrovato.nomeProdotto and nomeProdotto != "":
+            prodottoTrovato.nomeProdotto = nomeProdotto
+        if prezzoCorrente != prodottoTrovato.prezzoCorrente and prezzoCorrente != "":
+            prodottoTrovato.prezzoCorrente = prezzoCorrente
         idScaffale = Scaffale().trovaScaffaleConNome(nomeScaffaleLe)
-        if nomeScaffaleLe != prodottoTrovato.nomeScaffaleLe:
+        if nomeScaffaleLe != prodottoTrovato.nomeScaffale and nomeScaffaleLe != "":
             prodottoTrovato.nomeScaffaleLe = nomeScaffaleLe
             Scaffale().cambiaScaffaleAProdotto(prodottoTrovato, prodottoTrovato.idProdotto, idScaffale)
         prodottoTrovato.mettiOggettoSuListaNelFileName(fileName)

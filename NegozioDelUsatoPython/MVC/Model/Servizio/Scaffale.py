@@ -1,4 +1,5 @@
 import copy
+import json
 from operator import index
 
 from Database.PathDatabase import PathDatabase
@@ -50,28 +51,28 @@ class Scaffale(ServizioInterface):
     def newId(self):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
-        dictLetto = letto.__dict__
+        dictLetto = json.loads(letto)
         newId = dictLetto['lastIdScaffale'] + 1
         dictLetto['lastIdScaffale'] = newId
-        File().scrivi(fileName, dictLetto.__str__)
+        File().scrivi(fileName, json.dumps(dictLetto))
         return newId
 
     # Metodo che prende  l'id di un oggetto e o sposta da un scaffale ad un'altro scaffale
     # idStart = id dello scaffale da dove spostare
     # idEnd = id dello scaffale dove mettere
-    def cambiaScaffaleAProdotto(self, prodotto, idStart, idEnd):
+    def cambiaScaffaleAProdotto(self, prodotto, nomeStart, nomeEnd):
         fileName = PathDatabase().scaffaliTxt
         listScaffali = File().deserializza(fileName)
         for scaffale in listScaffali:
-            if scaffale.id == idStart:
+            if scaffale.nomeScaffale == nomeStart:
                 for ids in scaffale.idProdotti:
                     if ids == prodotto.idProdotto:
                         listScaffali.index(scaffale).idProdotti.index(ids).pop()
         for scaffale in listScaffali:
-            if scaffale.id == idEnd:
-                listScaffali.index(scaffale).idProdotti.append(prodotto.IDProdotto)
-        prodotto.idScaffale = idEnd
-
+            if scaffale.nomeScaffale == nomeEnd:
+                listScaffali.index(scaffale).idProdotti.append(prodotto.IdProdotto)
+        prodotto.nomeScaffale = nomeEnd
+    
     # Metodo che serve per leggere la lista degli scaffali all'interno del Database
     def recuperaListaOggetti(self):
         fileName = PathDatabase().scaffaliTxt
@@ -88,8 +89,10 @@ class Scaffale(ServizioInterface):
                 scaffale.idProdotti.append(prodotto.IdProdotto)
                 File().serializza(filename, scaffaliList)
                 return True
-        self.__init__().aggiungiScaffale(prodotto.nomeScaffale, None)
-        return False
+        scaffale = Scaffale()
+        scaffale.aggiungiScaffale(prodotto.nomeScaffale, None)
+        scaffale.inserisciScaffaleNelDatabase()
+        return True
 
     # Metodo che dissocia un id di un prodotto da uno scaffale
     def dissociaProdottoDaScaffale(self, prodotto):

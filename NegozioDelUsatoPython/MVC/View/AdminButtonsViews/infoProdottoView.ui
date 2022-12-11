@@ -334,7 +334,7 @@ QLabel{
          <item>
           <widget class="QLabel" name="label_6">
            <property name="text">
-            <string>Id Scaffale</string>
+            <string>Nome Scaffale</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -342,7 +342,7 @@ QLabel{
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="idScaffaleDaIns">
+          <widget class="QLabel" name="nomeScaffaleDaIns">
            <property name="text">
             <string>...</string>
            </property>
@@ -414,6 +414,19 @@ QLabel{
            </property>
            <property name="text">
             <string>Indietro</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="aggiornaBtn">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>aggiorna</string>
            </property>
           </widget>
          </item>

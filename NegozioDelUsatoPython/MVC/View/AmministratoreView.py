@@ -9,6 +9,8 @@ from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton
 from dateutil.relativedelta import relativedelta
 from Database.PathDatabase import PathDatabase
 from MVC.Controller.Controller import Controller
+from MVC.Model.Servizio.Categoria import Categoria
+from MVC.Model.Servizio.Scaffale import Scaffale
 
 
 class AmministratoreView(QWidget):
@@ -20,7 +22,6 @@ class AmministratoreView(QWidget):
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         file.close()
-
 
     # Metodo per gestire i pulsanti premuti sul menu sinistro
     # mainPath = path del main
@@ -35,13 +36,18 @@ class AmministratoreView(QWidget):
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
         stats = Controller().trovaUltimeStatistiche()
         if stats != None:
-            obj.guadagnoTotaleLabel.setText(str(stats.prodottiVendutiTotali))
-            obj.prodottiVendutiLabel.setText(str(stats.guadagnoTotale))
-            obj.clientiProprietariLabel.setText(str(stats.numeroClientiProprietari))
-            if len(stats.tendenzaCategorie) >= 3:
-                obj.cat1.setText(stats.tendenzaCategorie[0])
-                obj.cat2.setText(stats.tendenzaCategorie[1])
-                obj.cat3.setText(stats.tendenzaCategorie[2])
+            try: obj.guadagnoTotaleLabel.setText(str(stats.prodottiVendutiTotali))
+            except: pass
+            try: obj.prodottiVendutiLabel.setText(str(stats.guadagnoTotale))
+            except: pass
+            try: obj.clientiProprietariLabel.setText(str(stats.numeroClientiProprietari))
+            except: pass
+            try: obj.cat1.setText(f"{stats.nomePrimaCategoriaTendenza} - n:{stats.numeroPrimaCategoriaTendenza}")
+            except: pass
+            try: obj.cat2.setText(f"{stats.nomeSecondaCategoriaTendenza} - n:{stats.numeroSecondaCategoriaTendenza}")
+            except: pass
+            try: obj.cat3.setText(f"{stats.nomeTerzaCategoriaTendenza} - n:{stats.numeroTerzaCategoriaTendenza}")
+            except: pass
 
     # Metodo per gestire i pulsanti premuti sul menu sinistro
     # mainPath = path del main
@@ -455,6 +461,34 @@ class AmministratoreView(QWidget):
         obj.nomeScaffaleDaIns.setText(f"{prodottoTrovato.nomeScaffale}")
         obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.nomeCategoria}")
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, lista))
+        obj.aggiornaBtn.clicked.connect(lambda: self.aggiornaProdottoBtnClicked(mainPath, amministratore,
+                                                                                prodottoTrovato.idProdotto))
+
+    # Metodo che gestische il caricamento della view per aggiornare il prodotto
+    def aggiornaProdottoBtnClicked(self, mainPath, amministratore, idProdotto):
+        self.aggiungiProdottoBtnClicked(mainPath, amministratore)
+        name = "aggiornaProdottoView.ui"
+        obj = self.caricaView(mainPath, name)
+        self.removeAndAdd(obj)
+        obj.aggiornaBtn.clicked.connect(
+            lambda: self.confermaAggiornaProdottoBtnClicked(mainPath, obj, amministratore, idProdotto))
+        obj.indietroBtn.clicked.connect(lambda: self.caricainfoProdottoView(mainPath, "infoProdottoView.ui",
+                                                                            Controller().trovaProdottoTramiteId(
+                                                                                idProdotto), amministratore, None))
+
+    # Metodo che si attiva alla conferma dell'aggionramento del prodotto
+    def confermaAggiornaProdottoBtnClicked(self, mainPath, obj, amministratore, idProdotto):
+        nomeLe = obj.nomeLe.text()
+        prezzoLe = obj.prezzoLe.text()
+        nomeCategoriaLe = obj.nomeCategoriaLe.text()
+        nomeScaffaleLe = obj.nomeScaffaleLe.text()
+        lista = Categoria().recuperaListaOggetti()
+        print(f"--S{len(lista)}")
+        Controller().aggiornaProdotto(nomeCategoriaLe, None, nomeLe, prezzoLe, nomeScaffaleLe, idProdotto)  # TODO
+        self.caricainfoProdottoView(mainPath, "infoProdottoView.ui", Controller().trovaProdottoTramiteId(idProdotto),
+                                    amministratore, None)
+        lista = Categoria().recuperaListaOggetti()
+        print(f"--Z{len(lista)}")
 
     # Metodo che carica le info di un account all'interno della View
     # mainPath = path del main
