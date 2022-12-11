@@ -16,6 +16,7 @@ class Statistiche:
 
     # Metodo per la defizizione di un oggetto Statistiche
     def aggiungiStatistiche(self):
+        self.rimuoviStatsConData()
         listProdotti = self.getListProdottiVenduti()
         listProdottiInData = self.getProdottiVendutiInData()
         self.data = datetime.datetime.today()
@@ -93,8 +94,7 @@ class Statistiche:
                 massimo = ogg.oggettiTotali
         return massimo
 
-    # Metodo che prende il
-    # numeroDiChiavi con valore piu alto
+    # Metodo che prende il numeroDiChiavi con valore piu alto
     # return dizionario con le categorie di tendenenza
     def topKeysInDict(self, dict):
         lista = list()
@@ -110,3 +110,12 @@ class Statistiche:
         file = File()
         listStatistiche = file.deserializza(fileName)
         return listStatistiche
+
+    # Metodo che rimuove le statistiche con la stessa data nello stesso giorno per non creare inconsistenza
+    def rimuoviStatsConData(self):
+        todayDate = datetime.datetime.today().date()
+        lista = self.visualizzaStatistiche()
+        for stats in lista:
+            if stats.date.date() == todayDate:
+                lista.pop(lista.index(stats))
+        File().serializza(PathDatabase.statisticheTxt, lista)
