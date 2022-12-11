@@ -21,18 +21,6 @@ class AmministratoreView(QWidget):
         self.finestra = loader.load(file)
         file.close()
 
-    # Metodo per gestire i pulsanti premuti sul menu sinistro
-    # mainPath = path del main
-    # amministratore = oggetto AmministratoreView
-    def homeBtnClicked(self, mainPath, amministratore):
-        name = "homeView.ui"
-        obj = self.caricaView(mainPath, name)
-        self.removeAndAdd(obj)
-        amministratore.finestra.homeBtn.setStyleSheet(self.pushedStyleSheet())
-        amministratore.finestra.statisticheBtn.setStyleSheet(self.unPushedStyleSheet())
-        amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
-        amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
-        amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
 
     # Metodo per gestire i pulsanti premuti sul menu sinistro
     # mainPath = path del main
@@ -41,7 +29,6 @@ class AmministratoreView(QWidget):
         name = "statisticheView.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
-        amministratore.finestra.homeBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.statisticheBtn.setStyleSheet(self.pushedStyleSheet())
         amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
@@ -65,7 +52,6 @@ class AmministratoreView(QWidget):
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
         self.setItemsOfComboboxCategorie(obj)
-        amministratore.finestra.homeBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.statisticheBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.prodottiBtn.setStyleSheet(self.pushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
@@ -219,7 +205,6 @@ class AmministratoreView(QWidget):
         self.removeAndAdd(obj)
         if lista == None:
             lista = Controller().recuperaListaAccounts()
-        amministratore.finestra.homeBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.statisticheBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.pushedStyleSheet())
@@ -247,7 +232,6 @@ class AmministratoreView(QWidget):
         name = "backupView.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
-        amministratore.finestra.homeBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.statisticheBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
