@@ -13,9 +13,9 @@ class Controller(object):
         return User().login(email, password)
 
     def amministratoresaveProdottoBtn(self, dataEsposizione, idAccount,
-                          nomeProdotto, prezzoOriginale, idScaffale, nomeCategoria):
+                          nomeProdotto, prezzoOriginale, nomeScaffaleLe, nomeCategoria):
         return Amministratore().inserisciProdotto(dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
-                                                  idScaffale, nomeCategoria)
+                                                  nomeScaffaleLe, nomeCategoria)
     def recuperaListaProdottiInVendita(self):
         return Prodotto().recuperaListaProdottiInVendita()
 

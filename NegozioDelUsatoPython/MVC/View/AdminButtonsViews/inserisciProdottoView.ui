@@ -202,7 +202,10 @@ QLineEdit{
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="idScaffaleLe">
+          <widget class="QLineEdit" name="nomeScaffaleLe">
+           <property name="text">
+            <string>Nome Scaffale</string>
+           </property>
            <property name="placeholderText">
             <string>ID Scaffale</string>
            </property>

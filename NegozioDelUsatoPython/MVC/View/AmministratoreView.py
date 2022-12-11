@@ -286,14 +286,13 @@ class AmministratoreView(QWidget):
         idAccountLe = obj.idAccountLe.text()
         prezzoLe = obj.prezzoLe.text()
         nomeCategoriaLe = obj.nomeCategoriaLe.text()
-        idScaffaleLe = obj.idScaffaleLe.text()
-        if self.checkerSaveProdottoBtnClicked(nomeLe, idAccountLe, prezzoLe, nomeCategoriaLe, idScaffaleLe):
+        nomeScaffaleLe = obj.nomeScaffaleLe.text()
+        if self.checkerSaveProdottoBtnClicked(nomeLe, idAccountLe, prezzoLe, nomeCategoriaLe):
             pass
         else:
             self.prodottiBtnClicked(mainPath, amministratore, None)
-        Controller().amministratoresaveProdottoBtn(datetime.today(), idAccountLe, nomeLe, prezzoLe, idScaffaleLe,
+        Controller().amministratoresaveProdottoBtn(datetime.today(), idAccountLe, nomeLe, prezzoLe, nomeScaffaleLe,
                                                    nomeCategoriaLe)
-        # (dataEsposizione, idAccount, nomeProdotto, prezzoOriginale, idScaffale, nomeCategoria):
         self.prodottiBtnClicked(mainPath, amministratore, None)
 
     # Metodo che si attiva alla pressione del saveClienteBtn
@@ -453,7 +452,7 @@ class AmministratoreView(QWidget):
         obj.dataDiEsposizioneDaIns.setText(f"{prodottoTrovato.dataEsposizione}")
         obj.dataDiScadenzaDaIns.setText(f"{prodottoTrovato.dataScadenza}")
         obj.idProdottoDaIns.setText(f"{prodottoTrovato.idProdotto}")
-        obj.idScaffaleDaIns.setText(f"{prodottoTrovato.idScaffale}")
+        obj.nomeScaffaleDaIns.setText(f"{prodottoTrovato.nomeScaffale}")
         obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.nomeCategoria}")
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, lista))
 
@@ -483,14 +482,13 @@ class AmministratoreView(QWidget):
 
     # Metodo per controllare la validità dei dati inseriti dall'utente
     # * = parametri str o datetime da controllare per errori umani
-    def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, prezzoLe, nomeCategoriaLe, idScaffaleLe):
+    def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, prezzoLe, nomeCategoriaLe):
         if nomeLe == "": return False
         if not idAccountLe.isalnum(): return False
         if not prezzoLe.isalnum(): return False
         if prezzoLe != "": return False
         if not nomeCategoriaLe == "": return False
         if Controller().checkEsistenzaCategoriaInDatabase(nomeCategoriaLe): return False
-        if not idScaffaleLe.isalnum(): return False
         return True
 
     # Metodo per controllare la validità dei dati inseriti dall'utente]

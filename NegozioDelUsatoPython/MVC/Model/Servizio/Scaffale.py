@@ -13,11 +13,14 @@ class Scaffale(ServizioInterface):
         pass
 
     # Costruttore della classe, create() in EA
-    def aggiungiScaffale(self, idProdotti):
+    def aggiungiScaffale(self, nomeScaffale, idProdotti):
+        self.nomeScaffale = nomeScaffale
         self.idScaffale = self.newId()
-        if idProdotti != None: self.idProdotti = idProdotti
+        if idProdotti != None:
+            self.idProdotti = idProdotti
+        else:
+            self.idProdotti = list()
         return self.idScaffale
-
 
     # Metodo che salvalo scaffale nel database
     def inserisciScaffaleNelDatabase(self):
@@ -26,13 +29,11 @@ class Scaffale(ServizioInterface):
         scaffaliList.append(self)
         File().serializza(filename, scaffaliList)
 
-
     # Metodo che permette di clonare un'istanza della classe
     # return Scaffale
     def clone(self):
-        deepCopy =  copy.deepcopy(self)
+        deepCopy = copy.deepcopy(self)
         return deepCopy
-
 
     # Metodo che permette di eliminare uno scaffale salvato nel database
     # return valore booleano
@@ -43,7 +44,6 @@ class Scaffale(ServizioInterface):
             if x.ID == ID:
                 scaffaliList.pop(index(x))
         File().serializza(filename, scaffaliList)
-
 
     # Metodo che ritorna il nuovo id da assegnare al Scaffale da inserire
     # return = nuovo ID per lo Scaffale
@@ -56,7 +56,6 @@ class Scaffale(ServizioInterface):
         File().scrivi(fileName, dictLetto.__str__)
         return newId
 
-
     # Metodo che prende  l'id di un oggetto e o sposta da un scaffale ad un'altro scaffale
     # idStart = id dello scaffale da dove spostare
     # idEnd = id dello scaffale dove mettere
@@ -67,12 +66,11 @@ class Scaffale(ServizioInterface):
             if scaffale.id == idStart:
                 for ids in scaffale.idProdotti:
                     if ids == prodotto.idProdotto:
-                       listScaffali.index(scaffale).idProdotti.index(ids).pop()
+                        listScaffali.index(scaffale).idProdotti.index(ids).pop()
         for scaffale in listScaffali:
             if scaffale.id == idEnd:
                 listScaffali.index(scaffale).idProdotti.append(prodotto.IDProdotto)
         prodotto.idScaffale = idEnd
-
 
     # Metodo che serve per leggere la lista degli scaffali all'interno del Database
     def recuperaListaOggetti(self):
@@ -80,27 +78,34 @@ class Scaffale(ServizioInterface):
         listScaffali = File().deserializza(fileName)
         return listScaffali
 
-
     # Metodo a cui viene passato un prodotto dai cui viene prelevato l'idProdotto e inserito
     # nella lista degli scaffali
     def associaProdottoAScaffale(self, prodotto):
         filename = PathDatabase().scaffaliTxt
         scaffaliList = File().deserializza(filename)
         for scaffale in scaffaliList:
-            if scaffale.idScaffale == prodotto.idScaffale:
-                scaffale.idProdotti.append(prodotto.IDProdotto)
+            if scaffale.nomeScaffale == prodotto.nomeScaffale:
+                scaffale.idProdotti.append(prodotto.IdProdotto)
                 File().serializza(filename, scaffaliList)
                 return True
+        self.__init__().aggiungiScaffale(prodotto.nomeScaffale, None)
         return False
-
 
     # Metodo che dissocia un id di un prodotto da uno scaffale
     def dissociaProdottoDaScaffale(self, prodotto):
         listScaffali = self.recuperaListaOggetti()
         fileName = PathDatabase().accountTxt
         for scaffale in listScaffali:
-            if scaffale.idScaffale == prodotto.idAccount:
-                for idProdotto in scaffale.idScaffale:
+            if scaffale.nomeScaffale == prodotto.nomeScaffale:
+                for idProdotto in scaffale.idProdotti:
                     if idProdotto == prodotto.idProdotto:
                         scaffale.idProdotti.pop(index(idProdotto))
                         File().serializza(fileName, listScaffali)
+
+    # Metodo per trovare il id scaffale tramite nomeScaffale
+    def trovaScaffaleConNome(self, nomeScaffale):
+        lista = self.recuperaListaOggetti()
+        for obj in lista:
+            if obj.nomeScaffale == nomeScaffale:
+                return obj.idScaffale
+        return None

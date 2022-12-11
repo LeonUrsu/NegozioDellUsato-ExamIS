@@ -19,7 +19,7 @@ class Prodotto(ServizioInterface):
 
     # Metodo per aggiungere i valori all'istanza creata della classe
     def aggiungiProdotto(self, idCategoria, dataEsposizione, idAccount, nomeProdotto,
-                         prezzoOriginale, idScaffale, nomeCategoria):
+                         prezzoOriginale, nomeScaffaleLe, nomeCategoria):
         self.idCategoria = idCategoria
         self.nomeCategoria = nomeCategoria
         # TODO il prodotto deve essere inserito con il nome della categoria e non con l'id categoria, e se il nome della categoria non esiste deve essere creata
@@ -33,7 +33,7 @@ class Prodotto(ServizioInterface):
         self.nomeProdotto = nomeProdotto
         self.prezzoCorrente = prezzoOriginale
         self.prezzoOriginale = prezzoOriginale
-        self.idScaffale = idScaffale
+        self.nomeScaffaleLe = nomeScaffaleLe
 
 
     # Metodo che viene richiamato su un prodotto e serve per inserirlo nella
@@ -131,7 +131,7 @@ class Prodotto(ServizioInterface):
     # Metodo che aggiorna un prodotto in base ai parametri passati dalla classe amministratore
     # idCategoria
     def aggiornaProdotto(self, idCategoria, dataEsposizione,
-                         nomeProdotto, prezzoOriginale, idScaffale, idProdotto):
+                         nomeProdotto, prezzoOriginale, nomeScaffaleLe, idProdotto):
         fileName = PathDatabase().inVenditaTxt
         prodottoTrovato = Prodotto().rimuoviOggettoDaFileName(fileName, idProdotto)
         if idCategoria != prodottoTrovato.idCategoria:
@@ -140,8 +140,9 @@ class Prodotto(ServizioInterface):
         if dataEsposizione != prodottoTrovato.dataEsposizione: prodottoTrovato.dataEsposizione = dataEsposizione
         if nomeProdotto != prodottoTrovato.nomeProdotto: prodottoTrovato.nomeProdotto = nomeProdotto
         if prezzoOriginale != prodottoTrovato.prezzoOriginale: prodottoTrovato.prezzoOriginale = prezzoOriginale
-        if idScaffale != prodottoTrovato.idScaffale:
-            prodottoTrovato.idScaffale = idScaffale
+        idScaffale = Scaffale().trovaScaffaleConNome(nomeScaffaleLe)
+        if nomeScaffaleLe != prodottoTrovato.nomeScaffaleLe:
+            prodottoTrovato.nomeScaffaleLe = nomeScaffaleLe
             Scaffale().cambiaScaffaleAProdotto(prodottoTrovato, prodottoTrovato.idProdotto, idScaffale)
         prodottoTrovato.mettiOggettoSuListaNelFileName(fileName)
         return prodottoTrovato

@@ -75,16 +75,16 @@ class Amministratore(User):
 
     # Metodo per inserire un prodotto nel database
     def inserisciProdotto(self, dataEsposizione, idAccount,
-                          nomeProdotto, prezzoOriginale, idScaffale, nomeCategoria):
+                          nomeProdotto, prezzoOriginale, nomeScaffaleLe, nomeCategoria):
         categoria = Categoria().trovaCategoriaTramiteNome(nomeCategoria)
         if categoria == None:
             categoria = Categoria()
             categoria.aggiungiCategoria(nomeCategoria)
         prodotto = Prodotto()
         prodotto.aggiungiProdotto(categoria.idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
-                                  idScaffale, nomeCategoria)
+                                  nomeScaffaleLe, nomeCategoria)
         prodotto.mettiOggettoSuListaNelFile()
-        if idScaffale != None: Scaffale().associaProdottoAScaffale(prodotto)
+        if nomeScaffaleLe != "" : Scaffale().associaProdottoAScaffale(prodotto)
         if idAccount != None: Account().associaProdottoAdAccount(prodotto)
         if nomeCategoria != "": Categoria().aggiungiProdottiInCategoria(prodotto)
         return prodotto
