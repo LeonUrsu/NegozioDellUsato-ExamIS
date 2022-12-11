@@ -31,7 +31,7 @@ if __name__ == '__main__':
     except:
         print("errore generazione statistiche")
 
-    # Timer for backup setup # TODO meglio al posto del timer per avere meno risorse utilizzate fare il backup alla
+    # backup del database
     # chiusura dell'app in questo punto del codice
     try:
         Backup().effettuaBackup()

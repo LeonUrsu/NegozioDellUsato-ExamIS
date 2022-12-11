@@ -115,7 +115,9 @@ class Statistiche:
     def rimuoviStatsConData(self):
         todayDate = datetime.datetime.today().date()
         lista = self.visualizzaStatistiche()
+        if len(lista) == 0 or lista == None: return
         for stats in lista:
-            if stats.date.date() == todayDate:
+            statsDate = stats.data.date()
+            if statsDate == todayDate:
                 lista.pop(lista.index(stats))
         File().serializza(PathDatabase.statisticheTxt, lista)
