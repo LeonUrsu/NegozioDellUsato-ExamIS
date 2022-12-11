@@ -81,7 +81,7 @@ class Filtri:
         if name != "":
             temp = list()
             for prodotto in listaCorrispondenti:
-                if prodotto.nomeProdotto == name:
+                if name.upper() in prodotto.nomeProdotto.upper():
                     temp.append(prodotto)
             listaCorrispondenti = temp
         return listaCorrispondenti

@@ -281,7 +281,7 @@ QPushButton{
                  </property>
                  <item>
                   <property name="text">
-                   <string>tutte le date</string>
+                   <string>Da Sempre</string>
                   </property>
                  </item>
                  <item>
