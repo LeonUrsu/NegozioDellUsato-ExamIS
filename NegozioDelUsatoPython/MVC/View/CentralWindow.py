@@ -1,5 +1,7 @@
 import os
 import pathlib
+
+from PySide6 import QtWidgets, QtGui
 from PySide6.QtCore import QFile, QPropertyAnimation
 from PySide6.QtUiTools import QUiLoader
 from MVC.Model.SistemService.Logging import Logging
@@ -21,6 +23,9 @@ class CentralWindow():
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
+        self.finestra.setWindowTitle("")
+        icon = QtGui.QIcon("MVC/View/assets/provaIconTitolo.png")
+        self.finestra.setWindowIcon(icon)
         file.close()
         self.apriAmministratoreView(pathlib.Path().resolve().__str__())
         # self.apriClienteProprietarioView (pathlib.Path().resolve().__str__(), None)
@@ -145,3 +150,4 @@ class CentralWindow():
         self.animation.setEndValue(newWidth)  # end value is the new menu width
         self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
         self.animation.start()
+
