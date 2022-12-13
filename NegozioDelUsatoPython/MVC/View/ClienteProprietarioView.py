@@ -3,6 +3,7 @@ from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QTableWidgetItem, QPushButton
+from PySide6.QtGui import QCursor
 from MVC.Controller.Controller import Controller
 from MVC.Model.SistemService.Logging import Logging
 
@@ -116,7 +117,7 @@ class ClienteProprietarioView():
     def aggiungiProdottiAllaTab(self, mainPath, obj, lista):
         if lista == None:
             return
-        objList = ("nome", "prezzo", "id", "data", "visualizza")
+        objList = ("Nome", "Prezzo", "ID", "Data", "Click su Visualizza")
         column = len(objList)
         obj.tab.setColumnCount(column)
         for i in range(column):
@@ -132,12 +133,14 @@ class ClienteProprietarioView():
             obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(f"{prodotto.idProdotto}"))
             obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{prodotto.dataScadenza}"))
             obj.tab.setCellWidget(row, 4, self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto))
+            obj.tab.resizeRowsToContents()
             row += 1
 
     # Metodo per creare un bottone dinamicamente e iserirlo nella tab
     def creaBottoneVisualizzaProdottoQualsiasi(self, mainPath, prodotto):
         button = QPushButton()
         button.setText("Visualizza")
+        button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         button.clicked.connect(
             lambda: self.caricainfoProdottoView(mainPath, "infoProdottoClienteProprietarioView.ui", prodotto))
         return button
@@ -151,6 +154,6 @@ class ClienteProprietarioView():
         obj.dataDiEsposizioneDaIns.setText(f"{prodottoTrovato.dataEsposizione}")
         obj.dataDiScadenzaDaIns.setText(f"{prodottoTrovato.dataScadenza}")
         obj.idProdottoDaIns.setText(f"{prodottoTrovato.idProdotto}")
-        obj.idScaffaleDaIns.setText(f"{prodottoTrovato.idScaffale}")
+        obj.idScaffaleDaIns.setText(f"{prodottoTrovato.nomeScaffale}")
         obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.nomeCategoria}")
         obj.indietroBtn.clicked.connect(lambda: self.iMieiProdottiBtnClicked(mainPath, self.finestra))

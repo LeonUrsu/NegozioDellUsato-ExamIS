@@ -54,8 +54,7 @@ class AmministratoreView(QWidget):
     # lista = lista con prodotti da caricare nella tab
     # amministratore = oggetto AmministratoreView
     def prodottiBtnClicked(self, mainPath, amministratore, lista):
-        name = "prodottiView.ui"
-        obj = self.caricaView(mainPath, name)
+        obj = self.caricaView(mainPath, "prodottiView.ui")
         self.removeAndAdd(obj)
         self.setItemsOfComboboxCategorie(obj)
         amministratore.finestra.statisticheBtn.setStyleSheet(self.unPushedStyleSheet())
@@ -111,7 +110,7 @@ class AmministratoreView(QWidget):
     # textPrezzo = str con il parametro di filtraggio
     def ifFiltraPerPrezzo(self, textPrezzo):
         lista = Controller().recuperaListaProdottiInVendita()
-        if textPrezzo == "tutti i prezzi":
+        if textPrezzo == "Tutti i Prezzi":
             return lista
         elif textPrezzo == "0€ - 10€ ":
             lista = Controller().filtraPrezzo(0, 10, PathDatabase().inVenditaTxt)
@@ -122,6 +121,7 @@ class AmministratoreView(QWidget):
         elif textPrezzo == ">50€":
             lista = Controller().filtraPrezzo(50, sys.maxsize, PathDatabase().inVenditaTxt)
         return lista
+
 
     # Metodo che filtra i prodotti in base alla categoria scelta nella tendina della view
     # textCategorie = str con il parametro di filtraggio
@@ -197,6 +197,7 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(prodotto["prezzoCorrente"]))
             obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(prodotto["idProdotto"]))
             totale += int(prodotto["prezzoCorrente"])
+            obj.tab.resizeRowsToContents()
             row += 1
         obj.totaleDaIns.setText(f"{totale}")
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, None))
@@ -370,7 +371,7 @@ class AmministratoreView(QWidget):
     def aggiungiProdottiAllaTab(self, mainPath, obj, amministratore, lista):
         if lista == None:
             lista = Controller().recuperaListaProdottiInVendita()
-        objList = (None, "nome", "prezzo", "id prodotto", "data scadenza", "click su visualizza")
+        objList = (None, "Nome", "Prezzo", "ID Prodotto", "Data di Scadenza", "Click Su Visualizza")
         column = len(objList)
         obj.tab.setColumnCount(column)
         obj.tab.setColumnWidth(0, 15)
@@ -391,6 +392,7 @@ class AmministratoreView(QWidget):
             obj.tab.setCellWidget(row, 5,
                                   self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto.idProdotto,
                                                                               amministratore, lista))
+            obj.tab.resizeRowsToContents()
             row += 1
 
     # Metodo che aggiunge i prodotti in vendita al tableWidget
@@ -419,6 +421,7 @@ class AmministratoreView(QWidget):
             obj.tab.setCellWidget(row, 5,
                                   self.creaBottoneVisualizzaAccountQualsiasi(mainPath, account.idAccount,
                                                                              amministratore, lista))
+            obj.tab.resizeRowsToContents()
             row += 1
 
     # Metodo che crea un bottone grazie al idProdotto
@@ -429,9 +432,11 @@ class AmministratoreView(QWidget):
     def creaBottoneVisualizzaProdottoQualsiasi(self, mainPath, idProdotto, amministratore, lista):
         button = QPushButton()
         button.setText("Visualizza")
+        button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         button.clicked.connect(lambda: self.caricainfoProdottoView(mainPath, "infoProdottoView.ui",
                                                                    Controller().trovaProdottoTramiteId(idProdotto),
                                                                    amministratore, lista))
+
         return button
 
     # Metodo che crea un bottone grazie al idAccount

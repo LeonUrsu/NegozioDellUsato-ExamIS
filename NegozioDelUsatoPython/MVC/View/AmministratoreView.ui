@@ -243,7 +243,6 @@ QTableWidget{
                 <font>
                  <family>Leelawadee UI</family>
                  <pointsize>10</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -272,7 +271,6 @@ QTableWidget{
                 <font>
                  <family>Leelawadee UI</family>
                  <pointsize>10</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -311,6 +309,9 @@ QTableWidget{
              </item>
              <item>
               <widget class="QPushButton" name="backupBtn">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="text">
                 <string>Backup dei Dati</string>
                </property>
@@ -332,7 +333,6 @@ QTableWidget{
                 <font>
                  <family>Leelawadee UI</family>
                  <pointsize>10</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -626,7 +626,6 @@ QTableWidget{
              <font>
               <family>Leelawadee UI</family>
               <pointsize>10</pointsize>
-              <weight>50</weight>
               <italic>false</italic>
               <bold>false</bold>
              </font>
