@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1042</width>
-    <height>869</height>
+    <width>965</width>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -642,6 +642,27 @@ QLabel{
            </property>
            <property name="text">
             <string>Indietro</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="aggiornaBtn">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#aggiornaBtn{
+	background-color:#1a0f39;
+}</string>
+           </property>
+           <property name="text">
+            <string>aggiorna</string>
            </property>
           </widget>
          </item>

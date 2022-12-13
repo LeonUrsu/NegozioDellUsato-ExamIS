@@ -14,7 +14,7 @@ class Statistiche:
     def __init__(self):
         pass
 
-    # Metodo per la defizizione di un oggetto Statistiche
+    # Metodo per la definizione di un oggetto Statistiche
     def aggiungiStatistiche(self):
         self.rimuoviStatsConData()
         listProdotti = self.getListProdottiVenduti()
@@ -23,7 +23,6 @@ class Statistiche:
         self.numeroClientiProprietari = self.getNumeroClienti()
         self.prodottiVendutiTotali = len(listProdotti)
         self.prodottiVendutiInData = len(listProdottiInData)
-        self.tendenzaCategorie = self.tendenzaCategorie()
         self.nomePrimaCategoriaTendenza = ""
         self.nomeSecondaCategoriaTendenza = ""
         self.nomeTerzaCategoriaTendenza = ""
@@ -32,6 +31,7 @@ class Statistiche:
         self.numeroTerzaCategoriaTendenza = 0
         self.guadagnoTotale = self.calcolaGuadagno(self.getListProdottiVenduti())
         self.guadagnoInData = self.calcolaGuadagno(self.getProdottiVendutiInData())
+        self.tendenzaCategorie = self.tendenzaCategorie()
         self.salvataggioStatitiche()
 
     # Metodo che appende la satistica creata e salva tutte le statistiche nel database

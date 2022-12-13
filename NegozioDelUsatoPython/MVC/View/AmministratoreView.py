@@ -36,18 +36,30 @@ class AmministratoreView(QWidget):
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
         stats = Controller().trovaUltimeStatistiche()
         if stats != None:
-            try: obj.guadagnoTotaleLabel.setText(str(stats.prodottiVendutiTotali))
-            except: pass
-            try: obj.prodottiVendutiLabel.setText(str(stats.guadagnoTotale))
-            except: pass
-            try: obj.clientiProprietariLabel.setText(str(stats.numeroClientiProprietari))
-            except: pass
-            try: obj.cat1.setText(f"{stats.nomePrimaCategoriaTendenza} - n:{stats.numeroPrimaCategoriaTendenza}")
-            except: pass
-            try: obj.cat2.setText(f"{stats.nomeSecondaCategoriaTendenza} - n:{stats.numeroSecondaCategoriaTendenza}")
-            except: pass
-            try: obj.cat3.setText(f"{stats.nomeTerzaCategoriaTendenza} - n:{stats.numeroTerzaCategoriaTendenza}")
-            except: pass
+            try:
+                obj.guadagnoTotaleLabel.setText(str(stats.prodottiVendutiTotali))
+            except:
+                pass
+            try:
+                obj.prodottiVendutiLabel.setText(str(stats.guadagnoTotale))
+            except:
+                pass
+            try:
+                obj.clientiProprietariLabel.setText(str(stats.numeroClientiProprietari))
+            except:
+                pass
+            try:
+                obj.cat1.setText(f"{stats.nomePrimaCategoriaTendenza} - n:{stats.numeroPrimaCategoriaTendenza}")
+            except:
+                pass
+            try:
+                obj.cat2.setText(f"{stats.nomeSecondaCategoriaTendenza} - n:{stats.numeroSecondaCategoriaTendenza}")
+            except:
+                pass
+            try:
+                obj.cat3.setText(f"{stats.nomeTerzaCategoriaTendenza} - n:{stats.numeroTerzaCategoriaTendenza}")
+            except:
+                pass
 
     # Metodo per gestire i pulsanti premuti sul menu sinistro
     # mainPath = path del main
@@ -83,8 +95,8 @@ class AmministratoreView(QWidget):
     # obj = view caricata
     # amministratore = oggetto AmministratoreView
     def cercaProdottoBtnClicked(self, mainPath, amministratore, obj):
-        textData = str(obj.filtraPerData.currentText())
-        textPrezzo = str(obj.filtraPerPrezzo.currentText())
+        textData = str(obj.filtraPerData.currentIndex())
+        textPrezzo = str(obj.filtraPerPrezzo.currentIndex())
         textCategoria = str(obj.filtraPerCategoria.currentText())
         name = obj.search_le.text()
         listaCorrispondenti = Controller().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
@@ -111,6 +123,7 @@ class AmministratoreView(QWidget):
     # textPrezzo = str con il parametro di filtraggio
     def ifFiltraPerPrezzo(self, textPrezzo):
         lista = Controller().recuperaListaProdottiInVendita()
+        print(f"lunghezza lista:{len(lista)}")
         if textPrezzo == "tutti i prezzi":
             return lista
         elif textPrezzo == "0€ - 10€ ":
@@ -121,6 +134,7 @@ class AmministratoreView(QWidget):
             lista = Controller().filtraPrezzo(20, 50, PathDatabase().inVenditaTxt)
         elif textPrezzo == ">50€":
             lista = Controller().filtraPrezzo(50, sys.maxsize, PathDatabase().inVenditaTxt)
+        print(f"lunghezza lista:{len(lista)}")
         return lista
 
     # Metodo che filtra i prodotti in base alla categoria scelta nella tendina della view
@@ -226,8 +240,8 @@ class AmministratoreView(QWidget):
     # amministratore = oggetto AmministratoreView
     # lista = lista prodotti da aggiungere alla tab
     def cercaClienteBtnClicked(self, mainPath, obj, amministratore):
-        textNome = str(obj.nome_le.text())
-        textCognome = str(obj.cognome_le.text())
+        textNome = obj.nome_le.text()
+        textCognome = obj.cognome_le.text()
         lista = Controller().filtraClienti(textNome, textCognome)
         self.accountsBtnClicked(mainPath, amministratore, lista)
 
@@ -309,7 +323,7 @@ class AmministratoreView(QWidget):
         nomeLe = obj.nomeLe.text()
         cognomeLe = obj.cognomeLe.text()
         dataNascitaLe = obj.dataNascitaLe.text()
-        emailLe = obj.emailLe.text()
+        emailLe = (obj.emailLe.text()).lower()
         passwordLe = obj.passwordLe.text()
         telefonoLe = obj.telefonoLe.text()
         capLe = obj.capLe.text()
@@ -466,7 +480,7 @@ class AmministratoreView(QWidget):
 
     # Metodo che gestische il caricamento della view per aggiornare il prodotto
     def aggiornaProdottoBtnClicked(self, mainPath, amministratore, idProdotto):
-        self.aggiungiProdottoBtnClicked(mainPath, amministratore)
+        # self.aggiungiProdottoBtnClicked(mainPath, amministratore)
         name = "aggiornaProdottoView.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
@@ -482,13 +496,9 @@ class AmministratoreView(QWidget):
         prezzoLe = obj.prezzoLe.text()
         nomeCategoriaLe = obj.nomeCategoriaLe.text()
         nomeScaffaleLe = obj.nomeScaffaleLe.text()
-        lista = Categoria().recuperaListaOggetti()
-        print(f"--S{len(lista)}")
-        Controller().aggiornaProdotto(nomeCategoriaLe, None, nomeLe, prezzoLe, nomeScaffaleLe, idProdotto)  # TODO
+        Controller().aggiornaProdotto(nomeCategoriaLe, None, nomeLe, prezzoLe, nomeScaffaleLe, idProdotto)
         self.caricainfoProdottoView(mainPath, "infoProdottoView.ui", Controller().trovaProdottoTramiteId(idProdotto),
                                     amministratore, None)
-        lista = Categoria().recuperaListaOggetti()
-        print(f"--Z{len(lista)}")
 
     # Metodo che carica le info di un account all'interno della View
     # mainPath = path del main
@@ -513,6 +523,36 @@ class AmministratoreView(QWidget):
         obj.piazzaDaIns.setText(account.residenza.piazza)
         obj.civicoDaIns.setText(account.residenza.civico)
         obj.indietroBtn.clicked.connect(lambda: self.accountsBtnClicked(mainPath, amministratore, lista))
+        obj.aggiornaBtn.clicked.connect(lambda: self.aggiornaAccountBtnClicked(mainPath, amministratore,
+                                                                               account.idAccount))
+
+    # Metodo che carica la view per aggiornare l'account e ne gestisce i pulsanti
+    def aggiornaAccountBtnClicked(self, mainPath, amministratore, idAccount):
+        name = "aggiornaAccountView.ui"
+        obj = self.caricaView(mainPath, name)
+        self.removeAndAdd(obj)
+        obj.aggiornaBtn.clicked.connect(
+            lambda: self.confermaAggiornaAccountBtnClicked(mainPath, obj, amministratore, idAccount))  # TODO
+        obj.indietroBtn.clicked.connect(lambda: self.caricainfoAccountView(mainPath, "infoAccountView.ui",
+                                                                           Controller().trovaAccountTramiteId(
+                                                                               idAccount), amministratore, None))
+
+    # Metodo che si attiva alla conferma dell'aggiornamento del prodotto
+    def confermaAggiornaAccountBtnClicked(self, mainPath, obj, amministratore, idAccount):
+        nomeLe = obj.nomeLe.text()
+        cognomeLe = obj.cognomeLe.text()
+        dataDiNascitaLe = obj.dataDiNascitaLe.text()
+        emailLe = obj.emailLe.text()
+        telefonoLe = obj.telefonoLe.text()
+        capLe = obj.capLe.text()
+        citofonoLe = obj.citofonoLe.text()
+        cittaLe = obj.cittaLe.text()
+        viaLe = obj.viaLe.text()
+        piazzaLe = obj.piazzaLe.text()
+        civicoLe = obj.civicoLe.text()
+        Controller().aggiornaAccount(idAccount, nomeLe, cognomeLe, dataDiNascitaLe, emailLe, telefonoLe, capLe, citofonoLe, cittaLe, viaLe, piazzaLe, civicoLe) # TODO
+        self.caricainfoAccountView(mainPath, "infoAccountView.ui", Controller().trovaAccountTramiteId(idAccount),
+                                   amministratore, None)
 
     # Metodo per controllare la validità dei dati inseriti dall'utente
     # * = parametri str o datetime da controllare per errori umani

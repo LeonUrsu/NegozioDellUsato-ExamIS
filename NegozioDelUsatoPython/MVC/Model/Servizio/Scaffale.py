@@ -86,7 +86,7 @@ class Scaffale(ServizioInterface):
         scaffaliList = File().deserializza(filename)
         for scaffale in scaffaliList:
             if scaffale.nomeScaffale == prodotto.nomeScaffale:
-                scaffale.idProdotti.append(prodotto.IdProdotto)
+                scaffale.idProdotti.append(prodotto.iProdotto)
                 File().serializza(filename, scaffaliList)
                 return True
         scaffale = Scaffale()

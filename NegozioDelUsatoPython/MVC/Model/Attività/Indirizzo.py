@@ -2,7 +2,7 @@
 
 class Indirizzo:
 
-    def __init__(self, cap, citofono, citta, civico, via, piazza):
+    def __init__(self, cap, citofono, citta, civico, piazza, via):
         self.cap = cap
         self.citofono = citofono
         self.citta = citta

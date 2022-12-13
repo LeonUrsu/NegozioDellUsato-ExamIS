@@ -1,8 +1,8 @@
-import copy
+import datetime
 import json
 from operator import index
 
-
+from MVC.Model.Attività.Indirizzo import Indirizzo
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from MVC.Model.SistemService.File import File
 from Database.PathDatabase import PathDatabase
@@ -18,16 +18,16 @@ class Account(ServizioInterface):
     def aggiungiAccount(self, nome, cognome, dataDiNascita, email, numeroTelefonico, password, residenza):
         self.nome = nome
         self.cognome = cognome
-        self.dataDiNascita = dataDiNascita
+        self.dataDiNascita = self.pairDataDiNascita(dataDiNascita)
         self.email = email
         self.idAccount = self.newId()
         self.idProdotti = list()
-        self.numeroTelefonico = numeroTelefonico
+        if self.checkNumeroTelefonico(numeroTelefonico):self.numeroTelefonico = numeroTelefonico
+        else: self.numeroTelefonico = None
         self.password = password
         self.residenza = residenza
         self.mettiOggettoSuListaNelFile()
         return self
-
 
     # Metodo che legge la lista degli account nel file e la restituisce
     def recuperaListaOggetti(self):
@@ -93,8 +93,6 @@ class Account(ServizioInterface):
         File().serializza(startfileName, listAccount)
         return popped"""
 
-    #TODO risolvere il problema del metodo metti oggettoSuListaNelFile, in alcuni luoghi gli si passsa il path mentre in altri no fare un secondo metodo
-    # Metodo che viene richiamato sull'istanza di Account che deve essere messa su un file
     def mettiOggettoSuListaNelFile(self):
         listAccount = Account.recuperaListaOggetti(self)
         for account in listAccount:
@@ -105,17 +103,35 @@ class Account(ServizioInterface):
 
     # Metodo che aggiorna un account in base ai parametri passati dalla classe Amministratore
     def aggiornaAccount(self, nome, cognome, dataDiNascita, email, idAccount, numeroTelefonico, residenza):
-        fileName = PathDatabase().accountTxt
         account = Account().trovaOggettoTramiteId(idAccount)
-        if nome != account.nome: account.nome = nome
-        if cognome != account.cognome: account.cognome = cognome
-        if dataDiNascita != account.dataDiNascita: account.dataDiNascita = dataDiNascita
-        if self.checkEmailUtente(email) == False and email != account.email: account.email = email
-        if not self.checkNumeroTelefonico(
-            numeroTelefonico) and numeroTelefonico != account.numeroTelefonico: account.numeroTelefonico = numeroTelefonico
-        if residenza != account.residenza: account.residenza = residenza
+        if nome != "": account.nome = nome
+        if cognome != "": account.cognome = cognome
+        if dataDiNascita != "": account.dataDiNascita = self.pairDataDiNascita(dataDiNascita)
+        if self.checkEmailUtente(email) == False and email != "":
+            account.email = email
+        if not self.checkNumeroTelefonico(numeroTelefonico) and numeroTelefonico != "":
+            account.numeroTelefonico = numeroTelefonico
+        if residenza != None:
+            if residenza.cap != "":
+                account.residenza.cap = residenza.cap
+            if residenza.via != "":
+                account.residenza.via = residenza.via
+            if residenza.citta != "":
+                account.residenza.citta = residenza.citta
+            if residenza.civico != "":
+                account.residenza.civico = residenza.civico
+            if residenza.piazza != "":
+                account.residenza.piazza = residenza.piazza
+            if residenza.citofono != "":
+                account.residenza.citofono = residenza.citofono
         account.mettiOggettoSuListaNelFile()
         return account
+
+    #Metodo che grazie ad un formato strasforma una data in str in datetime
+    def pairDataDiNascita(self, dataStr):
+        format = "%d/%m/%Y"
+        dataPaired = datetime.strptime(dataStr, format)
+        return dataPaired
 
     """
     # Metodo che recupera la lista degli account, trova l'account con i'id vecchio e al suo interno,

@@ -1,5 +1,6 @@
 from MVC.Model.Attività.Account import Account
 from MVC.Model.Attività.Amministratore import Amministratore
+from MVC.Model.Attività.Indirizzo import Indirizzo
 from MVC.Model.Attività.User import User
 from MVC.Model.Servizio.Categoria import Categoria
 from MVC.Model.Servizio.Prodotto import Prodotto
@@ -71,3 +72,7 @@ class Controller(object):
 
     def aggiornaProdotto(self, nomeCategoriaLe, data, nomeProdotto, prezzoLe, nomeScaffaleLe, idProdotto):
         Amministratore().aggiornaProdotto(nomeCategoriaLe, None, nomeProdotto, prezzoLe, nomeScaffaleLe, idProdotto)
+
+    def aggiornaAccount(self, idAccount, nomeLe, cognomeLe, dataDiNascitaLe, emailLe, telefonoLe, capLe, citofonoLe, cittaLe, viaLe, piazzaLe, civicoLe):
+        residenza = Indirizzo(capLe, citofonoLe, cittaLe, civicoLe, piazzaLe, viaLe)
+        Amministratore().aggiornaAccount(nomeLe, cognomeLe, dataDiNascitaLe, emailLe, idAccount, telefonoLe, residenza)

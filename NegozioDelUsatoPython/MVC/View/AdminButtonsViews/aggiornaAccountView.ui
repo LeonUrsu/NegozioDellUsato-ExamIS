@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>inserisciClienteView</class>
- <widget class="QWidget" name="inserisciClienteView">
+ <class>inserisciProdottoView</class>
+ <widget class="QWidget" name="inserisciProdottoView">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>496</height>
+    <width>991</width>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,11 +18,8 @@
 	color: #78799c;
 	border: none;
 }
-#inserisciClienteView{
+#inserisciProdottoView{
 	background-color:#1a1f39;
-}
-#topFrame{
-	background-color: #2a2c49;
 }
 #infoProdottoContent{
 	background-color: #2a2c49;
@@ -39,8 +36,12 @@ QPushButton{
 	background-color: rgba(26, 31, 57,150);
 }
 #indietroBtn,#aggiungiBtn{
-	background-color: #1a1f39;
-	border-radius: 7px;
+	background-color: #1a0f39;
+	border-radius: 15px;
+	padding : 10px 5px;
+	text-align:left;
+	color:#78799c;
+	font: 10pt &quot;Leelawadee UI&quot;;
 }
 QLineEdit{
 	border-radius: 10px;
@@ -98,7 +99,7 @@ QLineEdit{
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
-         <item alignment="Qt::AlignHCenter">
+         <item>
           <widget class="QPushButton" name="indietroBtn">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -160,33 +161,12 @@ QLineEdit{
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
       <item>
        <widget class="QWidget" name="infoProdottoContent" native="true">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maximumSize">
          <size>
           <width>350</width>
-          <height>400</height>
+          <height>350</height>
          </size>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -196,7 +176,7 @@ QLineEdit{
             <string/>
            </property>
            <property name="placeholderText">
-            <string>Nome Cliente</string>
+            <string>nome</string>
            </property>
           </widget>
          </item>
@@ -206,90 +186,113 @@ QLineEdit{
             <string/>
            </property>
            <property name="placeholderText">
-            <string>Cognome Cliente</string>
+            <string>cognome</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="dataNascitaLe">
+          <widget class="QLineEdit" name="dataDiNascitaLe">
            <property name="text">
             <string/>
            </property>
            <property name="placeholderText">
-            <string>Data Di Nascita gg/mm/yyyy</string>
+            <string>data di nascita in formato gg/mm/aaaa</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLineEdit" name="emailLe">
-           <property name="placeholderText">
-            <string>Email</string>
+           <property name="text">
+            <string/>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="passwordLe">
            <property name="placeholderText">
-            <string>Password</string>
+            <string>email</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLineEdit" name="telefonoLe">
+           <property name="text">
+            <string/>
+           </property>
            <property name="placeholderText">
-            <string>Numero Telefono</string>
+            <string>numero telefonico</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLineEdit" name="capLe">
-           <property name="placeholderText">
-            <string>CAP</string>
+           <property name="text">
+            <string/>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="cittaLe">
            <property name="placeholderText">
-            <string>Città</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="viaLe">
-           <property name="placeholderText">
-            <string>Via</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="piazzaLe">
-           <property name="placeholderText">
-            <string>Piazza</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="civicoLe">
-           <property name="placeholderText">
-            <string>Civico</string>
+            <string>cap</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLineEdit" name="citofonoLe">
+           <property name="text">
+            <string/>
+           </property>
            <property name="placeholderText">
-            <string>Citofono</string>
+            <string>citofono</string>
            </property>
           </widget>
          </item>
-         <item alignment="Qt::AlignHCenter">
-          <widget class="QPushButton" name="aggiungiBtn">
+         <item>
+          <widget class="QLineEdit" name="cittaLe">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="placeholderText">
+            <string>citta</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="viaLe">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="placeholderText">
+            <string>via</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="piazzaLe">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="placeholderText">
+            <string>piazza</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="civicoLe">
+           <property name="text">
+            <string notr="true"/>
+           </property>
+           <property name="placeholderText">
+            <string>civico</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="aggiornaBtn">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="text">
-            <string>Aggiungi</string>
+            <string>Aggiorna</string>
            </property>
            <property name="icon">
             <iconset resource="../resources.qrc">

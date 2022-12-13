@@ -1,5 +1,7 @@
 import pathlib
 import sys
+from datetime import datetime
+
 from PySide6.QtWidgets import QApplication
 from Database.PathDatabase import PathDatabase
 from MVC.Model.SistemService.Backup import Backup
@@ -7,7 +9,6 @@ from MVC.Model.SistemService.Statistiche import Statistiche
 from MVC.View.CentralWindow import CentralWindow
 
 if __name__ == '__main__':
-
     # TODO correggere i test eliminati il 14 nov
     # Path setup
     mainPath = pathlib.Path().resolve().__str__()
@@ -28,6 +29,7 @@ if __name__ == '__main__':
     # Generatore statistiche
     try:
         Statistiche().aggiungiStatistiche()
+        print("---stats generate")
     except:
         print("errore generazione statistiche")
 
@@ -35,5 +37,6 @@ if __name__ == '__main__':
     # chiusura dell'app in questo punto del codice
     try:
         Backup().effettuaBackup()
+        print("---backup effettuato")
     except:
-        print("errore generazione backup")
+        print("---errore generazione backup")

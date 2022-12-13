@@ -21,8 +21,8 @@ class Amministratore(User):
         self.password = "admin" # TODO questa password non ha nulla a che fare con admin, da togliere
 
     # Metodo che aggiorna un account in base ai parametri passati dall'amministratore
-    def aggiornaAccount(self, nome, cognome, dataDiNascita, email, idAccount, numeroTelefonico, residenza):
-        account = Account().aggiornaAccount(nome, cognome, dataDiNascita, email, idAccount, numeroTelefonico, residenza)
+    def aggiornaAccount(self, nome, cognome, dataDiNascitaStr, email, idAccount, numeroTelefonico, residenza):
+        account = Account().aggiornaAccount(nome, cognome, dataDiNascitaStr, email, idAccount, numeroTelefonico, residenza)
         return account
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dall'amministratore
@@ -83,8 +83,7 @@ class Amministratore(User):
         prodotto.aggiungiProdotto(categoria.idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
                                   nomeScaffaleLe, nomeCategoria)
         prodotto.mettiOggettoSuListaNelFile()
-        if nomeScaffaleLe != "":
-            Scaffale().associaProdottoAScaffale(prodotto)
+        #if nomeScaffaleLe != "": Scaffale().associaProdottoAScaffale(prodotto)
         if idAccount != None: Account().associaProdottoAdAccount(prodotto)
         if nomeCategoria != "": Categoria().aggiungiProdottiInCategoria(prodotto)
         return prodotto
