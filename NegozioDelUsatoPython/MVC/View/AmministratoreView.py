@@ -1,16 +1,12 @@
 import os
-import sys
 from datetime import datetime
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
 from PySide6.QtGui import QCursor
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton
-from dateutil.relativedelta import relativedelta
-from Database.PathDatabase import PathDatabase
 from MVC.Controller.Controller import Controller
-from MVC.Model.Servizio.Categoria import Categoria
-from MVC.Model.Servizio.Scaffale import Scaffale
+
 
 
 class AmministratoreView(QWidget):

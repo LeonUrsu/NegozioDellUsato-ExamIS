@@ -19,7 +19,7 @@ class Account(ServizioInterface):
         self.nome = nome
         self.cognome = cognome
         self.dataDiNascita = self.pairDataDiNascita(dataDiNascita)
-        self.email = email
+        self.email = email.lower()
         self.idAccount = self.newId()
         self.idProdotti = list()
         if self.checkNumeroTelefonico(numeroTelefonico):self.numeroTelefonico = numeroTelefonico
