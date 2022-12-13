@@ -66,8 +66,7 @@ class AmministratoreView(QWidget):
     # lista = lista con prodotti da caricare nella tab
     # amministratore = oggetto AmministratoreView
     def prodottiBtnClicked(self, mainPath, amministratore, lista):
-        name = "prodottiView.ui"
-        obj = self.caricaView(mainPath, name)
+        obj = self.caricaView(mainPath, "prodottiView.ui")
         self.removeAndAdd(obj)
         self.setItemsOfComboboxCategorie(obj)
         amministratore.finestra.statisticheBtn.setStyleSheet(self.unPushedStyleSheet())
@@ -101,62 +100,6 @@ class AmministratoreView(QWidget):
         name = obj.search_le.text()
         listaCorrispondenti = Controller().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
         self.prodottiBtnClicked(mainPath, amministratore, listaCorrispondenti)
-
-    # Metodo che filtra i prodotti in base al periodo scelto
-    # textData = str con il parametro di filtraggio
-    def ifFiltraPerDataSelected(self, textData):
-        lista = None
-        if textData == "Da Sempre":
-            lista = Controller().recuperaListaProdottiInVendita()
-        elif textData == "Ultima Settimana":
-            lista = Controller().filtraDataEsposizione(datetime.today() - relativedelta(days=7),
-                                                       datetime.today(), PathDatabase().inVenditaTxt)
-        elif textData == "Ultimo Mese":
-            lista = Controller().filtraDataEsposizione(datetime.today() - relativedelta(months=1),
-                                                       datetime.today(), PathDatabase().inVenditaTxt)
-        elif textData == "Ultimo Trimestre":
-            lista = Controller().filtraDataEsposizione(datetime.today() - relativedelta(months=3),
-                                                       datetime.today(), PathDatabase().inVenditaTxt)
-        return lista
-
-    # Metodo che filtra i prodotti in base al prezzo massimo scelto
-    # textPrezzo = str con il parametro di filtraggio
-    def ifFiltraPerPrezzo(self, textPrezzo):
-        lista = Controller().recuperaListaProdottiInVendita()
-        print(f"lunghezza lista:{len(lista)}")
-        if textPrezzo == "tutti i prezzi":
-            return lista
-        elif textPrezzo == "0€ - 10€ ":
-            lista = Controller().filtraPrezzo(0, 10, PathDatabase().inVenditaTxt)
-        elif textPrezzo == "10€ - 20€":
-            lista = Controller().filtraPrezzo(10, 20, PathDatabase().inVenditaTxt)
-        elif textPrezzo == "20€ - 50€":
-            lista = Controller().filtraPrezzo(20, 50, PathDatabase().inVenditaTxt)
-        elif textPrezzo == ">50€":
-            lista = Controller().filtraPrezzo(50, sys.maxsize, PathDatabase().inVenditaTxt)
-        print(f"lunghezza lista:{len(lista)}")
-        return lista
-
-    # Metodo che filtra i prodotti in base alla categoria scelta nella tendina della view
-    # textCategorie = str con il parametro di filtraggio
-    def ifFiltraPerCategoria(self, textCategoria):
-        listaProdotti = Controller().recuperaListaProdottiInVendita()
-        if textCategoria == "Tutte le Categorie" or textCategoria == "":
-            return listaProdotti
-        categoriaIdFiltro = None
-        categorieList = Controller().recuperaListaCategorie()
-        for categoria in categorieList:
-            if textCategoria == categoria.nome:
-                categoriaIdFiltro = categoria.idCategoria
-        listaProdottiTrovati = list()
-        if categoriaIdFiltro == None: return listaProdotti
-        for prodotto in listaProdotti:
-            if prodotto.idCategoria == categoriaIdFiltro:
-                listaProdottiTrovati.append(prodotto)
-        if not listaProdottiTrovati:
-            return listaProdotti
-        else:
-            return listaProdottiTrovati
 
     # Metodo che elimina gli oggetti nel database tramite la lista id
     # mainPath = path del main
@@ -211,6 +154,7 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(prodotto["prezzoCorrente"]))
             obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(prodotto["idProdotto"]))
             totale += int(prodotto["prezzoCorrente"])
+            obj.tab.resizeRowsToContents()
             row += 1
         obj.totaleDaIns.setText(f"{totale}")
         obj.indietroBtn.clicked.connect(lambda: self.prodottiBtnClicked(mainPath, amministratore, None))
@@ -384,7 +328,7 @@ class AmministratoreView(QWidget):
     def aggiungiProdottiAllaTab(self, mainPath, obj, amministratore, lista):
         if lista == None:
             lista = Controller().recuperaListaProdottiInVendita()
-        objList = (None, "nome", "prezzo", "id prodotto", "data scadenza", "click su visualizza")
+        objList = (None, "Nome", "Prezzo", "ID Prodotto", "Data di Scadenza", "Click Su Visualizza")
         column = len(objList)
         obj.tab.setColumnCount(column)
         obj.tab.setColumnWidth(0, 15)
@@ -405,6 +349,7 @@ class AmministratoreView(QWidget):
             obj.tab.setCellWidget(row, 5,
                                   self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto.idProdotto,
                                                                               amministratore, lista))
+            obj.tab.resizeRowsToContents()
             row += 1
 
     # Metodo che aggiunge i prodotti in vendita al tableWidget
@@ -433,6 +378,7 @@ class AmministratoreView(QWidget):
             obj.tab.setCellWidget(row, 5,
                                   self.creaBottoneVisualizzaAccountQualsiasi(mainPath, account.idAccount,
                                                                              amministratore, lista))
+            obj.tab.resizeRowsToContents()
             row += 1
 
     # Metodo che crea un bottone grazie al idProdotto
@@ -443,9 +389,11 @@ class AmministratoreView(QWidget):
     def creaBottoneVisualizzaProdottoQualsiasi(self, mainPath, idProdotto, amministratore, lista):
         button = QPushButton()
         button.setText("Visualizza")
+        button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         button.clicked.connect(lambda: self.caricainfoProdottoView(mainPath, "infoProdottoView.ui",
                                                                    Controller().trovaProdottoTramiteId(idProdotto),
                                                                    amministratore, lista))
+
         return button
 
     # Metodo che crea un bottone grazie al idAccount

@@ -252,7 +252,7 @@ QPushButton{
               <property name="maximumSize">
                <size>
                 <width>200</width>
-                <height>70</height>
+                <height>100</height>
                </size>
               </property>
               <property name="title">
@@ -261,21 +261,48 @@ QPushButton{
               <layout class="QVBoxLayout" name="verticalLayout_3">
                <item>
                 <widget class="QComboBox" name="filtraPerCategoria">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="baseSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="currentText">
-                  <string>tutte le categorie</string>
+                  <string>Tutte le Categorie</string>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
                  </property>
                  <item>
                   <property name="text">
-                   <string>tutte le categorie</string>
+                   <string>Tutte le Categorie</string>
                   </property>
                  </item>
                 </widget>
                </item>
                <item>
                 <widget class="QComboBox" name="filtraPerData">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
@@ -303,15 +330,21 @@ QPushButton{
                </item>
                <item>
                 <widget class="QComboBox" name="filtraPerPrezzo">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="currentText">
-                  <string>tutti i prezzi</string>
+                  <string>Tutti i Prezzi</string>
                  </property>
                  <item>
                   <property name="text">
-                   <string>tutti i prezzi</string>
+                   <string>Tutti i Prezzi</string>
                   </property>
                  </item>
                  <item>
@@ -344,10 +377,13 @@ QPushButton{
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Expanding</enum>
+              </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>20</width>
-                <height>40</height>
+                <width>30</width>
+                <height>30</height>
                </size>
               </property>
              </spacer>

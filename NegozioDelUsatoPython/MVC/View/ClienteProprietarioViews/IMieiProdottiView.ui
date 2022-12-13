@@ -73,12 +73,14 @@ QLabel{
 	text-align:left;
 	border-top-left-radius:25px;
 }
-
 QPushButton{
 	padding : 10px 5px;
 	text-align:left;
 	color:#78799c;
 	font: 10pt &quot;Leelawadee UI&quot;;
+	background-color:#1a1f39;
+    border: solid;
+    border-radius: 11px;
 }
 
 

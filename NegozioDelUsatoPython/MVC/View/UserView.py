@@ -4,6 +4,7 @@ from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QTableWidgetItem, QPushButton
+from PySide6.QtGui import QCursor
 from MVC.Controller.Controller import Controller
 
 
@@ -25,6 +26,7 @@ class UserView():
         prod = prodotto
         button = QPushButton()
         button.setText("Visualizza")
+        button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         button.clicked.connect(lambda: self.caricainfoProdottoView(mainPath, "infoProdottoClienteView.ui", prod))
         return button
 
@@ -41,7 +43,7 @@ class UserView():
         obj.dataDiEsposizioneDaIns.setText(f"{prodottoTrovato.dataEsposizione}")
         obj.dataDiScadenzaDaIns.setText(f"{prodottoTrovato.dataScadenza}")
         obj.idProdottoDaIns.setText(f"{prodottoTrovato.idProdotto}")
-        obj.idScaffaleDaIns.setText(f"{prodottoTrovato.idScaffale}")
+        obj.idScaffaleDaIns.setText(f"{prodottoTrovato.nomeScaffale}")
         obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.nomeCategoria}")
         obj.indietroBtn.clicked.connect(lambda: self.caricaUserProdottiView(mainPath, None))
 
@@ -109,7 +111,7 @@ class UserView():
     def aggiungiProdottiAllaTab(self, mainPath, obj, lista):
         if lista == None:
             lista = Controller().recuperaListaProdottiInVendita()
-        objList = ("nome", "prezzo", "id prodotto", "data scadenza", "click su visualizza")
+        objList = ("Nome", "Prezzo", "ID Prodotto", "Data di scadenza", "Click Su Visualizza")
         column = len(objList)
         obj.tab.setColumnCount(column)
         for i in range(column):
@@ -126,4 +128,5 @@ class UserView():
             obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{prodotto.dataScadenza}"))
             obj.tab.setCellWidget(row, 4,
                                   self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto))
+            obj.tab.resizeRowsToContents()
             row += 1
