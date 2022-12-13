@@ -129,7 +129,7 @@ class Filtri:
     # textCategoria = parametro di filtraggio dei prodotti
     def ifFiltraPerCategoria(self, textCategoria):
         listaProdotti = Prodotto().recuperaListaProdottiInVendita()
-        if textCategoria == "tutte le categorie" or textCategoria == "":
+        if textCategoria == "Tutte le Categorie" or textCategoria == "":
             return listaProdotti
         categoriaIdFiltro = None
         categorieList = Categoria().recuperaListaOggetti()

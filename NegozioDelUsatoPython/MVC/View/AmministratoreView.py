@@ -341,7 +341,7 @@ class AmministratoreView(QWidget):
             obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(f"{prodotto.nomeProdotto}"))
             obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(f"{prodotto.prezzoCorrente}"))
             obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{prodotto.idProdotto}"))
-            obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(f"{prodotto.dataScadenza}"))
+            obj.tab.setItem(row, 4, QtWidgets.QTableWidgetItem(prodotto.dataScadenza.strftime("%Y-%m-%d %H:%M:%S")))
             obj.tab.setCellWidget(row, 5,
                                   self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto.idProdotto,
                                                                               amministratore, lista))
@@ -413,8 +413,8 @@ class AmministratoreView(QWidget):
         obj.nomeProdottoDaIns.setText(prodottoTrovato.nomeProdotto)
         obj.prezzoCorrenteDaIns.setText(prodottoTrovato.prezzoCorrente)
         obj.prezzoOriginaleDaIns.setText(prodottoTrovato.prezzoOriginale)
-        obj.dataDiEsposizioneDaIns.setText(f"{prodottoTrovato.dataEsposizione}")
-        obj.dataDiScadenzaDaIns.setText(f"{prodottoTrovato.dataScadenza}")
+        obj.dataDiEsposizioneDaIns.setText(prodottoTrovato.dataEsposizione.strftime("%Y-%m-%d %H:%M:%S"))
+        obj.dataDiScadenzaDaIns.setText(prodottoTrovato.dataScadenza.strftime("%Y-%m-%d %H:%M:%S"))
         obj.idProdottoDaIns.setText(f"{prodottoTrovato.idProdotto}")
         obj.nomeScaffaleDaIns.setText(f"{prodottoTrovato.nomeScaffale}")
         obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.nomeCategoria}")
@@ -455,7 +455,7 @@ class AmministratoreView(QWidget):
         self.removeAndAdd(obj)
         obj.nomeDaIns.setText(account.nome)
         obj.cognomeDaIns.setText(account.cognome)
-        obj.dataDiNascitaDaIns.setText(account.dataDiNascita)
+        obj.dataDiNascitaDaIns.setText(account.dataDiNascita.strftime("%Y-%m-%d %H:%M:%S"))
         obj.emailDaIns.setText(account.email)
         obj.passwordDaIns.setText(account.password)
         obj.idAccountDaIns.setText(f"{account.idAccount}")
