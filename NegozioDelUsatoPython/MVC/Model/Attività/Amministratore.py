@@ -26,10 +26,9 @@ class Amministratore(User):
         return account
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dall'amministratore
-    def aggiornaProdotto(self, idCategoria, dataEsposizione,
-                         nomeProdotto, prezzoOriginale, idScaffale, idProdotto):
-        Prodotto().aggiornaProdotto(idCategoria, dataEsposizione,
-                                    nomeProdotto, prezzoOriginale, idScaffale, idProdotto)
+    def aggiornaProdotto(self, nomeCategoria, dataEsposizione,
+                         nomeProdotto, prezzoOriginale, nomeScaffale, idProdotto):
+        Prodotto().aggiornaProdotto(nomeCategoria, None, nomeProdotto, prezzoOriginale, nomeScaffale, idProdotto)
 
     # Metodo che effettua il backup del sistema in maniera manuale dall amministratore
     # mentre il metodo nella classe Backup verra' richiamato dal sistema ad una determinata ora
@@ -75,16 +74,17 @@ class Amministratore(User):
 
     # Metodo per inserire un prodotto nel database
     def inserisciProdotto(self, dataEsposizione, idAccount,
-                          nomeProdotto, prezzoOriginale, idScaffale, nomeCategoria):
+                          nomeProdotto, prezzoOriginale, nomeScaffaleLe, nomeCategoria):
         categoria = Categoria().trovaCategoriaTramiteNome(nomeCategoria)
         if categoria == None:
             categoria = Categoria()
             categoria.aggiungiCategoria(nomeCategoria)
         prodotto = Prodotto()
         prodotto.aggiungiProdotto(categoria.idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
-                                  idScaffale, nomeCategoria)
+                                  nomeScaffaleLe, nomeCategoria)
         prodotto.mettiOggettoSuListaNelFile()
-        if idScaffale != None: Scaffale().associaProdottoAScaffale(prodotto)
+        if nomeScaffaleLe != "":
+            Scaffale().associaProdottoAScaffale(prodotto)
         if idAccount != None: Account().associaProdottoAdAccount(prodotto)
         if nomeCategoria != "": Categoria().aggiungiProdottiInCategoria(prodotto)
         return prodotto

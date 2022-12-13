@@ -8,7 +8,7 @@ from MVC.View.CentralWindow import CentralWindow
 
 if __name__ == '__main__':
 
-    # TODO ripristinare i test eliminati il 14 nov
+    # TODO correggere i test eliminati il 14 nov
     # Path setup
     mainPath = pathlib.Path().resolve().__str__()
     PathDatabase().setup(mainPath)
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     except:
         print("errore generazione statistiche")
 
-    # Timer for backup setup # TODO meglio al posto del timer per avere meno risorse utilizzate fare il backup alla
+    # backup del database
     # chiusura dell'app in questo punto del codice
     try:
         Backup().effettuaBackup()

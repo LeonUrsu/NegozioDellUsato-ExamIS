@@ -16,6 +16,7 @@ class Statistiche:
 
     # Metodo per la defizizione di un oggetto Statistiche
     def aggiungiStatistiche(self):
+        self.rimuoviStatsConData()
         listProdotti = self.getListProdottiVenduti()
         listProdottiInData = self.getProdottiVendutiInData()
         self.data = datetime.datetime.today()
@@ -23,6 +24,12 @@ class Statistiche:
         self.prodottiVendutiTotali = len(listProdotti)
         self.prodottiVendutiInData = len(listProdottiInData)
         self.tendenzaCategorie = self.tendenzaCategorie()
+        self.nomePrimaCategoriaTendenza = ""
+        self.nomeSecondaCategoriaTendenza = ""
+        self.nomeTerzaCategoriaTendenza = ""
+        self.numeroPrimaCategoriaTendenza = 0
+        self.numeroSecondaCategoriaTendenza = 0
+        self.numeroTerzaCategoriaTendenza = 0
         self.guadagnoTotale = self.calcolaGuadagno(self.getListProdottiVenduti())
         self.guadagnoInData = self.calcolaGuadagno(self.getProdottiVendutiInData())
         self.salvataggioStatitiche()
@@ -81,8 +88,22 @@ class Statistiche:
     # listProdotti = lista di prodotti da cui calcolare la repitizione delle loro categorie(tendenza)
     def tendenzaCategorie(self):
         listCategorie = Categoria().recuperaListaOggetti()
-        listCategorie.sort(key=lambda x: x.oggettiTotali, reverse=True)
-        del listCategorie[3:len(listCategorie)]
+        for obj in listCategorie:
+            if obj.oggettiTotali > self.numeroTerzaCategoriaTendenza \
+                    and obj.oggettiTotali > self.numeroSecondaCategoriaTendenza \
+                    and obj.oggettiTotali > self.numeroPrimaCategoriaTendenza:
+                self.numeroPrimaCategoriaTendenza = obj.oggettiTotali
+                self.nomePrimaCategoriaTendenza = obj.nome
+            elif obj.oggettiTotali > self.numeroTerzaCategoriaTendenza \
+                    and obj.oggettiTotali > self.numeroSecondaCategoriaTendenza \
+                    and obj.oggettiTotali < self.numeroPrimaCategoriaTendenza:
+                self.numeroSecondaCategoriaTendenza = obj.oggettiTotali
+                self.nomeSecondaCategoriaTendenza = obj.nome
+            elif obj.oggettiTotali > self.numeroTerzaCategoriaTendenza \
+                    and obj.oggettiTotali < self.numeroSecondaCategoriaTendenza \
+                    and obj.oggettiTotali < self.numeroPrimaCategoriaTendenza:
+                self.numeroTerzaCategoriaTendenza = obj.oggettiTotali
+                self.nomeTerzaCategoriaTendenza = obj.nome
         return listCategorie
 
     # Metodo che passata una lista di categorie trova la lista con piu oggetti
@@ -93,8 +114,7 @@ class Statistiche:
                 massimo = ogg.oggettiTotali
         return massimo
 
-    # Metodo che prende il
-    # numeroDiChiavi con valore piu alto
+    # Metodo che prende il numeroDiChiavi con valore piu alto
     # return dizionario con le categorie di tendenenza
     def topKeysInDict(self, dict):
         lista = list()
@@ -110,3 +130,14 @@ class Statistiche:
         file = File()
         listStatistiche = file.deserializza(fileName)
         return listStatistiche
+
+    # Metodo che rimuove le statistiche con la stessa data nello stesso giorno per non creare inconsistenza
+    def rimuoviStatsConData(self):
+        todayDate = datetime.datetime.today().date()
+        lista = self.visualizzaStatistiche()
+        if len(lista) == 0 or lista == None: return
+        for stats in lista:
+            statsDate = stats.data.date()
+            if statsDate == todayDate:
+                lista.pop(lista.index(stats))
+        File().serializza(PathDatabase.statisticheTxt, lista)

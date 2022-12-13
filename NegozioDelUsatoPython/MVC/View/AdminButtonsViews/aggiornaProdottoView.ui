@@ -181,13 +181,6 @@ QLineEdit{
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="idAccountLe">
-           <property name="placeholderText">
-            <string>ID Account</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QLineEdit" name="prezzoLe">
            <property name="placeholderText">
             <string>Prezzo</string>
@@ -212,12 +205,12 @@ QLineEdit{
           </widget>
          </item>
          <item alignment="Qt::AlignHCenter">
-          <widget class="QPushButton" name="aggiungiBtn">
+          <widget class="QPushButton" name="aggiornaBtn">
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="text">
-            <string>Aggiungi</string>
+            <string>Aggiorna</string>
            </property>
            <property name="icon">
             <iconset resource="../resources.qrc">
