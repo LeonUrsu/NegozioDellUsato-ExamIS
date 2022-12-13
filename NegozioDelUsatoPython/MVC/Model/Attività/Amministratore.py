@@ -93,6 +93,7 @@ class Amministratore(User):
     # credenziali via emailProdotto().recuperaListaOggetti
     def inserisciAccount(self, nome, cognome, dataDiNascita, email, password,
                          numeroTelefonico, cap, citofono, citta, civico, piazza, via):
+        print(type(dataDiNascita))
         account = Account()
         if account.checkEmailUtente(email) == True:
             return False

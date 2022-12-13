@@ -22,7 +22,6 @@ class Prodotto(ServizioInterface):
                          prezzoOriginale, nomeScaffaleLe, nomeCategoria):
         self.idCategoria = idCategoria
         self.nomeCategoria = nomeCategoria
-        # TODO il prodotto deve essere inserito con il nome della categoria e non con l'id categoria, e se il nome della categoria non esiste deve essere creata
         self.dataEsposizione = dataEsposizione
         self.idAccount = idAccount
         self.dataPrimoSconto = dataEsposizione + relativedelta(months=2)

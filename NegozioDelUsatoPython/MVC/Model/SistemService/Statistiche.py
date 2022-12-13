@@ -71,7 +71,7 @@ class Statistiche:
     def calcolaGuadagno(self, listProdotti):
         totale = 0
         for prodotto in listProdotti:
-            totale += prodotto.prezzoCorrente
+            totale += int(prodotto.prezzoCorrente)
         return totale
 
     # Metodo che prende la lista dei prodotti venduti nelle 24 ore anticedenti

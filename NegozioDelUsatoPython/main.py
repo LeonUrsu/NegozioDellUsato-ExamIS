@@ -28,19 +28,19 @@ if __name__ == '__main__':
     try:
         sys.exit(app.exec())
     except:
-        print("exiting")
+        print(">>>>exiting")
 
     # Generatore statistiche
     try:
         Statistiche().aggiungiStatistiche()
-        print("---stats generate")
+        print(">>>>stats generate")
     except:
-        print("errore generazione statistiche")
+        print(">>>>errore generazione statistiche")
 
     # backup del database
     # chiusura dell'app in questo punto del codice
     try:
         Backup().effettuaBackup()
-        print("---backup effettuato")
+        print(">>>>backup effettuato")
     except:
-        print("---errore generazione backup")
+        print(">>>>errore generazione backup")

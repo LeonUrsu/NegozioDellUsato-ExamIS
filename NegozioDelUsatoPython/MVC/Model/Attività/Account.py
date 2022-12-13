@@ -130,7 +130,7 @@ class Account(ServizioInterface):
     #Metodo che grazie ad un formato strasforma una data in str in datetime
     def pairDataDiNascita(self, dataStr):
         format = "%d/%m/%Y"
-        dataPaired = datetime.strptime(dataStr, format)
+        dataPaired = datetime.datetime.strptime(dataStr, format)
         return dataPaired
 
     """

@@ -33,11 +33,11 @@ class AmministratoreView(QWidget):
         stats = Controller().trovaUltimeStatistiche()
         if stats != None:
             try:
-                obj.guadagnoTotaleLabel.setText(str(stats.prodottiVendutiTotali))
+                obj.guadagnoTotaleLabel.setText(str(stats.guadagnoTotale))
             except:
                 pass
             try:
-                obj.prodottiVendutiLabel.setText(str(stats.guadagnoTotale))
+                obj.prodottiVendutiLabel.setText(str(stats.prodottiVendutiTotali))
             except:
                 pass
             try:
@@ -455,7 +455,7 @@ class AmministratoreView(QWidget):
         self.removeAndAdd(obj)
         obj.nomeDaIns.setText(account.nome)
         obj.cognomeDaIns.setText(account.cognome)
-        obj.dataDiNascitaDaIns.setText(account.dataDiNascita.strftime("%Y-%m-%d %H:%M:%S"))
+        obj.dataDiNascitaDaIns.setText(account.dataDiNascita.strftime("%Y-%m-%d"))
         obj.emailDaIns.setText(account.email)
         obj.passwordDaIns.setText(account.password)
         obj.idAccountDaIns.setText(f"{account.idAccount}")
