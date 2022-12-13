@@ -1,0 +1,1 @@
+{"adminEmail" : "admin", "adminPassword" : "password" }
