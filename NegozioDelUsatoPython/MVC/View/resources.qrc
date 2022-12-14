@@ -293,4 +293,16 @@
     <file>assets/utils icons/56-warning.svg</file>
     <file>assets/utils icons/56-warning (1).svg</file>
   </qresource>
+  <qresource prefix="LOGO">
+    <file>assets/LOGO/logo-black.svg</file>
+    <file>assets/LOGO/LOGOTEST1.png</file>
+    <file>assets/LOGO/logo-color.svg</file>
+    <file>assets/LOGO/logo-no-background.svg</file>
+    <file>assets/LOGO/logo-white.svg</file>
+    <file>assets/LOGO/usatobeato-high-resolution-color-logo.svg</file>
+    <file>assets/LOGO/usatobeato-high-resolution-logo-color-on-transparent-background.svg</file>
+    <file>assets/LOGO/usatobeato-low-resolution-color-logo.svg</file>
+    <file>assets/LOGO/usatobeato-low-resolution-logo-color-on-transparent-background.svg</file>
+    <file>assets/LOGO/usatobeato-website-favicon-color.svg</file>
+  </qresource>
 </RCC>

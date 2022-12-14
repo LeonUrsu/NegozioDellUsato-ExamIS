@@ -246,7 +246,7 @@ QPushButton:pressed{
                  </property>
                  <item>
                   <property name="text">
-                   <string>tutte le categorie</string>
+                   <string>Tutte le Categorie</string>
                   </property>
                  </item>
                 </widget>

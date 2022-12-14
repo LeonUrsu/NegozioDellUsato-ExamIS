@@ -24,7 +24,7 @@ class CentralWindow():
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         self.finestra.setWindowTitle("")
-        icon = QtGui.QIcon("MVC/View/assets/provaIconTitolo.png")
+        icon = QtGui.QIcon("MVC/View/assets/LOGO/usatobeato-website-favicon-color.svg.png")
         self.finestra.setWindowIcon(icon)
         file.close()
         self.apriAmministratoreView(pathlib.Path().resolve().__str__())

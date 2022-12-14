@@ -25,21 +25,21 @@ class PathDatabase(object):
         PathDatabase.messaggioVenditaProdotti = os.path.join(mainDirPath, "Database", "emailFormat", "messaggioVenditaProdotti.txt")
 
 
+    def resetDatabase(self, mainDirPath):
+        self.setup(mainDirPath)
+        obj = PathDatabase()
+        members = [attr for attr in dir(obj) if not callable(getattr(obj, attr)) and not attr.startswith("__")]
+        for name in members:
+            if name == "parametriTxt":
+                self.scrivi(os.path.join(mainDirPath, "Database", "parametri.txt"), str())
+                print(f"parametri.txt resettato")
+            else:
+                attribut = getattr(other, )# TODO 13/12/22
+                self.scrivi(obj.exca, "")
+                print(f"{name} - cancellato")
+        #getattr(other, "name_of_variable")
 
-
-    mainDirPath = pathlib.Path().resolve()
-    amministratoreTxt = ""
-    categorieTxt = ""
-    accountTxt = ""
-    loggingTxt = ""
-    eliminatiTxt = ""
-    inVenditaTxt = ""
-    scadutiTxt = ""
-    vendutiTxt = ""
-    ricevuteTxt = ""
-    scaffaliTxt = ""
-    parametriTxt = ""
-    statisticheTxt = ""
-    messaggioEliminazioneProdotti = ""
-    messaggioRegistrazioneProdotti = ""
-    messaggioVenditaProdotti = ""
+    def scrivi(self, fileName, contenuto):
+        with open(fileName, 'w') as in_file:
+            in_file.write(contenuto)
+        in_file.close()
