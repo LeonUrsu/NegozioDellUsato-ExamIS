@@ -27,6 +27,9 @@ class Logging:
     def inserisciLoggingNelDatabase(self):
         fileName = PathDatabase().loggingTxt
         listLogging = File().deserializza(fileName)
+        for logging in listLogging:
+            if logging.idAccount == self.idAccount:
+                eliminato = listLogging.pop(listLogging.index(logging))
         listLogging.append(self)
         File().serializza(fileName, listLogging)
         return True
@@ -34,9 +37,9 @@ class Logging:
     # Metodo che gestisce il login di un utente
     # return valore booleano a seconda se il login è andato a buon fine
     def login(self, email, password):
-        account = Account().trovaOggettoTramiteEmail(email)
         if email == "admin":
             return self.loginAdmin(password)
+        account = Account().trovaOggettoTramiteEmail(email)
         if account == None:
             return None
         log = self.cercaLogin(account)
@@ -87,6 +90,7 @@ class Logging:
         if password == account.password:
             return True
         log.tentativi += 1
+        log.inserisciLoggingNelDatabase()
         ExceptHandler().erroreAutenticazione()
         return False
 
@@ -113,9 +117,10 @@ class Logging:
     # Metodo per gestire il raggiungimento della soglia massima di tentativi permessi all'utente
     # log = credenziali di accesso di tipo Logging
     def timeout(self, log):
-        ExceptHandler().erroreTimeoutAutenticazione()
+        #ExceptHandler().erroreTimeoutAutenticazione()
         log.prossimoTentativo = datetime.today() + timedelta(minutes=30)
         log.tentativi = 0
+        log.inserisciLoggingNelDatabase()
 
     # metodo per loggare l'amministratore
     def loginAdmin(self, password):

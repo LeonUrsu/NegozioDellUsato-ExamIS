@@ -1,5 +1,5 @@
 import os.path
-import pathlib
+
 
 
 class PathDatabase(object):
@@ -20,26 +20,32 @@ class PathDatabase(object):
         PathDatabase.scaffaliTxt = os.path.join(mainDirPath, "Database", "Scaffali", "Scaffali.txt")
         PathDatabase.parametriTxt = os.path.join(mainDirPath, "Database", "parametri.txt")
         PathDatabase.statisticheTxt = os.path.join(mainDirPath, "Database", "Statistiche", "Statistiche.txt")
-        PathDatabase.messaggioEliminazioneProdotti = os.path.join(mainDirPath, "Database", "emailFormat", "messaggioEliminazioneProdotti.txt")
-        PathDatabase.messaggioRegistrazioneProdotti = os.path.join(mainDirPath, "Database", "emailFormat", "messaggioRegistrazione.txt")
-        PathDatabase.messaggioVenditaProdotti = os.path.join(mainDirPath, "Database", "emailFormat", "messaggioVenditaProdotti.txt")
+        PathDatabase.messaggioEliminazioneProdotti = os.path.join(mainDirPath, "Database", "emailFormat",
+                                                                  "messaggioEliminazioneProdotti.txt")
+        PathDatabase.messaggioRegistrazioneProdotti = os.path.join(mainDirPath, "Database", "emailFormat",
+                                                                   "messaggioRegistrazione.txt")
+        PathDatabase.messaggioVenditaProdotti = os.path.join(mainDirPath, "Database", "emailFormat",
+                                                             "messaggioVenditaProdotti.txt")
 
-
+    """
     def resetDatabase(self, mainDirPath):
         self.setup(mainDirPath)
         obj = PathDatabase()
         members = [attr for attr in dir(obj) if not callable(getattr(obj, attr)) and not attr.startswith("__")]
         for name in members:
             if name == "parametriTxt":
-                self.scrivi(os.path.join(mainDirPath, "Database", "parametri.txt"), str())
+                self.scrivi(os.path.join(mainDirPath, "Database", "parametri.txt"),
+                            str({"lastIdProdotto": 0, "lastIdRicevuta": 0, "lastIdAccount": 0, "lastidCategoria": 0,
+                                 "lastIdScaffale": 0}))
                 print(f"parametri.txt resettato")
             else:
-                attribut = getattr(other, )# TODO 13/12/22
-                self.scrivi(obj.exca, "")
+                attribut = getattr(other, name)
+                self.scrivi(obj.attribut, "")
                 print(f"{name} - cancellato")
-        #getattr(other, "name_of_variable")
+        # getattr(other, "name_of_variable")
 
     def scrivi(self, fileName, contenuto):
         with open(fileName, 'w') as in_file:
             in_file.write(contenuto)
         in_file.close()
+    """
