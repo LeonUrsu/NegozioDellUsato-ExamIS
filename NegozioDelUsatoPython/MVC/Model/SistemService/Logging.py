@@ -45,7 +45,6 @@ class Logging:
             log = self.cercaLogin(account)
         if not self.verificaDettagliLogin(log, account, password):
             return None
-
         Logging.accountLoggato = account
         Logging.TypeClienteProprietario = True
         Logging.TypeAmministratore = False
@@ -87,10 +86,9 @@ class Logging:
     def checkPassword(self, password, account, log):
         if password == account.password:
             return True
-        else:
-            log.tentativi += 1
-            ExceptHandler().erroreAutenticazione()
-            return False
+        log.tentativi += 1
+        ExceptHandler().erroreAutenticazione()
+        return False
 
     # Metodo per controllare se la data di accesso al profilo è valida oppure il profilo
     # risulta bloccato temporaneamente
@@ -129,9 +127,8 @@ class Logging:
             Logging.TypeAmministratore = True
             Logging.TypeClienteProprietario = False
             return True
-        else:
-            ExceptHandler().erroreAutenticazione()
-            return False
+        ExceptHandler().erroreAutenticazione()
+        return False
 
     # Metodo che verifica se l'utente è loggato
     def checkAccontLoggato(self):
