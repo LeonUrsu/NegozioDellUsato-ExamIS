@@ -11,6 +11,7 @@ from MVC.Model.SistemService.Filtri import Filtri
 from MVC.Model.SistemService.Logging import Logging
 from MVC.Model.SistemService.Notifica import Notifica
 from MVC.Model.SistemService.Statistiche import Statistiche
+from MVC.View.AdminButtonsViews.ExceptHandler import ExceptHandler
 
 
 class Amministratore(User):
@@ -96,6 +97,7 @@ class Amministratore(User):
         print(type(dataDiNascita))
         account = Account()
         if account.checkEmailUtente(email) == True:
+            ExceptHandler().erroreCreazioneAdmin()
             return False
         indirizzo = Indirizzo(cap, citofono, citta, civico, piazza, via)
         account = Account().aggiungiAccount(nome, cognome, dataDiNascita, email, numeroTelefonico, password, indirizzo)

@@ -2,7 +2,7 @@ import pathlib
 import sys
 
 from datetime import datetime
-from PySide6 import QtWidgets
+from PySide6.QtWidgets import QMessageBox
 from PySide6.QtWidgets import QApplication
 from Database.PathDatabase import PathDatabase
 from MVC.Model.SistemService.Backup import Backup

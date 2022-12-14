@@ -4,12 +4,14 @@ from datetime import datetime, timedelta
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
 from MVC.Model.SistemService.File import File
+from MVC.View.AdminButtonsViews.ExceptHandler import ExceptHandler
 
 
 class Logging:
     accountLoggato = None
     TypeClienteProprietario = False
     TypeAmministratore = False
+
 
     # Costruttore della classe
     def __init__(self):
@@ -18,6 +20,7 @@ class Logging:
         self.idAccount = idAccount
         self.tentativi = 0
         self.prossimoTentativo = datetime.today()
+
 
     # Metodo che salva le credeniali di un utente su un file quando viene inserito nel sistema
     # return = True if l'operazinone è andata bene
@@ -42,6 +45,7 @@ class Logging:
             log = self.cercaLogin(account)
         if not self.verificaDettagliLogin(log, account, password):
             return None
+
         Logging.accountLoggato = account
         Logging.TypeClienteProprietario = True
         Logging.TypeAmministratore = False
@@ -75,16 +79,18 @@ class Logging:
     # log = credenziali di accesso di tipo Logging
     # return = True if il login è valido
     def verificaDettagliLogin(self, log, account, password):
-        if self.checkData(log) and self.checkTentativi(log) and self.checkPassword(password, account):
-            return True
-        else:
-            return False
-
-    # Metodo che controlla se la password inserita corrisponde alla password dell'utente
-    def checkPassword(self, password, account):
-        if password == account.password:
+        if self.checkData(log) and self.checkTentativi(log) and self.checkPassword(password, account, log):
             return True
         return False
+
+    # Metodo che controlla se la password inserita corrisponde alla password dell'utente
+    def checkPassword(self, password, account, log):
+        if password == account.password:
+            return True
+        else:
+            log.tentativi += 1
+            ExceptHandler().erroreAutenticazione()
+            return False
 
     # Metodo per controllare se la data di accesso al profilo è valida oppure il profilo
     # risulta bloccato temporaneamente
@@ -109,6 +115,7 @@ class Logging:
     # Metodo per gestire il raggiungimento della soglia massima di tentativi permessi all'utente
     # log = credenziali di accesso di tipo Logging
     def timeout(self, log):
+        ExceptHandler().erroreTimeoutAutenticazione()
         log.prossimoTentativo = datetime.today() + timedelta(minutes=30)
         log.tentativi = 0
 
@@ -122,7 +129,9 @@ class Logging:
             Logging.TypeAmministratore = True
             Logging.TypeClienteProprietario = False
             return True
-        return False
+        else:
+            ExceptHandler().erroreAutenticazione()
+            return False
 
     # Metodo che verifica se l'utente è loggato
     def checkAccontLoggato(self):
@@ -130,3 +139,4 @@ class Logging:
             return True
         else:
             return False
+

@@ -206,7 +206,7 @@ QPushButton:pressed{
                <item>
                 <widget class="QComboBox" name="filtraPerData">
                  <property name="currentText">
-                  <string/>
+                  <string>Da Sempre</string>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -215,16 +215,11 @@ QPushButton:pressed{
                   </size>
                  </property>
                  <property name="placeholderText">
-                  <string>Filtra Data</string>
+                  <string/>
                  </property>
                  <item>
                   <property name="text">
-                   <string>tutte le date</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Ultimo Giorno</string>
+                   <string>Da Sempre</string>
                   </property>
                  </item>
                  <item>
@@ -237,12 +232,17 @@ QPushButton:pressed{
                    <string>Ultimo Mese</string>
                   </property>
                  </item>
+                 <item>
+                  <property name="text">
+                   <string>Ultimo Trimestre</string>
+                  </property>
+                 </item>
                 </widget>
                </item>
                <item>
                 <widget class="QComboBox" name="filtraPerCategoria">
                  <property name="placeholderText">
-                  <string>Filtra Categoria</string>
+                  <string/>
                  </property>
                  <item>
                   <property name="text">
@@ -254,11 +254,11 @@ QPushButton:pressed{
                <item>
                 <widget class="QComboBox" name="filtraPerPrezzo">
                  <property name="placeholderText">
-                  <string>Filtra Prezzo</string>
+                  <string/>
                  </property>
                  <item>
                   <property name="text">
-                   <string>tutti i prezzi</string>
+                   <string>Tutti i Prezzi</string>
                   </property>
                  </item>
                  <item>
@@ -268,17 +268,17 @@ QPushButton:pressed{
                  </item>
                  <item>
                   <property name="text">
-                   <string>10€ - 20€</string>
+                   <string>10€ - 20€ </string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>20€ - 50€</string>
+                   <string>20€ - 50€ </string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>&gt;50€</string>
+                   <string>&gt;50€ </string>
                   </property>
                  </item>
                 </widget>

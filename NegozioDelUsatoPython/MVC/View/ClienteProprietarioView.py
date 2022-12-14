@@ -36,7 +36,7 @@ class ClienteProprietarioView():
         finestra.homeBtn.setStyleSheet(self.pushedStyleSheet())
         finestra.iMieiProdottiBtn.setStyleSheet(self.unPushedStyleSheet())
 
-    # Metodo che cerca il prodotto in base al nome passato e alle opzion scelte nella tendina
+    # Metodo che cerca il prodotto in base al nome passato e alle opzioni scelte nella tendina
     def cercaProdottoBtnClicked(self, mainPath, obj):
         textData = str(obj.filtraPerData.currentText())
         textPrezzo = str(obj.filtraPerPrezzo.currentText())
