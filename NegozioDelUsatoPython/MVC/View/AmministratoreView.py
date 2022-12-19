@@ -4,8 +4,10 @@ from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
 from PySide6.QtGui import QCursor
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton
+from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton, QVBoxLayout
 from MVC.Controller.Controller import Controller
+import matplotlib.pyplot as plt
+
 
 
 class AmministratoreView(QWidget):
@@ -22,7 +24,7 @@ class AmministratoreView(QWidget):
     # mainPath = path del main
     # amministratore = oggetto AmministratoreView
     def statisticheBtnClicked(self, mainPath, amministratore):
-        name = "statisticheView.ui"
+        name = "statisticheView2.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
         amministratore.finestra.statisticheBtn.setStyleSheet(self.pushedStyleSheet())
@@ -55,6 +57,22 @@ class AmministratoreView(QWidget):
                 obj.cat3.setText(f"{stats.nomeTerzaCategoriaTendenza} - n:{stats.numeroTerzaCategoriaTendenza}")
             except:
                 pass
+
+
+    def statisticheGenerator(self, mainPath, amministratore):
+            name = "statisticheView2.ui"
+            obj = self.caricaView(mainPath, name)
+            self.removeAndAdd(obj)
+
+            amministratore.finestra.statisticheBtn.setStyleSheet(self.pushedStyleSheet())
+            amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
+            amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
+            amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
+
+
+
+
+
 
     # Metodo per gestire i pulsanti premuti sul menu sinistro
     # mainPath = path del main
