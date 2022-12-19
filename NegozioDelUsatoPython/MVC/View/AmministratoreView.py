@@ -454,7 +454,8 @@ class AmministratoreView(QWidget):
         self.removeAndAdd(obj)
         obj.nomeDaIns.setText(account.nome)
         obj.cognomeDaIns.setText(account.cognome)
-        obj.dataDiNascitaDaIns.setText(account.dataDiNascita.strftime("%Y-%m-%d"))
+        """obj.dataDiNascitaDaIns.setText(account.dataDiNascita.strftime("%Y-%m-%d"))""" #così non carica le informazioni del cliente
+        obj.dataDiNascitaDaIns.setText(account.dataDiNascita.__str__())
         obj.emailDaIns.setText(account.email)
         obj.passwordDaIns.setText(account.password)
         obj.idAccountDaIns.setText(f"{account.idAccount}")

@@ -10,6 +10,7 @@ from MVC.Model.SistemService.Statistiche import Statistiche
 from MVC.View.CentralWindow import CentralWindow
 
 
+
 if __name__ == '__main__':
     # TODO correggere i test eliminati il 14 nov
     # Path setup
@@ -22,7 +23,6 @@ if __name__ == '__main__':
     centralWindow = CentralWindow()
     centralWindow.apriCentralWindowView(pathlib.Path().resolve().__str__())
     centralWindow.finestra.show()
-
 
     # exit app setup
     try:
