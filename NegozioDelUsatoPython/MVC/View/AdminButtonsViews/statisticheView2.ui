@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>909</width>
-    <height>590</height>
+    <height>621</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,6 +21,17 @@ QFrame{
 	color:#78799c;
 	background-color:#2a2c49;
 	border-radius: 50%;
+}
+QPushButton{
+	color:#78799c;
+	background-color:#2a2c49;
+	border: 0px;
+}
+QLabel{
+	color:#78799c;
+	background-color:#2a2c49;
+	border-radius: 50%;
+    font-weight: bold;
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -43,7 +54,7 @@ QFrame{
     <widget class="QFrame" name="topleft">
      <property name="maximumSize">
       <size>
-       <width>500</width>
+       <width>700</width>
        <height>500</height>
       </size>
      </property>
@@ -58,19 +69,54 @@ QFrame{
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string notr="true"/>
+        </property>
+        <property name="icon">
+         <iconset resource="../resources.qrc">
+          <normaloff>:/purpleIcons/assets/#78799c(purple) icons/dollar-sign.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/dollar-sign.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>48</width>
+          <height>48</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignRight|Qt::AlignVCenter">
        <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Leelawadee UI</family>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
         <property name="text">
-         <string>GUADAGNO TOTALE:</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;GUADAGNO TOTALE:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
-      <item>
+      <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
        <widget class="QLabel" name="guadagnoTotaleLabel">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Leelawadee UI</family>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
-         <string>...</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -79,6 +125,12 @@ QFrame{
    </item>
    <item row="1" column="1">
     <widget class="QFrame" name="botleft">
+     <property name="maximumSize">
+      <size>
+       <width>700</width>
+       <height>500</height>
+      </size>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -87,14 +139,37 @@ QFrame{
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../resources.qrc">
+          <normaloff>:/purpleIcons/assets/#78799c(purple) icons/users.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/users.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>48</width>
+          <height>48</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="label_5">
         <property name="text">
-         <string>CLIENTI REGISTRATI:</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;CLIENTI REGISTRATI:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="clientiProprietariLabel">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
         <property name="text">
          <string>...</string>
         </property>
@@ -105,6 +180,12 @@ QFrame{
    </item>
    <item row="1" column="2">
     <widget class="QFrame" name="botright">
+     <property name="maximumSize">
+      <size>
+       <width>700</width>
+       <height>500</height>
+      </size>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -112,15 +193,68 @@ QFrame{
       <enum>QFrame::Plain</enum>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
-      <item alignment="Qt::AlignHCenter">
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>CATEGORIE IN TENDENZA:</string>
+      <item alignment="Qt::AlignBottom">
+       <widget class="QFrame" name="frame">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
         </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QFrame" name="frame_2">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QPushButton" name="pushButton_4">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../resources.qrc">
+                <normaloff>:/purpleIcons/assets/#78799c(purple) icons/trending-up.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/trending-up.svg</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>48</width>
+                <height>48</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_3">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;CATEGORIE IN TENDENZA:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="frame">
+       <widget class="QFrame" name="frame_4">
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -129,24 +263,60 @@ QFrame{
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QLabel" name="cat1">
-           <property name="text">
-            <string>...</string>
+          <widget class="QFrame" name="frame_7">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
            </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QLabel" name="cat1">
+              <property name="text">
+               <string>...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="cat2">
-           <property name="text">
-            <string>...</string>
+          <widget class="QFrame" name="frame_5">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
            </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="cat2">
+              <property name="text">
+               <string>...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="cat3">
-           <property name="text">
-            <string>...</string>
+          <widget class="QFrame" name="frame_6">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
            </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QLabel" name="cat3">
+              <property name="text">
+               <string>...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
@@ -157,6 +327,12 @@ QFrame{
    </item>
    <item row="0" column="2">
     <widget class="QFrame" name="topright">
+     <property name="maximumSize">
+      <size>
+       <width>700</width>
+       <height>500</height>
+      </size>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -165,16 +341,52 @@ QFrame{
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QLabel" name="label_3">
+       <widget class="QPushButton" name="pushButton_2">
         <property name="text">
-         <string>PRODOTTI VENDUTI:</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../resources.qrc">
+          <normaloff>:/purpleIcons/assets/#78799c(purple) icons/shopping-bag.svg</normaloff>:/purpleIcons/assets/#78799c(purple) icons/shopping-bag.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>48</width>
+          <height>48</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignRight">
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <family>Leelawadee UI</family>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;PRODOTTI VENDUTI:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="prodottiVendutiLabel">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Leelawadee UI</family>
+          <pointsize>16</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
-         <string>...</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -183,6 +395,8 @@ QFrame{
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

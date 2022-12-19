@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QFile
-from PySide6.QtGui import QCursor
+from PySide6.QtGui import QCursor, QFont
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton, QVBoxLayout
 from MVC.Controller.Controller import Controller
@@ -34,45 +34,35 @@ class AmministratoreView(QWidget):
         stats = Controller().trovaUltimeStatistiche()
         if stats != None:
             try:
-                obj.guadagnoTotaleLabel.setText(str(stats.guadagnoTotale))
+                obj.guadagnoTotaleLabel.setText(str(stats.guadagnoTotale)+"€")
+                obj.guadagnoTotaleLabel.setFont(QFont("Leelawalee UI", 16))
             except:
                 pass
             try:
                 obj.prodottiVendutiLabel.setText(str(stats.prodottiVendutiTotali))
+                obj.prodottiVendutiLabel.setFont(QFont("Leelawalee UI", 16))
             except:
                 pass
             try:
                 obj.clientiProprietariLabel.setText(str(stats.numeroClientiProprietari))
+                obj.clientiProprietariLabel.setFont(QFont("Leelawalee UI", 16))
             except:
                 pass
             try:
-                obj.cat1.setText(f"{stats.nomePrimaCategoriaTendenza} - n:{stats.numeroPrimaCategoriaTendenza}")
+                obj.cat1.setText(f"#1 {stats.nomePrimaCategoriaTendenza}")
+                obj.cat1.setFont(QFont("Leelawalee UI", 16))
             except:
                 pass
             try:
-                obj.cat2.setText(f"{stats.nomeSecondaCategoriaTendenza} - n:{stats.numeroSecondaCategoriaTendenza}")
+                obj.cat2.setText(f"#2 {stats.nomeSecondaCategoriaTendenza}")
+                obj.cat2.setFont(QFont("Leelawalee UI", 16))
             except:
                 pass
             try:
-                obj.cat3.setText(f"{stats.nomeTerzaCategoriaTendenza} - n:{stats.numeroTerzaCategoriaTendenza}")
+                obj.cat3.setText(f"#3 {stats.nomeTerzaCategoriaTendenza}")
+                obj.cat3.setFont(QFont("Leelawalee UI", 16))
             except:
                 pass
-
-
-    def statisticheGenerator(self, mainPath, amministratore):
-            name = "statisticheView2.ui"
-            obj = self.caricaView(mainPath, name)
-            self.removeAndAdd(obj)
-
-            amministratore.finestra.statisticheBtn.setStyleSheet(self.pushedStyleSheet())
-            amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
-            amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
-            amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
-
-
-
-
-
 
     # Metodo per gestire i pulsanti premuti sul menu sinistro
     # mainPath = path del main
