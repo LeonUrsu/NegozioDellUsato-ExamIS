@@ -12,15 +12,14 @@ class Logging:
     TypeClienteProprietario = False
     TypeAmministratore = False
 
-
     # Costruttore della classe
     def __init__(self):
         pass
+
     def aggiungiLogging(self, idAccount):
         self.idAccount = idAccount
         self.tentativi = 0
         self.prossimoTentativo = datetime.today()
-
 
     # Metodo che salva le credeniali di un utente su un file quando viene inserito nel sistema
     # return = True if l'operazinone è andata bene
@@ -52,8 +51,6 @@ class Logging:
         Logging.TypeClienteProprietario = True
         Logging.TypeAmministratore = False
         return account
-
-
 
     # Metodo per effettuare il logout
     def logout(self):
@@ -117,7 +114,7 @@ class Logging:
     # Metodo per gestire il raggiungimento della soglia massima di tentativi permessi all'utente
     # log = credenziali di accesso di tipo Logging
     def timeout(self, log):
-        #ExceptHandler().erroreTimeoutAutenticazione()
+        # ExceptHandler().erroreTimeoutAutenticazione()
         log.prossimoTentativo = datetime.today() + timedelta(minutes=30)
         log.tentativi = 0
         log.inserisciLoggingNelDatabase()
@@ -141,4 +138,3 @@ class Logging:
             return True
         else:
             return False
-

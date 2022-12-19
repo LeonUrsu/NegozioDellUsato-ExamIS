@@ -4,11 +4,9 @@ import pickle
 
 class File:
 
-
     # Costruttore della classe
     def __init__(self):
         pass
-
 
     # Metodo per la lettura da un file
     # return = una stringa
@@ -18,7 +16,6 @@ class File:
         in_file.close()
         return letto
 
-
     # Metodo per la scrittura su un file
     # filename = nome del file su cui scrivere
     # contenuto = il contenuto da essere scritto su un file
@@ -26,7 +23,6 @@ class File:
         with open(fileName, 'w') as in_file:
             in_file.write(contenuto)
         in_file.close()
-
 
     # Metodo per la lettura di un oggetto di tipo arbirtario su un file
     # filename = nome del file da cui deserializzare
@@ -36,9 +32,9 @@ class File:
             try:
                 data = pickle.load(f)
                 return data
-            except: pass
+            except:
+                pass
         return list()
-
 
     # Metodo per la scrittura di un oggetto di tipo arbirtario su un file
     # filename = nome del file su cui serializzare
@@ -47,9 +43,8 @@ class File:
         with open(fileName, 'wb') as f:
             pickle.dump(contenuto, f, pickle.HIGHEST_PROTOCOL)
 
-
     def dictionaryEndcoder(self, contenuto):
         json_string = json.dumps([self.__dict__ for self in contenuto])
         return json_string
-        #dict = json.dumps([self.__dict__ for self in contenuto])
-        #return dict
+        # dict = json.dumps([self.__dict__ for self in contenuto])
+        # return dict

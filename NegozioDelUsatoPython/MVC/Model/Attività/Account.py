@@ -1,8 +1,6 @@
 import datetime
 import json
 from operator import index
-
-from MVC.Model.Attività.Indirizzo import Indirizzo
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from MVC.Model.SistemService.File import File
 from Database.PathDatabase import PathDatabase
@@ -22,8 +20,10 @@ class Account(ServizioInterface):
         self.email = email.lower()
         self.idAccount = self.newId()
         self.idProdotti = list()
-        if self.checkNumeroTelefonico(numeroTelefonico):self.numeroTelefonico = numeroTelefonico
-        else: self.numeroTelefonico = None
+        if self.checkNumeroTelefonico(numeroTelefonico):
+            self.numeroTelefonico = numeroTelefonico
+        else:
+            self.numeroTelefonico = None
         self.password = password
         self.residenza = residenza
         self.mettiOggettoSuListaNelFile()
@@ -127,7 +127,7 @@ class Account(ServizioInterface):
         account.mettiOggettoSuListaNelFile()
         return account
 
-    #Metodo che grazie ad un formato strasforma una data in str in datetime
+    # Metodo che grazie ad un formato strasforma una data in str in datetime
     def pairDataDiNascita(self, dataStr):
         format = "%d/%m/%Y"
         dataPaired = datetime.datetime.strptime(dataStr, format)
@@ -160,7 +160,6 @@ class Account(ServizioInterface):
         listAccount = File().deserializza(accountFile)
         for account in listAccount:
             if email == "admin":
-
                 return True
             if account.email == email:
                 return True
@@ -197,11 +196,9 @@ class Account(ServizioInterface):
                         account.idProdotti.pop(index(idProdotto))
                         self.salvaListaOggetti(listAccount)
 
-
-    #Metodo che controlla l'esistenza di un id
+    # Metodo che controlla l'esistenza di un id
     def checkEsistenzaIdAccount(self, id):
         prodotto = self.trovaOggettoTramiteId(id)
         if not prodotto == None:
             return True
         return False
-

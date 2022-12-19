@@ -1,7 +1,5 @@
 import copy
-import json
 from operator import index
-
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
 from MVC.Model.SistemService.File import File
@@ -72,7 +70,7 @@ class Scaffale(ServizioInterface):
             if scaffale.nomeScaffale == nomeEnd:
                 listScaffali.index(scaffale).idProdotti.append(prodotto.IdProdotto)
         prodotto.nomeScaffale = nomeEnd
-    
+
     # Metodo che serve per leggere la lista degli scaffali all'interno del Database
     def recuperaListaOggetti(self):
         fileName = PathDatabase().scaffaliTxt

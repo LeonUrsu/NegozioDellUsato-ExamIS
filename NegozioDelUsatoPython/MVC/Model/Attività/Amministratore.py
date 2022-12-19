@@ -3,7 +3,6 @@ from MVC.Model.Attività.Indirizzo import Indirizzo
 from MVC.Model.Attività.User import User
 from MVC.Model.Servizio.Categoria import Categoria
 from MVC.Model.Servizio.Prodotto import Prodotto
-from MVC.Model.Servizio.Scaffale import Scaffale
 from MVC.Model.SistemService.Backup import Backup
 from MVC.Model.Attività.Account import Account
 from MVC.Model.Servizio.Ricevuta import Ricevuta
@@ -18,12 +17,13 @@ class Amministratore(User):
 
     def __init__(self):
         super().__init__()
-        self.email = "admin" # TODO questa email non ha nulla a che fare con admin, da togliere
-        self.password = "admin" # TODO questa password non ha nulla a che fare con admin, da togliere
+        self.email = "admin"  # TODO questa email non ha nulla a che fare con admin, da togliere
+        self.password = "admin"  # TODO questa password non ha nulla a che fare con admin, da togliere
 
     # Metodo che aggiorna un account in base ai parametri passati dall'amministratore
     def aggiornaAccount(self, nome, cognome, dataDiNascitaStr, email, idAccount, numeroTelefonico, residenza):
-        account = Account().aggiornaAccount(nome, cognome, dataDiNascitaStr, email, idAccount, numeroTelefonico, residenza)
+        account = Account().aggiornaAccount(nome, cognome, dataDiNascitaStr, email, idAccount, numeroTelefonico,
+                                            residenza)
         return account
 
     # Metodo che aggiorna un prodotto in base ai parametri passati dall'amministratore
@@ -84,7 +84,7 @@ class Amministratore(User):
         prodotto.aggiungiProdotto(categoria.idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
                                   nomeScaffaleLe, nomeCategoria)
         prodotto.mettiOggettoSuListaNelFile()
-        #if nomeScaffaleLe != "": Scaffale().associaProdottoAScaffale(prodotto)
+        # if nomeScaffaleLe != "": Scaffale().associaProdottoAScaffale(prodotto)
         if idAccount != None: Account().associaProdottoAdAccount(prodotto)
         if nomeCategoria != "": Categoria().aggiungiProdottiInCategoria(prodotto)
         return prodotto

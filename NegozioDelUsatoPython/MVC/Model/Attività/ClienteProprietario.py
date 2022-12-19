@@ -11,7 +11,6 @@ class ClienteProprietario(User):
         super().__init__()
         self.finestra.iMieiProdottiBtn.clicked.connect(print("ciaooooooooooo"))
 
-
     # Metodo che restituisce 3 liste di Prodotti: inVendita, venduti, scaduti.
     # L'assegnazione deve essere: inVendita, venduti, scaduti = controllaStatoProdotti(account)
     def controllaStatoProdotti(self):
@@ -26,15 +25,12 @@ class ClienteProprietario(User):
         scaduti = self.recuperaProdottiClienteProprietario(account.idAccount, filenameScaduti)
         return inVendita, venduti, scaduti
 
-
     # Metodo che recupera l'account dell'utente loggato e lo restituisce se è effettivamente loggato
     # altrimenti restituisce None
     def visualizzaDatiPersonali(self):
         if not self.checkAccontLoggatoConLogging():
             return None
         return Logging.accountLoggato
-
-
 
     # Metodo che recupera la lista di prodotti appartenenti all'account di un
     # Cliente Proprietario tramite la ricerca degli oggetti tramite l'idAccount nella listProdotti del file.
@@ -48,8 +44,7 @@ class ClienteProprietario(User):
                 filteredListProdotti.append(prodotto)
         return filteredListProdotti
 
-
-    #Metodo che verifica se l'utente è loggato
+    # Metodo che verifica se l'utente è loggato
     def checkAccontLoggatoConLogging(self):
         risultato = Logging().checkAccontLoggato()
         return risultato

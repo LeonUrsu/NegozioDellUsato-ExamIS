@@ -28,14 +28,11 @@ class Categoria(ServizioInterface):
                 return True
         return False
 
-
-
     # Metodo che permette di clonare un'istanza della classe
     # return Categoria
     def clone(self):
         deepCopy = copy.deepcopy(self)
         return deepCopy
-
 
     # Metodo che salva una categoria nel database
     def creaInDatabase(self):
@@ -133,4 +130,3 @@ class Categoria(ServizioInterface):
             if cat.nome == nomeCategoria:
                 return cat
         return None
-

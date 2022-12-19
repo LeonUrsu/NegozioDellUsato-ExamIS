@@ -1,5 +1,4 @@
 # CLasse Prodotto che rappresenta il prodotto con le sue caratteristiche che verrà esposto nel negozio
-import copy
 import json
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
@@ -34,7 +33,6 @@ class Prodotto(ServizioInterface):
         self.prezzoOriginale = prezzoOriginale
         self.nomeScaffale = nomeScaffaleLe
 
-
     # Metodo che viene richiamato su un prodotto e serve per inserirlo nella
     # lista degli oggetti in vendita
     def associaOggettoAdOggetti(self):
@@ -42,7 +40,6 @@ class Prodotto(ServizioInterface):
         Categoria().aggiungiProdottiInCategoria(self)
         Account().associaProdottoAdAccount(self)
         self.mettiOggettoSuListaNelFile()
-
 
     # Metodo che elimina i prodotti nel database
     def eliminaProdotto(self, idProdotto):
@@ -84,7 +81,6 @@ class Prodotto(ServizioInterface):
                 if prodotto.idProdotto == id:
                     return listProdotti[listProdotti.index(prodotto)]
         return None
-
 
     # Metodo che rimuove un Prodotto da file e lo restituisce, la lista verrà serializzata su file senza
     # l'oggetto rimosso precedentemente
@@ -249,4 +245,3 @@ class Prodotto(ServizioInterface):
         return listaFiltrata
 
     # se il prodotto non ha id cliente deve essere comunnque venduto#####################################################################################################################
-
