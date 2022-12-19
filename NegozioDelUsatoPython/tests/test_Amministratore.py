@@ -4,8 +4,8 @@ import os
 import pathlib
 import random
 import shutil
-from unittest import TestCase, main
-from Database.PathDatabase import PathDatabase
+from unittest import TestCase
+from tests.Database_test.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
 from MVC.Model.Attività.Amministratore import Amministratore
 from MVC.Model.Servizio.Prodotto import Prodotto
@@ -15,9 +15,10 @@ from MVC.Model.SistemService.File import File
 class Amministratore_test(TestCase):
 
     def setUp(self):
-        mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
+        #mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
+        mainPath = pathlib.Path().resolve().__str__()
         PathDatabase().setup(mainPath)
-        from_path = os.path.join(mainPath, "BackupFiles")  # path per cartella di backup
+        from_path = os.path.join(mainPath, "BackupFiles") # path per cartella di backup
         to_path = os.path.join(mainPath, "Database")
         try:
             shutil.rmtree(to_path)

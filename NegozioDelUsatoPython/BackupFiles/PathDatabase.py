@@ -8,6 +8,7 @@ class PathDatabase(object):
         pass
 
     def setup(self, mainDirPath):
+        PathDatabase.mainDirPath = mainDirPath
         PathDatabase.amministratoreTxt = os.path.join(mainDirPath, "Database", "Amministratore", "Amministratore.txt")
         PathDatabase.categorieTxt = os.path.join(mainDirPath, "Database", "Categorie", "Categorie.txt")
         PathDatabase.accountTxt = os.path.join(mainDirPath, "Database", "Account", "Account.txt")

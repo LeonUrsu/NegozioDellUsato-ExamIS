@@ -8,7 +8,6 @@ from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton
 from MVC.Controller.Controller import Controller
 
 
-
 class AmministratoreView(QWidget):
     def __init__(self, mainPath):
         super().__init__()
@@ -494,7 +493,8 @@ class AmministratoreView(QWidget):
         viaLe = obj.viaLe.text()
         piazzaLe = obj.piazzaLe.text()
         civicoLe = obj.civicoLe.text()
-        Controller().aggiornaAccount(idAccount, nomeLe, cognomeLe, dataDiNascitaLe, emailLe, telefonoLe, capLe, citofonoLe, cittaLe, viaLe, piazzaLe, civicoLe) # TODO
+        Controller().aggiornaAccount(idAccount, nomeLe, cognomeLe, dataDiNascitaLe, emailLe, telefonoLe, capLe,
+                                     citofonoLe, cittaLe, viaLe, piazzaLe, civicoLe)  # TODO
         self.caricainfoAccountView(mainPath, "infoAccountView.ui", Controller().trovaAccountTramiteId(idAccount),
                                    amministratore, None)
 
