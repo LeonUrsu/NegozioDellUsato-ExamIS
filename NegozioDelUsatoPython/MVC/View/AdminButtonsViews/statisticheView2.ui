@@ -262,6 +262,16 @@ QLabel{
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
+         <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+          <widget class="QLabel" name="label_4">
+           <property name="styleSheet">
+            <string notr="true">background-color:#c45500</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#fbffef;&quot;&gt;#1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
          <item>
           <widget class="QFrame" name="frame_7">
            <property name="frameShape">
@@ -281,6 +291,16 @@ QLabel{
            </layout>
           </widget>
          </item>
+         <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+          <widget class="QLabel" name="label_6">
+           <property name="styleSheet">
+            <string notr="true">background-color:#c45500</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#fbffef;&quot;&gt;#2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
          <item>
           <widget class="QFrame" name="frame_5">
            <property name="frameShape">
@@ -298,6 +318,16 @@ QLabel{
              </widget>
             </item>
            </layout>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+          <widget class="QLabel" name="label_7">
+           <property name="styleSheet">
+            <string notr="true">background-color:#c45500</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#fbffef;&quot;&gt;#3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
           </widget>
          </item>
          <item>
