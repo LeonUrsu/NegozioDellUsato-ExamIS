@@ -185,7 +185,7 @@ class Prodotto(ServizioInterface):
     # metodo che gestisce la scadenza di un oggetto spostandolo dai prodotti in vendita
     # ai prodotti scaduti
     # id = id prodotto da spostare
-    def scadenza(self, id):
+    def scadenza(self, id): # TODO si puo modificare per più efficienza
         start = PathDatabase().inVenditaTxt
         end = PathDatabase().scadutiTxt
         self.spostaProdotto(id, start, end)

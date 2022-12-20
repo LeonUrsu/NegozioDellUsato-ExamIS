@@ -44,3 +44,6 @@ if __name__ == '__main__':
         print(">>>>backup effettuato")
     except:
         print(">>>>errore generazione backup")
+
+    # Sconto o eliminazione dei prodotti tramite il controllo data
+    # TODO
