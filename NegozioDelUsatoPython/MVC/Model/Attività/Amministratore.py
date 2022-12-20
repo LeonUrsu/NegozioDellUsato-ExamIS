@@ -13,6 +13,7 @@ from MVC.Model.SistemService.Statistiche import Statistiche
 from MVC.View.AdminButtonsViews.ExceptHandler import ExceptHandler
 
 
+# Classe per gestire tutte le funzioni disponibili ad un amministratore del negozio
 class Amministratore(User):
 
     def __init__(self):
@@ -80,6 +81,18 @@ class Amministratore(User):
         if categoria == None:
             categoria = Categoria()
             categoria.aggiungiCategoria(nomeCategoria)
+        try:
+            idAccount = int(idAccount)
+        except:
+            pass
+        try:
+            prezzoOriginale = float(prezzoOriginale)
+        except:
+            pass
+        try:
+            nomeScaffaleLe = nomeScaffaleLe.lower()
+        except:
+            pass
         prodotto = Prodotto()
         prodotto.aggiungiProdotto(categoria.idCategoria, dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
                                   nomeScaffaleLe, nomeCategoria)
@@ -94,7 +107,6 @@ class Amministratore(User):
     # credenziali via emailProdotto().recuperaListaOggetti
     def inserisciAccount(self, nome, cognome, dataDiNascita, email, password,
                          numeroTelefonico, cap, citofono, citta, civico, piazza, via):
-        print(type(dataDiNascita))
         account = Account()
         if account.checkEmailUtente(email) == True:
             ExceptHandler().erroreCreazioneAdmin()

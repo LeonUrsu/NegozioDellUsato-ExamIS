@@ -72,7 +72,7 @@ class Categoria(ServizioInterface):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
-        newId = dictLetto['lastidCategoria'] + 1
+        newId = int(dictLetto['lastIdAccount'] + 1)
         dictLetto['lastidCategoria'] = newId
         File().scrivi(fileName, json.dumps(dictLetto))
         return newId

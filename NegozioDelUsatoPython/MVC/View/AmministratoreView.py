@@ -8,7 +8,6 @@ from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton, QVBoxLayou
 from MVC.Controller.Controller import Controller
 
 
-
 class AmministratoreView(QWidget):
     def __init__(self, mainPath):
         super().__init__()
@@ -33,7 +32,7 @@ class AmministratoreView(QWidget):
         stats = Controller().trovaUltimeStatistiche()
         if stats != None:
             try:
-                obj.guadagnoTotaleLabel.setText(str(stats.guadagnoTotale)+"€")
+                obj.guadagnoTotaleLabel.setText(str(stats.guadagnoTotale) + "€")
                 obj.guadagnoTotaleLabel.setFont(QFont("Leelawalee UI", 16))
             except:
                 pass
@@ -251,8 +250,14 @@ class AmministratoreView(QWidget):
         nomeLe = obj.nomeLe.text()
         idAccountLe = obj.idAccountLe.text()
         prezzoLe = obj.prezzoLe.text()
-        nomeCategoriaLe = obj.nomeCategoriaLe.text()
-        nomeScaffaleLe = obj.nomeScaffaleLe.text()
+        try:
+            nomeCategoriaLe = obj.nomeCategoriaLe.text().lower()
+        except:
+            pass
+        try:
+            nomeScaffaleLe = obj.nomeScaffaleLe.text().lower()
+        except:
+            pass
         if self.checkerSaveProdottoBtnClicked(nomeLe, idAccountLe, prezzoLe, nomeCategoriaLe):
             pass
         else:
@@ -443,7 +448,7 @@ class AmministratoreView(QWidget):
     # Metodo che si attiva alla conferma dell'aggionramento del prodotto
     def confermaAggiornaProdottoBtnClicked(self, mainPath, obj, amministratore, idProdotto):
         nomeLe = obj.nomeLe.text()
-        prezzoLe = obj.prezzoLe.text()
+        prezzoLe = float(obj.prezzoLe.text())
         nomeCategoriaLe = obj.nomeCategoriaLe.text()
         nomeScaffaleLe = obj.nomeScaffaleLe.text()
         Controller().aggiornaProdotto(nomeCategoriaLe, None, nomeLe, prezzoLe, nomeScaffaleLe, idProdotto)
@@ -459,20 +464,22 @@ class AmministratoreView(QWidget):
     def caricainfoAccountView(self, mainPath, fileName, account, amministratore, lista):
         obj = self.caricaView(mainPath, fileName)
         self.removeAndAdd(obj)
-        obj.nomeDaIns.setText(account.nome)
-        obj.cognomeDaIns.setText(account.cognome)
-        """obj.dataDiNascitaDaIns.setText(account.dataDiNascita.strftime("%Y-%m-%d"))""" #così non carica le informazioni del cliente
-        obj.dataDiNascitaDaIns.setText(account.dataDiNascita.__str__())
-        obj.emailDaIns.setText(account.email)
-        obj.passwordDaIns.setText(account.password)
-        obj.idAccountDaIns.setText(f"{account.idAccount}")
-        obj.numeroTelefonicoDaIns.setText(account.numeroTelefonico)
-        obj.cittaDaIns.setText(account.residenza.citta)
-        obj.capDaIns.setText(account.residenza.cap)
-        obj.citofonoDaIns.setText(account.residenza.citofono)
-        obj.viaDaIns.setText(account.residenza.via)
-        obj.piazzaDaIns.setText(account.residenza.piazza)
-        obj.civicoDaIns.setText(account.residenza.civico)
+        try:
+            obj.nomeDaIns.setText(account.nome)
+            obj.cognomeDaIns.setText(account.cognome)
+            obj.dataDiNascitaDaIns.setText(account.dataDiNascita.strftime("%Y-%m-%d"))
+            obj.emailDaIns.setText(account.email)
+            obj.passwordDaIns.setText(account.password)
+            obj.idAccountDaIns.setText(f"{account.idAccount}")
+            obj.numeroTelefonicoDaIns.setText(account.numeroTelefonico)
+            obj.cittaDaIns.setText(account.residenza.citta)
+            obj.capDaIns.setText(account.residenza.cap)
+            obj.citofonoDaIns.setText(account.residenza.citofono)
+            obj.viaDaIns.setText(account.residenza.via)
+            obj.piazzaDaIns.setText(account.residenza.piazza)
+            obj.civicoDaIns.setText(account.residenza.civico)
+        except:
+            pass
         obj.indietroBtn.clicked.connect(lambda: self.accountsBtnClicked(mainPath, amministratore, lista))
         obj.aggiornaBtn.clicked.connect(lambda: self.aggiornaAccountBtnClicked(mainPath, amministratore,
                                                                                account.idAccount))
@@ -483,7 +490,7 @@ class AmministratoreView(QWidget):
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
         obj.aggiornaBtn.clicked.connect(
-            lambda: self.confermaAggiornaAccountBtnClicked(mainPath, obj, amministratore, idAccount))  # TODO
+            lambda: self.confermaAggiornaAccountBtnClicked(mainPath, obj, amministratore, idAccount))
         obj.indietroBtn.clicked.connect(lambda: self.caricainfoAccountView(mainPath, "infoAccountView.ui",
                                                                            Controller().trovaAccountTramiteId(
                                                                                idAccount), amministratore, None))
@@ -493,7 +500,7 @@ class AmministratoreView(QWidget):
         nomeLe = obj.nomeLe.text()
         cognomeLe = obj.cognomeLe.text()
         dataDiNascitaLe = obj.dataDiNascitaLe.text()
-        emailLe = obj.emailLe.text()
+        emailLe = obj.emailLe.text().lower()
         telefonoLe = obj.telefonoLe.text()
         capLe = obj.capLe.text()
         citofonoLe = obj.citofonoLe.text()
@@ -502,7 +509,7 @@ class AmministratoreView(QWidget):
         piazzaLe = obj.piazzaLe.text()
         civicoLe = obj.civicoLe.text()
         Controller().aggiornaAccount(idAccount, nomeLe, cognomeLe, dataDiNascitaLe, emailLe, telefonoLe, capLe,
-                                     citofonoLe, cittaLe, viaLe, piazzaLe, civicoLe)  # TODO
+                                     citofonoLe, cittaLe, viaLe, piazzaLe, civicoLe)
         self.caricainfoAccountView(mainPath, "infoAccountView.ui", Controller().trovaAccountTramiteId(idAccount),
                                    amministratore, None)
 
@@ -523,6 +530,10 @@ class AmministratoreView(QWidget):
                                      cittaLe, viaLe, piazzaLe, civicoLe, citofonoLe):
         if nomeLe == "": return False
         if cognomeLe == "": return False
+        if emailLe == "":
+            return False
+        else:
+            emailLe = emailLe.lower()
         if not self.validateDate(dataDiNascitaLe): return False
         if not telefonoLe.isalnum(): return False
         if not capLe.isalnum(): return False

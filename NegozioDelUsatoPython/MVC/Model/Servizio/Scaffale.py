@@ -1,4 +1,5 @@
 import copy
+import json
 from operator import index
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
@@ -43,17 +44,6 @@ class Scaffale(ServizioInterface):
             if x.ID == ID:
                 scaffaliList.pop(index(x))
         File().serializza(filename, scaffaliList)
-
-    # Metodo che ritorna il nuovo id da assegnare al Scaffale da inserire
-    # return = nuovo ID per lo Scaffale
-    """def newId(self):
-        fileName = PathDatabase().parametriTxt
-        letto = File().leggi(fileName)
-        dictLetto = json.loads(letto)
-        newId = dictLetto['lastIdScaffale'] + 1
-        dictLetto['lastIdScaffale'] = newId
-        File().scrivi(fileName, json.dumps(dictLetto))
-        return newId"""
 
     # Metodo che prende  l'id di un oggetto e o sposta da un scaffale ad un'altro scaffale
     # idStart = id dello scaffale da dove spostare
@@ -110,3 +100,14 @@ class Scaffale(ServizioInterface):
             if obj.nomeScaffale == nomeScaffale:
                 return obj.idScaffale
         return None
+
+    # Metodo che ritorna il nuovo id da assegnare allo scaffale da inserire
+    # return = nuovo ID per il Prodotto
+    def newId(self):
+        fileName = PathDatabase().parametriTxt
+        letto = File().leggi(fileName)
+        dictLetto = json.loads(letto)
+        newId = int(dictLetto['lastIdScaffale'] + 1)
+        dictLetto['lastIdScaffale'] = newId
+        File().scrivi(fileName, json.dumps(dictLetto))
+        return newId
