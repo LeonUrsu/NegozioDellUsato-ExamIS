@@ -27,9 +27,9 @@ class CentralWindow():
         icon = QtGui.QIcon("MVC/View/assets/LOGO/usatobeato-website-favicon-color.svg.png")
         self.finestra.setWindowIcon(icon)
         file.close()
-        self.apriAmministratoreView(pathlib.Path().resolve().__str__())
+        # self.apriAmministratoreView(pathlib.Path().resolve().__str__())
         # self.apriClienteProprietarioView (pathlib.Path().resolve().__str__(), None)
-        # self.apriUserView(pathlib.Path().resolve().__str__())
+        self.apriUserView(pathlib.Path().resolve().__str__())
 
     # Metodo per aprire la finestra dell'cliente proprietario
     def apriClienteProprietarioView(self, mainPath, account):

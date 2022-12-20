@@ -6,7 +6,6 @@ from PySide6.QtGui import QCursor, QFont
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton, QVBoxLayout
 from MVC.Controller.Controller import Controller
-import matplotlib.pyplot as plt
 
 
 
