@@ -52,8 +52,21 @@ class UserView():
     # fileName = nome del file da caricare
     # obj = view da utilizzare per caricare i dati
     def cercaProdottoBtnClicked(self, mainPath, obj):
-        textData = str(obj.filtraPerData.currentText())
-        textPrezzo = str(obj.filtraPerPrezzo.currentText())
+        textData = str(obj.filtraPerData.currentIndex())
+        textPrezzo = str(obj.filtraPerPrezzo.currentIndex())
+        textCategoria = str(obj.filtraPerCategoria.currentText())
+        name = obj.search_le.text()
+        listaCorrispondenti = Controller().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
+        self.caricaUserProdottiView(mainPath, listaCorrispondenti)
+
+
+    # Metodo che cerca il prodotto in base al nome passato
+    # mainPath = path del main
+    # obj = view caricata
+    # amministratore = oggetto AmministratoreView
+    def cercaProdottoBtnClicked(self, mainPath, obj):
+        textData = str(obj.filtraPerData.currentIndex())
+        textPrezzo = str(obj.filtraPerPrezzo.currentIndex())
         textCategoria = str(obj.filtraPerCategoria.currentText())
         name = obj.search_le.text()
         listaCorrispondenti = Controller().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
