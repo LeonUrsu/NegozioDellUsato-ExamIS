@@ -115,7 +115,7 @@ class Logging:
     # Metodo per gestire il raggiungimento della soglia massima di tentativi permessi all'utente
     # log = credenziali di accesso di tipo Logging
     def timeout(self, log):
-        # ExceptHandler().erroreTimeoutAutenticazione()
+        ExceptHandler().erroreTimeoutAutenticazione()
         log.prossimoTentativo = datetime.today() + timedelta(minutes=30)
         log.tentativi = 0
         log.inserisciLoggingNelDatabase()
@@ -132,6 +132,7 @@ class Logging:
             return True
         ExceptHandler().erroreAutenticazione()
         return False
+    #TODO anche se inserisci password admin sbagliata ti fa loggare
 
     # Metodo che verifica se l'utente è loggato
     def checkAccontLoggato(self):
