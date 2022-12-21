@@ -6,6 +6,8 @@ from MVC.Model.SistemService.File import File
 from Database.PathDatabase import PathDatabase
 
 
+# Classe Account è la classe per la manipolazione di un account che corisponde al prodilo digitale di un proprietario
+# di qualche oggetto all'interno del negozio
 class Account(ServizioInterface):
 
     # Costruttore dell'Account, create() in EA
@@ -75,24 +77,12 @@ class Account(ServizioInterface):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
-        newId = dictLetto['lastIdAccount'] + 1
+        newId = int(dictLetto['lastIdAccount'] + 1)
         dictLetto['lastIdAccount'] = newId
         File().scrivi(fileName, json.dumps(dictLetto))
         return newId
 
-    """    # Metodo che rimuove un Prodotto da file e lo restituisce
-    def prendiOggettoDaFile(self, startfileName, idAccount):
-        file = File()
-        listAccount = File().deserializza(startfileName)
-        popped = None
-        for obj in listAccount:
-            if obj.idAccount == idAccount:
-                popped = listAccount.pop(listAccount.index(obj))
-            else:
-                return None
-        File().serializza(startfileName, listAccount)
-        return popped"""
-
+    # Metodo per salvare un oggetto su un file, il seguente metodo deve essere richiamato sull'istanza di interesse
     def mettiOggettoSuListaNelFile(self):
         listAccount = Account.recuperaListaOggetti(self)
         for account in listAccount:
@@ -132,25 +122,6 @@ class Account(ServizioInterface):
         format = "%d/%m/%Y"
         dataPaired = datetime.datetime.strptime(dataStr, format)
         return dataPaired
-
-    """
-    # Metodo che recupera la lista degli account, trova l'account con i'id vecchio e al suo interno,
-    # nella lista degli oggetti elimina l'oggetto di interesse.
-    # successivamente alla prima eliminazione viene cerrcato l'account nuovo e al suo interno, nella ista degli id degli
-    # oggetti si aggiunge l'id nuovo
-    def aggiornaIdProdottoInAccount(self, prodotto, idVecchio, idNuovo):
-        #prodotto.idAccount = idNuovo
-        fileName = PathDatabase().accountTxt
-        listAccount = File().deserializza(fileName)
-        for account in listAccount:
-            if account.idAccount == idVecchio:
-                for idProdotto in account.idProdotti:
-                    if idProdotto == prodotto.IDProdotto:
-                        account.idProdotti.pop(index(idProdotto))
-        for account in listAccount:
-            if account.idAccount == idNuovo:
-                account.idProdotti.append(prodotto.IDProdotto)
-    """
 
     # Metodo che controlla se sul file esiste un utente con lo stesso indirizzo email
     # email = email da verificare

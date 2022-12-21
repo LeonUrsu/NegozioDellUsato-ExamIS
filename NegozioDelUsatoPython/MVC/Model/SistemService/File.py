@@ -1,6 +1,8 @@
 import json
 import pickle
 
+from PySide6.support import deprecated
+
 
 class File:
 
@@ -43,6 +45,7 @@ class File:
         with open(fileName, 'wb') as f:
             pickle.dump(contenuto, f, pickle.HIGHEST_PROTOCOL)
 
+    # Metodo per trasformare una sringa in un dizionario
     def dictionaryEndcoder(self, contenuto):
         json_string = json.dumps([self.__dict__ for self in contenuto])
         return json_string

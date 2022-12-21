@@ -1,10 +1,11 @@
 from Database.PathDatabase import PathDatabase
+from MVC.Model.Interfacce.UserInterface import UserInterface
 from MVC.Model.Servizio.Prodotto import Prodotto
 from MVC.Model.SistemService.Filtri import Filtri
 from MVC.Model.SistemService.Logging import Logging
 
 
-class User(object):
+class User(UserInterface, object):
 
     # Costruttore della classe User, create() in EA
     def __init__(self):
@@ -33,10 +34,11 @@ class User(object):
         filtered = Filtri().filtraCategoria(idCategoria, fileName)
         return filtered
 
+    # Metodo che utilizzabile per effetturare un login di un utente
     def login(self, email, password):
         return Logging().login(email, password)
 
-    # MEtodo che recupera la lista dei prodotti in vendita
+    # Metodo che recupera la lista dei prodotti in vendita
     def visualizzaProdotti(self):
         listProdotti = Prodotto().recuperaListaProdottiInVendita()
         return listProdotti

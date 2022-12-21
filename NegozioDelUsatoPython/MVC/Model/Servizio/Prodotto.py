@@ -53,7 +53,7 @@ class Prodotto(ServizioInterface):
                     Prodotto().spostaProdotto(prodotto.idProdotto, path, end)
                     Account().dissociaProdottoDaAccount(eliminato)
                     Categoria().diminuisciProdottiInCategoria(eliminato)
-                    Scaffale().dissociaProdottoDaScaffale(eliminato)
+                    #Scaffale().dissociaProdottoDaScaffale(eliminato)
                     return True
             return False
 
@@ -113,16 +113,6 @@ class Prodotto(ServizioInterface):
         listProdotti.append(self)
         File().serializza(fileName, listProdotti)
 
-    """    # Metodo che permette la vendita di un prodotto, lo stato dell'oggetto passa a venduto e viene spostato
-    # dove vendono archviati tutti gli oggetti venduti nel database
-    # return dizionario con prezzo e ID
-    def vendiProdotto(self, id):
-        start = PathDatabase().inVenditaTxt
-        end = PathDatabase().vendutiTxt
-        prodotto = self.spostaProdotto(id, start, end)
-        prezzoCorrente = prezzoprezzoCorrente
-        return infoProdotto"""
-
     # Metodo che aggiorna un prodotto in base ai parametri passati dalla classe amministratore
     # idCategoria
     def aggiornaProdotto(self, nomeCategoria, dataEsposizione,
@@ -151,7 +141,7 @@ class Prodotto(ServizioInterface):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
-        newId = dictLetto['lastIdProdotto'] + 1
+        newId = int(dictLetto['lastIdAccount'] + 1)
         dictLetto['lastIdProdotto'] = newId
         File().scrivi(fileName, json.dumps(dictLetto))
         return newId
@@ -235,13 +225,10 @@ class Prodotto(ServizioInterface):
         return listTotale
 
     # Metodo che recupera gli oggetti associati ad un account
-    def recuperaListaProdottiInAssociatiAdAccount(self, account):
-        lista = self.recuperaListaProdottiInVendita()
+    def recuperaListaProdottiInAssociatiAdAccount(self, account, lista):
         listaFiltrata = list()
         for oggetto in lista:
-            if oggetto.idAccount.isalnum():
+            if oggetto.idAccount:
                 if account.idAccount == int(oggetto.idAccount):
                     listaFiltrata.append(oggetto)
         return listaFiltrata
-
-    # se il prodotto non ha id cliente deve essere comunnque venduto#####################################################################################################################

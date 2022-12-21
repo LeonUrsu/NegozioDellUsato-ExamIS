@@ -20,7 +20,7 @@ class Ricevuta(ServizioInterface):
     def aggiungiProdotti(self, prodotti):
         date_format = '%d/%m/%Y'
         today = date.today()
-        self.Id = self.newID()
+        self.Id = self.newId()
         self.datetime = today.strftime(date_format)
         self.prodotti = prodotti
 
@@ -53,14 +53,14 @@ class Ricevuta(ServizioInterface):
 
     # Metodo che ritorna il nuovo id da assegnare alla Ricevuta da inserire
     # return = nuovo ID per la Ricevuta
-    def newID(self):
+    def newId(self):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
-        newID = dictLetto['lastIdRicevuta'] + 1
-        dictLetto['lastIdRicevuta'] = newID
+        newId = int(dictLetto['lastIdAccount'] + 1)
+        dictLetto['lastIdRicevuta'] = newId
         File().scrivi(fileName, json.dumps(dictLetto))
-        return newID
+        return newId
 
     # metodo che dato un prodotto recupera le informazione come: prezzo, idProdotto, nomeProdotto
     def getInfoProdotto(self, prodotto):

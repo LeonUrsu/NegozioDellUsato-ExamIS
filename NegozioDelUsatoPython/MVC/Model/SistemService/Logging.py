@@ -16,6 +16,7 @@ class Logging:
     def __init__(self):
         pass
 
+    # Metodo per aggiungere delle istanze interne ad un oggetto di classe
     def aggiungiLogging(self, idAccount):
         self.idAccount = idAccount
         self.tentativi = 0

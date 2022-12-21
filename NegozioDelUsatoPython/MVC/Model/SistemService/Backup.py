@@ -1,11 +1,10 @@
 import os
-import pathlib
 import shutil
 import tempfile
 from shutil import copytree
 
 from Database.PathDatabase import PathDatabase
-from MVC.Model.SistemService.File import *
+from MVC.Model.SistemService.File import File
 
 
 class Backup(object):

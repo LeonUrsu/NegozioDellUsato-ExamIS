@@ -4,12 +4,11 @@ from MVC.Model.Attività.User import User
 from MVC.Model.SistemService.File import File
 from MVC.Model.SistemService.Logging import Logging
 
-
+# Classe per gestire tutte le operazioni disponibili al cliente possessore di un Account loggato nel sistema
 class ClienteProprietario(User):
 
     def __init__(self):
         super().__init__()
-        self.finestra.iMieiProdottiBtn.clicked.connect(print("ciaooooooooooo"))
 
     # Metodo che restituisce 3 liste di Prodotti: inVendita, venduti, scaduti.
     # L'assegnazione deve essere: inVendita, venduti, scaduti = controllaStatoProdotti(account)
