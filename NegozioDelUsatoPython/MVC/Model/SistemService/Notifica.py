@@ -10,8 +10,7 @@ class Notifica(object):
     def __init__(self):
         pass
 
-    # Metodo che invia al utente un email con le credenziali
-    # al cliente e comunica l'avvenuta registrazione nel sistema
+    # Metodo che invia al utente un email con le credenziali al cliente e comunica l'avvenuta registrazione nel sistema
     def gestioneEmailDIRegistrazione(self, email, password):
         filePath = PathDatabase.messaggioRegistrazioneProdotti
         testoEmail = self.emailGetFormat(filePath)
@@ -21,7 +20,7 @@ class Notifica(object):
         except:
             print("Email non inviata")
 
-    # Metodo che invia al utente un email dove comunica la vendita del oggetto se la notifica non ha buon fine per un
+    # Metodo che invia al utente un'email dove comunica la vendita del oggetto se la notifica non ha buon fine per un
     # cliente si salta questo clietne e si notifica i clienti successivi nella lista
     def gestioneEmailDiVendita(self, listProdottiVenduti):
         filePath = PathDatabase.messaggioVenditaProdotti
