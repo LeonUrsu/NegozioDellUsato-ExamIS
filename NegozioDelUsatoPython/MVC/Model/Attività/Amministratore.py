@@ -1,4 +1,5 @@
 from Database.PathDatabase import PathDatabase
+
 from MVC.Model.Attività.Indirizzo import Indirizzo
 from MVC.Model.Attività.User import User
 from MVC.Model.Servizio.Categoria import Categoria
@@ -10,6 +11,7 @@ from MVC.Model.SistemService.Filtri import Filtri
 from MVC.Model.SistemService.Logging import Logging
 from MVC.Model.SistemService.Notifica import Notifica
 from MVC.Model.SistemService.Statistiche import Statistiche
+
 from MVC.View.AdminButtonsViews.ExceptHandler import ExceptHandler
 
 
