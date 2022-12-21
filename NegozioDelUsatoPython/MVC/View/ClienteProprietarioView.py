@@ -54,7 +54,7 @@ class ClienteProprietarioView():
 
     # pulsante leftMenu, porta alla schermata dei dati del proprio account
     def iMieiDatiBtnClicked(self, mainPath, finestra):
-        name = "iMieiDatiView.ui"
+        name = "iMieiDatiView.ui" #TODO data di nascita in formato errato da correggere
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
         if Logging.accountLoggato != None: self.caricaInfoAccount(obj, Logging.accountLoggato)
