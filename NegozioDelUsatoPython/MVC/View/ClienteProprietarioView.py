@@ -28,7 +28,7 @@ class ClienteProprietarioView():
         self.removeAndAdd(obj)
         if lista == None:
             lista = Controller().recuperaListaProdottiInVendita()
-        self.aggiungiProdottiAllaTab(mainPath, obj, lista)
+        self.aggiungiProdottiAllaTab(mainPath, obj.tab, lista)
         self.setItemsOfComboboxCategorie(obj)
         obj.cercaBtn.clicked.connect(lambda: self.cercaProdottoBtnClicked(mainPath, obj))
         if Logging.accountLoggato != None: pass
@@ -67,9 +67,28 @@ class ClienteProprietarioView():
         name = "iMieiProdottiView.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
-        listaTrovata = Controller().recuperaListaProdottiInAssociatiAdAccount(Logging.accountLoggato)
+        listaInVendita = Controller().recuperaProdottiInVenditaConAccount(Logging.accountLoggato)
+        listaScaduti = Controller().recuperaProdottiScadutiConAccount(Logging.accountLoggato)
+        listaVenduti = Controller().recuperaProdottiVendutiConAccount(Logging.accountLoggato)
         if Logging.accountLoggato != None:
-            self.aggiungiProdottiAllaTab(mainPath, obj, listaTrovata)
+            if listaInVendita != None:
+                try:
+                    self.aggiungiProdottiAllaTab(mainPath, obj.tabInVendita, listaInVendita)
+                except:
+                    pass
+            if listaScaduti != None:
+                try:
+                    self.aggiungiProdottiAllaTab(mainPath, obj.tabScaduti, listaScaduti)
+                except:
+                    pass
+            if listaVenduti != None:
+                try:
+                    self.aggiungiProdottiAllaTab(mainPath, obj.tabVenduti, listaVenduti)
+                except:
+                    pass
+
+
+
         finestra.iMieiDatiBtn.setStyleSheet(self.unPushedStyleSheet())
         finestra.homeBtn.setStyleSheet(self.unPushedStyleSheet())
         finestra.iMieiProdottiBtn.setStyleSheet(self.pushedStyleSheet())
@@ -110,30 +129,30 @@ class ClienteProprietarioView():
     def caricaInfoAccount(self, obj, account):
         obj.nomeDaIns.setText(account.nome)
         obj.cognomeDaIns.setText(account.cognome)
-        obj.dataDiNascitaDaIns.setText(account.dataDiNascita)
+        obj.dataDiNascitaDaIns.setText(f"{account.dataDiNascita}")
         obj.idAccountDaIns.setText(f"{account.idAccount}")
 
     # Metodo che aggiunge i prodotti in vendita al tableWidget
-    def aggiungiProdottiAllaTab(self, mainPath, obj, lista):
-        if lista == None:
+    def aggiungiProdottiAllaTab(self, mainPath, tab, lista):
+        if lista == None:  # TODO mettere aumento del height
             return
         objList = ("Nome", "Prezzo", "ID", "Data", "Click su Visualizza")
         column = len(objList)
-        obj.tab.setColumnCount(column)
+        tab.setColumnCount(column)
         for i in range(column):
-            obj.tab.setColumnWidth(i, 120)
-        obj.tab.setHorizontalHeaderLabels(objList)
+            tab.setColumnWidth(i, 120)
+        tab.setHorizontalHeaderLabels(objList)
         row = 0
-        obj.tab.setRowCount(len(lista))
+        tab.setRowCount(len(lista))
         for prodotto in lista:
             chkBoxItem = QTableWidgetItem()
             chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
-            obj.tab.setItem(row, 0, QtWidgets.QTableWidgetItem(f"{prodotto.nomeProdotto}"))
-            obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(f"{prodotto.prezzoCorrente}"))
-            obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(f"{prodotto.idProdotto}"))
-            obj.tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{prodotto.dataScadenza}"))
-            obj.tab.setCellWidget(row, 4, self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto))
-            obj.tab.resizeRowsToContents()
+            tab.setItem(row, 0, QtWidgets.QTableWidgetItem(f"{prodotto.nomeProdotto}"))
+            tab.setItem(row, 1, QtWidgets.QTableWidgetItem(f"{prodotto.prezzoCorrente}"))
+            tab.setItem(row, 2, QtWidgets.QTableWidgetItem(f"{prodotto.idProdotto}"))
+            tab.setItem(row, 3, QtWidgets.QTableWidgetItem(f"{prodotto.dataScadenza}"))
+            tab.setCellWidget(row, 4, self.creaBottoneVisualizzaProdottoQualsiasi(mainPath, prodotto))
+            tab.resizeRowsToContents()
             row += 1
 
     # Metodo per creare un bottone dinamicamente e iserirlo nella tab
@@ -149,8 +168,8 @@ class ClienteProprietarioView():
         obj = self.caricaView(mainPath, fileName)
         self.removeAndAdd(obj)
         obj.nomeProdottoDaIns.setText(prodottoTrovato.nomeProdotto)
-        obj.prezzoCorrenteDaIns.setText(prodottoTrovato.prezzoCorrente)
-        obj.prezzoOriginaleDaIns.setText(prodottoTrovato.prezzoOriginale)
+        obj.prezzoCorrenteDaIns.setText(str(prodottoTrovato.prezzoCorrente))
+        obj.prezzoOriginaleDaIns.setText(str(prodottoTrovato.prezzoOriginale))
         obj.dataDiEsposizioneDaIns.setText(f"{prodottoTrovato.dataEsposizione}")
         obj.dataDiScadenzaDaIns.setText(f"{prodottoTrovato.dataScadenza}")
         obj.idProdottoDaIns.setText(f"{prodottoTrovato.idProdotto}")

@@ -14,9 +14,10 @@ class Controller(object):
         return User().login(email, password)
 
     def amministratoresaveProdottoBtn(self, dataEsposizione, idAccount,
-                          nomeProdotto, prezzoOriginale, nomeScaffaleLe, nomeCategoria):
+                                      nomeProdotto, prezzoOriginale, nomeScaffaleLe, nomeCategoria):
         return Amministratore().inserisciProdotto(dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
                                                   nomeScaffaleLe, nomeCategoria)
+
     def recuperaListaProdottiInVendita(self):
         return Prodotto().recuperaListaProdottiInVendita()
 
@@ -44,7 +45,7 @@ class Controller(object):
         Amministratore().eliminaProdottiTramiteListaId(listaId)
 
     def vendiProdottiTramiteListaId(self, listaId):
-       return Amministratore().vendiProdottiTramiteListaId(listaId)
+        return Amministratore().vendiProdottiTramiteListaId(listaId)
 
     def eliminaAccountTramiteListaId(self, listaId):
         Amministratore().eliminaAccountTramiteListaId(listaId)
@@ -64,8 +65,15 @@ class Controller(object):
     def checkEsistenzaCategoriaInDatabase(self, str):
         return Categoria().checkEsistenzaCategoriaInDatabase(str)
 
-    def recuperaListaProdottiInAssociatiAdAccount(self, account):
-        return Prodotto().recuperaListaProdottiInAssociatiAdAccount(account)
+    def recuperaProdottiInVenditaConAccount(self, account):
+        return Prodotto().recuperaListaProdottiInAssociatiAdAccount(account,
+                                                                    Prodotto().recuperaListaProdottiInVendita())
+
+    def recuperaProdottiScadutiConAccount(self, account):
+        return Prodotto().recuperaListaProdottiInAssociatiAdAccount(account, Prodotto().recuperaListaProdottiScaduti())
+
+    def recuperaProdottiVendutiConAccount(self, account):
+        return Prodotto().recuperaListaProdottiInAssociatiAdAccount(account, Prodotto().recuperaListaProdottiVenduti())
 
     def elaboraCercaProdottoBtnClicked(self, name, textData, textPrezzo, textCategoria):
         return Filtri().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
@@ -73,6 +81,7 @@ class Controller(object):
     def aggiornaProdotto(self, nomeCategoriaLe, data, nomeProdotto, prezzoLe, nomeScaffaleLe, idProdotto):
         Amministratore().aggiornaProdotto(nomeCategoriaLe, None, nomeProdotto, prezzoLe, nomeScaffaleLe, idProdotto)
 
-    def aggiornaAccount(self, idAccount, nomeLe, cognomeLe, dataDiNascitaLe, emailLe, telefonoLe, capLe, citofonoLe, cittaLe, viaLe, piazzaLe, civicoLe):
+    def aggiornaAccount(self, idAccount, nomeLe, cognomeLe, dataDiNascitaLe, emailLe, telefonoLe, capLe, citofonoLe,
+                        cittaLe, viaLe, piazzaLe, civicoLe):
         residenza = Indirizzo(capLe, citofonoLe, cittaLe, civicoLe, piazzaLe, viaLe)
         Amministratore().aggiornaAccount(nomeLe, cognomeLe, dataDiNascitaLe, emailLe, idAccount, telefonoLe, residenza)

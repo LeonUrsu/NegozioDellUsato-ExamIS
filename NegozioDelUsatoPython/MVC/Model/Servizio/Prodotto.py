@@ -225,11 +225,10 @@ class Prodotto(ServizioInterface):
         return listTotale
 
     # Metodo che recupera gli oggetti associati ad un account
-    def recuperaListaProdottiInAssociatiAdAccount(self, account):
-        lista = self.recuperaListaProdottiInVendita()
+    def recuperaListaProdottiInAssociatiAdAccount(self, account, lista):
         listaFiltrata = list()
         for oggetto in lista:
-            if oggetto.idAccount.isalnum():
+            if oggetto.idAccount:
                 if account.idAccount == int(oggetto.idAccount):
                     listaFiltrata.append(oggetto)
         return listaFiltrata
