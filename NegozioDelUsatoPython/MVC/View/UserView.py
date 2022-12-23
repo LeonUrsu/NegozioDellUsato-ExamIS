@@ -12,7 +12,7 @@ class UserView():
 
     def __init__(self, mainPath):
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "View", "UserView.ui")
+        path = os.path.join(mainPath, "MVC", "View", "UserViews", "UserView.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
@@ -58,7 +58,6 @@ class UserView():
         name = obj.search_le.text()
         listaCorrispondenti = Controller().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
         self.caricaUserProdottiView(mainPath, listaCorrispondenti)
-
 
     # Metodo che cerca il prodotto in base al nome passato
     # mainPath = path del main

@@ -5,6 +5,7 @@ from MVC.Model.Attività.User import User
 from MVC.Model.Servizio.Categoria import Categoria
 from MVC.Model.Servizio.Prodotto import Prodotto
 from MVC.Model.SistemService.Filtri import Filtri
+from MVC.Model.SistemService.Logging import Logging
 from MVC.Model.SistemService.Statistiche import Statistiche
 
 
@@ -85,3 +86,6 @@ class Controller(object):
                         cittaLe, viaLe, piazzaLe, civicoLe):
         residenza = Indirizzo(capLe, citofonoLe, cittaLe, civicoLe, piazzaLe, viaLe)
         Amministratore().aggiornaAccount(nomeLe, cognomeLe, dataDiNascitaLe, emailLe, idAccount, telefonoLe, residenza)
+
+    def logout(self):
+        return Logging.logout()

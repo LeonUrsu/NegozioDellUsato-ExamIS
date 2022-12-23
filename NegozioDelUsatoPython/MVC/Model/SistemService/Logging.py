@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
 from MVC.Model.SistemService.File import File
-from MVC.View.AdminButtonsViews.ExceptHandler import ExceptHandler
+from MVC.View.AmministratoreViews.ExceptHandler import ExceptHandler
 
 
 class Logging:

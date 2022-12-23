@@ -11,7 +11,7 @@ class LoginView(QWidget):
     def __init__(self, mainPath):
         super().__init__()
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "View", "LoginView.ui")
+        path = os.path.join(mainPath, "MVC", "View", "UserViews", "LoginView.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)

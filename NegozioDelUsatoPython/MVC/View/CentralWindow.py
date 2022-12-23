@@ -4,6 +4,8 @@ import pathlib
 from PySide6 import QtWidgets, QtGui
 from PySide6.QtCore import QFile, QPropertyAnimation
 from PySide6.QtUiTools import QUiLoader
+
+from MVC.Controller.Controller import Controller
 from MVC.Model.SistemService.Logging import Logging
 from MVC.View.AmministratoreView import AmministratoreView
 from MVC.View.ClienteProprietarioView import ClienteProprietarioView
@@ -43,6 +45,7 @@ class CentralWindow():
 
     # Metodo per aprire la finestra dell'user
     def apriUserView(self, mainPath):
+        Controller().logout()
         self.removeItem(self.finestra.verticalLayout)
         user = UserView(mainPath)
         self.finestra.verticalLayout.addWidget(user.finestra)

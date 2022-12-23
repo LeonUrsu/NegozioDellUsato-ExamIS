@@ -12,7 +12,7 @@ class ClienteProprietarioView():
     def __init__(self, mainPath):
         # super().__init__()
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "View", "ClienteProprietarioView.ui")
+        path = os.path.join(mainPath, "MVC", "View", "ClienteProprietarioViews", "ClienteProprietarioView.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)

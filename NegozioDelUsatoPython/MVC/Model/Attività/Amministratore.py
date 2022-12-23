@@ -11,8 +11,7 @@ from MVC.Model.SistemService.Filtri import Filtri
 from MVC.Model.SistemService.Logging import Logging
 from MVC.Model.SistemService.Notifica import Notifica
 from MVC.Model.SistemService.Statistiche import Statistiche
-
-from MVC.View.AdminButtonsViews.ExceptHandler import ExceptHandler
+from MVC.View.AmministratoreViews.ExceptHandler import ExceptHandler
 
 
 # Classe per gestire tutte le funzioni disponibili ad un amministratore del negozio

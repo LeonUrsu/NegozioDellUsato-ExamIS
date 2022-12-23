@@ -12,7 +12,7 @@ class AmministratoreView(QWidget):
     def __init__(self, mainPath):
         super().__init__()
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "View", "AmministratoreView.ui")
+        path = os.path.join(mainPath, "MVC", "View", "AmministratoreViews", "AmministratoreView.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
@@ -315,12 +315,12 @@ class AmministratoreView(QWidget):
             pass
         self.finestra.verticalLayout_toPaste.addWidget(item)
 
-    # Metodo che carica una view presente nelle AdminButtonsViews grazie al nome passato
+    # Metodo che carica una view presente nelle AmministratoreViews grazie al nome passato
     # mainPath = path del main
     # name = nome del file da caricare
     def caricaView(self, mainPath, name):
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "View", "AdminButtonsViews", name)
+        path = os.path.join(mainPath, "MVC", "View", "AmministratoreViews", name)
         file = QFile(path)
         file.open(QFile.ReadOnly)
         finestra = loader.load(file)
@@ -435,7 +435,6 @@ class AmministratoreView(QWidget):
 
     # Metodo che gestische il caricamento della view per aggiornare il prodotto
     def aggiornaProdottoBtnClicked(self, mainPath, amministratore, idProdotto):
-        # self.aggiungiProdottoBtnClicked(mainPath, amministratore)
         name = "aggiornaProdottoView.ui"
         obj = self.caricaView(mainPath, name)
         self.removeAndAdd(obj)
