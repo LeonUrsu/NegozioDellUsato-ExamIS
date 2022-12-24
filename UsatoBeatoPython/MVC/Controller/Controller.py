@@ -1,0 +1,91 @@
+from MVC.Model.Attività.Account import Account
+from MVC.Model.Attività.Amministratore import Amministratore
+from MVC.Model.Attività.Indirizzo import Indirizzo
+from MVC.Model.Attività.User import User
+from MVC.Model.Servizio.Categoria import Categoria
+from MVC.Model.Servizio.Prodotto import Prodotto
+from MVC.Model.SistemService.Filtri import Filtri
+from MVC.Model.SistemService.Logging import Logging
+from MVC.Model.SistemService.Statistiche import Statistiche
+
+
+class Controller(object):
+
+    def userLoginController(self, email, password):
+        return User().login(email, password)
+
+    def amministratoresaveProdottoBtn(self, dataEsposizione, idAccount,
+                                      nomeProdotto, prezzoOriginale, nomeScaffaleLe, nomeCategoria):
+        return Amministratore().inserisciProdotto(dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
+                                                  nomeScaffaleLe, nomeCategoria)
+
+    def recuperaListaProdottiInVendita(self):
+        return Prodotto().recuperaListaProdottiInVendita()
+
+    def saveCLienteBtnClicked(self, nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
+                              cittaLe, viaLe, piazzaLe, civicoLe, citofonoLe):
+        return Amministratore().inserisciAccount(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe,
+                                                 capLe, citofonoLe, cittaLe, civicoLe, piazzaLe, viaLe)
+
+    def recuperaListaAccounts(self):
+        return Account().recuperaListaOggetti()
+
+    def effettuaBackup(self):
+        Amministratore().effettuaBackup()
+
+    def trovaUltimeStatistiche(self):
+        return Statistiche().trovaUltimeStatistiche()
+
+    def trovaProdottoTramiteId(self, idProdotto):
+        return Prodotto().trovaOggettoTramiteId(idProdotto)
+
+    def trovaAccountTramiteId(self, idAccount):
+        return Account().trovaOggettoTramiteId(idAccount)
+
+    def eliminaProdottiTramiteListaId(self, listaId):
+        Amministratore().eliminaProdottiTramiteListaId(listaId)
+
+    def vendiProdottiTramiteListaId(self, listaId):
+        return Amministratore().vendiProdottiTramiteListaId(listaId)
+
+    def eliminaAccountTramiteListaId(self, listaId):
+        Amministratore().eliminaAccountTramiteListaId(listaId)
+
+    def filtraDataEsposizione(self, start, stop, fileName):
+        return Filtri().filtraDataEsposizione(start, stop, fileName)
+
+    def filtraPrezzo(self, start, stop, fileName):
+        return Filtri().filtraPrezzo(start, stop, fileName)
+
+    def filtraClienti(self, nome, cognome):
+        return Filtri().filtraClienti(nome, cognome)
+
+    def recuperaListaCategorie(self):
+        return Categoria().recuperaListaOggetti()
+
+    def checkEsistenzaCategoriaInDatabase(self, str):
+        return Categoria().checkEsistenzaCategoriaInDatabase(str)
+
+    def recuperaProdottiInVenditaConAccount(self, account):
+        return Prodotto().recuperaListaProdottiInAssociatiAdAccount(account,
+                                                                    Prodotto().recuperaListaProdottiInVendita())
+
+    def recuperaProdottiScadutiConAccount(self, account):
+        return Prodotto().recuperaListaProdottiInAssociatiAdAccount(account, Prodotto().recuperaListaProdottiScaduti())
+
+    def recuperaProdottiVendutiConAccount(self, account):
+        return Prodotto().recuperaListaProdottiInAssociatiAdAccount(account, Prodotto().recuperaListaProdottiVenduti())
+
+    def elaboraCercaProdottoBtnClicked(self, name, textData, textPrezzo, textCategoria):
+        return Filtri().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
+
+    def aggiornaProdotto(self, nomeCategoriaLe, data, nomeProdotto, prezzoLe, nomeScaffaleLe, idProdotto):
+        Amministratore().aggiornaProdotto(nomeCategoriaLe, None, nomeProdotto, prezzoLe, nomeScaffaleLe, idProdotto)
+
+    def aggiornaAccount(self, idAccount, nomeLe, cognomeLe, dataDiNascitaLe, emailLe, telefonoLe, capLe, citofonoLe,
+                        cittaLe, viaLe, piazzaLe, civicoLe):
+        residenza = Indirizzo(capLe, citofonoLe, cittaLe, civicoLe, piazzaLe, viaLe)
+        Amministratore().aggiornaAccount(nomeLe, cognomeLe, dataDiNascitaLe, emailLe, idAccount, telefonoLe, residenza)
+
+    def logout(self):
+        return Logging.logout()
