@@ -12,80 +12,199 @@ from MVC.Model.SistemService.Statistiche import Statistiche
 class Controller(object):
 
     def userLoginController(self, email, password):
-        return User().login(email, password)
+        ret = None
+        try:
+            ret = User().login(email, password)
+        except:
+            pass
+        return ret
 
     def amministratoresaveProdottoBtn(self, dataEsposizione, idAccount,
                                       nomeProdotto, prezzoOriginale, nomeScaffaleLe, nomeCategoria):
-        return Amministratore().inserisciProdotto(dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
-                                                  nomeScaffaleLe, nomeCategoria)
+        ret = None
+        try:
+            ret = Amministratore().inserisciProdotto(dataEsposizione, idAccount, nomeProdotto, prezzoOriginale,
+                                                     nomeScaffaleLe, nomeCategoria)
+        except:
+            pass
+
+        return ret
 
     def recuperaListaProdottiInVendita(self):
-        return Prodotto().recuperaListaProdottiInVendita()
+        ret = None
+        try:
+            ret = Prodotto().recuperaListaProdottiInVendita()
+        except:
+            pass
+        return ret
 
     def saveCLienteBtnClicked(self, nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
                               cittaLe, viaLe, piazzaLe, civicoLe, citofonoLe):
-        return Amministratore().inserisciAccount(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe,
-                                                 capLe, citofonoLe, cittaLe, civicoLe, piazzaLe, viaLe)
+        ret = None
+        try:
+            ret = Amministratore().inserisciAccount(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe,
+                                                    capLe, citofonoLe, cittaLe, civicoLe, piazzaLe, viaLe)
+        except:
+            pass
+        return ret
 
     def recuperaListaAccounts(self):
-        return Account().recuperaListaOggetti()
+        ret = None
+        try:
+            ret = Account().recuperaListaOggetti()
+        except:
+            pass
+        return ret
 
     def effettuaBackup(self):
-        Amministratore().effettuaBackup()
+        ret = None
+        try:
+            Amministratore().effettuaBackup()
+        except:
+            pass
 
     def trovaUltimeStatistiche(self):
-        return Statistiche().trovaUltimeStatistiche()
+        ret = None
+        try:
+            ret = Statistiche().trovaUltimeStatistiche()
+        except:
+            pass
+        return ret
 
     def trovaProdottoTramiteId(self, idProdotto):
-        return Prodotto().trovaOggettoTramiteId(idProdotto)
+        ret = None
+        try:
+            ret = Prodotto().trovaOggettoTramiteId(idProdotto)
+        except:
+            pass
+        return ret
 
     def trovaAccountTramiteId(self, idAccount):
-        return Account().trovaOggettoTramiteId(idAccount)
+        ret = None
+        try:
+            ret = Account().trovaOggettoTramiteId(idAccount)
+        except:
+            pass
+        return ret
 
     def eliminaProdottiTramiteListaId(self, listaId):
-        Amministratore().eliminaProdottiTramiteListaId(listaId)
+        ret = None
+        try:
+            Amministratore().eliminaProdottiTramiteListaId(listaId)
+        except:
+            pass
 
     def vendiProdottiTramiteListaId(self, listaId):
-        return Amministratore().vendiProdottiTramiteListaId(listaId)
+        ret = None
+        try:
+            ret = Amministratore().vendiProdottiTramiteListaId(listaId)
+        except:
+            pass
+        return ret
 
     def eliminaAccountTramiteListaId(self, listaId):
-        Amministratore().eliminaAccountTramiteListaId(listaId)
+        ret = None
+        try:
+            Amministratore().eliminaAccountTramiteListaId(listaId)
+        except:
+            pass
 
     def filtraDataEsposizione(self, start, stop, fileName):
-        return Filtri().filtraDataEsposizione(start, stop, fileName)
+        ret = None
+        try:
+            ret = Filtri().filtraDataEsposizione(start, stop, fileName)
+        except:
+            pass
+        return ret
 
     def filtraPrezzo(self, start, stop, fileName):
-        return Filtri().filtraPrezzo(start, stop, fileName)
+        ret = None
+        try:
+            ret = Filtri().filtraPrezzo(start, stop, fileName)
+        except:
+            pass
+        return ret
 
     def filtraClienti(self, nome, cognome):
-        return Filtri().filtraClienti(nome, cognome)
+        ret = None
+        try:
+            ret = Filtri().filtraClienti(nome, cognome)
+        except:
+            pass
+        return ret
 
     def recuperaListaCategorie(self):
-        return Categoria().recuperaListaOggetti()
+        ret = None
+        try:
+            ret = Categoria().recuperaListaOggetti()
+        except:
+            pass
+        return ret
 
     def checkEsistenzaCategoriaInDatabase(self, str):
-        return Categoria().checkEsistenzaCategoriaInDatabase(str)
+        ret = None
+        try:
+            ret = Categoria().checkEsistenzaCategoriaInDatabase(str)
+        except:
+            pass
+        return ret
 
     def recuperaProdottiInVenditaConAccount(self, account):
-        return Prodotto().recuperaListaProdottiInAssociatiAdAccount(account,
-                                                                    Prodotto().recuperaListaProdottiInVendita())
+        ret = None
+        try:
+            ret = Prodotto().recuperaListaProdottiInAssociatiAdAccount(account,
+                                                                       Prodotto().recuperaListaProdottiInVendita())
+        except:
+            pass
+        return ret
 
     def recuperaProdottiScadutiConAccount(self, account):
-        return Prodotto().recuperaListaProdottiInAssociatiAdAccount(account, Prodotto().recuperaListaProdottiScaduti())
+        ret = None
+        try:
+            ret = Prodotto().recuperaListaProdottiInAssociatiAdAccount(account,
+                                                                       Prodotto().recuperaListaProdottiScaduti())
+        except:
+            pass
+        return ret
 
     def recuperaProdottiVendutiConAccount(self, account):
-        return Prodotto().recuperaListaProdottiInAssociatiAdAccount(account, Prodotto().recuperaListaProdottiVenduti())
+        ret = None
+        try:
+            ret = Prodotto().recuperaListaProdottiInAssociatiAdAccount(account,
+                                                                       Prodotto().recuperaListaProdottiVenduti())
+        except:
+            pass
+        return ret
 
     def elaboraCercaProdottoBtnClicked(self, name, textData, textPrezzo, textCategoria):
-        return Filtri().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
+        ret = None
+        try:
+            ret = Filtri().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
+        except:
+            pass
+        return ret
 
     def aggiornaProdotto(self, nomeCategoriaLe, data, nomeProdotto, prezzoLe, nomeScaffaleLe, idProdotto):
-        Amministratore().aggiornaProdotto(nomeCategoriaLe, None, nomeProdotto, prezzoLe, nomeScaffaleLe, idProdotto)
+        ret = None
+        try:
+            Amministratore().aggiornaProdotto(nomeCategoriaLe, None, nomeProdotto, prezzoLe, nomeScaffaleLe, idProdotto)
+        except:
+            pass
 
     def aggiornaAccount(self, idAccount, nomeLe, cognomeLe, dataDiNascitaLe, emailLe, telefonoLe, capLe, citofonoLe,
                         cittaLe, viaLe, piazzaLe, civicoLe):
-        residenza = Indirizzo(capLe, citofonoLe, cittaLe, civicoLe, piazzaLe, viaLe)
-        Amministratore().aggiornaAccount(nomeLe, cognomeLe, dataDiNascitaLe, emailLe, idAccount, telefonoLe, residenza)
+        ret = None
+        try:
+            residenza = Indirizzo(capLe, citofonoLe, cittaLe, civicoLe, piazzaLe, viaLe)
+            Amministratore().aggiornaAccount(nomeLe, cognomeLe, dataDiNascitaLe, emailLe, idAccount, telefonoLe,
+                                             residenza)
+        except:
+            pass
 
     def logout(self):
-        return Logging.logout()
+        ret = None
+        try:
+            ret = Logging.logout()
+        except:
+            pass
+        return ret
