@@ -1,0 +1,18 @@
+CreateRicevuta id 1
+CRUDClienteP id 2
+CRUDProdotto id 3
+Notifica id 4
+RicercaCliente id 5
+SpostaProdotto id 6
+VendiProdotto id 7
+VisualizzaStatistiche id 8
+ControllaStatoProdotti
+DatiPersonali
+InVenditaPropri
+ScadutiPropri
+VendutiPropri
+Backup
+GeneraStatistiche
+ScontaProdotto
+FiltraggioVario
+Login
