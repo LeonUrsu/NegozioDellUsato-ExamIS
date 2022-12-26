@@ -1,18 +1,24 @@
-CreateRicevuta id 1
-CRUDClienteP id 2
-CRUDProdotto id 3
-Notifica id 4
-RicercaCliente id 5
-SpostaProdotto id 6
-VendiProdotto id 7
-VisualizzaStatistiche id 8
-ControllaStatoProdotti
-DatiPersonali
-InVenditaPropri
-ScadutiPropri
-VendutiPropri
-Backup
-GeneraStatistiche
-ScontaProdotto
-FiltraggioVario
-Login
+CreateRicevuta id 1----
+CRUDClienteP id 2----
+CRUDProdotto id 3----
+Notifica id 4---
+RicercaCliente id 5---
+RicercaProdotto 6---
+SpostaProdotto id 7---
+VendiProdotto id 8---
+VisualizzaStatistiche id 9
+ControllaStatoProdotti id 10
+DatiPersonali 11
+Backup 12
+GeneraStatistiche 13
+ScontaProdotto 14
+FiltraggioVario 15
+Login 16
+
+
+
+
+
+
+
+

@@ -3,7 +3,7 @@ import json
 from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
 from MVC.Model.Interfacce.ServizioInterface import ServizioInterface
-from datetime import date
+from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 from MVC.Model.Servizio.Categoria import Categoria
 from MVC.Model.Servizio.Scaffale import Scaffale
@@ -148,19 +148,17 @@ class Prodotto(ServizioInterface):
 
     # Metodo che controlla le date di scadenza e di sconto degli oggetti
     # listLetto = lista dei prodotti in python
-    # return = lista dei prodotti in python dopo l'eventuale sconto """
+    # return = lista dei prodotti in python dopo l'eventuale sconto
     def controllaScadenzaProdotto(self, listLetto):
-        date_format = '%d/%m/%Y'
-        today = date.today()
-        dateToday = today.strftime(date_format)
+        dateToday = datetime.today().date()
         for obj in listLetto:
-            if obj.dataScadenza <= dateToday:
+            if obj.dataScadenza.date() <= dateToday:
                 self.scadenza(obj.IDProdotto)
-            elif obj.dataTerzoSconto <= dateToday:
+            elif obj.dataTerzoSconto.date() <= dateToday:
                 obj.prezzoCorrente = self.sale(self.prezzoOriginale, 50)
-            elif obj.dataSecondoSconto <= dateToday:
+            elif obj.dataSecondoSconto.date() <= dateToday:
                 obj.prezzoCorrente = self.sale(self.prezzoOriginale, 40)
-            elif obj.dataPrimoSconto <= dateToday:
+            elif obj.dataPrimoSconto.date() <= dateToday:
                 obj.prezzoCorrente = self.sale(self.prezzoOriginale, 30)
         return listLetto
 
