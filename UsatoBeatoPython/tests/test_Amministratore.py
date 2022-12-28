@@ -12,40 +12,41 @@ from MVC.Model.Servizio.Prodotto import Prodotto
 from MVC.Model.SistemService.File import File
 
 
+
+
+
 class Amministratore_test(TestCase):
 
     def setUp(self):
-        #mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
-        mainPath = pathlib.Path().resolve().__str__()
-        PathDatabase().setup(mainPath)
-        from_path = os.path.join(mainPath, "BackupFiles") # path per cartella di backup
-        to_path = os.path.join(mainPath, "Database")
+        mainPath = pathlib.Path().resolve().__str__().replace("tests", "")
+        from_path = os.path.join(mainPath, "Database")
+        to_path = os.path.join(mainPath,)
         try:
             shutil.rmtree(to_path)
         except:
             pass
         shutil.copytree(from_path, to_path)
-
+        print("SETUP DONE---------")
 
     # Metodo che crea ripristina il database dopo il test
     def tearDown(self):
-        mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
-        PathDatabase().setup(mainPath)
-        from_path = os.path.join(mainPath, "BackupFiles")  # path per cartella di backup
-        to_path = os.path.join(mainPath, "Database")
+        mainPath = pathlib.Path().resolve().__str__()
+        from_path = os.path.join(mainPath, "EmptyDatabase")
+        to_path = os.path.join(mainPath, "Database_test")
+        #PathDatabase().setup(mainPath)
         try:
             shutil.rmtree(to_path)
         except:
             pass
         shutil.copytree(from_path, to_path)
+        print("TEARDOWN DONE---------")
+
+
 
 
     # test che inserisce nel database dei prodotti casuali per poi eseguire la loro vendita per verificare
     # se sono stati effettivamente venduti
     def test_vendiProdotti(self):
-        # SETUP-----------------
-        path = pathlib.Path().resolve().__str__().replace("tests", '')
-        PathDatabase().setup(path)
         listProdotti = list()
         contatore = 5
         for i in range(0, contatore):
@@ -53,13 +54,14 @@ class Amministratore_test(TestCase):
             listProdotti.append(prodotto)
         # TEST-----------------
         Amministratore().vendiProdotti(listProdotti)
-        listProdottiVenduti = File().deserializza(PathDatabase.vendutiTxt)
+        listProdottiVenduti = File().deserializza(self.pathDatabaseObj.vendutiTxt)
         segnalino = 0
         for venduto in listProdottiVenduti:
             for prodotto in listProdotti:
                 if prodotto.idProdotto == venduto.idProdotto:
                     segnalino += 1
         self.assertEqual(segnalino, contatore)
+
 
     # test che inserisce un prodotto nel database con valori casuali e verifica se è stato effettivamente inserito
     def test_inserisciProdotto(self):
