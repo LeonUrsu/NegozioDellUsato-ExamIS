@@ -141,7 +141,7 @@ class Prodotto(ServizioInterface):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
-        newId = int(dictLetto['lastIdAccount'] + 1)
+        newId = int(dictLetto['lastIdProdotto']) + 1
         dictLetto['lastIdProdotto'] = newId
         File().scrivi(fileName, json.dumps(dictLetto))
         return newId

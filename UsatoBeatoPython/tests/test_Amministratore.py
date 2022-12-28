@@ -5,7 +5,8 @@ import pathlib
 import random
 import shutil
 from unittest import TestCase
-from tests.Database_test.PathDatabase import PathDatabase
+
+from Database.PathDatabase import PathDatabase
 from MVC.Model.Attività.Account import Account
 from MVC.Model.Attività.Amministratore import Amministratore
 from MVC.Model.Servizio.Prodotto import Prodotto
@@ -20,41 +21,42 @@ class Amministratore_test(TestCase):
     def setUp(self):
         mainPath = pathlib.Path().resolve().__str__().replace("tests", "")
         from_path = os.path.join(mainPath, "Database")
-        to_path = os.path.join(mainPath,)
+        to_path = os.path.join(mainPath, "tempDataBase")
         try:
             shutil.rmtree(to_path)
         except:
             pass
         shutil.copytree(from_path, to_path)
+        PathDatabase().setup(mainPath)
         print("SETUP DONE---------")
 
     # Metodo che crea ripristina il database dopo il test
     def tearDown(self):
-        mainPath = pathlib.Path().resolve().__str__()
-        from_path = os.path.join(mainPath, "EmptyDatabase")
-        to_path = os.path.join(mainPath, "Database_test")
-        #PathDatabase().setup(mainPath)
+        mainPath = pathlib.Path().resolve().__str__().replace("tests", "")
+        from_path = os.path.join(mainPath, "tempDataBase")
+        to_path = os.path.join(mainPath, "Database")
         try:
             shutil.rmtree(to_path)
         except:
             pass
         shutil.copytree(from_path, to_path)
+        try:
+            shutil.rmtree(from_path)
+        except:
+            pass
         print("TEARDOWN DONE---------")
-
-
-
 
     # test che inserisce nel database dei prodotti casuali per poi eseguire la loro vendita per verificare
     # se sono stati effettivamente venduti
     def test_vendiProdotti(self):
         listProdotti = list()
         contatore = 5
-        for i in range(0, contatore):
-            prodotto = Amministratore().inserisciProdotto(i, datetime.today(), i, "nome", i + 0.1, i)
+        for i in range(contatore):
+            prodotto = Amministratore().inserisciProdotto(datetime.today(), None, f"{i}", i, "s", "tecnologia")
             listProdotti.append(prodotto)
         # TEST-----------------
         Amministratore().vendiProdotti(listProdotti)
-        listProdottiVenduti = File().deserializza(self.pathDatabaseObj.vendutiTxt)
+        listProdottiVenduti = File().deserializza(PathDatabase().vendutiTxt)
         segnalino = 0
         for venduto in listProdottiVenduti:
             for prodotto in listProdotti:
@@ -62,29 +64,25 @@ class Amministratore_test(TestCase):
                     segnalino += 1
         self.assertEqual(segnalino, contatore)
 
-
     # test che inserisce un prodotto nel database con valori casuali e verifica se è stato effettivamente inserito
     def test_inserisciProdotto(self):
         # setup---------------------------------------------
-        path = pathlib.Path().resolve().__str__().replace("tests", '')
-        PathDatabase().setup(path)
         min = 1
         max = 10000
+        idProdotti = list()
         i = random.randint(min, max)
-        prodotto = Amministratore().inserisciProdotto(i, datetime.today(), i, "nome", i + 0.1, i)
-        idProdotto = prodotto.idProdotto
+        for x in range(5):
+            prodotto = Amministratore().inserisciProdotto(datetime.today(), None, "nome", i, "s", "tecnologia")
+            idProdotti.append(prodotto.idProdotto)
         # test----------------------------------------------
         listProdotti = Prodotto().recuperaListaProdottiInVendita()
-        prodottotest = None
         for prodotto in listProdotti:
-            if prodotto.idProdotto == idProdotto:
-                prodottotest = prodotto
-        self.assertEqual(idProdotto, prodottotest.idProdotto)
+            for idProdotto in idProdotti:
+                if prodotto.idProdotto == idProdotto:
+                    self.assertEqual(idProdotto, prodotto.idProdotto)
 
     def test_inserisciAccount(self):
         # setup -------------
-        path = pathlib.Path().resolve().__str__().replace('tests', '')
-        PathDatabase().setup(path)
         account1 = Amministratore().inserisciAccount("leo", "peraz", '29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271',
                                           '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
         # test---------------
@@ -96,8 +94,6 @@ class Amministratore_test(TestCase):
 
     def test_eliminaAccount(self):
         # setup-------
-        path = pathlib.Path().resolve().__str__().replace('tests', '')
-        PathDatabase().setup(path)
         Amministratore().inserisciAccount("prova", "prova", "prova", "prova", "prova", "prova", "prova", "prova",
                                           "prova", "prova", "prova", "prova")
         accountInserito = Account().trovaOggettoTramiteEmail("prova")
@@ -124,7 +120,6 @@ class Amministratore_test(TestCase):
 
     def test_aggiornaProdotto(self):
         # SETUP--------------
-        PathDatabase().setup(pathlib.Path().resolve().__str__().replace("tests", ""))
         primoId = 1
         Amministratore().inserisciProdotto(primoId, datetime.today(), primoId, "nome", primoId, primoId)
         secondoId = 2

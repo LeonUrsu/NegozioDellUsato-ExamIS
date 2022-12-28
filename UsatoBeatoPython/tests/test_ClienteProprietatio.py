@@ -17,10 +17,9 @@ class ClienteProprietario_test(TestCase):
 
     # Metodo che crea una copia del database prima di eseguire i test
     def setUp(self):
-        mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
-        PathDatabase().setup(mainPath)
-        from_path = os.path.join(mainPath, "BackupFiles")  # path per cartella di backup
-        to_path = os.path.join(mainPath, "Database")
+        mainPath = pathlib.Path().resolve().__str__().replace("tests", "")
+        from_path = os.path.join(mainPath, "Database")
+        to_path = os.path.join(mainPath, "tempDataBase")
         try:
             shutil.rmtree(to_path)
         except:
@@ -29,6 +28,23 @@ class ClienteProprietario_test(TestCase):
         account = self.setUp_2()
         self.setUp_3(account)
         self.setUp_4()
+        print("SETUP DONE---------")
+
+    # Metodo che crea ripristina il database dopo il test
+    def tearDown(self):
+        mainPath = pathlib.Path().resolve().__str__().replace("tests", "")
+        from_path = os.path.join(mainPath, "tempDataBase")
+        to_path = os.path.join(mainPath, "Database")
+        try:
+            shutil.rmtree(to_path)
+        except:
+            pass
+        shutil.copytree(from_path, to_path)
+        try:
+            shutil.rmtree(from_path)
+        except:
+            pass
+        print("TEARDOWN DONE---------")
 
     # Inserimento degli account di prova
     def setUp_2(self):
@@ -61,20 +77,6 @@ class ClienteProprietario_test(TestCase):
         email = "user@mail.com"
         password = "userPassword"
         User().login(email, password)
-
-
-    # Metodo che crea ripristina il database dopo il test
-    def tearDown(self):
-        mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
-        PathDatabase().setup(mainPath)
-        from_path = os.path.join(mainPath, "BackupFiles")  # path per cartella di backup
-        to_path = os.path.join(mainPath, "Database")
-        try:
-            shutil.rmtree(to_path)
-        except:
-            pass
-        shutil.copytree(from_path, to_path)
-
 
     # passed
     def test_controllaStatoProdotti(self):

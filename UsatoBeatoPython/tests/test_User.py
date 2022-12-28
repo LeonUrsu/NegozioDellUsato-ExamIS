@@ -17,10 +17,9 @@ from MVC.Model.SistemService.Logging import Logging
 class User_test(TestCase):
 
     def setUp(self):
-        mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
-        PathDatabase().setup(mainPath)
-        from_path = os.path.join(mainPath, "BackupFiles")  # path per cartella di backup
-        to_path = os.path.join(mainPath, "Database")
+        mainPath = pathlib.Path().resolve().__str__().replace("tests", "")
+        from_path = os.path.join(mainPath, "Database")
+        to_path = os.path.join(mainPath, "tempDataBase")
         try:
             shutil.rmtree(to_path)
         except:
@@ -28,6 +27,23 @@ class User_test(TestCase):
         shutil.copytree(from_path, to_path)
         self.setUp_2()
         self.setUp_3()
+        print("SETUP DONE---------")
+
+    # Metodo che crea ripristina il database dopo il test
+    def tearDown(self):
+        mainPath = pathlib.Path().resolve().__str__().replace("tests", "")
+        from_path = os.path.join(mainPath, "tempDataBase")
+        to_path = os.path.join(mainPath, "Database")
+        try:
+            shutil.rmtree(to_path)
+        except:
+            pass
+        shutil.copytree(from_path, to_path)
+        try:
+            shutil.rmtree(from_path)
+        except:
+            pass
+        print("TEARDOWN DONE---------")
 
     def setUp_2(self):
         min = 1
@@ -44,18 +60,6 @@ class User_test(TestCase):
                                               None)
         Amministratore().inserisciAccount("User", "User", "21/04/1926", "user@mail.com", "userPassword",
                                           "0000000001", "62100", "User", "Macerata", None, None, None)
-
-    # Metodo che crea ripristina il database dopo il test
-    def tearDown(self):
-        mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
-        PathDatabase().setup(mainPath)
-        from_path = os.path.join(mainPath, "BackupFiles")  # path per cartella di backup
-        to_path = os.path.join(mainPath, "Database")
-        try:
-            shutil.rmtree(to_path)
-        except:
-            pass
-        shutil.copytree(from_path, to_path)
 
     def test_filtraProdottiConData(self):
         dataFine = datetime.today()

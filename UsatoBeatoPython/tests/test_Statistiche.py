@@ -17,29 +17,31 @@ from MVC.Model.SistemService.Statistiche import Statistiche
 
 class Statistiche_test(TestCase):
     def setUp(self):
-        mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
-        PathDatabase().setup(mainPath)
-        from_path = os.path.join(mainPath, "BackupFiles")  # path per cartella di backup
-        to_path = os.path.join(mainPath, "Database")
+        mainPath = pathlib.Path().resolve().__str__().replace("tests", "")
+        from_path = os.path.join(mainPath, "Database")
+        to_path = os.path.join(mainPath, "tempDataBase")
         try:
             shutil.rmtree(to_path)
         except:
             pass
         shutil.copytree(from_path, to_path)
-        self.setUp_1()
-        self.setUp_2()
+        print("SETUP DONE---------")
 
     # Metodo che crea ripristina il database dopo il test
     def tearDown(self):
-        mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
-        PathDatabase().setup(mainPath)
-        from_path = os.path.join(mainPath, "BackupFiles")  # path per cartella di backup
+        mainPath = pathlib.Path().resolve().__str__().replace("tests", "")
+        from_path = os.path.join(mainPath, "tempDataBase")
         to_path = os.path.join(mainPath, "Database")
         try:
             shutil.rmtree(to_path)
         except:
             pass
         shutil.copytree(from_path, to_path)
+        try:
+            shutil.rmtree(from_path)
+        except:
+            pass
+        print("TEARDOWN DONE---------")
 
     # Metodo che inserisce dei prodotti nel database e ne vende una parte
     def setUp_1(self):

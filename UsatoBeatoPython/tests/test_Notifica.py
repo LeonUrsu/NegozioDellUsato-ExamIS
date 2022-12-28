@@ -14,16 +14,34 @@ from MVC.Model.SistemService.Notifica import Notifica
 class Notifica_test(TestCase):
 
     def setUp(self):
-        mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
-        PathDatabase().setup(mainPath)
-        from_path = os.path.join(mainPath, "BackupFiles")  # path per cartella di backup
-        to_path = os.path.join(mainPath, "Database")
+        mainPath = pathlib.Path().resolve().__str__().replace("tests", "")
+        from_path = os.path.join(mainPath, "Database")
+        to_path = os.path.join(mainPath, "tempDataBase")
         try:
             shutil.rmtree(to_path)
         except:
             pass
         shutil.copytree(from_path, to_path)
         self.setUp_2()
+        print("SETUP DONE---------")
+
+        # Metodo che crea ripristina il database dopo il test
+
+    def tearDown(self):
+        mainPath = pathlib.Path().resolve().__str__().replace("tests", "")
+        from_path = os.path.join(mainPath, "tempDataBase")
+        to_path = os.path.join(mainPath, "Database")
+        try:
+            shutil.rmtree(to_path)
+        except:
+            pass
+        shutil.copytree(from_path, to_path)
+        try:
+            shutil.rmtree(from_path)
+        except:
+            pass
+        print("TEARDOWN DONE---------")
+
 
     def setUp_2(self):
         Amministratore().inserisciAccount("mario", "rossi", "16/05/1999", "test@gmail.com",
@@ -33,18 +51,6 @@ class Notifica_test(TestCase):
             Categoria().aggiungiCategoria(x)
 
         Amministratore().inserisciProdotto(1, datetime.today(), 1, "pera", 17, None)
-
-    # Metodo che crea ripristina il database dopo il test
-    def tearDown(self):
-        mainPath = pathlib.Path().resolve().__str__().replace("tests", '')
-        PathDatabase().setup(mainPath)
-        from_path = os.path.join(mainPath, "BackupFiles")  # path per cartella di backup
-        to_path = os.path.join(mainPath, "Database")
-        try:
-            shutil.rmtree(to_path)
-        except:
-            pass
-        shutil.copytree(from_path, to_path)
 
     def test_gestioneEmailDiRegistrazione(self):
         Notifica().gestioneEmailDIRegistrazione("test@gmail.com", "password")
