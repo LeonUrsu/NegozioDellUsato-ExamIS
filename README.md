@@ -39,15 +39,13 @@ Dall’analisi della documentazione prodotta durante le interviste con gli stake
 
 **2.1 REQUISITI DEL SISTEMA**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.001.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.001.png)
 
 Figura NUMERO: Distribuzione dei package dei requisiti
 
 **2.1.1 REQUISITI FUNZIONALI**
 
-![Immagine che contiene testo
-
-Descrizione generata automaticamente](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.002.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.002.png)
 
 Figura NUMERO: Diagramma dei requisiti funzionali
 
@@ -275,7 +273,7 @@ Il sistema dovrà permettere di visualizzare e info di un prodotto
 
 **2.1.2 REQUISITI NON FUNZIONALI**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.003.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.003.png)
 
 Figura NUMERO: Diagramma dei requisiti non funzionali
 
@@ -320,13 +318,13 @@ I seguenti diagrammi sono stati suddivisi in base alle varie aree di interazione
 
 Nella figura NUMERO vi è il diagramma con gli attori individuati durante l’analisi, gli attori: Amministratore e Cliente-Proprietario sono delle generalizzazioni dell’attore User, ciò significa che potranno trovarsi nelle situazioni dell’attore User.
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.004.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.004.png)
 
 Figura NUMERO: Diagramma degli attori
 
 **2.2.2 GESTIONE AMMINISTRATORE** 
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.005.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.005.png)
 
 Figura NUMERO: Diagramma Gestione Amministratore
 
@@ -592,7 +590,7 @@ Figura NUMERO: Diagramma Gestione Amministratore
 
 **2.2.3 GESTIONE CLIENTE-PROPRIETARIO**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.006.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.006.png)
 
 Figura NUMERO: Diagramma Gestione Cliente-Proprietario
 
@@ -629,7 +627,7 @@ Figura NUMERO: Diagramma Gestione Cliente-Proprietario
 
 **2.2.4 GESTIONE SISTEMA**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.007.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.007.png)
 
 Figura NUMERO: Diagramma Gestione Sistema
 
@@ -691,7 +689,7 @@ Figura NUMERO: Diagramma Gestione Sistema
 
 **2.2.5 GESTIONE USER**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.008.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.008.png)
 
 Figura NUMERO: Diagramma Gestione User
 
@@ -735,13 +733,13 @@ Figura NUMERO: Diagramma Gestione User
 **3.1 p DI ANALISI**
 
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.009.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.009.png)
 
 Figura NUMERO: Diagramma del package di analisi
 
 **3.2 DIAGRAMMI DELLE CLASSI DI ANALISI**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.010.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.010.png)
 
 Figura NUMERO: Diagramma di analisi delle classi di Attività
 
@@ -749,7 +747,7 @@ Figura NUMERO: Diagramma di analisi delle classi di Attività
 
 
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.011.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.011.png)
 
 Figura NUMERO: Diagramma di analisi delle classi di Servizio
 
@@ -757,71 +755,71 @@ Figura NUMERO: Diagramma di analisi delle classi di Servizio
 
 **3.3.1 BACKUP**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.012.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.012.png)
 
 Figura NUMERO: Diagramma di sequenza: Backup
 
 **3.3.2 CONTROLLASTATOPRODOTTO**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.013.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.013.png)
 
 Figura NUMERO: Diagramma di sequenza: ControllaStatoProdotto
 
 **3.3.3 CRUD PRODOTTO**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.014.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.014.png)
 
 Figura NUMERO: Diagramma di sequenza: Aggiorna Prodotto
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.015.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.015.png)
 
 Figura NUMERO: Diagramma di sequenza: Crea Prodotto
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.016.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.016.png)
 
 Figura NUMERO: Diagramma di sequenza: Cancella Prodotto
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.017.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.017.png)
 
 Figura NUMERO: Diagramma di sequenza: Visualizza Prodotto
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.018.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.018.png)
 
 Figura NUMERO: Diagramma di sequenza: Visualizza Prodotto
 
 **3.3.4 LOGIN**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.019.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.019.png)
 
 Figura NUMERO: Diagramma di sequenza: Login
 
 **3.3.5 NOTIFICA**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.020.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.020.png)
 
 Figura NUMERO: Diagramma di sequenza: Notifica
 
 **3.3.6 RICERCACLIENTE**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.021.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.021.png)
 
 Figura NUMERO: Diagramma di sequenza: Ricerca Cliente
 
 **3.3.7 RICERCAPRODOTTO**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.022.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.022.png)
 
 Figura NUMERO: Diagramma di sequenza: RicercaProdotto
 
 **3.3.8 VENDIPRODOTTO**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.023.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.023.png)
 
 Figura NUMERO: Diagramma di sequenza: VendiProdotto
 
 **3.3.9 VISUALIZZASTATISTICHE**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.024.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.024.png)
 
 Figura NUMERO: Diagramma di sequenza: Visualizza Statistiche
 
@@ -830,35 +828,33 @@ Figura NUMERO: Diagramma di sequenza: Visualizza Statistiche
 
 **4.1 DIAGRAMMI DELLE CLASSI DI PROGETTAZIONE**
 
-![Immagine che contiene testo
-
-Descrizione generata automaticamente](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.025.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.025.png)
 
 Figura NUMERO: Diagramma del package di Progettazione 
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.026.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.026.png)
 
 Figura NUMERO: Diagramma di progettazione delle classi di Attività 
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.027.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.027.png)
 
 Figura NUMERO: Diagramma di progettazione delle classi di Servizio
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.028.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.028.png)
 
 Figura NUMERO: Diagramma di progettazione delle classi di SistemService
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.029.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.029.png)
 
 Figura NUMERO: Diagramma di progettazione delle classi di View
 
 **4.2 DIAGRAMMI DEI COMPONENTI**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.030.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.030.png)
 
 Figura NUMERO: Diagramma dei componenti: Model
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.031.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.031.png)
 
 Figura NUMERO: Diagramma dei componenti: MVC
 
@@ -866,31 +862,31 @@ Figura NUMERO: Diagramma dei componenti: MVC
 
 **4.3.1 MACCHINE A STATI: BACKUP**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.032.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.032.png)
 
 Figura NUMERO: Diagramma della macchina a stati: Backup
 
 **4.3.2 MACCHINE A STATI: CATEGORIA**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.033.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.033.png)
 
 Figura NUMERO: Diagramma della macchina a stati: Categoria
 
 **4.3.3 MACCHINE A STATI: LOGIN**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.034.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.034.png)
 
 Figura NUMERO: Diagramma della macchina a stati: Login
 
 **4.3.4 MACCHINE A STATI: PRODOTTO**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.035.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.035.png)
 
 Figura NUMERO: Diagramma della macchina a stati: Prodotto
 
 **4.3.5 MACCHINE A STATI: RICEVUTA**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.036.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.036.png)
 
 Figura NUMERO: Diagramma della macchina a stati: Ricevuta
 
@@ -899,7 +895,7 @@ Figura NUMERO: Diagramma della macchina a stati: Ricevuta
 
 **5.1 DIAGRAMMA DI DEPLOYMENT**
 
-![](Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.037.png)
+![](https://github.com/LeonUrsu/NegozioDellUsato-ExamIS/blob/master/README/Aspose.Words.ba09b7bf-aba0-4201-b306-d0a103687ce7.037.png)
 
 Figura NUMERO: Diagramma di deployment 
 
