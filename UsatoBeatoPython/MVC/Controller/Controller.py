@@ -204,7 +204,8 @@ class Controller(object):
     def logout(self):
         ret = None
         try:
-            ret = Logging.logout()
+            logging = Logging()
+            ret = logging.logout()
         except:
             pass
         return ret

@@ -15,8 +15,8 @@ class Backup(object):
 
     # Metodo che quando richiamato effettua il backup dei dati e li copia nella cartella to_path
     def effettuaBackup(self):
-        from_path = os.path.join(PathDatabase().mainDirPath, "Database")
-        to_path = os.path.join(PathDatabase().mainDirPath, "BackupFiles")
+        from_path = os.path.join(PathDatabase.mainDirPath, "Database")
+        to_path = os.path.join(PathDatabase.mainDirPath, "BackupFiles")
         self.eliminaCartella(to_path)
         copytree(from_path, to_path)
 

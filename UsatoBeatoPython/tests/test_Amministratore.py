@@ -13,9 +13,6 @@ from MVC.Model.Servizio.Prodotto import Prodotto
 from MVC.Model.SistemService.File import File
 
 
-
-
-
 class Amministratore_test(TestCase):
 
     def setUp(self):
@@ -54,7 +51,6 @@ class Amministratore_test(TestCase):
         for i in range(contatore):
             prodotto = Amministratore().inserisciProdotto(datetime.today(), None, f"{i}", i, "s", "tecnologia")
             listProdotti.append(prodotto)
-        # TEST-----------------
         Amministratore().vendiProdotti(listProdotti)
         listProdottiVenduti = File().deserializza(PathDatabase().vendutiTxt)
         segnalino = 0
@@ -83,20 +79,19 @@ class Amministratore_test(TestCase):
 
     def test_inserisciAccount(self):
         # setup -------------
-        account1 = Amministratore().inserisciAccount("leo", "peraz", '29/05/00', "leoperaz2000@gmail.com", "ciao", '3883667271',
-                                          '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
+        account1 = Amministratore().inserisciAccount("nuovo", "cognome", '24/05/2000', "nuovoMailodad@gmafil.com", "ciao",
+                                                     '3812312271',
+                                                     '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
         # test---------------
         account2 = Account().trovaOggettoTramiteEmail(account1.email)
         self.assertEqual(account1.idAccount, account2.idAccount)
 
-
-
-
     def test_eliminaAccount(self):
         # setup-------
-        Amministratore().inserisciAccount("prova", "prova", "prova", "prova", "prova", "prova", "prova", "prova",
-                                          "prova", "prova", "prova", "prova")
-        accountInserito = Account().trovaOggettoTramiteEmail("prova")
+        email = "email@prova.it"
+        Amministratore().inserisciAccount("nome", "cognome", "10/10/2000", email, "password", "12351324", "61200",
+                                          "nome", "Macerata", "30", None, "Romaaa")
+        accountInserito = Account().trovaOggettoTramiteEmail(email)
         Amministratore().eliminaAccount(accountInserito.idAccount)
         accountCercato = Account().trovaOggettoTramiteId(accountInserito.idAccount)
         if accountCercato is not None:
@@ -105,11 +100,7 @@ class Amministratore_test(TestCase):
             pass
 
     def test_eliminaProdotto(self):
-        # SETUP--------------
-        min = 1
-        max = 10000
-        i = random.randint(min, max)
-        Amministratore().inserisciProdotto(i, datetime.today(), i, "nome", i + 0.1, i)
+        Amministratore().inserisciProdotto(datetime.today(), None, "nomeProdotto", "43", "c3", "Elettronica")
         prodottoInserito = Prodotto().trovaOggettoTramiteId(1)
         Amministratore().eliminaProdotto(prodottoInserito.idProdotto)
         prodottoCercato = Prodotto().trovaOggettoTramiteId(prodottoInserito.idProdotto)
@@ -119,21 +110,18 @@ class Amministratore_test(TestCase):
             pass
 
     def test_aggiornaProdotto(self):
-        # SETUP--------------
-        primoId = 1
-        Amministratore().inserisciProdotto(primoId, datetime.today(), primoId, "nome", primoId, primoId)
-        secondoId = 2
-        beforeProdotto = Prodotto().trovaOggettoTramiteId(primoId)
-        #print(beforeProdotto.__dict__)
-        Amministratore().aggiornaProdotto(secondoId, datetime.today(), "ciao", secondoId, secondoId, primoId)
-        afterProdotto = Prodotto().trovaOggettoTramiteId(primoId)
-        #print(afterProdotto.__dict__)
+        prodotto = Amministratore().inserisciProdotto(datetime.today(), None, "nomeProdotto", "43", "c3", "Elettronica")
+        nuovoNome = "nuovoNomeProdotto"
+        Amministratore().aggiornaProdotto("Utensili", "12/10/2021", nuovoNome, "60", "d4", prodotto.idProdotto)
+        afterProdotto = Prodotto().trovaOggettoTramiteId(prodotto.idProdotto)
+        self.assertEqual(nuovoNome, afterProdotto.nomeProdotto)
 
     def test_aggiornaAccount(self):
-        account1 = Amministratore().inserisciAccount("leo", "peraz", '29/05/2000', "leoperaz2000@gmail.com", "ciao",
-                                                     '3883667271', '63066', 'ciao', 'sbt', '9', 'nessuna', ' ciao1')
-        account2 = Amministratore().aggiornaAccount("leon", "leon", "00/00/2000", "email@gmai.com", account1.idAccount,
-                                                    "0000000000", None)
+        account1 = Amministratore().inserisciAccount("nome", "cognome", "10/10/2000", "vecchiaEmail@gmai.com",
+                                                     "password", "12351324", "61200", "nome", "Macerata", "30", None,
+                                                     "Romaaa")
+        account2 = Amministratore().aggiornaAccount(None, "Polo", "12/12/1987", "nuovaEmial@usatobeato.it",
+                                                    account1.idAccount, "121313245", None)
         self.assertEqual(account1.idAccount, account2.idAccount)
         self.assertNotEqual(account1.nome, account2.nome)
         self.assertNotEqual(account1.cognome, account2.cognome)

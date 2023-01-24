@@ -10,10 +10,8 @@ from MVC.Model.SistemService.Backup import Backup
 from MVC.Model.SistemService.Statistiche import Statistiche
 from MVC.View.CentralWindow import CentralWindow
 
-
-
 if __name__ == '__main__':
-    # TODO correggere i test eliminati il 14 nov
+
     # Path setup
     mainPath = pathlib.Path().resolve().__str__()
     PathDatabase().setup(mainPath)
@@ -31,14 +29,14 @@ if __name__ == '__main__':
     except:
         print(">>>>exiting")
 
-    #Sconta i prodotti alla chiusura
+    # Sconta i prodotti alla chiusura
     try:
         Prodotto().scontaProdotti()
-        print(">>>>prodotti scontati")  # TODO non funziona
+        print(">>>>prodotti scontati")
     except:
         print(">>>>errore sconto prodotti")
 
-    #Generatore statistiche
+    # Generatore statistiche
     try:
         Statistiche().aggiungiStatistiche()
         print(">>>>stats generate")
@@ -52,6 +50,3 @@ if __name__ == '__main__':
         print(">>>>backup effettuato")
     except:
         print(">>>>errore generazione backup")
-
-    # Sconto o eliminazione dei prodotti tramite il controllo data
-    # TODO
