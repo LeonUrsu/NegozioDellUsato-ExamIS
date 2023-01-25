@@ -9,10 +9,10 @@ from unittest import TestCase
 from dateutil.relativedelta import relativedelta
 
 from Database.PathDatabase import PathDatabase
-from MVC.Model.Attività.Amministratore import Amministratore
-from MVC.Model.Servizio.Categoria import Categoria
-from MVC.Model.Servizio.Prodotto import Prodotto
-from MVC.Model.SistemService.Statistiche import Statistiche
+from MVC.model.Attività.Amministratore import Amministratore
+from MVC.model.Servizio.Categoria import Categoria
+from MVC.model.Servizio.Prodotto import Prodotto
+from MVC.model.SistemService.Statistiche import Statistiche
 
 
 class Statistiche_test(TestCase):

@@ -6,11 +6,11 @@ from datetime import datetime
 from unittest import TestCase
 from dateutil.relativedelta import relativedelta
 from Database.PathDatabase import PathDatabase
-from MVC.Model.Attività.Account import Account
-from MVC.Model.Attività.Amministratore import Amministratore
-from MVC.Model.Attività.ClienteProprietario import ClienteProprietario
-from MVC.Model.Attività.User import User
-from MVC.Model.Servizio.Prodotto import Prodotto
+from MVC.model.Attività.Account import Account
+from MVC.model.Attività.Amministratore import Amministratore
+from MVC.model.Attività.ClienteProprietario import ClienteProprietario
+from MVC.model.Attività.User import User
+from MVC.model.Servizio.Prodotto import Prodotto
 
 
 class ClienteProprietario_test(TestCase):

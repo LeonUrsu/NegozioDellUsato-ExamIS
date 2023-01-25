@@ -9,9 +9,9 @@ from unittest import TestCase, main
 from dateutil.relativedelta import relativedelta
 
 from Database.PathDatabase import PathDatabase
-from MVC.Model.Attività.Amministratore import Amministratore
-from MVC.Model.Attività.User import User
-from MVC.Model.SistemService.Logging import Logging
+from MVC.model.Attività.Amministratore import Amministratore
+from MVC.model.Attività.User import User
+from MVC.model.SistemService.Logging import Logging
 
 
 class User_test(TestCase):

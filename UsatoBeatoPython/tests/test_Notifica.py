@@ -5,10 +5,10 @@ from datetime import datetime
 from unittest import TestCase
 
 from Database.PathDatabase import PathDatabase
-from MVC.Model.Attività.Amministratore import Amministratore
-from MVC.Model.Servizio.Categoria import Categoria
-from MVC.Model.Servizio.Prodotto import Prodotto
-from MVC.Model.SistemService.Notifica import Notifica
+from MVC.model.Attività.Amministratore import Amministratore
+from MVC.model.Servizio.Categoria import Categoria
+from MVC.model.Servizio.Prodotto import Prodotto
+from MVC.model.SistemService.Notifica import Notifica
 
 
 class Notifica_test(TestCase):
