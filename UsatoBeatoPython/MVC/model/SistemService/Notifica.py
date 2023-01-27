@@ -1,10 +1,11 @@
 import yagmail
 from Database.PathDatabase import PathDatabase
 from MVC.model.Attività.Account import Account
+from MVC.model.Interfacce.sistemServiceInterface.NotificaInterface import NotificaInterface
 from MVC.model.Servizio.Prodotto import Prodotto
 
 
-class Notifica(object):
+class Notifica(object, NotificaInterface):
 
     # Costruttore della classe
     def __init__(self):

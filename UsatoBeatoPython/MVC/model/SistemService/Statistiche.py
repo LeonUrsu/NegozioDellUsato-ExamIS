@@ -3,12 +3,13 @@ from dateutil.relativedelta import relativedelta
 
 from Database.PathDatabase import PathDatabase
 from MVC.model.Attività.Account import Account
+from MVC.model.Interfacce.sistemServiceInterface.StatisticheInterface import StatisticheInterface
 from MVC.model.Servizio.Categoria import Categoria
 from MVC.model.Servizio.Prodotto import Prodotto
 from MVC.model.SistemService.File import File
 
 
-class Statistiche:
+class Statistiche(StatisticheInterface):
 
     # Costruttore della classe
     def __init__(self):
