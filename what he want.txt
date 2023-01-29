@@ -1,3 +1,4 @@
+P---
 -quando un oggetto viene distrutto scrivere destroy in inglese
 -usare termini chiave in inglese
 -non dire "diagrammi d'uso del sistema" hanno ognuno un nome
@@ -10,13 +11,13 @@
 -scrivere IF e non SE
 -prima di include scrivere "il caso d'uso inizia quando qualcuno..."
 -scrivere extend e non estende
--CRUD e poi ricerca
+-CRUD e poi ricerca (si intende nei diagrammi dei casi d'uso)
 -grafica del documento in word o pdf
 -usare requisiti con tassonomia
 -dividere requisiti funz e non
 -scrivere soggetto nelle frasi
 -progetto ordinato
-____________ENRICO
+E---
 -commenti codice
 -codice organizzato
 -portabilita della grafica su diversi SO, quindi scegliere stili delle finestre std o comunque installabilli
