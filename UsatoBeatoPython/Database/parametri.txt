@@ -1,1 +1,0 @@
-{"lastIdProdotto": 2, "lastIdRicevuta": 0, "lastIdAccount": 1, "lastidCategoria": 1, "lastIdScaffale": 0}

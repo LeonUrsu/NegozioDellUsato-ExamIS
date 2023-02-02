@@ -134,7 +134,7 @@ class Controller(object):
         return ret
 
     def recuperaListaCategorie(self):
-        ret = None
+        ret = list()
         try:
             ret = Categoria().recuperaListaOggetti()
         except:

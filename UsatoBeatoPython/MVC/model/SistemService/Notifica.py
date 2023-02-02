@@ -1,11 +1,10 @@
-import yagmail
 from Database.PathDatabase import PathDatabase
 from MVC.model.Attività.Account import Account
 from MVC.model.Interfacce.sistemServiceInterface.NotificaInterface import NotificaInterface
 from MVC.model.Servizio.Prodotto import Prodotto
 
 
-class Notifica(object, NotificaInterface):
+class Notifica(NotificaInterface):
 
     # Costruttore della classe
     def __init__(self):
@@ -58,5 +57,6 @@ class Notifica(object, NotificaInterface):
 
     # Metodo che invia il messaggio sull'email in versione aggionata
     def invioAlServerV2(self, receiver_email, subject, message, yag=None):
-        yag = yagmail.SMTP('progetto.negozio.is@gmail.com', 'ktvfqnyjuicdpwsz')
-        yag.send(receiver_email, subject, message)
+        #yag = yagmail.SMTP('progetto.negozio.is@gmail.com', 'ktvfqnyjuicdpwsz')
+        #yag.send(receiver_email, subject, message)
+        pass

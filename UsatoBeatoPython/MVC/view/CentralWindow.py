@@ -5,13 +5,14 @@ from PySide6 import QtWidgets, QtGui
 from PySide6.QtCore import QFile, QPropertyAnimation
 from PySide6.QtUiTools import QUiLoader
 
+from Database.PathDatabase import PathDatabase
 from MVC.controller.Controller import Controller
 from MVC.model.SistemService.Logging import Logging
-from MVC.View.AmministratoreView import AmministratoreView
-from MVC.View.ClienteProprietarioView import ClienteProprietarioView
-from MVC.View.LoginView import LoginView
-from MVC.View.UserView import UserView
-from MVC.View.resources import *
+from MVC.view.AmministratoreView import AmministratoreView
+from MVC.view.ClienteProprietarioView import ClienteProprietarioView
+from MVC.view.LoginView import LoginView
+from MVC.view.UserView import UserView
+from MVC.view.resources import *
 
 
 class CentralWindow():
@@ -21,17 +22,19 @@ class CentralWindow():
 
     def apriCentralWindowView(self, mainPath):
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "view", "CentralWindow.ui")
+        #path = os.path.join(mainPath, "MVC", "view", "../../resourcesForUsatoBeato/CentralWindow.ui")
+        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato/CentralWindow.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         self.finestra.setWindowTitle("")
-        icon = QtGui.QIcon("MVC/view/assets/LOGO/usatobeato-website-favicon-color.svg.png")
+        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato/assets/LOGO/usatobeato-website-favicon-color.svg.png")
+        icon = QtGui.QIcon(path)
         self.finestra.setWindowIcon(icon)
         file.close()
         # self.apriAmministratoreView(pathlib.Path().resolve().__str__())
         # self.apriClienteProprietarioView (pathlib.Path().resolve().__str__(), None)
-        self.apriUserView(pathlib.Path().resolve().__str__())
+        self.apriUserView(mainPath)
 
     # Metodo per aprire la finestra dell'cliente proprietario
     def apriClienteProprietarioView(self, mainPath, account):
@@ -59,7 +62,7 @@ class CentralWindow():
         amministratore.finestra.quitBtn.clicked.connect(lambda: self.apriUserView(mainPath))
         amministratore.finestra.openRightMenu.clicked.connect(lambda: self.slideRightMenu(amministratore))
         amministratore.finestra.openLeftMenu.clicked.connect(lambda: self.slideLeftMenu(amministratore))
-        # TODO come restituire il risultato del metodo controlla email e password dalla classe Login???
+        amministratore.prodottiBtnClicked(mainPath, amministratore, None)
         amministratore.finestra.statisticheBtn.clicked.connect(
             lambda: amministratore.statisticheBtnClicked(mainPath, amministratore))
         amministratore.finestra.prodottiBtn.clicked.connect(

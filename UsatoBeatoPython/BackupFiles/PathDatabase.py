@@ -1,13 +1,18 @@
 import os.path
-
+import pathlib
+import sys
 
 
 class PathDatabase(object):
 
     def __init__(self):
-        pass
+        pat = sys.argv[0]
+        pat = os.path.dirname(pat)
+        self.setup(pat)
+
 
     def setup(self, mainDirPath):
+        self.mainDirPath = mainDirPath
         PathDatabase.mainDirPath = mainDirPath
         PathDatabase.amministratoreTxt = os.path.join(mainDirPath, "Database", "Amministratore", "Amministratore.txt")
         PathDatabase.categorieTxt = os.path.join(mainDirPath, "Database", "Categorie", "Categorie.txt")

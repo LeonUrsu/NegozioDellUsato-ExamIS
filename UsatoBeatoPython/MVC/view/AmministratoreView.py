@@ -5,6 +5,8 @@ from PySide6.QtCore import QFile
 from PySide6.QtGui import QCursor, QFont
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton, QVBoxLayout
+
+from Database.PathDatabase import PathDatabase
 from MVC.controller.Controller import Controller
 
 
@@ -12,7 +14,9 @@ class AmministratoreView(QWidget):
     def __init__(self, mainPath):
         super().__init__()
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "view", "AmministratoreViews", "AmministratoreView.ui")
+        # path = os.path.join(mainPath, "MVC", "view", "../../resourcesForUsatoBeato/AmministratoreViews", "AmministratoreView.ui")
+        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato/AmministratoreViews",
+                            "AmministratoreView.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
@@ -320,7 +324,7 @@ class AmministratoreView(QWidget):
     # name = nome del file da caricare
     def caricaView(self, mainPath, name):
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "view", "AmministratoreViews", name)
+        path = os.path.join(mainPath, "MVC", "view", "../../resourcesForUsatoBeato/AmministratoreViews", name)
         file = QFile(path)
         file.open(QFile.ReadOnly)
         finestra = loader.load(file)

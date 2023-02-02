@@ -1,11 +1,11 @@
 import json
+from _ast import ExceptHandler
 from datetime import datetime, timedelta
 
 from Database.PathDatabase import PathDatabase
 from MVC.model.Attività.Account import Account
 from MVC.model.Interfacce.sistemServiceInterface.LoggingInterface import LoggingInterface
 from MVC.model.SistemService.File import File
-from MVC.view.AmministratoreViews.ExceptHandler import ExceptHandler
 
 
 class Logging(LoggingInterface):
@@ -133,7 +133,6 @@ class Logging(LoggingInterface):
             return True
         ExceptHandler().erroreAutenticazione()
         return False
-    #TODO anche se inserisci password admin sbagliata ti fa loggare
 
     # Metodo che verifica se l'utente è loggato
     def checkAccontLoggato(self):

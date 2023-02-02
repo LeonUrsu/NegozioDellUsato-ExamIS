@@ -5,6 +5,8 @@ from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QTableWidgetItem, QPushButton
 from PySide6.QtGui import QCursor
+
+from Database.PathDatabase import PathDatabase
 from MVC.controller.Controller import Controller
 
 
@@ -12,12 +14,13 @@ class UserView():
 
     def __init__(self, mainPath):
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "view", "UserViews", "UserView.ui")
+        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato/UserViews", "UserView.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         file.close()
-        self.caricaUserProdottiView(mainPath, None)
+        catList = Controller().recuperaListaCategorie()
+        self.caricaUserProdottiView(mainPath, catList)
 
     # Metodo che crea un bottone grazie al idProdotto
     # mainPath = path del main
@@ -99,7 +102,7 @@ class UserView():
     # Metodo che grazie alle categorie che ci sono in dataBase si aggiungono alla tendina
     # obj = view da utilizzare per caricare i dati
     def setItemsOfComboboxCategorie(self, obj):
-        categorie = Controller().recuperaListaCategorie()  # TODO
+        categorie = Controller().recuperaListaCategorie()
         for cat in categorie:
             obj.filtraPerCategoria.addItem(cat.nome)
         self.categorieList = categorie
@@ -109,7 +112,7 @@ class UserView():
     # name = file da caricare
     def caricaView(self, mainPath, fileName):
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "view", "UserViews", fileName)
+        path = os.path.join(mainPath,"resourcesForUsatoBeato/UserViews", fileName)
         file = QFile(path)
         file.open(QFile.ReadOnly)
         finestra = loader.load(file)

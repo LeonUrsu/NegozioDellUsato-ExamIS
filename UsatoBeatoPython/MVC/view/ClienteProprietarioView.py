@@ -4,6 +4,8 @@ from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QTableWidgetItem, QPushButton
 from PySide6.QtGui import QCursor
+
+from Database.PathDatabase import PathDatabase
 from MVC.controller.Controller import Controller
 from MVC.model.SistemService.Logging import Logging
 
@@ -12,7 +14,8 @@ class ClienteProprietarioView():
     def __init__(self, mainPath):
         # super().__init__()
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "view", "ClienteProprietarioViews", "ClienteProprietarioView.ui")
+        #path = os.path.join(mainPath, "MVC", "view", "../../resourcesForUsatoBeato/ClienteProprietarioViews", "ClienteProprietarioView.ui")
+        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato/ClienteProprietarioViews", "ClienteProprietarioView.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
@@ -108,7 +111,7 @@ class ClienteProprietarioView():
     # Metodo che carica una view presente nelle AdminButtonsViews grazie al nome passato
     def caricaView(self, mainPath, name):
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "view", "ClienteProprietarioViews", name)
+        path = os.path.join(mainPath, "MVC", "view", "../../resourcesForUsatoBeato/ClienteProprietarioViews", name)
         file = QFile(path)
         file.open(QFile.ReadOnly)
         finestra = loader.load(file)

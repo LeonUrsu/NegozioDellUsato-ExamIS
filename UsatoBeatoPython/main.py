@@ -1,3 +1,4 @@
+import os
 import pathlib
 import sys
 
@@ -8,21 +9,23 @@ from Database.PathDatabase import PathDatabase
 from MVC.model.Servizio.Prodotto import Prodotto
 from MVC.model.SistemService.Backup import Backup
 from MVC.model.SistemService.Statistiche import Statistiche
-from MVC.View.CentralWindow import CentralWindow
+from MVC.view.CentralWindow import CentralWindow
 
 if __name__ == '__main__':
 
     # Path setup
-    mainPath = pathlib.Path().resolve().__str__()
-    PathDatabase().setup(mainPath)
-
+    mainPath = sys.argv[0]
+    mainDirPath = os.path.dirname(mainPath)
+    pathDatabase = PathDatabase()
+    print(f"...........{pathDatabase.mainDirPath}")
+    try:
     # Window setup
-    app = QApplication(sys.argv)
-    app.setApplicationDisplayName("UsatoBeato")
-    centralWindow = CentralWindow()
-    centralWindow.apriCentralWindowView(pathlib.Path().resolve().__str__())
-    centralWindow.finestra.show()
-
+        app = QApplication(sys.argv)
+        app.setApplicationDisplayName("UsatoBeato")
+        centralWindow = CentralWindow()
+        centralWindow.apriCentralWindowView(pathDatabase.mainDirPath)
+        centralWindow.finestra.show()
+    except: pass
     # exit app setup
     try:
         sys.exit(app.exec())
@@ -46,7 +49,7 @@ if __name__ == '__main__':
     # backup del database
     # chiusura dell'app in questo punto del codice
     try:
-        Backup().effettuaBackup()
+        Backup().effettuaBackup(pathDatabase)
         print(">>>>backup effettuato")
     except:
         print(">>>>errore generazione backup")

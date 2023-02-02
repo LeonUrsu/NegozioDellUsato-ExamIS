@@ -8,16 +8,16 @@ from MVC.model.Interfacce.sistemServiceInterface.BackupInterface import BackupIn
 from MVC.model.SistemService.File import File
 
 
-class Backup(object, BackupInterface):
+class Backup(BackupInterface):
 
     # Costruttore del metodo
     def __init__(self):
         pass
 
     # Metodo che quando richiamato effettua il backup dei dati e li copia nella cartella to_path
-    def effettuaBackup(self):
-        from_path = os.path.join(PathDatabase.mainDirPath, "Database")
-        to_path = os.path.join(PathDatabase.mainDirPath, "BackupFiles")
+    def effettuaBackup(self, pathDatabase):
+        from_path = os.path.join(pathDatabase.mainDirPath, "resourcesForUsatoBeato", "Database")
+        to_path = os.path.join(pathDatabase.mainDirPath, "resourcesForUsatoBeato", "BackupFiles")
         self.eliminaCartella(to_path)
         copytree(from_path, to_path)
 
