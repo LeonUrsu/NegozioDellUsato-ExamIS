@@ -20,8 +20,8 @@ class Amministratore(User, AmministratoreInterface):
 
     def __init__(self):
         super().__init__()
-        self.email = "admin"  # TODO questa email non ha nulla a che fare con admin, da togliere
-        self.password = "admin"  # TODO questa password non ha nulla a che fare con admin, da togliere
+        self.email = "admin"
+        self.password = "password"
 
     # Metodo che aggiorna un account in base ai parametri passati dall'amministratore
     def aggiornaAccount(self, nome, cognome, dataDiNascitaStr, email, idAccount, numeroTelefonico, residenza):
@@ -80,7 +80,6 @@ class Amministratore(User, AmministratoreInterface):
     def inserisciProdotto(self, dataEsposizione, idAccount,
                           nomeProdotto, prezzoOriginale, nomeScaffaleLe, nomeCategoria):
         categoria = Categoria().trovaCategoriaTramiteNome(nomeCategoria)
-        print(f">{nomeCategoria}<")
         if categoria == None:
             categoria = Categoria()
             categoria.aggiungiCategoria(nomeCategoria)

@@ -78,7 +78,7 @@ class Account(ServizioInterface, AccountInterface):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
-        newId = int(dictLetto['lastIdAccount'] + 1)
+        newId = int(dictLetto['lastIdAccount']) + 1
         dictLetto['lastIdAccount'] = newId
         File().scrivi(fileName, json.dumps(dictLetto))
         return newId

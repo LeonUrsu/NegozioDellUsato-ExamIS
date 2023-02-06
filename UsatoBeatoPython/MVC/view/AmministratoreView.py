@@ -157,8 +157,8 @@ class AmministratoreView(QWidget):
             chkBoxItem = QTableWidgetItem()
             chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
             obj.tab.setItem(row, 0, QtWidgets.QTableWidgetItem(prodotto["nomeProdotto"]))
-            obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(prodotto["prezzoCorrente"]))
-            obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(prodotto["idProdotto"]))
+            obj.tab.setItem(row, 1, QtWidgets.QTableWidgetItem(str(prodotto["prezzoCorrente"])))
+            obj.tab.setItem(row, 2, QtWidgets.QTableWidgetItem(str(prodotto["idProdotto"])))
             totale += int(prodotto["prezzoCorrente"])
             obj.tab.resizeRowsToContents()
             row += 1

@@ -33,9 +33,9 @@ class CentralWindow():
         icon = QtGui.QIcon(path)
         self.finestra.setWindowIcon(icon)
         file.close()
-        # self.apriAmministratoreView(pathlib.Path().resolve().__str__())
+        self.apriAmministratoreView(pathlib.Path().resolve().__str__())
         # self.apriClienteProprietarioView (pathlib.Path().resolve().__str__(), None)
-        self.apriUserView(mainPath)
+        #self.apriUserView(mainPath)
 
     # Metodo per aprire la finestra dell'cliente proprietario
     def apriClienteProprietarioView(self, mainPath, account):
