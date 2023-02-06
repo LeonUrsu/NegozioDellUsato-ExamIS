@@ -12,8 +12,7 @@ class LoginView(QWidget):
     def __init__(self, mainPath):
         super().__init__()
         loader = QUiLoader()
-        #path = os.path.join(mainPath, "MVC", "view", "../../resourcesForUsatoBeato/UserViews", "LoginView.ui")
-        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato/UserViews","LoginView.ui")
+        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato", "UserViews", "LoginView.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)

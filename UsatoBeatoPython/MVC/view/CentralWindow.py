@@ -22,13 +22,14 @@ class CentralWindow():
 
     def apriCentralWindowView(self, mainPath):
         loader = QUiLoader()
-        #path = os.path.join(mainPath, "MVC", "view", "../../resourcesForUsatoBeato/CentralWindow.ui")
-        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato/CentralWindow.ui")
+        # path = os.path.join(mainPath, "MVC", "view", "../../resourcesForUsatoBeato/CentralWindow.ui")
+        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato", "CentralWindow.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         self.finestra.setWindowTitle("")
-        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato/assets/LOGO/usatobeato-website-favicon-color.svg.png")
+        path = os.path.join(PathDatabase().mainDirPath,
+                            "resourcesForUsatoBeato", "assets","LOGO", "usatobeato-website-favicon-color.svg.png")
         icon = QtGui.QIcon(path)
         self.finestra.setWindowIcon(icon)
         file.close()
@@ -57,7 +58,7 @@ class CentralWindow():
 
     # Metodo per aprire la finestra dell'admin
     def apriAmministratoreView(self, mainPath):
-        amministratore = AmministratoreView(mainPath)
+        amministratore = AmministratoreView()
         self.removeAndAdd(amministratore)
         amministratore.finestra.quitBtn.clicked.connect(lambda: self.apriUserView(mainPath))
         amministratore.finestra.openRightMenu.clicked.connect(lambda: self.slideRightMenu(amministratore))
@@ -156,4 +157,3 @@ class CentralWindow():
         self.animation.setEndValue(newWidth)  # end value is the new menu width
         self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
         self.animation.start()
-

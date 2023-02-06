@@ -19,7 +19,9 @@ class Statistiche(StatisticheInterface):
     def aggiungiStatistiche(self):
         self.rimuoviStatsConData()
         listProdotti = self.getListProdottiVenduti()
+        if listProdotti == None: listProdotti= list()
         listProdottiInData = self.getProdottiVendutiInData()
+        if listProdottiInData == None: listProdottiInData = list()
         self.data = datetime.datetime.today()
         self.numeroClientiProprietari = self.getNumeroClienti()
         self.prodottiVendutiTotali = len(listProdotti)
@@ -141,4 +143,4 @@ class Statistiche(StatisticheInterface):
             statsDate = stats.data.date()
             if statsDate == todayDate:
                 lista.pop(lista.index(stats))
-        File().serializza(PathDatabase.statisticheTxt, lista)
+        File().serializza(PathDatabase().statisticheTxt, lista)

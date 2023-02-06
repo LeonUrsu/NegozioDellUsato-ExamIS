@@ -98,8 +98,10 @@ class Prodotto(ServizioInterface, ProdottoInterface):
 
     # Metodo che mette un Prodotto su file
     def mettiOggettoSuListaNelFile(self):
-        fileName = PathDatabase.inVenditaTxt
+        fileName = PathDatabase().inVenditaTxt
         listProdotti = File().deserializza(fileName)
+        if listProdotti != type(list()):
+            listProdotti == list()
         for prodotto in listProdotti:
             if prodotto.idProdotto == self.idProdotto:
                 listProdotti.pop(listProdotti.index(prodotto))
@@ -109,6 +111,8 @@ class Prodotto(ServizioInterface, ProdottoInterface):
     # Metodo che mette un Prodotto su file
     def mettiOggettoSuListaNelFileName(self, fileName):
         listProdotti = File().deserializza(fileName)
+        if listProdotti != type(list()):
+            listProdotti == list()
         for prodotto in listProdotti:
             if prodotto.idProdotto == self.idProdotto:
                 listProdotti.pop(listProdotti.index(prodotto))
@@ -193,19 +197,27 @@ class Prodotto(ServizioInterface, ProdottoInterface):
 
     # Metodo per recuperare la lista degli oggetti in vendita
     def recuperaListaProdottiInVendita(self):
-        return File().deserializza(PathDatabase.inVenditaTxt)
+        deserializzato = File().deserializza(PathDatabase().inVenditaTxt)
+        if deserializzato == None: return list()
+        return deserializzato
 
     # Metodo per recuperare la lista degli oggetti eliminati
     def recuperaListaProdottiEliminati(self):
-        return File().deserializza(PathDatabase.eliminatiTxt)
+        deserializzato = File().deserializza(PathDatabase().eliminatiTxt)
+        if deserializzato == None: return list()
+        return deserializzato
 
     # Metodo per recuperare la lista degli oggetti scaduti
     def recuperaListaProdottiScaduti(self):
-        return File().deserializza(PathDatabase.scadutiTxt)
+        deserializzato = File().deserializza(PathDatabase().scadutiTxt)
+        if deserializzato == None: return list()
+        return deserializzato
 
     # Metodo per recuperare la lista degli oggetti venduti
     def recuperaListaProdottiVenduti(self):
-        return File().deserializza(PathDatabase.vendutiTxt)
+        deserializzato = File().deserializza(PathDatabase().vendutiTxt)
+        if deserializzato == None: return list()
+        return deserializzato
 
     # Metodo per recuperare la lista dei prodotti tramite un fileName
     def recuperaListaOggetti(self):

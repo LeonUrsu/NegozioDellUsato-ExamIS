@@ -58,7 +58,7 @@ class Ricevuta(ServizioInterface, RicevutaInterface):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
-        newId = int(dictLetto['lastIdAccount'] + 1)
+        newId = int(dictLetto['lastIdRicevuta'] + 1)
         dictLetto['lastIdRicevuta'] = newId
         File().scrivi(fileName, json.dumps(dictLetto))
         return newId

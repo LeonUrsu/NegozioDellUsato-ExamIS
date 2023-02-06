@@ -12,10 +12,8 @@ from MVC.model.SistemService.Logging import Logging
 
 class ClienteProprietarioView():
     def __init__(self, mainPath):
-        # super().__init__()
         loader = QUiLoader()
-        #path = os.path.join(mainPath, "MVC", "view", "../../resourcesForUsatoBeato/ClienteProprietarioViews", "ClienteProprietarioView.ui")
-        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato/ClienteProprietarioViews", "ClienteProprietarioView.ui")
+        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato", "ClienteProprietarioViews", "ClienteProprietarioView.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
@@ -111,7 +109,7 @@ class ClienteProprietarioView():
     # Metodo che carica una view presente nelle AdminButtonsViews grazie al nome passato
     def caricaView(self, mainPath, name):
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "view", "../../resourcesForUsatoBeato/ClienteProprietarioViews", name)
+        path = os.path.join(mainPath, "resourcesForUsatoBeato", "ClienteProprietarioViews", name)
         file = QFile(path)
         file.open(QFile.ReadOnly)
         finestra = loader.load(file)
@@ -137,8 +135,10 @@ class ClienteProprietarioView():
 
     # Metodo che aggiunge i prodotti in vendita al tableWidget
     def aggiungiProdottiAllaTab(self, mainPath, tab, lista):
-        if lista == None:  # TODO mettere aumento del height
+        if lista == None:
             return
+        if lista == None:
+            lista = list()
         objList = ("Nome", "Prezzo", "ID", "Data", "Click su Visualizza")
         column = len(objList)
         tab.setColumnCount(column)

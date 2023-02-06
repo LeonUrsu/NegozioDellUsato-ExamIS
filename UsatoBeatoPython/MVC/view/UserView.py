@@ -14,13 +14,12 @@ class UserView():
 
     def __init__(self, mainPath):
         loader = QUiLoader()
-        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato/UserViews", "UserView.ui")
+        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato", "UserViews", "UserView.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
         self.finestra = loader.load(file)
         file.close()
-        catList = Controller().recuperaListaCategorie()
-        self.caricaUserProdottiView(mainPath, catList)
+        self.caricaUserProdottiView(mainPath, None)
 
     # Metodo che crea un bottone grazie al idProdotto
     # mainPath = path del main
@@ -40,27 +39,15 @@ class UserView():
     def caricainfoProdottoView(self, mainPath, fileName, prodottoTrovato):
         obj = self.caricaView(mainPath, fileName)
         self.removeAndAdd(obj)
-        obj.nomeProdottoDaIns.setText(prodottoTrovato.nomeProdotto)
-        obj.prezzoCorrenteDaIns.setText(prodottoTrovato.prezzoCorrente)
-        obj.prezzoOriginaleDaIns.setText(prodottoTrovato.prezzoOriginale)
+        obj.nomeProdottoDaIns.setText(f"{prodottoTrovato.nomeProdotto}")
+        obj.prezzoCorrenteDaIns.setText(f"{prodottoTrovato.prezzoCorrente}")
+        obj.prezzoOriginaleDaIns.setText(f"{prodottoTrovato.prezzoOriginale}")
         obj.dataDiEsposizioneDaIns.setText(f"{prodottoTrovato.dataEsposizione}")
         obj.dataDiScadenzaDaIns.setText(f"{prodottoTrovato.dataScadenza}")
         obj.idProdottoDaIns.setText(f"{prodottoTrovato.idProdotto}")
         obj.idScaffaleDaIns.setText(f"{prodottoTrovato.nomeScaffale}")
         obj.nomeCategoriaDaIns.setText(f"{prodottoTrovato.nomeCategoria}")
         obj.indietroBtn.clicked.connect(lambda: self.caricaUserProdottiView(mainPath, None))
-
-    # Metodo che cerca il prodotto in base al nome passato e alle opzion scelte nella tendina
-    # mainPath = path del main
-    # fileName = nome del file da caricare
-    # obj = view da utilizzare per caricare i dati
-    def cercaProdottoBtnClicked(self, mainPath, obj):
-        textData = str(obj.filtraPerData.currentIndex())
-        textPrezzo = str(obj.filtraPerPrezzo.currentIndex())
-        textCategoria = str(obj.filtraPerCategoria.currentText())
-        name = obj.search_le.text()
-        listaCorrispondenti = Controller().elaboraCercaProdottoBtnClicked(name, textData, textPrezzo, textCategoria)
-        self.caricaUserProdottiView(mainPath, listaCorrispondenti)
 
     # Metodo che cerca il prodotto in base al nome passato
     # mainPath = path del main
@@ -112,7 +99,7 @@ class UserView():
     # name = file da caricare
     def caricaView(self, mainPath, fileName):
         loader = QUiLoader()
-        path = os.path.join(mainPath,"resourcesForUsatoBeato/UserViews", fileName)
+        path = os.path.join(mainPath, "resourcesForUsatoBeato", "UserViews", fileName)
         file = QFile(path)
         file.open(QFile.ReadOnly)
         finestra = loader.load(file)
@@ -126,6 +113,8 @@ class UserView():
     def aggiungiProdottiAllaTab(self, mainPath, obj, lista):
         if lista == None:
             lista = Controller().recuperaListaProdottiInVendita()
+        if lista == None:
+            lista = list()
         objList = ("Nome", "Prezzo", "ID Prodotto", "Data di scadenza", "Click Su Visualizza")
         column = len(objList)
         obj.tab.setColumnCount(column)

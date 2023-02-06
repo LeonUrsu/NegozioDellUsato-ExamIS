@@ -17,15 +17,14 @@ if __name__ == '__main__':
     mainPath = sys.argv[0]
     mainDirPath = os.path.dirname(mainPath)
     pathDatabase = PathDatabase()
-    print(f"...........{pathDatabase.mainDirPath}")
-    try:
+
     # Window setup
-        app = QApplication(sys.argv)
-        app.setApplicationDisplayName("UsatoBeato")
-        centralWindow = CentralWindow()
-        centralWindow.apriCentralWindowView(pathDatabase.mainDirPath)
-        centralWindow.finestra.show()
-    except: pass
+    app = QApplication(sys.argv)
+    app.setApplicationDisplayName("UsatoBeato")
+    centralWindow = CentralWindow()
+    centralWindow.apriCentralWindowView(pathDatabase.mainDirPath)
+    centralWindow.finestra.show()
+
     # exit app setup
     try:
         sys.exit(app.exec())

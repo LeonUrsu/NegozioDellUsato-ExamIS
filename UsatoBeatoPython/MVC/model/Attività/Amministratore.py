@@ -12,6 +12,7 @@ from MVC.model.SistemService.Filtri import Filtri
 from MVC.model.SistemService.Logging import Logging
 from MVC.model.SistemService.Notifica import Notifica
 from MVC.model.SistemService.Statistiche import Statistiche
+from resourcesForUsatoBeato.AmministratoreViews.ExceptHandler import ExceptHandler
 
 
 # Classe per gestire tutte le funzioni disponibili ad un amministratore del negozio
@@ -79,6 +80,7 @@ class Amministratore(User, AmministratoreInterface):
     def inserisciProdotto(self, dataEsposizione, idAccount,
                           nomeProdotto, prezzoOriginale, nomeScaffaleLe, nomeCategoria):
         categoria = Categoria().trovaCategoriaTramiteNome(nomeCategoria)
+        print(f">{nomeCategoria}<")
         if categoria == None:
             categoria = Categoria()
             categoria.aggiungiCategoria(nomeCategoria)
@@ -130,7 +132,7 @@ class Amministratore(User, AmministratoreInterface):
     def vendiProdotti(self, prodottoList):
         listaInfo = list()  # lista per scontrino
         for prodotto in prodottoList:
-            Prodotto().spostaProdotto(prodotto.idProdotto, PathDatabase.inVenditaTxt, PathDatabase.vendutiTxt)
+            Prodotto().spostaProdotto(prodotto.idProdotto, PathDatabase().inVenditaTxt, PathDatabase().vendutiTxt)
             listaInfo.append(Ricevuta().getInfoProdotto(prodotto))
         ricevuta = Ricevuta()
         ricevuta.aggiungiProdotti(listaInfo)

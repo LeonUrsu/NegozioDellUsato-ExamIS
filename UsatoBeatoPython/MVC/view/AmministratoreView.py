@@ -1,21 +1,21 @@
 import os
+import sys
 from datetime import datetime
-from PySide6 import QtCore, QtWidgets
+
+from PySide6 import QtCore, QtWidgets, QtGui
 from PySide6.QtCore import QFile
 from PySide6.QtGui import QCursor, QFont
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton, QVBoxLayout
+from PySide6.QtWidgets import QWidget, QTableWidgetItem, QPushButton, QVBoxLayout, QApplication, QLabel, QMessageBox
 
 from Database.PathDatabase import PathDatabase
 from MVC.controller.Controller import Controller
 
-
 class AmministratoreView(QWidget):
-    def __init__(self, mainPath):
+    def __init__(self):
         super().__init__()
         loader = QUiLoader()
-        # path = os.path.join(mainPath, "MVC", "view", "../../resourcesForUsatoBeato/AmministratoreViews", "AmministratoreView.ui")
-        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato/AmministratoreViews",
+        path = os.path.join(PathDatabase().mainDirPath, "resourcesForUsatoBeato", "AmministratoreViews",
                             "AmministratoreView.ui")
         file = QFile(path)
         file.open(QFile.ReadOnly)
@@ -80,6 +80,7 @@ class AmministratoreView(QWidget):
         amministratore.finestra.backupBtn.setStyleSheet(self.unPushedStyleSheet())
         if lista == None:
             lista = Controller().recuperaListaProdottiInVendita()
+        #print(f"{len(lista)}")
         self.aggiungiProdottiAllaTab(mainPath, obj, amministratore, lista)
         obj.aggiungiBtn.clicked.connect(lambda: amministratore.aggiungiProdottoBtnClicked(mainPath, amministratore))
         obj.rimuoviBtn.clicked.connect(lambda: amministratore.rimuoviProdottoBtnClicked(mainPath, amministratore, obj))
@@ -205,7 +206,8 @@ class AmministratoreView(QWidget):
         amministratore.finestra.prodottiBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.accountsBtn.setStyleSheet(self.unPushedStyleSheet())
         amministratore.finestra.backupBtn.setStyleSheet(self.pushedStyleSheet())
-        obj.pushButton.clicked.connect(lambda: self.effettuaBackup(obj))
+        obj.effettuaBackup.clicked.connect(lambda: self.effettuaBackup(obj))
+        obj.resetDatabase.clicked.connect(lambda: self.resetDatabaseControl(mainPath, amministratore))
 
     # Metodo per effettuare il backup dei dati
     # obj = view caricata
@@ -265,7 +267,12 @@ class AmministratoreView(QWidget):
         if self.checkerSaveProdottoBtnClicked(nomeLe, idAccountLe, prezzoLe, nomeCategoriaLe):
             pass
         else:
-            self.prodottiBtnClicked(mainPath, amministratore, None)
+            msg = QMessageBox()
+            msg.setWindowTitle("ERROR")
+            msg.setText("Dati non corretti, ricontrollare")
+            x = msg.exec_()
+            return
+            #self.prodottiBtnClicked(mainPath, amministratore, None)
         Controller().amministratoresaveProdottoBtn(datetime.today(), idAccountLe, nomeLe, prezzoLe, nomeScaffaleLe,
                                                    nomeCategoriaLe)
         self.prodottiBtnClicked(mainPath, amministratore, None)
@@ -291,7 +298,10 @@ class AmministratoreView(QWidget):
                                              citofonoLe, viaLe, piazzaLe, civicoLe, citofonoLe):
             pass
         else:
-            self.accountsBtnClicked(mainPath, amministratore, None)
+            msg = QMessageBox()
+            msg.setWindowTitle("ERROR")
+            msg.setText("Dati non corretti, ricontrollare")
+            x = msg.exec_()
             return
         Controller().saveCLienteBtnClicked(nomeLe, cognomeLe, dataNascitaLe, emailLe, passwordLe, telefonoLe, capLe,
                                            cittaLe, viaLe, piazzaLe, civicoLe, citofonoLe)
@@ -324,7 +334,7 @@ class AmministratoreView(QWidget):
     # name = nome del file da caricare
     def caricaView(self, mainPath, name):
         loader = QUiLoader()
-        path = os.path.join(mainPath, "MVC", "view", "../../resourcesForUsatoBeato/AmministratoreViews", name)
+        path = os.path.join(mainPath, "resourcesForUsatoBeato", "AmministratoreViews", name)
         file = QFile(path)
         file.open(QFile.ReadOnly)
         finestra = loader.load(file)
@@ -339,6 +349,8 @@ class AmministratoreView(QWidget):
     def aggiungiProdottiAllaTab(self, mainPath, obj, amministratore, lista):
         if lista == None:
             lista = Controller().recuperaListaProdottiInVendita()
+        if lista == None:
+            lista = list()
         objList = (None, "Nome", "Prezzo", "ID Prodotto", "Data di Scadenza", "Click Su Visualizza")
         column = len(objList)
         obj.tab.setColumnCount(column)
@@ -516,15 +528,16 @@ class AmministratoreView(QWidget):
         self.caricainfoAccountView(mainPath, "infoAccountView.ui", Controller().trovaAccountTramiteId(idAccount),
                                    amministratore, None)
 
-    # Metodo per controllare la validità dei dati inseriti dall'utente
+    # Metodo per controllare la validità dei dati inseriti dall'utente, return True se sono ok
     # * = parametri str o datetime da controllare per errori umani
     def checkerSaveProdottoBtnClicked(self, nomeLe, idAccountLe, prezzoLe, nomeCategoriaLe):
         if nomeLe == "": return False
-        if not idAccountLe.isalnum(): return False
+        account = Controller().trovaAccountTramiteId(idAccountLe)
+        if account == None or idAccountLe == "":
+            idAccountLe == None
         if not prezzoLe.isalnum(): return False
-        if prezzoLe != "": return False
-        if not nomeCategoriaLe == "": return False
-        if Controller().checkEsistenzaCategoriaInDatabase(nomeCategoriaLe): return False
+        if prezzoLe == "": return False
+        if nomeCategoriaLe == "": return False
         return True
 
     # Metodo per controllare la validità dei dati inseriti dall'utente]
@@ -549,3 +562,16 @@ class AmministratoreView(QWidget):
             return True
         except:
             return False
+
+    # Metodo per eliminare il database in caso di problemi
+    def resetDatabaseControl(self, mainPath, amministratore):
+        name = "yesNoWindow.ui"
+        obj = self.caricaView(mainPath, name)
+        self.removeAndAdd(obj)
+        obj.yesBtn.clicked.connect(lambda: self.resetDatabaseControlYesClicked(mainPath, amministratore))
+        obj.noBtn.clicked.connect(lambda: self.backupBtnClicked(mainPath, amministratore))
+
+    # Metodo gestore dell "si" dell'eliminazione del Database
+    def resetDatabaseControlYesClicked(self, mainPath, amministratore):
+        PathDatabase().resetDatabase()
+        self.backupBtnClicked(mainPath, amministratore)

@@ -15,7 +15,7 @@ class Categoria(ServizioInterface, CategoriaInterface):
 
     # Costruttore della Categoria, create() in EA
     def aggiungiCategoria(self, nome):
-        self.idCategoria = self.newID()
+        self.idCategoria = self.newId()
         self.nome = nome
         self.oggettiTotali = 0
         self.creaInDatabase()
@@ -69,11 +69,11 @@ class Categoria(ServizioInterface, CategoriaInterface):
 
     # Metodo che ritorna il nuovo id da assegnare alla Categoria da inserire
     # return = nuovo ID per la Categoria
-    def newID(self):
+    def newId(self):
         fileName = PathDatabase().parametriTxt
         letto = File().leggi(fileName)
         dictLetto = json.loads(letto)
-        newId = int(dictLetto['lastIdAccount'] + 1)
+        newId = int(dictLetto['lastidCategoria'] + 1)
         dictLetto['lastidCategoria'] = newId
         File().scrivi(fileName, json.dumps(dictLetto))
         return newId
