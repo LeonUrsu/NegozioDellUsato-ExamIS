@@ -1,0 +1,23 @@
+P---
+-quando un oggetto viene distrutto scrivere destroy in inglese FATTO
+-usare termini chiave in inglese FATTO
+-non dire "diagrammi d'uso del sistema" hanno ognuno un nome FATTO
+-non mettere stati degli oggetti ma mettere vincoli? idkwhm FATTO
+-mettere le barre di attivazione degli singoli diagrammi di sequenza FATTO
+-gestione delle eccezioni per non avere crash del sistema FATTO
+-5/6 diagrammi di macchine a stati FATTO
+-utilizzare codice gia pronto delle librerie  FATTO
+-numero sufficiente di diagrammi di sequenza FATTO
+-scrivere IF e non SE FATTO
+-prima di include scrivere "il caso d'uso inizia quando qualcuno..." FATTO
+-scrivere extend e non estende FATTO
+-CRUD e poi ricerca (si intende nei diagrammi dei casi d'uso) FATTO
+-grafica del documento in word o pdf FATTO
+-usare requisiti con tassonomia FATTO
+-dividere requisiti funz e non FATTO
+-scrivere soggetto nelle frasi FATTO
+-progetto ordinato FATTO
+E---
+-commenti codice FATTO
+-codice organizzato FATTO
+-portabilita della grafica su diversi SO, quindi scegliere stili delle finestre std o comunque installabilli
