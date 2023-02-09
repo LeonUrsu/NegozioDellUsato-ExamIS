@@ -1,7 +1,7 @@
 # NegozioDellUsato-ExamIS
 Progetto per l'attività didattica: Ingegneria del Software 2021/2022 UNIVPM 
 
-WINDOWS INSTALLATION ##################################################################
+## WINDOWS INSTALLATION ##################################################################
 
 L'intallazione su windows può essere effettuata facilmente.
 
@@ -21,12 +21,25 @@ verifica che hai presente tutte le seguente librerie e se mancano installe trami
 
 Lancia il comando:
 
-> pip intall pyinstaller
+> pip install pyinstaller
 
 Ora se il pyinstaller è stato installato correttamente e se non mancano le librerie necessarie, per generare l'eseguibile lancia il comando:
 
 > pyinstaller UsatoBeato.py --onefile
 
 Lanciato il comando del pyinstaller, taglia la cartella chiamata "resourcesForUsatoBeato" che si trova nella cartella "UsatoBeatoFiles"e incollala nella cartella "UsatoBeatoPython\dist". 
-La cartella "dist" è stata generata con un eseguibile all'interno chiamato "UsatoBeato.exe", tale eseguibile ha bisogno della cartella "resourcesForUsatoBeato" per
-funzionare
+La cartella "dist" è stata generata con un eseguibile all'interno chiamato "UsatoBeato.exe", tale eseguibile necessita della cartella "resourcesForUsatoBeato" per
+funzionare. Per me la cartella deve risultare così:
+
+![image](https://user-images.githubusercontent.com/95302292/217758517-3e84b8af-b8c3-4caa-bb5d-427192be6bad.png)
+
+Se non hai saltato passaggi intermedi ti basta digitare all'interno del cmd "UsatoBeato.exe" se ti trovi nella cartella "dist" con il cmd.
+
+![image](https://user-images.githubusercontent.com/95302292/217758280-73b12525-7d28-4cbb-acb2-e5116e2b2c00.png)
+
+ENJOY!
+
+
+## LINUX INSTALLATION ##################################################################
+
+
