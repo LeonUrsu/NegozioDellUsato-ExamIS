@@ -1,2 +1,3 @@
-NegozioDelUsatoPython\venv
-NegozioDelUsatoPython\.idea
+UsatobeatoFiles\UsatoBeatoPython\venv
+UsatobeatoFiles\UsatoBeatoPython\.idea
+UsatobeatoFiles\CestinoProgetto\*
