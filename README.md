@@ -17,6 +17,12 @@ verifica che hai presente tutte le seguente librerie e se mancano installe trami
 
 > pip install NOMELIBRERIA
 
+ATTENZIONE: 
+
+installando la libreria "yagmail" si installano automaticamente anche: "lxml", "cssutils", "cssselect", "cachetools", "premailer"
+
+installando la libreria "PySide6" si installano automaticamente anche: "shiboken6", "PySide6-Essentials", "PySide6-Addons"
+
 ![librerienecessarie](https://user-images.githubusercontent.com/95302292/217621016-6d8da044-1c86-4a1f-a2a8-1329b887e9e9.png)
 
 Lancia il comando:
@@ -40,6 +46,16 @@ Se non hai saltato passaggi intermedi ti basta digitare all'interno del cmd "Usa
 ENJOY!
 
 
-## LINUX INSTALLATION ##################################################################
+## LINUX INSTALLATION
 
+L'intallazione su linux prevede la stessa sequenza di pocedure,
 
+Digitando "cmd" in linux si apre il terminale.
+
+Su linux abbiamo pip3 invece di pip
+
+pyinstaller è una libreria cross-plaform perciò disponibile su linux
+
+## macOS INSTALLATION
+
+Purtroppo la guida per l'installazione su macOS non è stata possibile in quanto è stato impossibile reperire la macchina. Tendo a precisare che pyinstaller è disponibile anche su macOS e PySide6 è una libreria compatibile con tale SO, l'installazione dovrebbe essere, se non identica, simile all'installazione sugli altri SO.
